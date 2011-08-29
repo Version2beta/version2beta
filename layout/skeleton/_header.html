@@ -1,0 +1,23 @@
+<hgroup>
+<div id="header">
+    <a href="{{ site.url }}/index.html" id="sitename">{{ site.name }}</a>
+</div>
+</hgroup>
+{% block breadcrumbs %}{% include "skeleton/_breadcrumbs.html" %}{% endblock %}
+{% block context_nav %}{% endblock %}
+{% block sitenav %}
+<nav>
+<div id="sitenav">
+    <ul>
+        <li{% ifequal page.module site.module %} class="selected" {% endifequal %}>
+            <a href="{{ site.listing_url }}">Home</a>
+        </li>    
+        {% for module in site.children %}
+        <li{% ifequal page.module module %} class="selected" {% endifequal %}>
+            <a href="{{ module.listing_url }}">{{ module.name|unslugify }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+</nav>
+{% endblock %}

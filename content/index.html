@@ -1,0 +1,37 @@
+{% extends "skeleton/_body.html" %}
+{% hyde
+    title: "home"
+    created: 2011-08-08 14:30:00
+    listing: True
+%}
+
+{% block content_header %}<div id="content-header"></div>{% endblock %}
+{% block content_body %}
+{% recent_posts recents 5 %}
+{% for post in recents %}
+    <article>
+        <header>
+            <span class="time"><time pubdate>{{ post.created|date:"d F Y" }}</time></span>
+            {% with post.name_without_extension|remove_date_prefix|unslugify as default_title %}
+                <h2>{{ post.title|default_if_none:default_title }}</h2>
+            {% endwith %}
+        </header>
+        {% render_excerpt post 500 %}
+        <p>Continue with <em><a href='{{post.url}}'>{{post.title}}</a></em>
+        <!--<br /><em>(<a href='{{post.url}}#disqus_thread' data-disqus-identifier="post.page_name|slugify">{{post.title}}</a>)</em>--></p>
+    </article>
+{% endfor %}
+
+<p class="archivelink">View the <a href="/archive/archive.html" title="Archive of version2beta's blog posting">whole darn blog archive</a>.</p>
+
+<script type="text/javascript">
+    var disqus_shortname = 'version2beta'; 
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+{% endblock %}
