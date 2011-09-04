@@ -5,7 +5,7 @@ body {
  font-family: 'Georgia', serif;
  font-size: 17px;
  color: #3E4349;
- line-height: 1.5em;
+ line-height: 1.75em;
  width: 640px;
  margin: 0 auto;
 }
@@ -26,14 +26,17 @@ h1 {
 
 h2 {
  font-size: 2.0em;
+ padding: 0.5em 0;
 }
 
 h3 {
  font-size: 1.5em;
+ padding: 0.5em 0;
 }
 
 h4 {
  font-size: 1.25em;
+ padding: 0.5em 0;
 }
 
 a { color: #004B6B; }
@@ -43,6 +46,7 @@ a { color: #004B6B; }
  width: 640px;
  min-height:53em;
  position: relative;
+ letter-spacing: 0.8px;
 }
 
 #header {
@@ -121,7 +125,7 @@ ul.breadcrumbs {
  text-align: center;
  border-bottom: .2em solid #454145;
  padding-bottom: 0.2em;
- height: 26px;
+ height: 30px;
 }
 
 #sitenav ul {
