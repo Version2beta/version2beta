@@ -1,12 +1,12 @@
 body {
  padding: 0;
  margin: 0;
- font-family: ubuntu, "Trebuchet MS", sans-serif;
- font-family: 'Georgia', serif;
- font-size: 17px;
- color: #3E4349;
+ font-family: 'Linux Libertine', Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, 'Times New Roman', serif;
+ font-size: 16px;
  color: #111;
- line-height: 1.75em;
+ letter-spacing: 0.8px;
+ word-spacing: 0.1em;
+ line-height: 32px;
  width: 640px;
  margin: 0 auto;
 }
@@ -41,13 +41,18 @@ h4 {
 }
 
 a { color: #004B6B; }
+a,
+a:visited {
+ color: #B22222;
+}
+
+p { margin-bottom: 32px; }
 
 #site {
  margin: 0 auto;
  width: 640px;
  min-height:53em;
  position: relative;
- letter-spacing: 0.8px;
 }
 
 #header {
@@ -123,6 +128,7 @@ ul.breadcrumbs {
 .breadcrumbs a {
  text-decoration: none;
  color: #004B6B;
+ color: #B22222;
 }
 
 .context-nav a {
@@ -136,7 +142,7 @@ ul.breadcrumbs {
  text-align: center;
  border-bottom: .2em solid #454145;
  padding-bottom: 0.2em;
- height: 30px;
+ height: 33px;
 }
 
 #sitenav ul {
@@ -178,7 +184,7 @@ ul.breadcrumbs {
  float: right;
  font-style: italic;
  font-size: 0.8em;
- 
+ margin-top: -72px;
 }
 
 p.archivelink {
@@ -210,6 +216,7 @@ sup {
 sup a,
 sup a:visited {
  color: #004B6B;
+ color: #B22222;
  text-decoration: none;
 }
 
@@ -266,3 +273,4 @@ pre {
  margin: 24px auto;
  width: 85%;
 }
+
