@@ -13,7 +13,7 @@
         <header>
             <span class="time"><time pubdate>{{ post.created|date:"d F Y" }}</time></span>
             {% with post.name_without_extension|remove_date_prefix|unslugify as default_title %}
-                <h2>{{ post.title|default_if_none:default_title }}</h2>
+                <h2><a href='{{post.url}}'>{{ post.title|default_if_none:default_title }}</a></h2>
             {% endwith %}
         </header>
         {% render_excerpt post 500 %}

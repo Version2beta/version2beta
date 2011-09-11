@@ -16,9 +16,15 @@
 
 {% filter typogrify %}
 {% markdown %}
+
 {% block article %}
     
 {% endblock %}
+
+<div class="see-also">
+{% block see-also %}{% endblock %}
+</div>
+
 {% endmarkdown %}
 {% endfilter %}
 

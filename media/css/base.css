@@ -5,6 +5,7 @@ body {
  font-family: 'Georgia', serif;
  font-size: 17px;
  color: #3E4349;
+ color: #111;
  line-height: 1.75em;
  width: 640px;
  margin: 0 auto;
@@ -56,6 +57,16 @@ a { color: #004B6B; }
 
 #header a {
  text-decoration: none;
+}
+
+article header h2 a,
+article header h2 a:visited {
+ color: black;
+ text-decoration: none;
+}
+ 
+article header h2 a:hover {
+ text-decoration: underline;
 }
 
 #header #sitename {
@@ -244,4 +255,14 @@ pre {
 
 #disqus_thread h3 {
  font-size: 1.2em;
+}
+
+.see-also {
+ font-size: smaller;
+ color: #444;
+ background-color: #e8e8e8;
+ border: 1px solid #444;
+ padding: 0 32px;
+ margin: 24px auto;
+ width: 85%;
 }
