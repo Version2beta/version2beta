@@ -12,8 +12,11 @@
 {% if list_page.display_in_list %}
   <article>
       <header>
-        <span><time pubdate>{{ list_page.created|date:"Y-m-d" }}</time>: </span>
-        {% with list_page.name_without_extension|remove_date_prefix|unslugify as default_title %}<a href='{{list_page.url}}'>{{ list_page.title|default_if_none:default_title }}</a>{% endwith %}
+        <time pubdate>{{ list_page.created|date:"Y-m-d" }}</time>
+        {% with list_page.name_without_extension|remove_date_prefix|unslugify as default_title %}
+          <a href='{{list_page.url}}'>{{ list_page.title|default_if_none:default_title }}</a>
+          {% if list_page.short %}<br />{{ list_page.short }}{% endif %}
+        {% endwith %}
       </header>
   </article>
 {% endif %}
