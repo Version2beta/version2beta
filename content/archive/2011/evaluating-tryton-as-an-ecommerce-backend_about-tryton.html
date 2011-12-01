@@ -2,9 +2,9 @@
 {% load webdesign %}
 
 {% hyde
-    title: Tryton as an ecommerce back-end - About Tryton
+    title: Tryton as an e-commerce back-end - About Tryton
     created: 2011-06-05 15:24:00
-    short: Learning about Tryton, since I might want to use it as an ecommerce back end.
+    short: Learning about Tryton, since I might want to use it as an e-commerce back end.
 %}
 
 {% block article %}
@@ -12,7 +12,7 @@
 {% article %}
 {% excerpt %}
 
-This is part one in a series exploring how Tryton might fair as the heavy-lifting portion of an ecommerce package. This first part describes Tryton - architecture, features, community, license.
+This is part one in a series exploring how Tryton might fair as the heavy-lifting portion of an e-commerce package. This first part describes Tryton - architecture, features, community, license.
 
 {% endexcerpt %}
 
@@ -20,7 +20,7 @@ Upcoming parts (as planned, anyway):
 
 -   Part 1: About Tryton
 -   [Part 2: Stalking the Tryton community][]
--   *Coming soon –* Part 3: A general ecommerce specification
+-   [Part 3: The crux of the matter][]
 
 ## About Tryton
 
@@ -50,7 +50,7 @@ smoothly.
 -   On the client side, we have a Python GTK+ program that runs on
     a bunch of desktop operating systems (unfortunately not yet
     including mobile.) But there’s lots of ways to look at what the
-    client application is. In some ways, my ecommerce websites will be
+    client application is. In some ways, my e-commerce websites will be
     the client, too.
 -   Opposite the client, we have PostgreSQL, a badass database
     powerhouse. ‘Nuff said.
@@ -142,7 +142,7 @@ That’s not to say Tryton can’t do these things. It can – some
 assembly required, please allow six to eight months for delivery.
 
 Looking at my target application, however – performing as the
-backend for a large-scale ecommerce system – Tryton has much of
+backend for a large-scale e-commerce system – Tryton has much of
 what I need:
 
 -   Account management
@@ -162,11 +162,11 @@ Alas, there are a few things I’d want to add to that list:
     Checkout, etc.
 -   Shipping integration with UPS, USPS, and FedEx
 -   WYSIWYG editing of product data
--   A decent point of sale terminal interface for ecommerce stores
+-   A decent point of sale terminal interface for e-commerce stores
     with a brick-and-mortar presence
 
 While I might not expect it to be part of Tryton, there’s always
-the rest of the ecommerce site too – content management, templates,
+the rest of the e-commerce site too – content management, templates,
 dynamic content outside of the store, etc. I think it could be
 interesting to see a merger between these elements, but I am not
 convinced it’s a good marriage. Should an ERP system provide
@@ -248,15 +248,14 @@ departments.
 -   [Part 2: Stalking the Tryton community][]. There are some
     impressive people working on this project. I’m pleased to get to
     know them.
--   *Coming soon –*Part 3: A general ecommerce specification. What
-    does a Tryton-backed ecommerce system need to do?
--   And more perhaps, as I’m actually doing it.
+-   [Part 3: The crux of the matter][]. Tryton needs a web framework so we don't have to do things twice.
 
 *If I’ve inspired a response from you (probably the type of response that deserves an apology), mention [@version2beta][] on [Twitter][] and I’ll see it there. Or, if you can’t comment in less than 126 characters (my handle takes 14 characters with a space), blog about it and tweet that.*
 
 
 
-  [Part 2: Stalking the Tryton community]: http://www.version2beta.com/blog/2011/evaluation-tryton-as-an-ecommerce-back-end-stalking-the-tryton-community/ "Evaluation Tryton as an ecommerce back-end: Stalking the Tryton community"
+  [Part 2: Stalking the Tryton community]: http://www.version2beta.com/blog/2011/evaluation-tryton-as-an-ecommerce-back-end-stalking-the-tryton-community/ "Evaluation Tryton as an e-commerce back-end: Stalking the Tryton community"
+  [Part 3: The crux of the matter]: http://version2beta.com/archive/2011/evaluating-tryton-as-an-ecommerce-backend_web-framework.html "Tryton as an e-commerce back-end: Tryton needs a web framework."
   [^tryton]: [http://tryton.org/][Tryton] Tryton project home
   [Tryton]: http://tryton.org/ "Tryton home page"
   [^erp]: Don't know what [Enterprise Resource Planning][ERP] is? Wikipedia does.
@@ -300,7 +299,7 @@ departments.
   [^django]: [Django][] is a Python-based web framework for delivering content efficiently. Originally developed by newspaper publisher The World Company in Lawrence, Kansas, it's not used in a wide variety of applications throughout the internet. The largest Django site right now is Disqus, which will host comments for my blog when I get around to implementing that.
   [Django]: https://www.djangoproject.com/ "Django is a Python-based web framework for delivering content efficiently"
   [^openerp2]: OpenERP SA is the editor and holder of the [OpenERP][] project.
-  [^magento]: Varien publishes the [Magento ecommerce system][Magento]. That's kind of like the advice Mom gave me. If you can't say anything nice, don't say anything at all.
+  [^magento]: Varien publishes the [Magento e-commerce system][Magento]. That's kind of like the advice Mom gave me. If you can't say anything nice, don't say anything at all.
   [Magento]: http://www.magentocommerce.com/
   [^agpl]: The full and official text of the [GNU Affero General Public License version 3.0][agpl]
   [agpl]: http://www.gnu.org/licenses/agpl.html "Affero General Public License version 3.0."

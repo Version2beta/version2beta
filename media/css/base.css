@@ -122,7 +122,7 @@ article header h2 a:hover {
 .page-listing time {
  display: inline-block;
  background-color: #e8e8e8;
- margin-right: 1em;
+ margin: 2em 1em 0 0;
  padding: 0 8px;
  font-size: 0.7em;
  letter-spacing: 2px;
@@ -296,3 +296,15 @@ pre {
  width: 85%;
 }
 
+div#action {
+ border: 1px solid #babeba;
+ padding: 15px 30px; 
+ margin: 60px -30px 15px -30px;
+ font-size: 0.85em;
+ color: #666;
+}
+
+div#action h2 {
+ color: #999;
+ text-align: center;
+}
