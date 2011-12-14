@@ -1,0 +1,877 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>version2beta blog</title><link href="http://www.version2beta.com/blog/atom.xml" rel="self"/><link href="http://www.version2beta.com"/><updated>2011-08-17T19:43:30Z</updated><id>http://www.version2beta.com</id><entry><title>High Availability Linode Pairs</title><author><name>Rob Martin</name></author><link href="http://www.version2beta.com/blog/2011/high-availability-linode-pairs.html"/><updated>2011-08-08T20:08:08Z</updated><published>2011-08-08T20:08:08Z</published><id>http://www.version2beta.com/blog/2011/high-availability-linode-pairs.html</id><content type="html">
+       
+&lt;!-- Hyde::Excerpt::Begin --&gt;
+
+&lt;!-- Hyde::Excerpt::End --&gt;
+
+&lt;p&gt;More of a recipe than a&amp;nbsp;how-to&lt;/p&gt;
+&lt;h2&gt;Initial configuration, from within the Linode&amp;nbsp;dashboard&lt;/h2&gt;
+&lt;p&gt;Repeat the following procedure for each member of the&amp;nbsp;pair:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Go to the Remote Access tab on the Linode&amp;nbsp;dashboard. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Note the public &lt;span class=&quot;caps&quot;&gt;IP&lt;/span&gt;. We&amp;#8217;ll need that&amp;nbsp;later.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add a private &lt;span class=&quot;caps&quot;&gt;IP&lt;/span&gt;, and note it. We&amp;#8217;ll need that later,&amp;nbsp;too.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If by any chance you have an IPv6 private address, note that. We&amp;#8217;ll use it all. If you don&amp;#8217;t have one, click on &amp;#8220;Enable IPv6&amp;#8221; and get one. We really are going to use&amp;nbsp;it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Set a Lish password. I use &lt;span class=&quot;caps&quot;&gt;APG&lt;/span&gt;&lt;sup id=&quot;fnref:APG&quot;&gt;&lt;a href=&quot;#fn:APG&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; to generate new passwords, e.g. &lt;code&gt;apg -n 100&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add an &lt;span class=&quot;caps&quot;&gt;SSH&lt;/span&gt; public key to the Keys box. This is in addition to the Lish password.  Or instead of it, if you&amp;nbsp;prefer.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This is also good time to write to Linode support. You&amp;#8217;ll need to order an additional public &lt;span class=&quot;caps&quot;&gt;IP&lt;/span&gt; address, and by default you are unable to purchase an additional &lt;span class=&quot;caps&quot;&gt;IP&lt;/span&gt; address until you&amp;#8217;ve requested and justified it specifically with support. You&amp;#8217;ll also need another &lt;em&gt;private&lt;/em&gt; &lt;span class=&quot;caps&quot;&gt;IP&lt;/span&gt; address, which doesn&amp;#8217;t cost anything but it takes a support person to do it - there&amp;#8217;s no way to automatically add more than one private &lt;span class=&quot;caps&quot;&gt;IP&lt;/span&gt; address. These addresses will float between the pairs, so it doesn&amp;#8217;t matter which of the pair get these additional addresses. Make note of these floating&amp;nbsp;addresses.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Go to the Settings tab in the Linode&amp;nbsp;dashboard.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Give the Linode a good&amp;nbsp;name. &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Name a display group for your pair. Generally we use &amp;#8220;location pair&amp;#8221;, e.g. &amp;#8220;newark pair&amp;#8221;, &amp;#8220;dallas pair&amp;#8221;,&amp;nbsp;etc.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Change the email alert&amp;nbsp;thresholds&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;caps&quot;&gt;CPU&lt;/span&gt; Usage: 50% (Default 80% over two hours is too&amp;nbsp;high)&lt;/p&gt;
+&lt;p&gt;Disk I/O Rate: 2000 I/O Ops/sec (Default 1000 ops over two hours is too&amp;nbsp;low)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Go to the Dashboard tab in the Linode dashboard, and click on &amp;#8220;Create a new Disk&amp;nbsp;Image&amp;#8221;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Create a disk image called &amp;#8220;var-www&amp;#8221;, type &amp;#8220;unformatted / raw&amp;#8221;, with a size that&amp;#8217;s half your available space (just as a rule of&amp;nbsp;thumb).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create another disk image called &amp;#8220;var-mysql&amp;#8221;, also type &amp;#8220;unformatted / raw&amp;#8221;, with a size that&amp;#8217;s half your &lt;em&gt;remaining&lt;/em&gt; available space (again, a rule of&amp;nbsp;thumb).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Also on the Linode dashboard tab, choose to deploy a Linux&amp;nbsp;distribution.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;I like the latest Ubuntu&lt;sup id=&quot;fnref:ubuntu&quot;&gt;&lt;a href=&quot;#fn:ubuntu&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;. Right now, that&amp;#8217;s 11.04&amp;nbsp;64bit.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Set the swap partition size next. Max it out, which on Linode seems to be 1 x&amp;nbsp;&lt;span class=&quot;caps&quot;&gt;RAM&lt;/span&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use everything that&amp;#8217;s left for the deployment disk&amp;nbsp;size.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Set a good root&amp;nbsp;password.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Press the Deploy button. That takes you back to the&amp;nbsp;dashboard.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The configuration profile name is too pedestrian. &amp;#8220;My Ubuntu blah blah blah&amp;#8221;. I already knew it was mine, after all I made it, didn&amp;#8217;t I? Click the &amp;#8220;Edit&amp;#8221; link to the right of the&amp;nbsp;profile.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Change the label to something with some teeth. Something like &amp;#8220;Ubuntu 11.04-64bit high availability&amp;nbsp;pair&amp;#8221;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Assign block devices for our &lt;span class=&quot;caps&quot;&gt;DR&lt;/span&gt;:&lt;span class=&quot;caps&quot;&gt;BD&lt;/span&gt; drives. Put var-mysql on /dev/xvdc, and var-www on /dev/xvdd. Save the changes, and you&amp;#8217;ll be taken back to the&amp;nbsp;dashboard.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Each server needs to be able to assume the &lt;span class=&quot;caps&quot;&gt;IP&lt;/span&gt; address from the other. From the &amp;#8220;Remote Access&amp;#8221; tab for each server, select all of the addresses, both the public and private, for &lt;span class=&quot;caps&quot;&gt;IP&lt;/span&gt;&amp;nbsp;Failover.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Boot the system and log in, either through &lt;span class=&quot;caps&quot;&gt;SSH&lt;/span&gt; using the root password you just assigned, or through&amp;nbsp;Lish.&lt;/p&gt;
+&lt;p&gt;This is a good time to repeat the previous six steps on the other member of the pair. Once that is done, continue to the final step in the Linode&amp;nbsp;dashboard.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Some notes before we get into&amp;nbsp;it&lt;/h2&gt;
+&lt;p&gt;We have a number of implementation specific details, stuff that changes for each cluster. I&amp;#8217;d like to refer to things in here in a way that is internally consistent, yet easy to use. So here is an index of variable&amp;nbsp;data:&lt;/p&gt;
+&lt;p&gt;Server names: &lt;code&gt;alice&lt;/code&gt; and &lt;code&gt;gertrude&lt;/code&gt;. If you&amp;#8217;re running &lt;code&gt;vi&lt;/code&gt; or &lt;code&gt;vim&lt;/code&gt; against this document, and wanted to name your systems Fred and Wilma, you should be able to run &lt;code&gt;:%s/alice/fred/g&lt;/code&gt; followed by &lt;code&gt;:%s/gertrude/wilma/g&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;caps&quot;&gt;IP&lt;/span&gt;&amp;nbsp;addresses:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Public &lt;span class=&quot;caps&quot;&gt;IP&lt;/span&gt; on alice: &lt;code&gt;pub.a.a.a&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Private &lt;span class=&quot;caps&quot;&gt;IP&lt;/span&gt; on alice: &lt;code&gt;priv.a.a.a&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;IPv6 on alice: &lt;code&gt;ipv6:pub:a&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Public &lt;span class=&quot;caps&quot;&gt;IP&lt;/span&gt; on gertrude: &lt;code&gt;pub.g.g.g&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Private &lt;span class=&quot;caps&quot;&gt;IP&lt;/span&gt; on gertrude: &lt;code&gt;priv.g.g.g&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;IPv6 on gertrude: &lt;code&gt;ipv6:pub:g&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Floating public &lt;span class=&quot;caps&quot;&gt;IP&lt;/span&gt;: &lt;code&gt;pub.f.f.f&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Floating private &lt;span class=&quot;caps&quot;&gt;IP&lt;/span&gt;: &lt;code&gt;priv.f.f.f&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Initial configuration, operating&amp;nbsp;system&lt;/h2&gt;
+&lt;p&gt;Again, repeat the following steps for each member of the&amp;nbsp;pair:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Name the&amp;nbsp;server.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;echo &#39;alice&#39; &amp;gt; /etc/hostname&lt;/code&gt;&lt;sup id=&quot;fnref:toklas&quot;&gt;&lt;a href=&quot;#fn:toklas&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Fix (as in &amp;#8220;make permanent&amp;#8221;) the networking in &lt;code&gt;/etc/network/interfaces&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;#vi /etc/network/interfaces&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# The loopback interface&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;auto&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lo&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;iface&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lo&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inet&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;loopback&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Configuration for eth0 and aliases&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# This line ensures that the interface will be brought up during boot.&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;auto&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eth0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eth0:0&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# eth0 - This is the main &lt;span class=&quot;caps&quot;&gt;IP&lt;/span&gt; address that will be used for most outbound connections.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# The address, netmask and gateway are all necessary.&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;iface&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eth0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inet&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;static&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pub&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;netmask&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;255.255.255.0&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;gateway&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# eth0:0&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# This is a private &lt;span class=&quot;caps&quot;&gt;IP&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;iface&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eth0:0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inet&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;static&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;priv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;netmask&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;255.255.128.0&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# eth0 ipv6&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;iface&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eth0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inet6&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;static&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ipv6:pub:a&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;netmask&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;64&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;gateway&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;fe80::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Deal with some networking stuff that makes our life&amp;nbsp;easier.&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;#vi /etc/hosts&lt;/span&gt;
+
+    &lt;span class=&quot;mf&quot;&gt;127.0.0.1&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;localhost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;localdomain&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;localhost&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;pub&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;alice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;version2beta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;      &lt;span class=&quot;c1&quot;&gt;# &lt;span class=&quot;caps&quot;&gt;FQDN&lt;/span&gt; is public&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;priv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;alice&lt;/span&gt;               &lt;span class=&quot;c1&quot;&gt;# short name is private&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;pub&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;gertrude&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;version2beta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# &lt;span class=&quot;caps&quot;&gt;FQDN&lt;/span&gt; is public&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;priv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;gertrude&lt;/span&gt;            &lt;span class=&quot;c1&quot;&gt;# short name is private&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;#IPv6 addresses&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ipv6:a&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;ip6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alice&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ipv6:g&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;ip6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gertrude&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# The following lines are desirable for IPv6 capable hosts&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;ip6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;localhost&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ip6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loopback&lt;/span&gt;
+    &lt;span class=&quot;nn&quot;&gt;fe00::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ip6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;localnet&lt;/span&gt;
+    &lt;span class=&quot;nn&quot;&gt;ff00::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ip6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mcastprefix&lt;/span&gt;
+    &lt;span class=&quot;nn&quot;&gt;ff02::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ip6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;allnodes&lt;/span&gt;
+    &lt;span class=&quot;nn&quot;&gt;ff02::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ip6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;allrouters&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;span class=&quot;caps&quot;&gt;SSH&lt;/span&gt;&amp;nbsp;Keys&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# ssh-keygen -t rsa&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Copy &lt;code&gt;/etc/.ssh/id_rsa.pub&lt;/code&gt; into the other server&amp;#8217;s &lt;code&gt;/etc/.ssh/authorized_keys&lt;/code&gt;, which you&amp;#8217;ll need to create. While you&amp;#8217;re at it, put your key in there&amp;nbsp;too.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Restart networking. (If there&amp;#8217;s a mistake in the previous step, we&amp;#8217;ll catch it either here or in the next few&amp;nbsp;steps.)&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# /etc/init.d/networking restart&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bring the package database, and installed packages, up to&amp;nbsp;date.&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# apt-get update &amp;amp;&amp;amp; apt-get upgrade&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Install and configure&amp;nbsp;&lt;span class=&quot;caps&quot;&gt;DR&lt;/span&gt;:&lt;span class=&quot;caps&quot;&gt;BD&lt;/span&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Install the&amp;nbsp;tools&lt;/p&gt;
+&lt;p&gt;First,&amp;nbsp;try:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# apt-get install drbd8-utils&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# drbdadm -V&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;At the top of the options, it will give the version of the &lt;span class=&quot;caps&quot;&gt;DRBD&lt;/span&gt; module and userland version. If these match, you&amp;#8217;re golden. If they don&amp;#8217;t (as is the case currently for me), you need to build userland tools from&amp;nbsp;source.&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# drbdadm -V&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;&lt;span class=&quot;caps&quot;&gt;DRBD&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;8.3.10&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;userland&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;8.3.9&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;you&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;should&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;upgrade&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;your&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;drbd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tools&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Building drbd8-utils from&amp;nbsp;source:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# apt-get remove drbd8-utils&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# apt-get install psmisc build-essential flex git xsltproc&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# wget http://oss.linbit.com/drbd/8.3/drbd-8.3.10.tar.gz&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# tar xvzf drbd-8.3.10.tar.gz&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# cd drbd-8.3.10&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ./configure&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# make&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# make install&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;All good? Try the drbdadm -V&amp;nbsp;again:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# drbdadm -V&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Version:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;8.3.10&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;api:88&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;&lt;span class=&quot;caps&quot;&gt;GIT&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hash:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c0b0469666682443d4785d90a2c603378f9017b&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;build&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;@alice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2011&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;08&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;06&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;22&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;35&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Configure &lt;span class=&quot;caps&quot;&gt;DR&lt;/span&gt;:&lt;span class=&quot;caps&quot;&gt;BD&lt;/span&gt; global settings in &lt;code&gt;/usr/local/etc/drbd.d/global_common.conf&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# vi /usr/local/etc/drbd.d/global_common.conf&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;global&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;usage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;yes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# minor-count dialog-refresh disable-ip-verification&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;common&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;protocol&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;handlers&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;pri&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;incon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;degr&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/usr/lib/drbd/notify-pri-on-incon-degr.sh; /usr/lib/drbd/notify-emergency-reboot.sh; echo b &amp;gt; /proc/sysrq-trigger ; reboot -f&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;pri&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;after&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sb&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/usr/lib/drbd/notify-pri-lost-after-sb.sh; /usr/lib/drbd/notify-emergency-reboot.sh; echo b &amp;gt; /proc/sysrq-trigger ; reboot -f&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;nb&quot;&gt;local&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/usr/lib/drbd/notify-io-error.sh; /usr/lib/drbd/notify-emergency-shutdown.sh; echo o &amp;gt; /proc/sysrq-trigger ; halt -f&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# fence-peer &amp;quot;/usr/lib/drbd/crm-fence-peer.sh&amp;quot;;&lt;/span&gt;
+            &lt;span class=&quot;nb&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brain&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/usr/lib/drbd/notify-split-brain.sh root&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# out-of-sync &amp;quot;/usr/lib/drbd/notify-out-of-sync.sh root&amp;quot;;&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# before-resync-target &amp;quot;/usr/lib/drbd/snapshot-resync-target-lvm.sh -p 15 -- -c 16k&amp;quot;;&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# after-resync-target /usr/lib/drbd/unsnapshot-resync-target-lvm.sh;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;startup&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# wfc-timeout degr-wfc-timeout outdated-wfc-timeout wait-after-sb&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;wfc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;degr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wfc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;60&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;disk&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# on-io-error fencing use-bmbv no-disk-barrier no-disk-flushes&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# no-disk-drain no-md-flushes max-bio-bvecs&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;net&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# sndbuf-size rcvbuf-size timeout connect-int ping-int ping-timeout max-buffers&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# max-epoch-size ko-count allow-two-primaries cram-hmac-alg shared-secret&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# after-sb-0pri after-sb-1pri after-sb-2pri data-integrity-alg no-tcp-cork&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;cram&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hmac&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alg&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sha1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;syncer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# rate after al-extents use-rle cpu-mask verify-alg csums-alg&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;rate&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Configure &lt;span class=&quot;caps&quot;&gt;DR&lt;/span&gt;:&lt;span class=&quot;caps&quot;&gt;BD&lt;/span&gt; resource settings for mysql in &lt;code&gt;/usr/local/etc/drbd.d/mysql.res&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# vi /usr/local/etc/drbd.d/mysql.res&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;resource&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mysql&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;net&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;shared&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;secret&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;&lt;span class=&quot;caps&quot;&gt;DONTTELL&lt;/span&gt;!&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alice&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;device&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/dev/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;drbd0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;disk&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/dev/x&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vdc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ipv6&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ipv6:a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7801&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;meta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;disk&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;internal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gertrude&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;device&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/dev/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;drbd0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;disk&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/dev/x&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vdc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ipv6&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ipv6:g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7801&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;meta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;disk&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;internal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And create resource settings for www in &lt;code&gt;/usr/local/etc/drbd.d/www.res&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# vi /usr/local/etc/drbd.d/www.res&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;resource&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;net&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;shared&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;secret&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;&lt;span class=&quot;caps&quot;&gt;DON&lt;/span&gt;&amp;#39;T &lt;span class=&quot;caps&quot;&gt;TELL&lt;/span&gt;!&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alice&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;device&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/dev/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;drbd1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;disk&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/dev/x&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vdd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ipv6&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ipv6:a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7802&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;meta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;disk&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;internal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gertrude&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;device&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/dev/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;drbd1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;disk&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/dev/x&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vdd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ipv6&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ipv6:g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7802&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;meta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;disk&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;internal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On this setup, drbd expects configuration files to be in /usr/local/etc/, and won&amp;#8217;t recognize them in /etc/. So we&amp;#8217;ve put all our new stuff in the right place. Now get rid of the old. &lt;span class=&quot;caps&quot;&gt;BUT&lt;/span&gt;, the cluster resource manager &lt;span class=&quot;caps&quot;&gt;IS&lt;/span&gt; going to want them in /etc/, so we&amp;#8217;ll create symbolic&amp;nbsp;links.&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# rm -rd /etc/drbd.*&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ln -s /usr/local/etc/drbd.conf /etc/drbd.conf&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ln -s /usr/local/etc/drbd.d /etc/drbd.d&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Start up&amp;nbsp;&lt;span class=&quot;caps&quot;&gt;DR&lt;/span&gt;:&lt;span class=&quot;caps&quot;&gt;BD&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Create metadata for the devices (only need to do this on one&amp;nbsp;host):&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# drbdadm create-md mysql&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# drbdadm create-md www&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Modify the init script for drbd to accomodate a problem where IPv6 might not be ready when drbd&amp;nbsp;starts:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# vi /etc/init.d/drbd # Add a sleep to the top of the script&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;### &lt;span class=&quot;caps&quot;&gt;END&lt;/span&gt; &lt;span class=&quot;caps&quot;&gt;INIT&lt;/span&gt; &lt;span class=&quot;caps&quot;&gt;INFO&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;sleep&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On each server, at roughly the same time, start&amp;nbsp;drbd:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# /etc/init.d/drbd start&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On the server that will be primarily a database&amp;nbsp;server:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# drbdadm -- --overwrite-data-of-peer primary mysql&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# drbdadm disconnect mysql&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# drbdadm connect mysql&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# drbdadm disconnect www&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# drbdadm connect www&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On the server that will be primarily a web application&amp;nbsp;server:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# drbdadm -- --overwrite-data-of-peer primary www&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# drbdadm disconnect www&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# drbdadm connect www&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# drbdadm disconnect mysql&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# drbdadm connect mysql&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On either or both servers, check to make sure the primaries are primary, the secondaries are secondary, and the sync is&amp;nbsp;syncing:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# cat /proc/drbd&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;version:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;8.3.10&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;api:88&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;proto:86&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;96&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;built&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;in&lt;/span&gt;
+ &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cs:SyncSource&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ro:Primary&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/Secondary ds:UpToDate/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Inconsistent&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-----&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ns:3116484&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nr:0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dw:0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dr:3593516&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;al:0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bm:219&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lo:0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pe:2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ua:1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ap:0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ep:1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wo:f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oos:1649980&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;============&amp;gt;.......&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sync&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;ed: 65.5% (1608/4652)Mfinish: 0:05:08 speed: 5,328 (5,056) K/sec&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt; 1: cs:SyncTarget ro:Secondary/Primary ds:Inconsistent/UpToDate C r-----&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    ns:0 nr:2976256 dw:2976256 dr:0 al:0 bm:181 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:7509148&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    [====&amp;gt;...............] sync&amp;#39;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ed:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;28.4&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;7332&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/10236)Mfinish: 0:24:20 speed: 5,136 (5,060) want: 4,096 K/s&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ec&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Format the &lt;span class=&quot;caps&quot;&gt;DR&lt;/span&gt;:&lt;span class=&quot;caps&quot;&gt;BD&lt;/span&gt; devices, each on the server that is primary for that device. On the database&amp;nbsp;server:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# apt-get install jfsutils&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# mkfs.jfs /dev/drbd0&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And on the web application&amp;nbsp;server:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# apt-get install jfsutils&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# mkfs.ext4 /dev/drbd1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On both servers, create the mount&amp;nbsp;points:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# mkdir /var/www&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# mkdir /var/mysql&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# vi /etc/fstab // Add two lines&lt;/span&gt;
+
+    &lt;span class=&quot;sr&quot;&gt;/dev/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;drbd&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/by-res/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;www&lt;/span&gt;    &lt;span class=&quot;sr&quot;&gt;/var/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;www&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;ext4&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;noauto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;noatime&lt;/span&gt;
+    &lt;span class=&quot;sr&quot;&gt;/dev/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;drbd&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/by-res/m&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ysql&lt;/span&gt;  &lt;span class=&quot;sr&quot;&gt;/var/m&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ysql&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;jfs&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;noauto&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Mount the drives, each on it&amp;#8217;s primary&amp;nbsp;server:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# mount /dev/drbd/by-res/mysql /var/mysql/&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# mount /dev/drbd/by-res/www /var/www&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And there you have it - &lt;span class=&quot;caps&quot;&gt;RAID&lt;/span&gt; 1 drives over a network. Failover comes later, after we install and configure the server&amp;nbsp;software.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Services: MySQL and Lighttpd, plus a few other little things I like to&amp;nbsp;have&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Install stuff. Not too much stuff. Just the right&amp;nbsp;stuff.&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# apt-get install bc whois apg s3cmd lsof traceroute exim4 mailutils mutt \&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;aspell&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;doc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wamerican&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;spellutils&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ispell&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mysql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mysql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lighttpd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;lighttpd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;doc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lighttpd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mod&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;magnet&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lua5&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;php5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cli&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;php5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cgi&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;php5&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;php5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mcrypt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;php5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mhash&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;php5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;php5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mysql&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;php5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imagick&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;php5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;php5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;memcache&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;php5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;php5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pspell&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;php5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tidy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;php5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xmlrpc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;php5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xsl&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;libgd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tools&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;libmagickcore3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;extra&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;libmcrypt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dev&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mcrypt&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rrdtool&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# dpkg-reconfigure exim4-config&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Configure&amp;nbsp;MySQL. &lt;/p&gt;
+&lt;p&gt;Edit &lt;code&gt;/etc/mysql/my.cnf&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# vi /etc/mysql/my.cnf&lt;/span&gt;
+
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;port&lt;/span&gt;            &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3306&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;socket&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/var/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/mysqld/m&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ysqld&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sock&lt;/span&gt;
+
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mysqld_safe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;socket&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/var/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/mysqld/m&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ysqld&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sock&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;nice&lt;/span&gt;            &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mysqld&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;            &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mysql&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;socket&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/var/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/mysqld/m&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ysqld&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sock&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;port&lt;/span&gt;            &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3306&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;basedir&lt;/span&gt;         &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;usr&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;datadir&lt;/span&gt;         &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/var/m&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ysql&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;tmpdir&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;skip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;external&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;locking&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;            &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;priv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;key_buffer&lt;/span&gt;              &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;max_allowed_packet&lt;/span&gt;      &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;thread_stack&lt;/span&gt;            &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;192&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;thread_cache_size&lt;/span&gt;       &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;myisam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recover&lt;/span&gt;         &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;&lt;span class=&quot;caps&quot;&gt;BACKUP&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#max_connections        = 100&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#table_cache            = 64&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#thread_concurrency     = 10&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;query_cache_limit&lt;/span&gt;       &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;query_cache_size&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#general_log_file        = /var/log/mysql/mysql.log&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#general_log             = 1&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;log_error&lt;/span&gt;                &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/var/&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/mysql/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;log&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#server-id              = 1&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#log_bin                        = /var/log/mysql/mysql-bin.log&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;expire_logs_days&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;max_binlog_size&lt;/span&gt;         &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#binlog_do_db           = include_database_name&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#binlog_ignore_db       = include_database_name&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# ssl-ca=/etc/mysql/cacert.pem&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# ssl-cert=/etc/mysql/server-cert.pem&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# ssl-key=/etc/mysql/server-key.pem&lt;/span&gt;
+
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mysqldump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;quick&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;quote&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;names&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;max_allowed_packet&lt;/span&gt;      &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;
+
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mysql&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#no-auto-rehash # faster start of mysql but no tab completition&lt;/span&gt;
+
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isamchk&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;key_buffer&lt;/span&gt;              &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;includedir&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/etc/m&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ysql&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/conf.d/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We changed the default directory for MySQL, so we need to move it&amp;#8217;s files into the correct&amp;nbsp;directory.&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# stop mysql&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# chown mysql:mysql /var/mysql&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# cp -Rp /var/lib/mysql/* /var/mysql/&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ifconfig eth0:1 priv.f.f.f netmask 255.255.128.0&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# start mysql&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Sync these settings with the other server (both need the same configuration so that either can run the service off the same&amp;nbsp;data).&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# scp -r /etc/mysql root@gertrude:/etc/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Configure Lighttpd. (Substitute other instructions for nginx, apache,&amp;nbsp;etc.)&lt;/p&gt;
+&lt;p&gt;Edit &lt;code&gt;/etc/lighttpd/lighttpd.conf&lt;/code&gt; on the web application&amp;nbsp;server:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# vi /etc/lighttpd/lighttpd.conf&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;modules&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&amp;quot;mod_access&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&amp;quot;mod_alias&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&amp;quot;mod_compress&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&amp;quot;mod_redirect&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&amp;quot;mod_rewrite&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/var/www&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;upload&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dirs&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/var/www/cache/uploads&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;errorlog&lt;/span&gt;             &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/var/www/logs/error.log&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;             &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/var/run/lighttpd.pid&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;             &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;www-data&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;groupname&lt;/span&gt;            &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;www-data&amp;quot;&lt;/span&gt;
+
+    &lt;span class=&quot;nb&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;names&lt;/span&gt;            &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;index.php&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;index.html&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;access&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;deny&lt;/span&gt;             &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;~&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;.inc&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exclude&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;extensions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;.php&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;.pl&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;.fcgi&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;## Use ipv6 if available&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;include_shell&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/usr/share/lighttpd/use-ipv6.pl&amp;quot;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;listing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encoding&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;listing&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;enable&amp;quot;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;compress&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/var/www/cache/compress/&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;compress&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filetype&lt;/span&gt;           &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;application/x-javascript&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;text/html&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;text/plain&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;include_shell&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/usr/share/lighttpd/create-mime.assign.pl&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;include_shell&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/usr/share/lighttpd/include-conf-enabled.pl&amp;quot;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;magnet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attract&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;physical&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/etc/lighttpd/modx.lua&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Enable some more&amp;nbsp;modules:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# lighttpd-enable-mod fastcgi&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# lighttpd-enable-mod simple-vhost&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# lighttpd-enable-mod accesslog&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# lighttpd-enable-mod magnet&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# lighttpd-enable-mod status&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Edit more config&amp;nbsp;files:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# vi /etc/lighttpd/conf-enabled/10-accesslog.conf&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;modules&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;mod_accesslog&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;accesslog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/var/www/logs/access.log&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# vi /etc/lighttpd/conf-enabled/10-simple-vhost.conf&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;modules&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;mod_simple_vhost&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;simple&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vhost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;         &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/var/www/servers/&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;simple&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vhost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;       &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;htdocs&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;simple&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vhost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;host&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;{hostname}&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# vi /etc/lighttpd/conf-enabled/10-fastcgi.conf&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;modules&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;mod_fastcgi&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;fastcgi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;.php&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;
+                    &lt;span class=&quot;s&quot;&gt;&amp;quot;bin-path&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/usr/bin/php-cgi&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;s&quot;&gt;&amp;quot;socket&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/tmp/php.socket&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;s&quot;&gt;&amp;quot;max-procs&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;s&quot;&gt;&amp;quot;idle-timeout&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;s&quot;&gt;&amp;quot;bin-environment&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+                            &lt;span class=&quot;s&quot;&gt;&amp;quot;PHP_FCGI_CHILDREN&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;4&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                            &lt;span class=&quot;s&quot;&gt;&amp;quot;PHP_FCGI_MAX_REQUESTS&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;10000&amp;quot;&lt;/span&gt;
+                    &lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+                    &lt;span class=&quot;s&quot;&gt;&amp;quot;bin-copy-environment&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+                            &lt;span class=&quot;s&quot;&gt;&amp;quot;&lt;span class=&quot;caps&quot;&gt;PATH&lt;/span&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;&lt;span class=&quot;caps&quot;&gt;SHELL&lt;/span&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;&lt;span class=&quot;caps&quot;&gt;USER&lt;/span&gt;&amp;quot;&lt;/span&gt;
+                    &lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+                    &lt;span class=&quot;s&quot;&gt;&amp;quot;broken-scriptfilename&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;enable&amp;quot;&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# vi /etc/lighttpd/modx.lua&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;attr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lighty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;stat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lighty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;physical.doc-root&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;manager/includes/config.inc.php&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Appears&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;be&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ModX&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;attr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lighty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;stat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lighty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;physical.path&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Requested&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resource&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;doesn&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exist&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;system&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/index.php&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;uri&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lighty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;request.uri&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;uri2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gsub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lighty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;request.uri&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;\?&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;\&amp;amp;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Original request.uri: &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uri&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot; Replaced with: &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uri2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lighty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uri.query&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;q=&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gsub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uri&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;\?&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;\&amp;amp;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lighty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uri.path&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lighty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;request.uri&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;?&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lighty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uri.query&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;New request.uri: &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lighty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;request.uri&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lighty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;physical.rel-path&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lighty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;physical.path&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lighty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;physical.doc-root&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lighty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;physical.rel-path&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;New physical.path: &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lighty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;physical.path&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# vi /etc/lighttpd/wp-rewrite.conf&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Use when a site has a blog&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Example:&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# $&lt;span class=&quot;caps&quot;&gt;HTTP&lt;/span&gt;[&amp;quot;host&amp;quot;] =~ &amp;quot;www\.example\.com&amp;quot; {&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#   var.wpdir = &amp;quot;/blog/&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#   include &amp;quot;wp-rewrite.conf&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# }&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rewrite&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;once&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;&amp;quot;^&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wpdir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;(wp-.+).*/?&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;$0&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;&amp;quot;^&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wpdir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;(sitemap.xml)&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;$0&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;&amp;quot;^&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wpdir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;(xmlrpc.php)&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;$0&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;&amp;quot;^&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wpdir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;keyword/([A-Za-z_0-9-])/?$&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wpdir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;index.php?keyword=$1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;&amp;quot;^&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wpdir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;(.+)/?$&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wpdir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;index.php/$1&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Edit &lt;code&gt;/etc/php5/cgi/php.ini&lt;/code&gt; so that these lines are&amp;nbsp;correct:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;n&quot;&gt;display_errors&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stderr&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;error_log&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/var/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;www&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/logs/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;php_errors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;log&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Create some directories we just specified, but don&amp;#8217;t yet&amp;nbsp;have:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# mkdir /var/www/run /var/www/cache /var/www/cache/compress /var/www/cache/uploads /var/www/logs /var/www/servers /var/www/servers/{hostname} /var/www/servers/{hostname}/htdocs&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# chown -R www-data:www-data /var/www/run /var/www/cache /var/www/logs/ /var/www/servers&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Restart the local server and sync these settings with the other server (both need the same configuration so that either can run the service off the same&amp;nbsp;data).&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# /etc/init.d/lighttpd restart&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# scp -r /etc/php5 /etc/lighttpd root@alice:/etc/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Test that either server can run either&amp;nbsp;service.&lt;/p&gt;
+&lt;p&gt;On the database&amp;nbsp;server:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# stop mysql&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ifconfig eth0:1 down&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# umount /var/mysql/&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# drbdadm secondary mysql&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On the web application&amp;nbsp;server:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# drbdadm primary mysql&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# mount /dev/drbd0 /var/mysql/&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ifconfig eth0:1 priv.f.f.f netmask 255.255.128.0&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# start mysql&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# mysql -p&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# stop mysql&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ifconfig eth0:1 down&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# umount /var/mysql/&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# drbdadm secondary mysql&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# /etc/init.d/lighttpd stop&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# umount /var/www&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# drbdadm secondary www&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On the database&amp;nbsp;server:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# drbdadm primary mysql&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# drbdadm primary www&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# mount /dev/drbd0 /var/mysql/&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# mount /dev/drbd1 /var/www/&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# /etc/init.d/lighttpd start&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ps ax | grep light&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# /etc/init.d/lighttpd stop&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# umount /var/www&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# drbdadm secondary www&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ifconfig eth0:1 priv.f.f.f 255.255.128.0&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# start mysql&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On the web application&amp;nbsp;server:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# drbdadm primary www&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# mount /dev/drbd1 /var/www&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# /etc/init.d/lighttpd start&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Configure a failover&amp;nbsp;cluster&lt;/h2&gt;
+&lt;p&gt;Just a note here before we start. I would have liked to run corosync&lt;sup id=&quot;fnref:corosync&quot;&gt;&lt;a href=&quot;#fn:corosync&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt; rather than heartbeat&lt;sup id=&quot;fnref:heartbeat&quot;&gt;&lt;a href=&quot;#fn:heartbeat&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt; based solely on my understanding of pacemaker&lt;sup id=&quot;fnref:pacemaker&quot;&gt;&lt;a href=&quot;#fn:pacemaker&quot; rel=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;, how and why it split from heartbeat. However, corosync seems to mostly require multicast networking to work&lt;sup id=&quot;fnref:mcast&quot;&gt;&lt;a href=&quot;#fn:mcast&quot; rel=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt; and after some struggles, I&amp;#8217;ve learned that Linode doesn&amp;#8217;t support&amp;nbsp;multicast.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Set up heartbeat and&amp;nbsp;pacemaker&lt;/p&gt;
+&lt;p&gt;Install and configure software on both&amp;nbsp;servers&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# apt-get install heartbeat pacemaker&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Edit &lt;code&gt;/usr/lib/ocf/resource.d/heartbeat/Filesystem&lt;/code&gt; to comment out this whole block. This will fix a problem with the script&amp;#8217;s handling of jfs filesystems. Besides, they say right in the code, &amp;#8220;Why should a filesystem resource agent magically load a kernel module?&amp;#8221; I agree. Lemme handle that part and just mount the drive&amp;nbsp;please.&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# vi /usr/lib/ocf/resource.d/heartbeat/Filesystem&lt;/span&gt;
+
+    &lt;span class=&quot;c&quot;&gt;#       if [ &amp;quot;X${&lt;span class=&quot;caps&quot;&gt;HOSTOS&lt;/span&gt;}&amp;quot; != &amp;quot;XOpenBSD&amp;quot; ];then&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#               # Insert &lt;span class=&quot;caps&quot;&gt;SCSI&lt;/span&gt; module&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#               # &lt;span class=&quot;caps&quot;&gt;TODO&lt;/span&gt;: This probably should go away. Why should the filesystem&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#               # &lt;span class=&quot;caps&quot;&gt;RA&lt;/span&gt; magically load a kernel module?&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#               $&lt;span class=&quot;caps&quot;&gt;MODPROBE&lt;/span&gt; scsi_hostadapter &amp;gt;/dev/null &lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#               if [ -z &amp;quot;$&lt;span class=&quot;caps&quot;&gt;FSTYPE&lt;/span&gt;&amp;quot; -o &amp;quot;$&lt;span class=&quot;caps&quot;&gt;FSTYPE&lt;/span&gt;&amp;quot; = none ]; then&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#                       : No &lt;span class=&quot;caps&quot;&gt;FSTYPE&lt;/span&gt; specified, rely on the system has the right file-system support already &lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#               else&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#                       # Insert Filesystem module&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#                       $&lt;span class=&quot;caps&quot;&gt;MODPROBE&lt;/span&gt; $&lt;span class=&quot;caps&quot;&gt;FSTYPE&lt;/span&gt; &amp;gt;/dev/null &lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#                       grep -e &amp;quot;$&lt;span class=&quot;caps&quot;&gt;FSTYPE&lt;/span&gt;&amp;quot;&amp;#39;$&amp;#39; /proc/filesystems &amp;gt;/dev/null&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#                       if [ $? -ne 0 ] ; then&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#                               ocf_log err &amp;quot;Couldn&amp;#39;t find filesystem $&lt;span class=&quot;caps&quot;&gt;FSTYPE&lt;/span&gt; in /proc/filesystems&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#                               return $OCF_ERR_INSTALLED&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#                       fi&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#               fi&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#       fi&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Configuration&amp;nbsp;files:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# vi /etc/ha.d/authkeys&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;auth&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sha1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Don&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tTell&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# chmod 600 /etc/heartbeat/authkeys&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# vi /etc/ha.d/ha.cf&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;autojoin&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;none&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;logfacility&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;daemon&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;keepalive&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;deadtime&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;warntime&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;initdead&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;120&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;udpport&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;694&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ucast&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eth0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;priv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ucast&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eth0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;priv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alice&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gertrude&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;auto_failback&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;use_logd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;yes&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;crm&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;respawn&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Propogate the configuration and restart each&amp;nbsp;server&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# scp -r /etc/ha.d/* root@gertrude:/etc/ha.d/&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# /etc/init.d/heartbeat restart&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Disable automatic start of Lighttpd (using &lt;span class=&quot;caps&quot;&gt;LSB&lt;/span&gt;) and MySQL (using&amp;nbsp;Upstart)&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# update-rc.d lighttpd disable&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# vi /etc/init/mysql.conf&lt;/span&gt;
+
+    &lt;span class=&quot;c&quot;&gt;# Comment out the startup&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#start on (net-device-up&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#          and local-filesystems&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#         and runlevel [2345])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Configure the&amp;nbsp;resources&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# vi /usr/lib/ocf/resource.d/linbit/drbd&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;OCF_RESKEY_drbdconf_default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/usr/local/etc/drbd.conf&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# crm configure&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;primitive&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db_alert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ocf:heartbeat:MailTo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;root&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;(db)&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;primitive&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db_drbd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ocf:linbit:drbd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;drbd_resource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;mysql&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;op&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;240&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;op&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stop&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;100&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;primitive&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db_fs&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ocf:heartbeat:Filesystem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;device&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/dev/drbd0&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;directory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/var/mysql&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fstype&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;jfs&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;op&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;60&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;op&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stop&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;120&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;primitive&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db_ip&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ocf:heartbeat:IPaddr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;priv.f.f.f&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cidr_netmask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;24&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;primitive&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db_mysql&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lsb:mysql&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;op&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;monitor&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;false&amp;quot;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;primitive&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www_alert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ocf:heartbeat:MailTo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;root&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;(www)&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;primitive&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www_drbd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ocf:linbit:drbd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;drbd_resource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;www&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;op&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;240&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;op&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stop&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;100&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;primitive&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www_fs&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ocf:heartbeat:Filesystem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;device&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/dev/drbd1&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;directory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/var/www&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fstype&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;ext4&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;op&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;60&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;op&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stop&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;120&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;primitive&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www_ip&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ocf:heartbeat:IPaddr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;pub.f.f.f&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cidr_netmask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;24&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;primitive&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www_lighty&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lsb:lighttpd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;op&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;monitor&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;false&amp;quot;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db_ip&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db_fs&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db_mysql&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db_alert&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Started&amp;quot;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www_fs&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www_ip&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www_lighty&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www_alert&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Started&amp;quot;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;ms&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ms_db_drbd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db_drbd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;master&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;1&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;master&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;1&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;2&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;1&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;notify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;ms&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ms_www_drbd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www_drbd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;master&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;1&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;master&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;1&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;2&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;1&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;notify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;location&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db_gertrude&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gertrude&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;location&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db_alice&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alice&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;location&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www_gertrude&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gertrude&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;location&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www_alice&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alice&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;colocation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db_on_drbd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inf:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ms_db_drbd:Master&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;colocation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www_on_drbd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inf:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ms_www_drbd:Master&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db_after_drbd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inf:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ms_db_drbd:promote&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db:start&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www_after_drbd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inf:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ms_www_drbd:promote&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www:start&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;property&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cluster&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;infrastructure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Heartbeat&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;stonith&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;false&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;no&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quorum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;policy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;ignore&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;resource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stickiness&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;5&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ol&gt;
+
+   </content></entry></feed>

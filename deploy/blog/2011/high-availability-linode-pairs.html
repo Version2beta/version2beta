@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>version2beta : blog : High Availability Linode Pairs</title>
+    <!--[if IE]><script src="../j/html5.js"></script><![endif]-->
+    
+    <meta name="description" content="version2beta: Your site description.">
+    <meta name="keywords" content="">
+    
+    
+    <link href="/blog/atom.xml" rel="alternate" title="version2beta" type="application/atom+xml"/>
+    
+    
+    <link rel="stylesheet" href="/media/css/base.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/media/css/code.css" type="text/css" media="screen" charset="utf-8">
+    
+    
+    
+    <script src="/media/js/jquery-1.4.2.min.js"></script>
+    
+    
+    <link rel="shortcut icon" href="/media/favicon.ico" />
+    <script type="text/javascript">
+    
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12023701-1']);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    
+    </script>
+
+</head>
+
+<body>
+<div id="site">
+<header>
+<hgroup>
+<div id="header">
+    <a href="/index.html"><h1>version2beta</h1></a>
+</div>
+</hgroup>
+
+<nav>
+<ul class="breadcrumbs">
+
+    <li>
+        <a href="/index.html">Version2beta</a>
+        
+            
+            <span class="separator">&gt;</span>
+	    
+        
+    </li>
+
+    <li>
+        <a href="/blog/blog.html">Blog</a>
+        
+            
+            <span class="separator">&gt;</span>
+	    
+        
+    </li>
+
+    <li>
+        <a href="/blog/2011/2011.html">2011</a>
+        
+    </li>
+
+</ul>
+</nav>
+
+
+
+<nav>
+<div id="sitenav">
+    <ul>
+        <li>
+            <a href="/index.html">Home</a>
+        </li>    
+        
+        <li>
+            <a href="/about/about.html">About</a>
+        </li>
+        
+        <li class="selected" >
+            <a href="/blog/blog.html">Blog</a>
+        </li>
+        
+    </ul>
+</div>
+</nav>
+
+
+</header>
+
+
+
+<div id="content-header">
+    <h1>High Availability Linode Pairs</h1>
+    <span class="post-date"><time pubdate>Mon 08 Aug 2011</time></span>
+</div>
+
+
+<div id="post-content">
+
+
+<!-- Hyde::Article::Begin -->
+<!-- Hyde::Excerpt::Begin -->
+
+<!-- Hyde::Excerpt::End -->
+
+<p>More of a recipe than a&nbsp;how-to</p>
+<h2>Initial configuration, from within the Linode&nbsp;dashboard</h2>
+<p>Repeat the following procedure for each member of the&nbsp;pair:</p>
+<ol>
+<li>
+<p>Go to the Remote Access tab on the Linode&nbsp;dashboard. </p>
+<ul>
+<li>
+<p>Note the public <span class="caps">IP</span>. We&#8217;ll need that&nbsp;later.</p>
+</li>
+<li>
+<p>Add a private <span class="caps">IP</span>, and note it. We&#8217;ll need that later,&nbsp;too.</p>
+</li>
+<li>
+<p>If by any chance you have an IPv6 private address, note that. We&#8217;ll use it all. If you don&#8217;t have one, click on &#8220;Enable IPv6&#8221; and get one. We really are going to use&nbsp;it.</p>
+</li>
+<li>
+<p>Set a Lish password. I use <span class="caps">APG</span><sup id="fnref:APG"><a href="#fn:APG" rel="footnote">1</a></sup> to generate new passwords, e.g. <code>apg -n 100</code>.</p>
+</li>
+<li>
+<p>Add an <span class="caps">SSH</span> public key to the Keys box. This is in addition to the Lish password.  Or instead of it, if you&nbsp;prefer.</p>
+</li>
+<li>
+<p>This is also good time to write to Linode support. You&#8217;ll need to order an additional public <span class="caps">IP</span> address, and by default you are unable to purchase an additional <span class="caps">IP</span> address until you&#8217;ve requested and justified it specifically with support. You&#8217;ll also need another <em>private</em> <span class="caps">IP</span> address, which doesn&#8217;t cost anything but it takes a support person to do it - there&#8217;s no way to automatically add more than one private <span class="caps">IP</span> address. These addresses will float between the pairs, so it doesn&#8217;t matter which of the pair get these additional addresses. Make note of these floating&nbsp;addresses.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Go to the Settings tab in the Linode&nbsp;dashboard.</p>
+<ul>
+<li>
+<p>Give the Linode a good&nbsp;name. </p>
+</li>
+<li>
+<p>Name a display group for your pair. Generally we use &#8220;location pair&#8221;, e.g. &#8220;newark pair&#8221;, &#8220;dallas pair&#8221;,&nbsp;etc.</p>
+</li>
+<li>
+<p>Change the email alert&nbsp;thresholds</p>
+<p><span class="caps">CPU</span> Usage: 50% (Default 80% over two hours is too&nbsp;high)</p>
+<p>Disk I/O Rate: 2000 I/O Ops/sec (Default 1000 ops over two hours is too&nbsp;low)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Go to the Dashboard tab in the Linode dashboard, and click on &#8220;Create a new Disk&nbsp;Image&#8221;.</p>
+<ul>
+<li>
+<p>Create a disk image called &#8220;var-www&#8221;, type &#8220;unformatted / raw&#8221;, with a size that&#8217;s half your available space (just as a rule of&nbsp;thumb).</p>
+</li>
+<li>
+<p>Create another disk image called &#8220;var-mysql&#8221;, also type &#8220;unformatted / raw&#8221;, with a size that&#8217;s half your <em>remaining</em> available space (again, a rule of&nbsp;thumb).</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Also on the Linode dashboard tab, choose to deploy a Linux&nbsp;distribution.</p>
+<ul>
+<li>
+<p>I like the latest Ubuntu<sup id="fnref:ubuntu"><a href="#fn:ubuntu" rel="footnote">2</a></sup>. Right now, that&#8217;s 11.04&nbsp;64bit.</p>
+</li>
+<li>
+<p>Set the swap partition size next. Max it out, which on Linode seems to be 1 x&nbsp;<span class="caps">RAM</span>.</p>
+</li>
+<li>
+<p>Use everything that&#8217;s left for the deployment disk&nbsp;size.</p>
+</li>
+<li>
+<p>Set a good root&nbsp;password.</p>
+</li>
+<li>
+<p>Press the Deploy button. That takes you back to the&nbsp;dashboard.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>The configuration profile name is too pedestrian. &#8220;My Ubuntu blah blah blah&#8221;. I already knew it was mine, after all I made it, didn&#8217;t I? Click the &#8220;Edit&#8221; link to the right of the&nbsp;profile.</p>
+<ul>
+<li>
+<p>Change the label to something with some teeth. Something like &#8220;Ubuntu 11.04-64bit high availability&nbsp;pair&#8221;.</p>
+</li>
+<li>
+<p>Assign block devices for our <span class="caps">DR</span>:<span class="caps">BD</span> drives. Put var-mysql on /dev/xvdc, and var-www on /dev/xvdd. Save the changes, and you&#8217;ll be taken back to the&nbsp;dashboard.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Each server needs to be able to assume the <span class="caps">IP</span> address from the other. From the &#8220;Remote Access&#8221; tab for each server, select all of the addresses, both the public and private, for <span class="caps">IP</span>&nbsp;Failover.</p>
+</li>
+<li>
+<p>Boot the system and log in, either through <span class="caps">SSH</span> using the root password you just assigned, or through&nbsp;Lish.</p>
+<p>This is a good time to repeat the previous six steps on the other member of the pair. Once that is done, continue to the final step in the Linode&nbsp;dashboard.</p>
+</li>
+</ol>
+<h2>Some notes before we get into&nbsp;it</h2>
+<p>We have a number of implementation specific details, stuff that changes for each cluster. I&#8217;d like to refer to things in here in a way that is internally consistent, yet easy to use. So here is an index of variable&nbsp;data:</p>
+<p>Server names: <code>alice</code> and <code>gertrude</code>. If you&#8217;re running <code>vi</code> or <code>vim</code> against this document, and wanted to name your systems Fred and Wilma, you should be able to run <code>:%s/alice/fred/g</code> followed by <code>:%s/gertrude/wilma/g</code>.</p>
+<p><span class="caps">IP</span>&nbsp;addresses:</p>
+<ul>
+<li>
+<p>Public <span class="caps">IP</span> on alice: <code>pub.a.a.a</code></p>
+</li>
+<li>
+<p>Private <span class="caps">IP</span> on alice: <code>priv.a.a.a</code></p>
+</li>
+<li>
+<p>IPv6 on alice: <code>ipv6:pub:a</code></p>
+</li>
+<li>
+<p>Public <span class="caps">IP</span> on gertrude: <code>pub.g.g.g</code></p>
+</li>
+<li>
+<p>Private <span class="caps">IP</span> on gertrude: <code>priv.g.g.g</code></p>
+</li>
+<li>
+<p>IPv6 on gertrude: <code>ipv6:pub:g</code></p>
+</li>
+<li>
+<p>Floating public <span class="caps">IP</span>: <code>pub.f.f.f</code></p>
+</li>
+<li>
+<p>Floating private <span class="caps">IP</span>: <code>priv.f.f.f</code></p>
+</li>
+</ul>
+<h2>Initial configuration, operating&nbsp;system</h2>
+<p>Again, repeat the following steps for each member of the&nbsp;pair:</p>
+<ol>
+<li>
+<p>Name the&nbsp;server.</p>
+<p><code>echo 'alice' &gt; /etc/hostname</code><sup id="fnref:toklas"><a href="#fn:toklas" rel="footnote">3</a></sup></p>
+</li>
+<li>
+<p>Fix (as in &#8220;make permanent&#8221;) the networking in <code>/etc/network/interfaces</code>:</p>
+<div class="codehilite"><pre><span class="c1">#vi /etc/network/interfaces</span>
+
+    <span class="c1"># The loopback interface</span>
+    <span class="n">auto</span> <span class="n">lo</span>
+    <span class="n">iface</span> <span class="n">lo</span> <span class="n">inet</span> <span class="n">loopback</span>
+
+    <span class="c1"># Configuration for eth0 and aliases</span>
+
+    <span class="c1"># This line ensures that the interface will be brought up during boot.</span>
+    <span class="n">auto</span> <span class="n">eth0</span> <span class="n">eth0:0</span>
+
+    <span class="c1"># eth0 - This is the main <span class="caps">IP</span> address that will be used for most outbound connections.</span>
+    <span class="c1"># The address, netmask and gateway are all necessary.</span>
+    <span class="n">iface</span> <span class="n">eth0</span> <span class="n">inet</span> <span class="n">static</span>
+     <span class="n">address</span> <span class="n">pub</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">a</span>
+     <span class="n">netmask</span> <span class="mf">255.255.255.0</span>
+     <span class="n">gateway</span> <span class="n">gate</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">a</span>
+
+    <span class="c1"># eth0:0</span>
+    <span class="c1"># This is a private <span class="caps">IP</span></span>
+    <span class="n">iface</span> <span class="n">eth0:0</span> <span class="n">inet</span> <span class="n">static</span>
+     <span class="n">address</span> <span class="n">priv</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">a</span>
+     <span class="n">netmask</span> <span class="mf">255.255.128.0</span>
+
+    <span class="c1"># eth0 ipv6</span>
+    <span class="n">iface</span> <span class="n">eth0</span> <span class="n">inet6</span> <span class="n">static</span>
+     <span class="n">address</span> <span class="n">ipv6:pub:a</span>
+     <span class="n">netmask</span> <span class="mi">64</span>
+     <span class="n">gateway</span> <span class="nn">fe80::</span><span class="n">1</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>Deal with some networking stuff that makes our life&nbsp;easier.</p>
+<div class="codehilite"><pre><span class="c1">#vi /etc/hosts</span>
+
+    <span class="mf">127.0.0.1</span>       <span class="n">localhost</span><span class="o">.</span><span class="n">localdomain</span>       <span class="n">localhost</span>
+    <span class="n">pub</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">a</span>       <span class="n">alice</span><span class="o">.</span><span class="n">version2beta</span><span class="o">.</span><span class="n">com</span>      <span class="c1"># <span class="caps">FQDN</span> is public</span>
+    <span class="n">priv</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">a</span>  <span class="n">alice</span>               <span class="c1"># short name is private</span>
+    <span class="n">pub</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">g</span>   <span class="n">gertrude</span><span class="o">.</span><span class="n">version2beta</span><span class="o">.</span><span class="n">com</span>   <span class="c1"># <span class="caps">FQDN</span> is public</span>
+    <span class="n">priv</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">g</span>  <span class="n">gertrude</span>            <span class="c1"># short name is private</span>
+
+    <span class="c1">#IPv6 addresses</span>
+    <span class="n">ipv6:a</span>      <span class="n">ip6</span><span class="o">-</span><span class="n">alice</span>
+    <span class="n">ipv6:g</span>      <span class="n">ip6</span><span class="o">-</span><span class="n">gertrude</span>
+
+    <span class="c1"># The following lines are desirable for IPv6 capable hosts</span>
+    <span class="o">::</span><span class="mi">1</span>     <span class="n">ip6</span><span class="o">-</span><span class="n">localhost</span> <span class="n">ip6</span><span class="o">-</span><span class="n">loopback</span>
+    <span class="nn">fe00::</span><span class="n">0</span> <span class="n">ip6</span><span class="o">-</span><span class="n">localnet</span>
+    <span class="nn">ff00::</span><span class="n">0</span> <span class="n">ip6</span><span class="o">-</span><span class="n">mcastprefix</span>
+    <span class="nn">ff02::</span><span class="n">1</span> <span class="n">ip6</span><span class="o">-</span><span class="n">allnodes</span>
+    <span class="nn">ff02::</span><span class="n">2</span> <span class="n">ip6</span><span class="o">-</span><span class="n">allrouters</span>
+</pre></div>
+
+
+<p><span class="caps">SSH</span>&nbsp;Keys</p>
+<div class="codehilite"><pre><span class="c"># ssh-keygen -t rsa</span>
+</pre></div>
+
+
+<p>Copy <code>/etc/.ssh/id_rsa.pub</code> into the other server&#8217;s <code>/etc/.ssh/authorized_keys</code>, which you&#8217;ll need to create. While you&#8217;re at it, put your key in there&nbsp;too.</p>
+</li>
+<li>
+<p>Restart networking. (If there&#8217;s a mistake in the previous step, we&#8217;ll catch it either here or in the next few&nbsp;steps.)</p>
+<div class="codehilite"><pre><span class="c"># /etc/init.d/networking restart</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>Bring the package database, and installed packages, up to&nbsp;date.</p>
+<div class="codehilite"><pre><span class="c"># apt-get update &amp;&amp; apt-get upgrade</span>
+</pre></div>
+
+
+</li>
+</ol>
+<h2>Install and configure&nbsp;<span class="caps">DR</span>:<span class="caps">BD</span></h2>
+<ol>
+<li>
+<p>Install the&nbsp;tools</p>
+<p>First,&nbsp;try:</p>
+<div class="codehilite"><pre><span class="c"># apt-get install drbd8-utils</span>
+<span class="c"># drbdadm -V</span>
+</pre></div>
+
+
+<p>At the top of the options, it will give the version of the <span class="caps">DRBD</span> module and userland version. If these match, you&#8217;re golden. If they don&#8217;t (as is the case currently for me), you need to build userland tools from&nbsp;source.</p>
+<div class="codehilite"><pre><span class="c1"># drbdadm -V</span>
+
+<span class="n"><span class="caps">DRBD</span></span> <span class="n">module</span> <span class="n">version:</span> <span class="mf">8.3.10</span>
+   <span class="n">userland</span> <span class="n">version:</span> <span class="mf">8.3.9</span>
+<span class="n">you</span> <span class="n">should</span> <span class="n">upgrade</span> <span class="n">your</span> <span class="n">drbd</span> <span class="n">tools</span><span class="o">!</span>
+</pre></div>
+
+
+<p>Building drbd8-utils from&nbsp;source:</p>
+<div class="codehilite"><pre><span class="c"># apt-get remove drbd8-utils</span>
+<span class="c"># apt-get install psmisc build-essential flex git xsltproc</span>
+<span class="c"># wget http://oss.linbit.com/drbd/8.3/drbd-8.3.10.tar.gz</span>
+<span class="c"># tar xvzf drbd-8.3.10.tar.gz</span>
+<span class="c"># cd drbd-8.3.10</span>
+<span class="c"># ./configure</span>
+<span class="c"># make</span>
+<span class="c"># make install</span>
+</pre></div>
+
+
+<p>All good? Try the drbdadm -V&nbsp;again:</p>
+<div class="codehilite"><pre><span class="c1"># drbdadm -V</span>
+
+<span class="o">...</span>
+<span class="n">Version:</span> <span class="mf">8.3.10</span> <span class="p">(</span><span class="n">api:88</span><span class="p">)</span>
+<span class="n"><span class="caps">GIT</span></span><span class="o">-</span><span class="n">hash:</span> <span class="mi">5</span><span class="n">c0b0469666682443d4785d90a2c603378f9017b</span> <span class="n">build</span> <span class="n">by</span> <span class="n">root</span><span class="nv">@alice</span><span class="p">,</span> <span class="mi">2011</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mo">06</span> <span class="mi">22</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">11</span>
+</pre></div>
+
+
+<p>Configure <span class="caps">DR</span>:<span class="caps">BD</span> global settings in <code>/usr/local/etc/drbd.d/global_common.conf</code>:</p>
+<div class="codehilite"><pre><span class="c1"># vi /usr/local/etc/drbd.d/global_common.conf</span>
+
+    <span class="n">global</span> <span class="p">{</span>
+        <span class="n">usage</span><span class="o">-</span><span class="n">count</span> <span class="n">yes</span><span class="p">;</span>
+        <span class="c1"># minor-count dialog-refresh disable-ip-verification</span>
+    <span class="p">}</span>
+
+    <span class="n">common</span> <span class="p">{</span>
+        <span class="n">protocol</span> <span class="n">C</span><span class="p">;</span>
+
+        <span class="n">handlers</span> <span class="p">{</span>
+            <span class="n">pri</span><span class="o">-</span><span class="n">on</span><span class="o">-</span><span class="n">incon</span><span class="o">-</span><span class="n">degr</span> <span class="s">&quot;/usr/lib/drbd/notify-pri-on-incon-degr.sh; /usr/lib/drbd/notify-emergency-reboot.sh; echo b &gt; /proc/sysrq-trigger ; reboot -f&quot;</span><span class="p">;</span>
+            <span class="n">pri</span><span class="o">-</span><span class="n">lost</span><span class="o">-</span><span class="n">after</span><span class="o">-</span><span class="n">sb</span> <span class="s">&quot;/usr/lib/drbd/notify-pri-lost-after-sb.sh; /usr/lib/drbd/notify-emergency-reboot.sh; echo b &gt; /proc/sysrq-trigger ; reboot -f&quot;</span><span class="p">;</span>
+            <span class="nb">local</span><span class="o">-</span><span class="n">io</span><span class="o">-</span><span class="n">error</span> <span class="s">&quot;/usr/lib/drbd/notify-io-error.sh; /usr/lib/drbd/notify-emergency-shutdown.sh; echo o &gt; /proc/sysrq-trigger ; halt -f&quot;</span><span class="p">;</span>
+            <span class="c1"># fence-peer &quot;/usr/lib/drbd/crm-fence-peer.sh&quot;;</span>
+            <span class="nb">split</span><span class="o">-</span><span class="n">brain</span> <span class="s">&quot;/usr/lib/drbd/notify-split-brain.sh root&quot;</span><span class="p">;</span>
+            <span class="c1"># out-of-sync &quot;/usr/lib/drbd/notify-out-of-sync.sh root&quot;;</span>
+            <span class="c1"># before-resync-target &quot;/usr/lib/drbd/snapshot-resync-target-lvm.sh -p 15 -- -c 16k&quot;;</span>
+            <span class="c1"># after-resync-target /usr/lib/drbd/unsnapshot-resync-target-lvm.sh;</span>
+        <span class="p">}</span>
+
+        <span class="n">startup</span> <span class="p">{</span>
+            <span class="c1"># wfc-timeout degr-wfc-timeout outdated-wfc-timeout wait-after-sb</span>
+            <span class="n">wfc</span><span class="o">-</span><span class="n">timeout</span> <span class="mi">15</span><span class="p">;</span>
+            <span class="n">degr</span><span class="o">-</span><span class="n">wfc</span><span class="o">-</span><span class="n">timeout</span> <span class="mi">60</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">disk</span> <span class="p">{</span>
+            <span class="c1"># on-io-error fencing use-bmbv no-disk-barrier no-disk-flushes</span>
+            <span class="c1"># no-disk-drain no-md-flushes max-bio-bvecs</span>
+        <span class="p">}</span>
+
+        <span class="n">net</span> <span class="p">{</span>
+            <span class="c1"># sndbuf-size rcvbuf-size timeout connect-int ping-int ping-timeout max-buffers</span>
+            <span class="c1"># max-epoch-size ko-count allow-two-primaries cram-hmac-alg shared-secret</span>
+            <span class="c1"># after-sb-0pri after-sb-1pri after-sb-2pri data-integrity-alg no-tcp-cork</span>
+            <span class="n">cram</span><span class="o">-</span><span class="n">hmac</span><span class="o">-</span><span class="n">alg</span> <span class="n">sha1</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">syncer</span> <span class="p">{</span>
+            <span class="c1"># rate after al-extents use-rle cpu-mask verify-alg csums-alg</span>
+            <span class="n">rate</span> <span class="mi">4</span><span class="n">M</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+
+
+<p>Configure <span class="caps">DR</span>:<span class="caps">BD</span> resource settings for mysql in <code>/usr/local/etc/drbd.d/mysql.res</code>:</p>
+<div class="codehilite"><pre><span class="c1"># vi /usr/local/etc/drbd.d/mysql.res</span>
+
+    <span class="n">resource</span> <span class="n">mysql</span> <span class="p">{</span>
+        <span class="n">net</span> <span class="p">{</span>
+            <span class="n">shared</span><span class="o">-</span><span class="n">secret</span> <span class="s">&quot;<span class="caps">DONTTELL</span>!&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">on</span> <span class="n">alice</span> <span class="p">{</span>
+            <span class="n">device</span> <span class="sr">/dev/</span><span class="n">drbd0</span><span class="p">;</span>
+            <span class="n">disk</span> <span class="sr">/dev/x</span><span class="n">vdc</span><span class="p">;</span>
+            <span class="n">address</span> <span class="n">ipv6</span> <span class="p">[</span><span class="n">ipv6:a</span><span class="p">]:</span><span class="mi">7801</span><span class="p">;</span>
+            <span class="n">meta</span><span class="o">-</span><span class="n">disk</span> <span class="n">internal</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">on</span> <span class="n">gertrude</span> <span class="p">{</span>
+            <span class="n">device</span> <span class="sr">/dev/</span><span class="n">drbd0</span><span class="p">;</span>
+            <span class="n">disk</span> <span class="sr">/dev/x</span><span class="n">vdc</span><span class="p">;</span>
+            <span class="n">address</span> <span class="n">ipv6</span> <span class="p">[</span><span class="n">ipv6:g</span><span class="p">]:</span><span class="mi">7801</span><span class="p">;</span>
+            <span class="n">meta</span><span class="o">-</span><span class="n">disk</span> <span class="n">internal</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+
+
+<p>And create resource settings for www in <code>/usr/local/etc/drbd.d/www.res</code>:</p>
+<div class="codehilite"><pre><span class="c1"># vi /usr/local/etc/drbd.d/www.res</span>
+
+    <span class="n">resource</span> <span class="n">www</span> <span class="p">{</span>
+        <span class="n">net</span> <span class="p">{</span>
+            <span class="n">shared</span><span class="o">-</span><span class="n">secret</span> <span class="s">&quot;<span class="caps">DON</span>&#39;T <span class="caps">TELL</span>!&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">on</span> <span class="n">alice</span> <span class="p">{</span>
+            <span class="n">device</span> <span class="sr">/dev/</span><span class="n">drbd1</span><span class="p">;</span>
+            <span class="n">disk</span> <span class="sr">/dev/x</span><span class="n">vdd</span><span class="p">;</span>
+            <span class="n">address</span> <span class="n">ipv6</span> <span class="p">[</span><span class="n">ipv6:a</span><span class="p">]:</span><span class="mi">7802</span><span class="p">;</span>
+            <span class="n">meta</span><span class="o">-</span><span class="n">disk</span> <span class="n">internal</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">on</span> <span class="n">gertrude</span> <span class="p">{</span>
+            <span class="n">device</span> <span class="sr">/dev/</span><span class="n">drbd1</span><span class="p">;</span>
+            <span class="n">disk</span> <span class="sr">/dev/x</span><span class="n">vdd</span><span class="p">;</span>
+            <span class="n">address</span> <span class="n">ipv6</span> <span class="p">[</span><span class="n">ipv6:g</span><span class="p">]:</span><span class="mi">7802</span><span class="p">;</span>
+            <span class="n">meta</span><span class="o">-</span><span class="n">disk</span> <span class="n">internal</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+
+
+<p>On this setup, drbd expects configuration files to be in /usr/local/etc/, and won&#8217;t recognize them in /etc/. So we&#8217;ve put all our new stuff in the right place. Now get rid of the old. <span class="caps">BUT</span>, the cluster resource manager <span class="caps">IS</span> going to want them in /etc/, so we&#8217;ll create symbolic&nbsp;links.</p>
+<div class="codehilite"><pre><span class="c"># rm -rd /etc/drbd.*</span>
+<span class="c"># ln -s /usr/local/etc/drbd.conf /etc/drbd.conf</span>
+<span class="c"># ln -s /usr/local/etc/drbd.d /etc/drbd.d</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>Start up&nbsp;<span class="caps">DR</span>:<span class="caps">BD</span></p>
+<p>Create metadata for the devices (only need to do this on one&nbsp;host):</p>
+<div class="codehilite"><pre><span class="c"># drbdadm create-md mysql</span>
+<span class="c"># drbdadm create-md www</span>
+</pre></div>
+
+
+<p>Modify the init script for drbd to accomodate a problem where IPv6 might not be ready when drbd&nbsp;starts:</p>
+<div class="codehilite"><pre><span class="c1"># vi /etc/init.d/drbd # Add a sleep to the top of the script</span>
+
+    <span class="c1">### <span class="caps">END</span> <span class="caps">INIT</span> <span class="caps">INFO</span></span>
+    <span class="nb">sleep</span> <span class="mi">5</span>
+</pre></div>
+
+
+<p>On each server, at roughly the same time, start&nbsp;drbd:</p>
+<div class="codehilite"><pre><span class="c"># /etc/init.d/drbd start</span>
+</pre></div>
+
+
+<p>On the server that will be primarily a database&nbsp;server:</p>
+<div class="codehilite"><pre><span class="c"># drbdadm -- --overwrite-data-of-peer primary mysql</span>
+<span class="c"># drbdadm disconnect mysql</span>
+<span class="c"># drbdadm connect mysql</span>
+<span class="c"># drbdadm disconnect www</span>
+<span class="c"># drbdadm connect www</span>
+</pre></div>
+
+
+<p>On the server that will be primarily a web application&nbsp;server:</p>
+<div class="codehilite"><pre><span class="c"># drbdadm -- --overwrite-data-of-peer primary www</span>
+<span class="c"># drbdadm disconnect www</span>
+<span class="c"># drbdadm connect www</span>
+<span class="c"># drbdadm disconnect mysql</span>
+<span class="c"># drbdadm connect mysql</span>
+</pre></div>
+
+
+<p>On either or both servers, check to make sure the primaries are primary, the secondaries are secondary, and the sync is&nbsp;syncing:</p>
+<div class="codehilite"><pre><span class="c1"># cat /proc/drbd</span>
+
+<span class="n">version:</span> <span class="mf">8.3.10</span> <span class="p">(</span><span class="n">api:88</span><span class="o">/</span><span class="n">proto:86</span><span class="o">-</span><span class="mi">96</span><span class="p">)</span>
+<span class="n">built</span><span class="o">-</span><span class="n">in</span>
+ <span class="mi">0</span><span class="p">:</span> <span class="n">cs:SyncSource</span> <span class="n">ro:Primary</span><span class="sr">/Secondary ds:UpToDate/</span><span class="n">Inconsistent</span> <span class="n">C</span> <span class="n">r</span><span class="o">-----</span>
+    <span class="n">ns:3116484</span> <span class="n">nr:0</span> <span class="n">dw:0</span> <span class="n">dr:3593516</span> <span class="n">al:0</span> <span class="n">bm:219</span> <span class="n">lo:0</span> <span class="n">pe:2</span> <span class="n">ua:1</span> <span class="n">ap:0</span> <span class="n">ep:1</span> <span class="n">wo:f</span> <span class="n">oos:1649980</span>
+    <span class="p">[</span><span class="o">============&gt;.......</span><span class="p">]</span> <span class="n">sync</span><span class="s">&#39;ed: 65.5% (1608/4652)Mfinish: 0:05:08 speed: 5,328 (5,056) K/sec</span>
+<span class="s"> 1: cs:SyncTarget ro:Secondary/Primary ds:Inconsistent/UpToDate C r-----</span>
+<span class="s">    ns:0 nr:2976256 dw:2976256 dr:0 al:0 bm:181 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:7509148</span>
+<span class="s">    [====&gt;...............] sync&#39;</span><span class="n">ed:</span> <span class="mf">28.4</span><span class="nv">%</span> <span class="err">(</span><span class="nv">7332</span><span class="sr">/10236)Mfinish: 0:24:20 speed: 5,136 (5,060) want: 4,096 K/s</span><span class="n">ec</span>
+</pre></div>
+
+
+<p>Format the <span class="caps">DR</span>:<span class="caps">BD</span> devices, each on the server that is primary for that device. On the database&nbsp;server:</p>
+<div class="codehilite"><pre><span class="c"># apt-get install jfsutils</span>
+<span class="c"># mkfs.jfs /dev/drbd0</span>
+</pre></div>
+
+
+<p>And on the web application&nbsp;server:</p>
+<div class="codehilite"><pre><span class="c"># apt-get install jfsutils</span>
+<span class="c"># mkfs.ext4 /dev/drbd1</span>
+</pre></div>
+
+
+<p>On both servers, create the mount&nbsp;points:</p>
+<div class="codehilite"><pre><span class="c1"># mkdir /var/www</span>
+<span class="c1"># mkdir /var/mysql</span>
+
+<span class="c1"># vi /etc/fstab // Add two lines</span>
+
+    <span class="sr">/dev/</span><span class="n">drbd</span><span class="sr">/by-res/</span><span class="n">www</span>    <span class="sr">/var/</span><span class="n">www</span>        <span class="n">ext4</span>    <span class="n">noauto</span><span class="p">,</span><span class="n">noatime</span>
+    <span class="sr">/dev/</span><span class="n">drbd</span><span class="sr">/by-res/m</span><span class="n">ysql</span>  <span class="sr">/var/m</span><span class="n">ysql</span>      <span class="n">jfs</span>     <span class="n">noauto</span>
+</pre></div>
+
+
+<p>Mount the drives, each on it&#8217;s primary&nbsp;server:</p>
+<div class="codehilite"><pre><span class="c"># mount /dev/drbd/by-res/mysql /var/mysql/</span>
+<span class="c"># mount /dev/drbd/by-res/www /var/www</span>
+</pre></div>
+
+
+<p>And there you have it - <span class="caps">RAID</span> 1 drives over a network. Failover comes later, after we install and configure the server&nbsp;software.</p>
+</li>
+</ol>
+<h2>Services: MySQL and Lighttpd, plus a few other little things I like to&nbsp;have</h2>
+<ol>
+<li>
+<p>Install stuff. Not too much stuff. Just the right&nbsp;stuff.</p>
+<div class="codehilite"><pre><span class="c1"># apt-get install bc whois apg s3cmd lsof traceroute exim4 mailutils mutt \</span>
+    <span class="n">aspell</span><span class="o">-</span><span class="n">doc</span> <span class="n">wamerican</span> <span class="n">spellutils</span> <span class="n">ispell</span> <span class="n">mysql</span><span class="o">-</span><span class="n">server</span> <span class="n">mysql</span><span class="o">-</span><span class="n">client</span> <span class="n">lighttpd</span> <span class="o">\</span>
+    <span class="n">lighttpd</span><span class="o">-</span><span class="n">doc</span> <span class="n">lighttpd</span><span class="o">-</span><span class="n">mod</span><span class="o">-</span><span class="n">magnet</span> <span class="n">lua5</span><span class="mf">.1</span> <span class="n">php5</span><span class="o">-</span><span class="n">cli</span> <span class="n">php5</span><span class="o">-</span><span class="n">cgi</span> <span class="n">php5</span> <span class="n">php5</span><span class="o">-</span><span class="n">mcrypt</span> <span class="o">\</span>
+    <span class="n">php5</span><span class="o">-</span><span class="n">mhash</span> <span class="n">php5</span><span class="o">-</span><span class="n">gd</span> <span class="n">php5</span><span class="o">-</span><span class="n">mysql</span> <span class="n">php5</span><span class="o">-</span><span class="n">imagick</span> <span class="n">php5</span><span class="o">-</span><span class="n">curl</span> <span class="n">php5</span><span class="o">-</span><span class="n">memcache</span> <span class="n">php5</span><span class="o">-</span><span class="n">ps</span> <span class="o">\</span>
+    <span class="n">php5</span><span class="o">-</span><span class="n">pspell</span> <span class="n">php5</span><span class="o">-</span><span class="n">tidy</span> <span class="n">php5</span><span class="o">-</span><span class="n">xmlrpc</span> <span class="n">php5</span><span class="o">-</span><span class="n">xsl</span> <span class="n">libgd</span><span class="o">-</span><span class="n">tools</span> <span class="n">libmagickcore3</span><span class="o">-</span><span class="n">extra</span> <span class="o">\</span>
+    <span class="n">libmcrypt</span><span class="o">-</span><span class="n">dev</span> <span class="n">mcrypt</span> <span class="n">rrdtool</span>
+
+<span class="c1"># dpkg-reconfigure exim4-config</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>Configure&nbsp;MySQL. </p>
+<p>Edit <code>/etc/mysql/my.cnf</code>:</p>
+<div class="codehilite"><pre><span class="c1"># vi /etc/mysql/my.cnf</span>
+
+    <span class="p">[</span><span class="n">client</span><span class="p">]</span>
+    <span class="n">port</span>            <span class="o">=</span> <span class="mi">3306</span>
+    <span class="nb">socket</span>          <span class="o">=</span> <span class="sr">/var/</span><span class="n">run</span><span class="sr">/mysqld/m</span><span class="n">ysqld</span><span class="o">.</span><span class="n">sock</span>
+
+    <span class="p">[</span><span class="n">mysqld_safe</span><span class="p">]</span>
+    <span class="nb">socket</span>          <span class="o">=</span> <span class="sr">/var/</span><span class="n">run</span><span class="sr">/mysqld/m</span><span class="n">ysqld</span><span class="o">.</span><span class="n">sock</span>
+    <span class="n">nice</span>            <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="p">[</span><span class="n">mysqld</span><span class="p">]</span>
+    <span class="n">user</span>            <span class="o">=</span> <span class="n">mysql</span>
+    <span class="nb">socket</span>          <span class="o">=</span> <span class="sr">/var/</span><span class="n">run</span><span class="sr">/mysqld/m</span><span class="n">ysqld</span><span class="o">.</span><span class="n">sock</span>
+    <span class="n">port</span>            <span class="o">=</span> <span class="mi">3306</span>
+    <span class="n">basedir</span>         <span class="o">=</span> <span class="o">/</span><span class="n">usr</span>
+    <span class="n">datadir</span>         <span class="o">=</span> <span class="sr">/var/m</span><span class="n">ysql</span>
+    <span class="n">tmpdir</span>          <span class="o">=</span> <span class="o">/</span><span class="n">tmp</span>
+    <span class="n">skip</span><span class="o">-</span><span class="n">external</span><span class="o">-</span><span class="n">locking</span>
+    <span class="nb">bind</span><span class="o">-</span><span class="n">address</span>            <span class="o">=</span> <span class="n">priv</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">f</span>
+    <span class="n">key_buffer</span>              <span class="o">=</span> <span class="mi">16</span><span class="n">M</span>
+    <span class="n">max_allowed_packet</span>      <span class="o">=</span> <span class="mi">16</span><span class="n">M</span>
+    <span class="n">thread_stack</span>            <span class="o">=</span> <span class="mi">192</span><span class="n">K</span>
+    <span class="n">thread_cache_size</span>       <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">myisam</span><span class="o">-</span><span class="n">recover</span>         <span class="o">=</span> <span class="n"><span class="caps">BACKUP</span></span>
+    <span class="c1">#max_connections        = 100</span>
+    <span class="c1">#table_cache            = 64</span>
+    <span class="c1">#thread_concurrency     = 10</span>
+    <span class="n">query_cache_limit</span>       <span class="o">=</span> <span class="mi">1</span><span class="n">M</span>
+    <span class="n">query_cache_size</span>        <span class="o">=</span> <span class="mi">16</span><span class="n">M</span>
+    <span class="c1">#general_log_file        = /var/log/mysql/mysql.log</span>
+    <span class="c1">#general_log             = 1</span>
+    <span class="n">log_error</span>                <span class="o">=</span> <span class="sr">/var/</span><span class="nb">log</span><span class="sr">/mysql/</span><span class="n">error</span><span class="o">.</span><span class="nb">log</span>
+    <span class="c1">#server-id              = 1</span>
+    <span class="c1">#log_bin                        = /var/log/mysql/mysql-bin.log</span>
+    <span class="n">expire_logs_days</span>        <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">max_binlog_size</span>         <span class="o">=</span> <span class="mi">100</span><span class="n">M</span>
+    <span class="c1">#binlog_do_db           = include_database_name</span>
+    <span class="c1">#binlog_ignore_db       = include_database_name</span>
+    <span class="c1"># ssl-ca=/etc/mysql/cacert.pem</span>
+    <span class="c1"># ssl-cert=/etc/mysql/server-cert.pem</span>
+    <span class="c1"># ssl-key=/etc/mysql/server-key.pem</span>
+
+    <span class="p">[</span><span class="n">mysqldump</span><span class="p">]</span>
+    <span class="n">quick</span>
+    <span class="n">quote</span><span class="o">-</span><span class="n">names</span>
+    <span class="n">max_allowed_packet</span>      <span class="o">=</span> <span class="mi">16</span><span class="n">M</span>
+
+    <span class="p">[</span><span class="n">mysql</span><span class="p">]</span>
+    <span class="c1">#no-auto-rehash # faster start of mysql but no tab completition</span>
+
+    <span class="p">[</span><span class="n">isamchk</span><span class="p">]</span>
+    <span class="n">key_buffer</span>              <span class="o">=</span> <span class="mi">16</span><span class="n">M</span>
+
+    <span class="o">!</span><span class="n">includedir</span> <span class="sr">/etc/m</span><span class="n">ysql</span><span class="sr">/conf.d/</span>
+</pre></div>
+
+
+<p>We changed the default directory for MySQL, so we need to move it&#8217;s files into the correct&nbsp;directory.</p>
+<div class="codehilite"><pre><span class="c"># stop mysql</span>
+<span class="c"># chown mysql:mysql /var/mysql</span>
+<span class="c"># cp -Rp /var/lib/mysql/* /var/mysql/</span>
+<span class="c"># ifconfig eth0:1 priv.f.f.f netmask 255.255.128.0</span>
+<span class="c"># start mysql</span>
+</pre></div>
+
+
+<p>Sync these settings with the other server (both need the same configuration so that either can run the service off the same&nbsp;data).</p>
+<div class="codehilite"><pre><span class="c"># scp -r /etc/mysql root@gertrude:/etc/</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>Configure Lighttpd. (Substitute other instructions for nginx, apache,&nbsp;etc.)</p>
+<p>Edit <code>/etc/lighttpd/lighttpd.conf</code> on the web application&nbsp;server:</p>
+<div class="codehilite"><pre><span class="c1"># vi /etc/lighttpd/lighttpd.conf</span>
+
+    <span class="n">server</span><span class="o">.</span><span class="n">modules</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s">&quot;mod_access&quot;</span><span class="p">,</span>
+        <span class="s">&quot;mod_alias&quot;</span><span class="p">,</span>
+        <span class="s">&quot;mod_compress&quot;</span><span class="p">,</span>
+        <span class="s">&quot;mod_redirect&quot;</span><span class="p">,</span>
+            <span class="s">&quot;mod_rewrite&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">server</span><span class="o">.</span><span class="n">document</span><span class="o">-</span><span class="n">root</span>        <span class="o">=</span> <span class="s">&quot;/var/www&quot;</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">upload</span><span class="o">-</span><span class="n">dirs</span>          <span class="o">=</span> <span class="p">(</span> <span class="s">&quot;/var/www/cache/uploads&quot;</span> <span class="p">)</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">errorlog</span>             <span class="o">=</span> <span class="s">&quot;/var/www/logs/error.log&quot;</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">pid</span><span class="o">-</span><span class="n">file</span>             <span class="o">=</span> <span class="s">&quot;/var/run/lighttpd.pid&quot;</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">username</span>             <span class="o">=</span> <span class="s">&quot;www-data&quot;</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">groupname</span>            <span class="o">=</span> <span class="s">&quot;www-data&quot;</span>
+
+    <span class="nb">index</span><span class="o">-</span><span class="n">file</span><span class="o">.</span><span class="n">names</span>            <span class="o">=</span> <span class="p">(</span> <span class="s">&quot;index.php&quot;</span><span class="p">,</span> <span class="s">&quot;index.html&quot;</span><span class="p">)</span>
+
+    <span class="n">url</span><span class="o">.</span><span class="n">access</span><span class="o">-</span><span class="n">deny</span>             <span class="o">=</span> <span class="p">(</span> <span class="s">&quot;~&quot;</span><span class="p">,</span> <span class="s">&quot;.inc&quot;</span> <span class="p">)</span>
+
+    <span class="n">static</span><span class="o">-</span><span class="n">file</span><span class="o">.</span><span class="n">exclude</span><span class="o">-</span><span class="n">extensions</span> <span class="o">=</span> <span class="p">(</span> <span class="s">&quot;.php&quot;</span><span class="p">,</span> <span class="s">&quot;.pl&quot;</span><span class="p">,</span> <span class="s">&quot;.fcgi&quot;</span> <span class="p">)</span>
+
+    <span class="c1">## Use ipv6 if available</span>
+    <span class="n">include_shell</span> <span class="s">&quot;/usr/share/lighttpd/use-ipv6.pl&quot;</span>
+
+    <span class="n">dir</span><span class="o">-</span><span class="n">listing</span><span class="o">.</span><span class="n">encoding</span>        <span class="o">=</span> <span class="s">&quot;utf-8&quot;</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">dir</span><span class="o">-</span><span class="n">listing</span>          <span class="o">=</span> <span class="s">&quot;enable&quot;</span>
+
+    <span class="n">compress</span><span class="o">.</span><span class="n">cache</span><span class="o">-</span><span class="n">dir</span>          <span class="o">=</span> <span class="s">&quot;/var/www/cache/compress/&quot;</span>
+    <span class="n">compress</span><span class="o">.</span><span class="n">filetype</span>           <span class="o">=</span> <span class="p">(</span> <span class="s">&quot;application/x-javascript&quot;</span><span class="p">,</span> <span class="s">&quot;text/css&quot;</span><span class="p">,</span> <span class="s">&quot;text/html&quot;</span><span class="p">,</span> <span class="s">&quot;text/plain&quot;</span> <span class="p">)</span>
+
+    <span class="n">include_shell</span> <span class="s">&quot;/usr/share/lighttpd/create-mime.assign.pl&quot;</span>
+    <span class="n">include_shell</span> <span class="s">&quot;/usr/share/lighttpd/include-conf-enabled.pl&quot;</span>
+
+    <span class="n">magnet</span><span class="o">.</span><span class="n">attract</span><span class="o">-</span><span class="n">physical</span><span class="o">-</span><span class="n">path</span><span class="o">-</span><span class="n">to</span> <span class="o">=</span> <span class="p">(</span> <span class="s">&quot;/etc/lighttpd/modx.lua&quot;</span> <span class="p">)</span>
+</pre></div>
+
+
+<p>Enable some more&nbsp;modules:</p>
+<div class="codehilite"><pre><span class="c"># lighttpd-enable-mod fastcgi</span>
+<span class="c"># lighttpd-enable-mod simple-vhost</span>
+<span class="c"># lighttpd-enable-mod accesslog</span>
+<span class="c"># lighttpd-enable-mod magnet</span>
+<span class="c"># lighttpd-enable-mod status</span>
+</pre></div>
+
+
+<p>Edit more config&nbsp;files:</p>
+<div class="codehilite"><pre><span class="c1"># vi /etc/lighttpd/conf-enabled/10-accesslog.conf</span>
+
+    <span class="n">server</span><span class="o">.</span><span class="n">modules</span> <span class="o">+=</span> <span class="p">(</span> <span class="s">&quot;mod_accesslog&quot;</span> <span class="p">)</span>
+    <span class="n">accesslog</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="s">&quot;/var/www/logs/access.log&quot;</span>
+
+<span class="c1"># vi /etc/lighttpd/conf-enabled/10-simple-vhost.conf</span>
+
+    <span class="n">server</span><span class="o">.</span><span class="n">modules</span> <span class="o">+=</span> <span class="p">(</span> <span class="s">&quot;mod_simple_vhost&quot;</span> <span class="p">)</span>
+    <span class="n">simple</span><span class="o">-</span><span class="n">vhost</span><span class="o">.</span><span class="n">server</span><span class="o">-</span><span class="n">root</span>         <span class="o">=</span> <span class="s">&quot;/var/www/servers/&quot;</span>
+    <span class="n">simple</span><span class="o">-</span><span class="n">vhost</span><span class="o">.</span><span class="n">document</span><span class="o">-</span><span class="n">root</span>       <span class="o">=</span> <span class="s">&quot;htdocs&quot;</span>
+    <span class="n">simple</span><span class="o">-</span><span class="n">vhost</span><span class="o">.</span><span class="n">default</span><span class="o">-</span><span class="n">host</span>        <span class="o">=</span> <span class="s">&quot;{hostname}&quot;</span>
+
+<span class="c1"># vi /etc/lighttpd/conf-enabled/10-fastcgi.conf</span>
+
+    <span class="n">server</span><span class="o">.</span><span class="n">modules</span> <span class="o">+=</span> <span class="p">(</span> <span class="s">&quot;mod_fastcgi&quot;</span> <span class="p">)</span>
+    <span class="n">fastcgi</span><span class="o">.</span><span class="n">server</span>    <span class="o">=</span> <span class="p">(</span> <span class="s">&quot;.php&quot;</span> <span class="o">=&gt;</span>
+            <span class="p">((</span>
+                    <span class="s">&quot;bin-path&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;/usr/bin/php-cgi&quot;</span><span class="p">,</span>
+                    <span class="s">&quot;socket&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;/tmp/php.socket&quot;</span><span class="p">,</span>
+                    <span class="s">&quot;max-procs&quot;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+                    <span class="s">&quot;idle-timeout&quot;</span> <span class="o">=&gt;</span> <span class="mi">20</span><span class="p">,</span>
+                    <span class="s">&quot;bin-environment&quot;</span> <span class="o">=&gt;</span> <span class="p">(</span>
+                            <span class="s">&quot;PHP_FCGI_CHILDREN&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;4&quot;</span><span class="p">,</span>
+                            <span class="s">&quot;PHP_FCGI_MAX_REQUESTS&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;10000&quot;</span>
+                    <span class="p">),</span>
+                    <span class="s">&quot;bin-copy-environment&quot;</span> <span class="o">=&gt;</span> <span class="p">(</span>
+                            <span class="s">&quot;<span class="caps">PATH</span>&quot;</span><span class="p">,</span> <span class="s">&quot;<span class="caps">SHELL</span>&quot;</span><span class="p">,</span> <span class="s">&quot;<span class="caps">USER</span>&quot;</span>
+                    <span class="p">),</span>
+                    <span class="s">&quot;broken-scriptfilename&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;enable&quot;</span>
+            <span class="p">))</span>
+    <span class="p">)</span>
+
+<span class="c1"># vi /etc/lighttpd/modx.lua</span>
+
+    <span class="n">attr</span> <span class="o">=</span> <span class="n">lighty</span><span class="o">.</span><span class="nb">stat</span><span class="p">(</span><span class="n">lighty</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s">&quot;physical.doc-root&quot;</span><span class="p">]</span> <span class="o">..</span> <span class="s">&quot;manager/includes/config.inc.php&quot;</span><span class="p">)</span> <span class="o">--</span> <span class="n">Appears</span> <span class="n">to</span> <span class="n">be</span> <span class="n">a</span> <span class="n">ModX</span> <span class="n">site</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">attr</span><span class="p">)</span> <span class="k">then</span>
+      <span class="n">attr</span> <span class="o">=</span> <span class="n">lighty</span><span class="o">.</span><span class="nb">stat</span><span class="p">(</span><span class="n">lighty</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s">&quot;physical.path&quot;</span><span class="p">])</span>
+      <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">attr</span><span class="p">)</span> <span class="k">then</span> <span class="o">--</span> <span class="n">Requested</span> <span class="n">resource</span> <span class="n">doesn</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">exist</span> <span class="n">in</span> <span class="n">the</span> <span class="n">file</span> <span class="nb">system</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s">&quot;/index.php&quot;</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="n">lighty</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s">&quot;request.uri&quot;</span><span class="p">]</span>
+        <span class="n">uri2</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="n">lighty</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s">&quot;request.uri&quot;</span><span class="p">],</span> <span class="s">&quot;\?&quot;</span><span class="p">,</span> <span class="s">&quot;\&amp;&quot;</span><span class="p">)</span>
+        <span class="o">--</span> <span class="k">print</span><span class="p">(</span><span class="s">&quot;Original request.uri: &quot;</span> <span class="o">..</span> <span class="n">uri</span> <span class="o">..</span> <span class="s">&quot; Replaced with: &quot;</span> <span class="o">..</span> <span class="n">uri2</span><span class="p">)</span>
+        <span class="n">lighty</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s">&quot;uri.query&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;q=&quot;</span> <span class="o">..</span> <span class="n">string</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="s">&quot;\?&quot;</span><span class="p">,</span> <span class="s">&quot;\&amp;&quot;</span><span class="p">)</span>
+        <span class="n">lighty</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s">&quot;uri.path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span>
+        <span class="n">lighty</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s">&quot;request.uri&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span> <span class="o">..</span> <span class="s">&quot;?&quot;</span> <span class="o">..</span> <span class="n">lighty</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s">&quot;uri.query&quot;</span><span class="p">]</span>
+        <span class="o">--</span> <span class="k">print</span><span class="p">(</span><span class="s">&quot;New request.uri: &quot;</span> <span class="o">..</span> <span class="n">lighty</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s">&quot;request.uri&quot;</span><span class="p">])</span>
+        <span class="n">lighty</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s">&quot;physical.rel-path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span>
+        <span class="n">lighty</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s">&quot;physical.path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lighty</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s">&quot;physical.doc-root&quot;</span><span class="p">]</span> <span class="o">..</span> <span class="n">string</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">lighty</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s">&quot;physical.rel-path&quot;</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="o">--</span> <span class="k">print</span><span class="p">(</span><span class="s">&quot;New physical.path: &quot;</span> <span class="o">..</span> <span class="n">lighty</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s">&quot;physical.path&quot;</span><span class="p">])</span>
+      <span class="n">end</span>
+    <span class="n">end</span>
+
+<span class="c1"># vi /etc/lighttpd/wp-rewrite.conf</span>
+
+    <span class="c1"># Use when a site has a blog</span>
+    <span class="c1"># Example:</span>
+    <span class="c1"># $<span class="caps">HTTP</span>[&quot;host&quot;] =~ &quot;www\.example\.com&quot; {</span>
+    <span class="c1">#   var.wpdir = &quot;/blog/&quot;</span>
+    <span class="c1">#   include &quot;wp-rewrite.conf&quot;</span>
+    <span class="c1"># }</span>
+
+    <span class="n">url</span><span class="o">.</span><span class="n">rewrite</span><span class="o">-</span><span class="n">once</span> <span class="o">=</span> <span class="p">(</span>
+      <span class="s">&quot;^&quot;</span> <span class="o">+</span> <span class="n">wpdir</span> <span class="o">+</span> <span class="s">&quot;(wp-.+).*/?&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;$0&quot;</span><span class="p">,</span>
+      <span class="s">&quot;^&quot;</span> <span class="o">+</span> <span class="n">wpdir</span> <span class="o">+</span> <span class="s">&quot;(sitemap.xml)&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;$0&quot;</span><span class="p">,</span>
+      <span class="s">&quot;^&quot;</span> <span class="o">+</span> <span class="n">wpdir</span> <span class="o">+</span> <span class="s">&quot;(xmlrpc.php)&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;$0&quot;</span><span class="p">,</span>
+      <span class="s">&quot;^&quot;</span> <span class="o">+</span> <span class="n">wpdir</span> <span class="o">+</span> <span class="s">&quot;keyword/([A-Za-z_0-9-])/?$&quot;</span> <span class="o">=&gt;</span> <span class="n">wpdir</span> <span class="o">+</span> <span class="s">&quot;index.php?keyword=$1&quot;</span><span class="p">,</span>
+      <span class="s">&quot;^&quot;</span> <span class="o">+</span> <span class="n">wpdir</span> <span class="o">+</span> <span class="s">&quot;(.+)/?$&quot;</span> <span class="o">=&gt;</span> <span class="n">wpdir</span> <span class="o">+</span> <span class="s">&quot;index.php/$1&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+
+
+<p>Edit <code>/etc/php5/cgi/php.ini</code> so that these lines are&nbsp;correct:</p>
+<div class="codehilite"><pre><span class="n">display_errors</span> <span class="o">=</span> <span class="n">stderr</span>
+<span class="n">error_log</span> <span class="o">=</span> <span class="sr">/var/</span><span class="n">www</span><span class="sr">/logs/</span><span class="n">php_errors</span><span class="o">.</span><span class="nb">log</span>
+</pre></div>
+
+
+<p>Create some directories we just specified, but don&#8217;t yet&nbsp;have:</p>
+<div class="codehilite"><pre><span class="c"># mkdir /var/www/run /var/www/cache /var/www/cache/compress /var/www/cache/uploads /var/www/logs /var/www/servers /var/www/servers/{hostname} /var/www/servers/{hostname}/htdocs</span>
+<span class="c"># chown -R www-data:www-data /var/www/run /var/www/cache /var/www/logs/ /var/www/servers</span>
+</pre></div>
+
+
+<p>Restart the local server and sync these settings with the other server (both need the same configuration so that either can run the service off the same&nbsp;data).</p>
+<div class="codehilite"><pre><span class="c"># /etc/init.d/lighttpd restart</span>
+<span class="c"># scp -r /etc/php5 /etc/lighttpd root@alice:/etc/</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>Test that either server can run either&nbsp;service.</p>
+<p>On the database&nbsp;server:</p>
+<div class="codehilite"><pre><span class="c"># stop mysql</span>
+<span class="c"># ifconfig eth0:1 down</span>
+<span class="c"># umount /var/mysql/</span>
+<span class="c"># drbdadm secondary mysql</span>
+</pre></div>
+
+
+<p>On the web application&nbsp;server:</p>
+<div class="codehilite"><pre><span class="c"># drbdadm primary mysql</span>
+<span class="c"># mount /dev/drbd0 /var/mysql/</span>
+<span class="c"># ifconfig eth0:1 priv.f.f.f netmask 255.255.128.0</span>
+<span class="c"># start mysql</span>
+<span class="c"># mysql -p</span>
+<span class="c"># stop mysql</span>
+<span class="c"># ifconfig eth0:1 down</span>
+<span class="c"># umount /var/mysql/</span>
+<span class="c"># drbdadm secondary mysql</span>
+<span class="c"># /etc/init.d/lighttpd stop</span>
+<span class="c"># umount /var/www</span>
+<span class="c"># drbdadm secondary www</span>
+</pre></div>
+
+
+<p>On the database&nbsp;server:</p>
+<div class="codehilite"><pre><span class="c"># drbdadm primary mysql</span>
+<span class="c"># drbdadm primary www</span>
+<span class="c"># mount /dev/drbd0 /var/mysql/</span>
+<span class="c"># mount /dev/drbd1 /var/www/</span>
+<span class="c"># /etc/init.d/lighttpd start</span>
+<span class="c"># ps ax | grep light</span>
+<span class="c"># /etc/init.d/lighttpd stop</span>
+<span class="c"># umount /var/www</span>
+<span class="c"># drbdadm secondary www</span>
+<span class="c"># ifconfig eth0:1 priv.f.f.f 255.255.128.0</span>
+<span class="c"># start mysql</span>
+</pre></div>
+
+
+<p>On the web application&nbsp;server:</p>
+<div class="codehilite"><pre><span class="c"># drbdadm primary www</span>
+<span class="c"># mount /dev/drbd1 /var/www</span>
+<span class="c"># /etc/init.d/lighttpd start</span>
+</pre></div>
+
+
+</li>
+</ol>
+<h2>Configure a failover&nbsp;cluster</h2>
+<p>Just a note here before we start. I would have liked to run corosync<sup id="fnref:corosync"><a href="#fn:corosync" rel="footnote">4</a></sup> rather than heartbeat<sup id="fnref:heartbeat"><a href="#fn:heartbeat" rel="footnote">5</a></sup> based solely on my understanding of pacemaker<sup id="fnref:pacemaker"><a href="#fn:pacemaker" rel="footnote">6</a></sup>, how and why it split from heartbeat. However, corosync seems to mostly require multicast networking to work<sup id="fnref:mcast"><a href="#fn:mcast" rel="footnote">7</a></sup> and after some struggles, I&#8217;ve learned that Linode doesn&#8217;t support&nbsp;multicast.</p>
+<ol>
+<li>
+<p>Set up heartbeat and&nbsp;pacemaker</p>
+<p>Install and configure software on both&nbsp;servers</p>
+<div class="codehilite"><pre><span class="c"># apt-get install heartbeat pacemaker</span>
+</pre></div>
+
+
+<p>Edit <code>/usr/lib/ocf/resource.d/heartbeat/Filesystem</code> to comment out this whole block. This will fix a problem with the script&#8217;s handling of jfs filesystems. Besides, they say right in the code, &#8220;Why should a filesystem resource agent magically load a kernel module?&#8221; I agree. Lemme handle that part and just mount the drive&nbsp;please.</p>
+<div class="codehilite"><pre><span class="c"># vi /usr/lib/ocf/resource.d/heartbeat/Filesystem</span>
+
+    <span class="c">#       if [ &quot;X${<span class="caps">HOSTOS</span>}&quot; != &quot;XOpenBSD&quot; ];then</span>
+    <span class="c">#               # Insert <span class="caps">SCSI</span> module</span>
+    <span class="c">#               # <span class="caps">TODO</span>: This probably should go away. Why should the filesystem</span>
+    <span class="c">#               # <span class="caps">RA</span> magically load a kernel module?</span>
+    <span class="c">#               $<span class="caps">MODPROBE</span> scsi_hostadapter &gt;/dev/null </span>
+    <span class="c">#</span>
+    <span class="c">#               if [ -z &quot;$<span class="caps">FSTYPE</span>&quot; -o &quot;$<span class="caps">FSTYPE</span>&quot; = none ]; then</span>
+    <span class="c">#                       : No <span class="caps">FSTYPE</span> specified, rely on the system has the right file-system support already </span>
+    <span class="c">#               else</span>
+    <span class="c">#                       # Insert Filesystem module</span>
+    <span class="c">#                       $<span class="caps">MODPROBE</span> $<span class="caps">FSTYPE</span> &gt;/dev/null </span>
+    <span class="c">#                       grep -e &quot;$<span class="caps">FSTYPE</span>&quot;&#39;$&#39; /proc/filesystems &gt;/dev/null</span>
+    <span class="c">#                       if [ $? -ne 0 ] ; then</span>
+    <span class="c">#                               ocf_log err &quot;Couldn&#39;t find filesystem $<span class="caps">FSTYPE</span> in /proc/filesystems&quot;</span>
+    <span class="c">#                               return $OCF_ERR_INSTALLED</span>
+    <span class="c">#                       fi</span>
+    <span class="c">#               fi</span>
+    <span class="c">#       fi</span>
+</pre></div>
+
+
+<p>Configuration&nbsp;files:</p>
+<div class="codehilite"><pre><span class="c1"># vi /etc/ha.d/authkeys</span>
+
+    <span class="n">auth</span> <span class="mi">1</span>
+    <span class="mi">1</span> <span class="n">sha1</span> <span class="n">Don</span><span class="err">&#39;</span><span class="n">tTell</span>
+
+<span class="c1"># chmod 600 /etc/heartbeat/authkeys</span>
+
+<span class="c1"># vi /etc/ha.d/ha.cf</span>
+
+    <span class="n">autojoin</span> <span class="n">none</span>
+    <span class="n">logfacility</span> <span class="n">daemon</span>
+    <span class="n">keepalive</span> <span class="mi">2</span>
+    <span class="n">deadtime</span> <span class="mi">15</span>
+    <span class="n">warntime</span> <span class="mi">5</span>
+    <span class="n">initdead</span> <span class="mi">120</span>
+    <span class="n">udpport</span> <span class="mi">694</span>
+    <span class="n">ucast</span> <span class="n">eth0</span> <span class="n">priv</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">a</span>
+    <span class="n">ucast</span> <span class="n">eth0</span> <span class="n">priv</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">g</span>
+    <span class="n">node</span> <span class="n">alice</span>
+    <span class="n">node</span> <span class="n">gertrude</span>
+    <span class="n">auto_failback</span> <span class="n">on</span>
+    <span class="n">use_logd</span> <span class="n">yes</span>
+    <span class="n">crm</span> <span class="n">respawn</span>
+</pre></div>
+
+
+<p>Propogate the configuration and restart each&nbsp;server</p>
+<div class="codehilite"><pre><span class="c"># scp -r /etc/ha.d/* root@gertrude:/etc/ha.d/</span>
+
+<span class="c"># /etc/init.d/heartbeat restart</span>
+</pre></div>
+
+
+<p>Disable automatic start of Lighttpd (using <span class="caps">LSB</span>) and MySQL (using&nbsp;Upstart)</p>
+<div class="codehilite"><pre><span class="c"># update-rc.d lighttpd disable</span>
+<span class="c"># vi /etc/init/mysql.conf</span>
+
+    <span class="c"># Comment out the startup</span>
+    <span class="c">#start on (net-device-up</span>
+    <span class="c">#          and local-filesystems</span>
+    <span class="c">#         and runlevel [2345])</span>
+</pre></div>
+
+
+<p>Configure the&nbsp;resources</p>
+<div class="codehilite"><pre><span class="c1"># vi /usr/lib/ocf/resource.d/linbit/drbd</span>
+
+    <span class="n">OCF_RESKEY_drbdconf_default</span><span class="o">=</span><span class="s">&quot;/usr/local/etc/drbd.conf&quot;</span>
+
+<span class="c1"># crm configure</span>
+
+    <span class="n">primitive</span> <span class="n">db_alert</span> <span class="n">ocf:heartbeat:MailTo</span> <span class="o">\</span>
+        <span class="n">params</span> <span class="n">email</span><span class="o">=</span><span class="s">&quot;root&quot;</span> <span class="n">subject</span><span class="o">=</span><span class="s">&quot;(db)&quot;</span>
+    <span class="n">primitive</span> <span class="n">db_drbd</span> <span class="n">ocf:linbit:drbd</span> <span class="o">\</span>
+        <span class="n">params</span> <span class="n">drbd_resource</span><span class="o">=</span><span class="s">&quot;mysql&quot;</span> <span class="o">\</span>
+        <span class="n">op</span> <span class="n">start</span> <span class="n">interval</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="n">timeout</span><span class="o">=</span><span class="s">&quot;240&quot;</span> <span class="o">\</span>
+        <span class="n">op</span> <span class="n">stop</span> <span class="n">interval</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="n">timeout</span><span class="o">=</span><span class="s">&quot;100&quot;</span>
+    <span class="n">primitive</span> <span class="n">db_fs</span> <span class="n">ocf:heartbeat:Filesystem</span> <span class="o">\</span>
+        <span class="n">params</span> <span class="n">device</span><span class="o">=</span><span class="s">&quot;/dev/drbd0&quot;</span> <span class="n">directory</span><span class="o">=</span><span class="s">&quot;/var/mysql&quot;</span> <span class="n">fstype</span><span class="o">=</span><span class="s">&quot;jfs&quot;</span> <span class="o">\</span>
+        <span class="n">op</span> <span class="n">start</span> <span class="n">interval</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="n">timeout</span><span class="o">=</span><span class="s">&quot;60&quot;</span> <span class="o">\</span>
+        <span class="n">op</span> <span class="n">stop</span> <span class="n">interval</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="n">timeout</span><span class="o">=</span><span class="s">&quot;120&quot;</span>
+    <span class="n">primitive</span> <span class="n">db_ip</span> <span class="n">ocf:heartbeat:IPaddr</span> <span class="o">\</span>
+        <span class="n">params</span> <span class="n">ip</span><span class="o">=</span><span class="s">&quot;priv.f.f.f&quot;</span> <span class="n">cidr_netmask</span><span class="o">=</span><span class="s">&quot;24&quot;</span>
+    <span class="n">primitive</span> <span class="n">db_mysql</span> <span class="n">lsb:mysql</span> <span class="o">\</span>
+        <span class="n">op</span> <span class="n">monitor</span> <span class="n">interval</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="n">enabled</span><span class="o">=</span><span class="s">&quot;false&quot;</span>
+
+    <span class="n">primitive</span> <span class="n">www_alert</span> <span class="n">ocf:heartbeat:MailTo</span> <span class="o">\</span>
+        <span class="n">params</span> <span class="n">email</span><span class="o">=</span><span class="s">&quot;root&quot;</span> <span class="n">subject</span><span class="o">=</span><span class="s">&quot;(www)&quot;</span>
+    <span class="n">primitive</span> <span class="n">www_drbd</span> <span class="n">ocf:linbit:drbd</span> <span class="o">\</span>
+        <span class="n">params</span> <span class="n">drbd_resource</span><span class="o">=</span><span class="s">&quot;www&quot;</span> <span class="o">\</span>
+        <span class="n">op</span> <span class="n">start</span> <span class="n">interval</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="n">timeout</span><span class="o">=</span><span class="s">&quot;240&quot;</span> <span class="o">\</span>
+        <span class="n">op</span> <span class="n">stop</span> <span class="n">interval</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="n">timeout</span><span class="o">=</span><span class="s">&quot;100&quot;</span>
+    <span class="n">primitive</span> <span class="n">www_fs</span> <span class="n">ocf:heartbeat:Filesystem</span> <span class="o">\</span>
+        <span class="n">params</span> <span class="n">device</span><span class="o">=</span><span class="s">&quot;/dev/drbd1&quot;</span> <span class="n">directory</span><span class="o">=</span><span class="s">&quot;/var/www&quot;</span> <span class="n">fstype</span><span class="o">=</span><span class="s">&quot;ext4&quot;</span> <span class="o">\</span>
+        <span class="n">op</span> <span class="n">start</span> <span class="n">interval</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="n">timeout</span><span class="o">=</span><span class="s">&quot;60&quot;</span> <span class="o">\</span>
+        <span class="n">op</span> <span class="n">stop</span> <span class="n">interval</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="n">timeout</span><span class="o">=</span><span class="s">&quot;120&quot;</span>
+    <span class="n">primitive</span> <span class="n">www_ip</span> <span class="n">ocf:heartbeat:IPaddr</span> <span class="o">\</span>
+        <span class="n">params</span> <span class="n">ip</span><span class="o">=</span><span class="s">&quot;pub.f.f.f&quot;</span> <span class="n">cidr_netmask</span><span class="o">=</span><span class="s">&quot;24&quot;</span>
+    <span class="n">primitive</span> <span class="n">www_lighty</span> <span class="n">lsb:lighttpd</span> <span class="o">\</span>
+        <span class="n">op</span> <span class="n">monitor</span> <span class="n">interval</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="n">enabled</span><span class="o">=</span><span class="s">&quot;false&quot;</span>
+
+    <span class="n">group</span> <span class="n">db</span> <span class="n">db_ip</span> <span class="n">db_fs</span> <span class="n">db_mysql</span> <span class="n">db_alert</span> <span class="o">\</span>
+        <span class="n">meta</span> <span class="n">target</span><span class="o">-</span><span class="n">role</span><span class="o">=</span><span class="s">&quot;Started&quot;</span>
+
+    <span class="n">group</span> <span class="n">www</span> <span class="n">www_fs</span> <span class="n">www_ip</span> <span class="n">www_lighty</span> <span class="n">www_alert</span> <span class="o">\</span>
+        <span class="n">meta</span> <span class="n">target</span><span class="o">-</span><span class="n">role</span><span class="o">=</span><span class="s">&quot;Started&quot;</span>
+
+    <span class="n">ms</span> <span class="n">ms_db_drbd</span> <span class="n">db_drbd</span> <span class="o">\</span>
+        <span class="n">meta</span> <span class="n">master</span><span class="o">-</span><span class="n">max</span><span class="o">=</span><span class="s">&quot;1&quot;</span> <span class="n">master</span><span class="o">-</span><span class="n">node</span><span class="o">-</span><span class="n">max</span><span class="o">=</span><span class="s">&quot;1&quot;</span> <span class="n">clone</span><span class="o">-</span><span class="n">max</span><span class="o">=</span><span class="s">&quot;2&quot;</span> <span class="n">clone</span><span class="o">-</span><span class="n">node</span><span class="o">-</span><span class="n">max</span><span class="o">=</span><span class="s">&quot;1&quot;</span> <span class="n">notify</span><span class="o">=</span><span class="s">&quot;true&quot;</span>
+
+    <span class="n">ms</span> <span class="n">ms_www_drbd</span> <span class="n">www_drbd</span> <span class="o">\</span>
+        <span class="n">meta</span> <span class="n">master</span><span class="o">-</span><span class="n">max</span><span class="o">=</span><span class="s">&quot;1&quot;</span> <span class="n">master</span><span class="o">-</span><span class="n">node</span><span class="o">-</span><span class="n">max</span><span class="o">=</span><span class="s">&quot;1&quot;</span> <span class="n">clone</span><span class="o">-</span><span class="n">max</span><span class="o">=</span><span class="s">&quot;2&quot;</span> <span class="n">clone</span><span class="o">-</span><span class="n">node</span><span class="o">-</span><span class="n">max</span><span class="o">=</span><span class="s">&quot;1&quot;</span> <span class="n">notify</span><span class="o">=</span><span class="s">&quot;true&quot;</span>
+
+    <span class="n">location</span> <span class="n">db_gertrude</span> <span class="n">db</span> <span class="mi">10</span><span class="p">:</span> <span class="n">gertrude</span>
+    <span class="n">location</span> <span class="n">db_alice</span> <span class="n">db</span> <span class="mi">100</span><span class="p">:</span> <span class="n">alice</span>
+    <span class="n">location</span> <span class="n">www_gertrude</span> <span class="n">www</span> <span class="mi">100</span><span class="p">:</span> <span class="n">gertrude</span>
+    <span class="n">location</span> <span class="n">www_alice</span> <span class="n">www</span> <span class="mi">10</span><span class="p">:</span> <span class="n">alice</span>
+
+    <span class="n">colocation</span> <span class="n">db_on_drbd</span> <span class="n">inf:</span> <span class="n">db</span> <span class="n">ms_db_drbd:Master</span>
+    <span class="n">colocation</span> <span class="n">www_on_drbd</span> <span class="n">inf:</span> <span class="n">www</span> <span class="n">ms_www_drbd:Master</span>
+
+    <span class="n">order</span> <span class="n">db_after_drbd</span> <span class="n">inf:</span> <span class="n">ms_db_drbd:promote</span> <span class="n">db:start</span>
+    <span class="n">order</span> <span class="n">www_after_drbd</span> <span class="n">inf:</span> <span class="n">ms_www_drbd:promote</span> <span class="n">www:start</span>
+
+    <span class="n">property</span> <span class="n">cluster</span><span class="o">-</span><span class="n">infrastructure</span><span class="o">=</span><span class="s">&quot;Heartbeat&quot;</span> <span class="o">\</span>
+        <span class="n">stonith</span><span class="o">-</span><span class="n">enabled</span><span class="o">=</span><span class="s">&quot;false&quot;</span> <span class="o">\</span>
+        <span class="nb">no</span><span class="o">-</span><span class="n">quorum</span><span class="o">-</span><span class="n">policy</span><span class="o">=</span><span class="s">&quot;ignore&quot;</span> <span class="o">\</span>
+        <span class="n">default</span><span class="o">-</span><span class="n">resource</span><span class="o">-</span><span class="n">stickiness</span><span class="o">=</span><span class="s">&quot;5&quot;</span>
+</pre></div>
+
+
+</li>
+</ol>
+<!-- Hyde::Article::End -->
+
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:APG">
+<p>I built a <a href="http://perlmonks.org/index.pl?node_id=101324" title="Password generator using a linguistic rule base, by me, long before I started using the version2beta handle.">pronouncable password generator</a> too, in Perl, more than a decade ago. Got lots of reputations points on PerlMonks.org. But <a href="http://www.adel.nursat.kz/apg/" title="Automatic Password Generator"><span class="caps">APG</span></a> is cool too.
+&#160;<a href="#fnref:APG" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:ubuntu">
+<p>I used to use <a href="http://www.debian.org" title="You know, Debian. The standard Linux distro.">Debian</a>, and got the install down to 1.<span class="caps">3GB</span> comfortably. But since I started running Ubuntu on my desktop I&#8217;ve simplified my life and got <a href="http://www.ubuntu.com/business/server/overview" title="Ubuntu is based on Debian, so it's got that going for it.">Ubuntu Server</a>
+&#160;<a href="#fnref:ubuntu" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:toklas">
+<p>We name our servers after couples who inspired each other in their art and life. The example shown refers to Alice B. Toklas, partner and lover of Gertrude Stein for nearly 40 years, author of The Alice B. Toklas Cookbook which contains among other recipes what we often refer to as &#8220;magic brownies&#8221; (She called it &#8220;Haschich Fudge&#8221;.) Gertrude was pretty cool too.
+&#160;<a href="#fnref:toklas" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:corosync">
+<p>This cluster management stuff gets complicated. I have to really wrap my head around it when I&#8217;m making it work, and I still only have 80% confidence I understand what it&#8217;s doing, even if I have 100% confidence what I&#8217;ve done works. And this is a how-to, not a why-for, so I don&#8217;t want to bog it down a lot. So I&#8217;ll just send you to <a href="http://en.wikipedia.org/wiki/Corosync_(project)" title="Corosync on Wikipedia gives a decent overview, not too technical">the Wikipedia page for the Corosync project</a>.
+&#160;<a href="#fnref:corosync" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:heartbeat">
+<p>Keeping in line with the last footnote, here&#8217;s the <a href="http://en.wikipedia.org/wiki/Linux-HA" title="High Availability Linux on Wikipedia">Wikipedia page for Linux-ha (high availability Linux)</a>, the project that puts out heartbeat.
+&#160;<a href="#fnref:heartbeat" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:pacemaker">
+<p>Okay, so you get some theory anyway. Heartbeat is how the system knows which members of a cluster are online. Pacemaker is how it determines which resources belong with cluster node. Got it? Pacemaker strikes me as the bad boy of Linux high availability. It got spun off from the Linux-ha project back in &#8216;07 in a brouhaha that involved one guy leaving the project and not replying to emails, the head of kernel R&amp;D at SuSE talking street, really just a big clusterf**k. Well, I may be overstating it, but the first time I configured one of these pairs, I didn&#8217;t have to deal with the politics of project development to try to figure out where all the pieces came from and how they went&nbsp;together. </p>
+<p>Oh, Pacemaker doesn&#8217;t have a Wikipedia page, but there&#8217;s a <a href="http://clusterlabs.org/wiki/Pacemaker" title="Wiki page on Pacemaker at ClusterLabs.org">Wiki page at clusterlabs.org</a>.&#160;<a href="#fnref:pacemaker" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:mcast">
+<p><a href="http://en.wikipedia.org/wiki/IP_multicast" title="IP Multicasting article at Wikipedia"><span class="caps">IP</span> Multicasting</a> is a way for one computer to talk to more than one computer at a time, in one transmission. It&#8217;s kinda like tuning into a <span class="caps">TV</span> channel - you pick the channel you want to listen to, and then there&#8217;s all this stuff happening. Except not at Linode.
+&#160;<a href="#fnref:mcast" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+</div>
+
+
+</div>
+
+<footer>
+<div id='footer'>Copyright version2beta</div>
+
+</footer>
+
+</body>
+</html>

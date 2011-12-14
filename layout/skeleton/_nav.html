@@ -1,0 +1,21 @@
+{% extends "skeleton/_root.html" %}
+{% block all %}
+<nav>
+  <ul class="sitenav">
+    <li{% ifequal page.module site.module %} class="selected" {% endifequal %}>
+      <a href="{{ site.listing_url }}">version2beta home</a>
+      <span class="separator"> | </span>
+    </li>
+    {% for module in site.children %}
+    <li{% ifequal page.module module %} class="selected" {% endifequal %}>
+      <a href="{{ module.listing_url }}">{{ module.name|unslugify|lower }}</a>
+      {% if not forloop.last %}
+        {% block nav_seperator %}
+        <span class="separator"> | </span>
+        {% endblock %}
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</nav>
+{% endblock %}

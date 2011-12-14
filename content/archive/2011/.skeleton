@@ -1,0 +1,22 @@
+{% extends "_post.html" %}
+{% load webdesign %}
+
+{% hyde
+    title: TITLE
+    created: YYYY-MM-DD HH:MM:SS
+    short: Short
+%}
+
+{% block article %}
+
+{% article %}
+{% excerpt %}
+
+
+
+{% endexcerpt %}
+
+
+
+{% endarticle %}
+{% endblock %}
