@@ -17,7 +17,7 @@ Something like a recipe for creating database and application servers that failo
 {% endexcerpt %}
 
 
-##Initial configuration, from within the Linode dashboard
+##Initial configuration, from within the Linode[^linode] dashboard
 
 Repeat the following procedure for each member of the pair:
 
@@ -34,6 +34,10 @@ Repeat the following procedure for each member of the pair:
 	* Add an SSH public key to the Keys box. This is in addition to the Lish password.  Or instead of it, if you prefer.
 
 	* This is also good time to write to Linode support. You'll need to order an additional public IP address, and by default you are unable to purchase an additional IP address until you've requested and justified it specifically with support. You'll also need another *private* IP address, which doesn't cost anything but it takes a support person to do it - there's no way to automatically add more than one private IP address. These addresses will float between the pairs, so it doesn't matter which of the pair get these additional addresses. Make note of these floating addresses.
+
+[^linode]: I didn't realize that Linode has a referral program, so I'm updating this footnote! If you sign up, kindly use this link: [Linode.com][].
+
+[Linode.com]: http://www.linode.com/?r=3056f385845a7a1f538397b0daa697357e884da1 "A link to Linode that includes my referral code, which means I could get paid a little bit."
 
 [^APG]: I built a [pronouncable password generator][ppg] too, in Perl, more than a decade ago. Got lots of reputations points on PerlMonks.org. But [APG][] is cool too.
 
