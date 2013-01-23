@@ -40,8 +40,8 @@ Rob (version2beta)
 
 __Update 5/9/2011:__ See my [Instantiate Blog][] post for more of the whys and wherefores.
 
-  [^qmllc]: [Quintessential Mischief LLC makes systems, especially ERP and e-commerce systems][qm], and we like to customize where appropriate. My real title is Application Architect, but I'm thinking about getting it changed to more accurately reflect what I do.
-  [qm]: http://www.qmuxs.com "Quintessential Mischief LLC"
+[^qmllc]: [Quintessential Mischief LLC makes systems, especially ERP and e-commerce systems][qm], and we like to customize where appropriate. My real title is Application Architect, but I'm thinking about getting it changed to more accurately reflect what I do.
+[qm]: http://www.qmuxs.com "Quintessential Mischief LLC"
   [^topfloor]: [Top Floor Technologies][topfloor] focuses on B2B internet strategy, and they have the right people working at doing it very well. We are on the way up.
   [topfloor]: http://www.topfloortech.com/ "B2B marketing, SEO and SEM, analytics. And a damn fine web infrastructure manager too."
   [hire me]: http://version2beta.com/hire/hire.html "Want to hire me?"
