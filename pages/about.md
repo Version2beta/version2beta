@@ -1,5 +1,6 @@
 title: About version2beta
-date: 2011-05-09
+published: 2011-05-09
+template: about.html
 
 version2beta is M Robert Martin. version2beta is Rob Martin.  Hi, I'm Rob. You can call me Rob.
 
