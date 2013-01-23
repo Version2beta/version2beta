@@ -1,5 +1,5 @@
 from flask import Flask
-from flaskext.flatpages import FlatPages
+from flask_flatpages import FlatPages
 
 DEBUG = True
 FLATPAGES_AUTO_RELOAD = DEBUG
