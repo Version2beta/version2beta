@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}version2beta{% endblock %}</title>
+    <!--[if IE]><script src="../j/html5.js"></script><![endif]-->
+    {% block meta_tags %}
+    <meta name="description" content="version2beta: A technical blog.">
+    <meta name="keywords" content="">
+    {% endblock %}
+    {% block feeds %}
+    <link href="/archive/atom.xml" rel="alternate" title="version2beta" type="application/atom+xml"/>
+    {% endblock %}
+    {% block css %}
+    <link rel="stylesheet" href="/media/css/normalize.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/media/css/base.css" type="text/css" media="screen" charset="utf-8">
+    {% block extra_css %}{% endblock %}
+    {% endblock %}
+    {% block js %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9/jquery.min.js"></script>
+    {% block extra_js %}{% endblock %}
+    {% endblock %}
+    <link rel="shortcut icon" href="/media/favicon.ico" />
+{% include "skeleton/stats.html" %}
+</head>
+
+<body>
+<div id="site">
+<header>
+{% include "skeleton/header.html" %}
+</header>
+{% block content %}{% endblock %}
+</div>
+
+<footer>
+{% include "skeleton/footer.html" %}
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends "skeleton/_root.html" %}
+
+{% block all %}
+{% spaceless %}
+{% ifnotequal node page.node %}
+    {% if node.has_listing %}<a href="{{ node.listing_url }}" class="year">{% endif %}
+    <h2>{{ node.name|unslugify }}</h2>
+    {% if node.has_listing %}</a>{% endif %}
+{% endifnotequal %}
+{% for list_page in node.pages %}
+{% ifnotequal list_page node.listing_page %}
+{% if list_page.display_in_list %}
+  <article>
+      <header>
+        <time pubdate>{{ list_page.created|date:"Y-m-d" }}</time>
+        {% with list_page.name_without_extension|remove_date_prefix|unslugify as default_title %}
+          <a href='{{list_page.url}}'>{{ list_page.title|default_if_none:default_title }}</a>
+          {% if list_page.short %}<br />{{ list_page.short }}{% endif %}
+        {% endwith %}
+      </header>
+  </article>
+{% endif %}
+{% endifnotequal %}
+{% endfor %}
+{% endspaceless %}
+{% endblock %}
