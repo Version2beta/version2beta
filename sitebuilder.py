@@ -1,7 +1,8 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_flatpages import FlatPages
+from flaskext.markdown import Markdown
 
-DEBUG = True
+DEBUG = debug = True
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
 
@@ -15,7 +16,8 @@ def index():
 
 @app.route('/<path:path>/')
 def page(path):
-  return pages.get_or_404(path).html
+  page = pages.get_or_404(path)
+  return render_template(page.get('template'), page = page)
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=8000)
