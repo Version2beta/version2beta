@@ -6,7 +6,7 @@ body {
  font: 500 18px/1.6 'Pontano Sans', Verdana, Helvetica, sans-serif;
  text-shadow: 0 0 1px #999;
  color: #222;
- background-color: #ddddf0;
+ background: #ddddf0 url(bg.png) repeat fixed;
  line-height: 28px;
 }
 
@@ -27,14 +27,14 @@ h1, h2, h3, h4, #sitename {
  text-align: center;
  font-size: 550%;
  letter-spacing: 4px;
- text-shadow: #666 2px 2px 12px, #bbb 2px 2px 24px;
+ text-shadow: #ddd 1px 1px 2px, #666 2px 2px 12px;
  text-decoration: none;
  color: black;
  padding: 0.25em 0 0.5em 0;
 }
 
 a#sitename:hover {
- text-shadow: #333 2px 2px 6px, #fff 2px 2px 24px;
+ text-shadow: #aaa 1px 1px 1px, #666 2px 2px 3px;
 }
 
 h1 {
@@ -121,45 +121,20 @@ a.listing {
 
 .continue { text-align: right; }
 
-ul.breadcrumbs {
- margin: 0;
- padding: 0;
- position: absolute;
- list-style-type: none;
- top: 0;
- right: 20px;
- font-size: 0.9em;
-}
-
 ul.sitenav {
  font: 500 48px/2.0 'Bevan', Georgia, serif;
  list-style-type: none;
  line-height: 2.0em;
 }
 
-.breadcrumbs li
-{
- display: inline;
-}
-
-.breadcrumbs a {
- text-decoration: none;
- color: #B22222;
-}
-
 .sitenav a {
  text-decoration: none;
- color: #aab;
- text-shadow: #fff 0 0 4px, #aab 2px 2px 12px;
+ color: #99a;
+ text-shadow: #fff 1px 1px 1px, #999 2px 2px 12px;
 }
 
 .sitenav a:hover {
- color: #666;
- text-shadow: #fff 0 0 2px, #aab 2px 2px 12px;
-}
-
-.breadcrumbs .separator {
- color: #4f6072;
+ text-shadow: #fff 1px 1px 1px, #999 2px 2px 4px;
 }
 
 #content-header{
