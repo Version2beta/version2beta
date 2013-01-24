@@ -176,6 +176,7 @@ div.footnotes {
 sub,
 sup {
  line-height: 0;
+ padding-left: 2px;
 }
 
 sup a,
