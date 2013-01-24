@@ -1,7 +1,7 @@
 title: "R&eacut;sum&eacut; of M. Robert Martin"
 published: 2013-01-23
 
-R&eacute;sum&eacute; of M. Robert Martin
+# R&eacute;sum&eacute; of M. Robert Martin
 
 +1 414-678-1822 | [rob@version2beta.com][] | [@version2beta][] 
 
@@ -93,11 +93,11 @@ an experimental electric car battery system) or product management for industria
 [@version2beta]: http://www.twitter.com/#!/version2beta "version2beta on Twitter"
 
 [^php]: I scored 9 out of 10 for an 'Expert' performance, but only 85th percentile, on [ExpertRating.com][expert] PHP5 test. My lowest scores were in variables and data types, and advanced concepts, but scored perfect in syntax and PHP5 new concepts. At any rate, I'll be brushing up on variables and data types. You can see the [PDF of my report][php].
-[php]: /media/site/expert-rating-php5.pdf "PDF of my test results for PHP5."
+[php]: /static/site/expert-rating-php5.pdf "PDF of my test results for PHP5."
 [^html]: I scored 9 out of 10 on HTML 4.01 too. That's also 'Expert' performance according to the testing company. I got perfect scores on 4 out of 6 areas (advanced tags, forms and frames, fundamentals, links and images) but scored only 'average' and 'good' on tables and tags, respectively. They show me at the 95th percentile among everyone taking the test. [PDF of my report][html].
-[html]: /media/site/expert-rating-html4-01.pdf "PDF of my test results for HTML4.01."
+[html]: /static/site/expert-rating-html4-01.pdf "PDF of my test results for HTML4.01."
 [^css]: For CSS2.1, I scored 9 out of 10 and 'Expert' at [ExpertRating.com][expert]. Highest scores in advanced techniques, page media, text and font styles; lower scores in basic styles, fundamentals, and selectors. [PDF report][css].
-[css]: /media/site/expert-rating-css2-1.pdf "PDF of my test results for CSS2.1."
+[css]: /static/site/expert-rating-css2-1.pdf "PDF of my test results for CSS2.1."
 [expert]: http://www.expertrating.com/employers/employers.html "ExpertRating.com page for employers."
 [^modx]: [MODX][] is a PHP-based content management system, originally a fork of Etomite but now a powerful and broadly useful development framework that also provides a user-friendly content manager. MODX was my CMS of choice from 2007 to 2010.
 [modx]: http://modx.com "MODX content management framework"

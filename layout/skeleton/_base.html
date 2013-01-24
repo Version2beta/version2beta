@@ -12,15 +12,15 @@
     <link href="{{ site.url }}/archive/atom.xml" rel="alternate" title="{{ site.name }}" type="application/atom+xml"/>
     {% endblock %}
     {% block css %}
-    <link rel="stylesheet" href="{{ site.url }}/media/css/normalize.css" type="text/css" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="{{ site.url }}/media/css/base.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="{{ site.url }}/static/css/normalize.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="{{ site.url }}/static/css/base.css" type="text/css" media="screen" charset="utf-8">
     {% block extra_css %}{% endblock %}
     {% endblock %}
     {% block js %}
-    <script src="{{ site.url }}/media/js/jquery-1.4.2.min.js"></script>
+    <script src="{{ site.url }}/static/js/jquery-1.4.2.min.js"></script>
     {% block extra_js %}{% endblock %}
     {% endblock %}
-    <link rel="shortcut icon" href="/media/favicon.ico" />
+    <link rel="shortcut icon" href="/static/favicon.ico" />
 {% include "stats.html" %}
 </head>
 

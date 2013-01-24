@@ -12,25 +12,47 @@
     <link href="/archive/atom.xml" rel="alternate" title="version2beta" type="application/atom+xml"/>
     {% endblock %}
     {% block css %}
-    <link rel="stylesheet" href="/media/css/normalize.css" type="text/css" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="/media/css/base.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/static/css/normalize.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/static/css/1140.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen">
+    <link href="http://fonts.googleapis.com/css?family=Bevan" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet" type="text/css">
     {% block extra_css %}{% endblock %}
     {% endblock %}
     {% block js %}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="/static/js/css3-mediaqueries.js"></script>
     {% block extra_js %}{% endblock %}
     {% endblock %}
-    <link rel="shortcut icon" href="/media/favicon.ico" />
+    <link rel="shortcut icon" href="/static/favicon.ico" />
 {% include "skeleton/stats.html" %}
 </head>
 
 <body>
 <div id="site">
-<header>
-{% include "skeleton/header.html" %}
-</header>
-{% block content %}{% endblock %}
-</div>
+  <div class="container">
+    <div class="row">
+      <a href="/" id="sitename">version2beta</a>
+    </div>
+  </div><!-- .container -->
+  <div class="container">
+    <div class="row">
+      <div class="fourcol">
+        <nav>
+          <ul class="sitenav">
+            <li><a href="/">home</a></li>
+            <li><a href="/about">about</a></li>
+            <li><a href="/hire">hire</a></li>
+            <li><a href="/articles">blog</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="eightcol last">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </div><!-- .container -->
+</div><!-- #site -->
 
 <footer>
 {% include "skeleton/footer.html" %}
