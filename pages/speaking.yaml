@@ -1,0 +1,56 @@
+title: Presentations
+published: 2013-01-24
+
+# Presentations I've given
+
+I often have the opportunity to present at local tech meetups, and occasionally present for corporate training events. Here are some of the presentations I've given. Many of these presentations are available to schedule.
+
+## How much should you charge? Managing risk and selling value.
+
+*Presenting at Web414[^web414] in early 2013.*
+
+> You're a skilled practitioner of web crafts. You can refactor a repulsive code repository. You can get Google agog. You can send customers clicking to conversions. But you don't know how much to charge.
+
+> @version2beta's presentation explores how the three prime factors for pricing your work - complexity, risk, and value - interact with each other and help make the right jobs lucrative for you and your client.
+
+> This presentation is intended for freelance web craftspeople, bespoke design agencies, and boutique development firms.
+
+## Smooth moves with Vagrant, Chef-solo, and git
+
+*Presenting at MKEPUG[^mkepug] on February 12, 2013.*
+
+> Virtual development environments keep your workspace clean and predictable in dev and production, and creating a virtual development machine with Vagrant is quick and easy once you have all the pieces in place. Rob Martin (@version2beta) is going to put all the pieces together and hand them to you, and then show you how you can use them.
+
+## Idiomatic Node.js patterns
+
+*Presented at Bar Camp Milwaukee 7,[^bcmke] October 2012*
+
+> Ever have a conversation with someone who speaks your language with a heavy accent? It helps to recognize the common patterns. Learning Node.js is much the same; sure it's javascript, but sometimes it is rather hard to follow. In this session we will review the three most essential patterns in Node.js: modules, callbacks, and streams.
+
+## MODX can beat up your Content Management System
+
+*Presented at the Milwaukee Web Design Meetup,[^mwdm] December 2011*
+
+A presentation on the MODX content management framework during a CMS megapanel discussion and presentation.
+
+## 5 Cool Things About PostgreSQL
+
+*Presented at Bar Camp Milwaukee 6,[^bcmke] October 2011*
+
+An overview of new features in PostgreSQL version 9.
+
+## Overview of Cloud Computing
+
+*Presented at Web414[^web414], August 2011*
+
+Presented a survey and comparison of cloud computing options from Amazon Web Services, Rackspace, and Linode.
+
+[^web414]: [Web414 is Milwaukee's Web Community][web414] with monthly meetups and presentations varying from frameworks and content managers to version control to business and freelance management.
+[web414]: http://www.meetup.com/web414/ "Web414 - Milwaukee's Web Community"
+[^mkepug]: [The Milwaukee PHP Users Group][mkepug] meets monthly to discuss issues related to PHP development.
+[mkepug]: http://www.mkepug.org/ "Milwaukee PHP Users Group"
+[^bcmke]: [Bar Camp Milwaukee][bcmke] is an annual tech conference (often referred to as an "unconference"). In Milwaukee, they typically last two days.
+[bcmke]: https://barcampmilwaukee.org/ "Milwaukee's annual unconference"
+[^mwdm]: [The Milwaukee Web Design Meetup][mwdm] is an education, information sharing, and networking meetup for web professionals in Milwaukee.
+[mwdm]: http://www.meetup.com/milwaukeeweb/ "The Milwaukee Web Design Meetup"
+
