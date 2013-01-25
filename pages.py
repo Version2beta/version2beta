@@ -6,7 +6,7 @@ import yaml
 import markdown2 as markdown
 from flask import abort
 
-md = markdown.MarkdownWithExtras()
+md = markdown.Markdown(extras = ["fenced-code-blocks", "footnotes", "smarty-pants"])
 
 class Page(object):
   file_suffix = ".yaml"
@@ -26,6 +26,7 @@ class Page(object):
               page.meta.items()
             ))
     pages.sort(key = lambda x: x.get('published'))
+    pages.reverse()
     return pages
 
   @classmethod
