@@ -5,7 +5,7 @@
   <dl>
     {% for page in pages %}
     <dt><a href="{{ page.filename }}" title="{{ page.longtitle }}">{{ page.pagetitle }}</a></dt>
-    <dd><span class="pubdate">{{ page.published.strftime('%Y-%m-%d') }}</span> {{ page.short|safe }}</dd>
+    <dd><span class="pubdate"><time pubdate>{{ page.published.strftime('%Y-%m-%d') }}</time></span> {{ page.short|safe }}</dd>
     {% endfor %}
   </dl>
 </div>  <!--end post-content-->
