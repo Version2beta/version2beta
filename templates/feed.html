@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{% block title %}version2beta{% endblock %}</title>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://version2beta.com"/>
+  <updated>{{ now.strftime("%Y-%m-%dT%H:%M:%S") }}</updated>
+  <id>http://version2beta.com</id>
+  {% for page in pages %}
+  <entry>
+    <title>{{ page.pagetitle }}</title>
+    <author><name>version2beta</name></author>
+    <link href="http://version2beta.com/{{ page.filename }}"/>
+    <updated>{{ page.published.strftime("%Y-%m-%dT%H:%M:%S") }}</updated>
+    <published>{{ page.published.strftime("%Y-%m-%dT%H:%M:%S") }}</published>
+    <id>http://version2beta.com/{{ page.filename }}</id>
+    <content type="html">
+    {{ page.content|safe }}
+    </content>
+  </entry>
+  {% endfor %}
+</feed>

@@ -23,7 +23,8 @@ class Page(object):
       if (page.meta.get('published')):
         pages.append(dict(
               names.items() +
-              page.meta.items()
+              page.meta.items() +
+              ({ "content": page.content }).items()
             ))
     pages.sort(key = lambda x: x.get('published'))
     pages.reverse()

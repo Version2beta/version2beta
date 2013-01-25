@@ -1,3 +1,4 @@
+from datetime import datetime
 import pygments.formatters
 from flask import Flask, render_template, abort, url_for, json, redirect
 from pages import Page
@@ -21,6 +22,12 @@ def article(page):
 @app.route('/<page>')
 def about(page):
   return render_template('pages.html', page = Page.load_from_file('pages/' + page))
+
+@app.route('/atom.xml')
+def feed():
+  return render_template('feed.html',
+      pages = Page.get_meta_from_dir('articles'),
+      now = datetime.now())
 
 @app.route('/pygments.css')
 def pygments_css():
