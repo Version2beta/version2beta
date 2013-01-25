@@ -1,7 +1,6 @@
 import os
 import io
 import glob
-from datetime import datetime
 import itertools
 import yaml
 import markdown2 as markdown
@@ -16,22 +15,17 @@ class Page(object):
   def get_meta_from_dir(self, name):
     pages = []
     for file_name in glob.glob(name + '/*' + self.file_suffix):
-      d = datetime.fromtimestamp(os.path.getmtime(file_name))
-      filedate = {
-            "year": d.year, "month": d.month, "day": d.day,
-            "hour": d.hour, "minute": d.minute, "second": d.second
-          }
       page = self.load_from_file(file_name.replace(".yaml", ""))
       names = {
             "name": page.name,
-            #"filename": file_name.replace("." + self.file_suffix, "")
             "filename": file_name.replace(self.file_suffix, "")
           }
-      pages.append(dict(
-            names.items() +
-            page.meta.items() +
-            filedate.items()
-          ))
+      if (page.meta.get('published')):
+        pages.append(dict(
+              names.items() +
+              page.meta.items()
+            ))
+    pages.sort(key = lambda x: x.get('published'))
     return pages
 
   @classmethod
