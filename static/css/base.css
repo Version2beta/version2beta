@@ -3,14 +3,14 @@
 /* ============================== */
 
 body {
- font: 500 18px/1.6 'Pontano Sans', Verdana, Helvetica, sans-serif;
- text-shadow: 0 0 1px #999;
+ font: 500 18px 'Pontano Sans', Verdana, Helvetica, sans-serif;
+ text-shadow: #999 0 0 2px;
  color: #222;
  background: #ddddf0 url(bg.png) repeat fixed;
  line-height: 28px;
 }
 
-h1, h2, h3, h4, #sitename {
+h1, h2, h3, h4, #sitename, dt {
  font-family: 'Bevan', Georgia, serif;
  font-weight: 500;
  line-height: 1.3;
@@ -45,7 +45,7 @@ h2 {
  font-size: 1.5em;
 }
 
-h3 {
+h3, dt {
  font-size: 1.25em;
 }
 
@@ -77,22 +77,25 @@ p {
  text-decoration: none;
 }
 
-article header h2 a,
-article header h2 a:visited {
- color: black;
+dd {
+  padding-bottom: 0.75em;
+}
+
+dt a,
+dt a:visited {
+ color: #445;
  text-decoration: none;
+ text-shadow: #fff 1px 1px 1px, #999 2px 2px 12px;
 }
  
-article header h2 a:hover {
+dt a:hover {
  text-decoration: underline;
 }
 
-.time time,
-.page-listing time {
+.pubdate time {
  display: inline-block;
  background-color: #e8e8e8;
- margin: 2em 1em 0 0;
- padding: 0 8px;
+ padding: 2px 8px;
  font-size: 0.7em;
  letter-spacing: 2px;
 }
@@ -125,6 +128,7 @@ ul.sitenav {
  font: 500 48px/2.0 'Bevan', Georgia, serif;
  list-style-type: none;
  line-height: 2.0em;
+ position: fixed;
 }
 
 .sitenav a {
@@ -145,11 +149,12 @@ ul.sitenav {
  font-size: 1.75em;
 }
 
-.post-date {
+.post-date time {
  float: right;
- font-style: italic;
+ color: #99a;
+ font-weight: bold;
  font-size: 0.8em;
- margin-top: -120px;
+ margin-top: -24px;
 }
 
 p.archivelink {
@@ -181,7 +186,6 @@ sup {
 
 sup a,
 sup a:visited {
- color: #004B6B;
  color: #B22222;
  text-decoration: none;
 }
