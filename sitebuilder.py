@@ -10,7 +10,7 @@ PYGMENTS_CSS = (
 
 @app.route('/')
 def index():
-  return render_template('articles.html', pages = Page.get_meta_from_dir('pages'))
+  return render_template('articles.html', pages = Page.get_meta_from_dir('articles'))
 
 @app.route('/<page>')
 def about(page):

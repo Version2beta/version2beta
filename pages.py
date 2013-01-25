@@ -22,7 +22,11 @@ class Page(object):
             "hour": d.hour, "minute": d.minute, "second": d.second
           }
       page = self.load_from_file(file_name.replace(".yaml", ""))
-      names = { "name": page.name, "filename": file_name }
+      names = {
+            "name": page.name,
+            #"filename": file_name.replace("." + self.file_suffix, "")
+            "filename": file_name.replace(self.file_suffix, "")
+          }
       pages.append(dict(
             names.items() +
             page.meta.items() +
