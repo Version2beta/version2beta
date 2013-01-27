@@ -70,7 +70,7 @@ def deploy():
   with open(homedir + '/.aws/secret_key') as  f:
     secret_key = f.read()
   s3 = boto.connect_s3(access_key, secret_key)
-  bucket = s3.lookup('route53test.version2beta.com')
+  bucket = s3.lookup('version2beta.com')
   print "Sending files to S3:"
   for deploydir, subdirectories, filenames in os.walk('build'):
     for filename in filenames:
