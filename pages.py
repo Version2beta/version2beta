@@ -6,7 +6,7 @@ import yaml
 import markdown2 as markdown
 from flask import abort
 
-md = markdown.Markdown(extras = ["fenced-code-blocks", "footnotes", "smarty-pants"])
+md = markdown.Markdown(extras = ["fenced-code-blocks", "footnotes"])
 
 class Page(object):
   file_suffix = ".yaml"
