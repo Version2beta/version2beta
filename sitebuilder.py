@@ -31,7 +31,7 @@ def about(page):
 def feed():
   return render_template('feed.html',
       pages = Page.get_meta_from_dir('articles'),
-      now = datetime.now())
+      now = datetime.now()), 200, {'Content-Type': 'application/xml'}
 
 @app.route('/pygments.css')
 def pygments_css():
