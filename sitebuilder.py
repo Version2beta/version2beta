@@ -62,6 +62,7 @@ def register_pages():
     yield "pages", { "page": "/" + page['name'] }
 
 def deploy():
+  print "Building the site."
   freezer.freeze()
   homedir = os.path.expanduser('~')
   with open(homedir + '/.aws/access_key') as  f:
