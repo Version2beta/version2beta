@@ -1,9 +1,12 @@
+import os
 import sys
 from datetime import datetime
 import pygments.formatters
 from flask import Flask, render_template, abort, url_for, json, redirect
 from flask_frozen import Freezer
 from pages import Page
+import boto
+from boto.s3.key import Key
 
 DEBUG = debug = True
 app = Flask(__name__)
@@ -49,20 +52,38 @@ def pygments_css():
 
 @app.errorhandler(404)
 def page_not_found(error):
-  return render_template('404.html'), 404
+  return render_template('pages.html', page = Page.load_from_file('pages/404')), 404
 
 @freezer.register_generator
-def article():
+def register_pages():
   for page in Page.get_meta_from_dir('articles'):
-    yield { 'page': page['name'] }
-
-@freezer.register_generator
-def pages():
+    yield "article", { 'page': page['name'] }
   for page in Page.get_meta_from_dir('pages'):
     yield "pages", { "page": "/" + page['name'] }
 
+def deploy():
+  freezer.freeze()
+  homedir = os.path.expanduser('~')
+  with open(homedir + '/.aws/access_key') as  f:
+    access_key = f.read()
+  with open(homedir + '/.aws/secret_key') as  f:
+    secret_key = f.read()
+  s3 = boto.connect_s3(access_key, secret_key)
+  bucket = s3.lookup('route53test.version2beta.com')
+  print "Sending files to S3:"
+  for deploydir, subdirectories, filenames in os.walk('build'):
+    for filename in filenames:
+      key = Key(bucket)
+      key.key = os.path.join(deploydir + "/" + filename).replace("build/", "")
+      print "  " + key.key
+      with open("build/" + key.key) as f:
+        key.set_contents_from_file(f)
+      del key
+
 if __name__ == '__main__':
-  if len(sys.argv) > 1 and sys.argv[1] == "build":
-    freezer.freeze()
-  else:
+  if len(sys.argv) < 2:
     app.run(host='0.0.0.0', port=8000)
+  elif sys.argv[1] == "build":
+    freezer.freeze()
+  elif sys.argv[1] == "deploy":
+    deploy()
