@@ -149,6 +149,10 @@ ul.sitenav {
  font-size: 1.75em;
 }
 
+#post-content {
+  min-height: 480px;
+}
+
 .post-date time {
  float: right;
  color: #99a;
