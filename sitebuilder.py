@@ -1,11 +1,14 @@
 from datetime import datetime
 import pygments.formatters
 from flask import Flask, render_template, abort, url_for, json, redirect
+from flask_frozen import Freezer
 from pages import Page
 
 DEBUG = debug = True
 app = Flask(__name__)
 app.config.from_object(__name__)
+#FREEZER_BASE_URL = "http://version2beta.com/"
+freezer = Freezer(app)
 
 @app.route('/')
 def index():
@@ -37,4 +40,7 @@ def pygments_css():
       {'Content-Type': 'text/css'} )
 
 if __name__ == '__main__':
-  app.run(host='0.0.0.0', port=8000)
+  if len(sys.argv) > 1 and sys.argv[1] == "build":
+    freezer.freeze()
+  else:
+    app.run(host='0.0.0.0', port=8000)
