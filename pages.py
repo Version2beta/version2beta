@@ -17,7 +17,7 @@ class Page(object):
     for file_name in glob.glob(name + '/*' + self.file_suffix):
       page = self.load_from_file(file_name.replace(".yaml", ""))
       names = {
-            "name": page.name,
+            "name": page.name.replace(name + "/", ""),
             "filename": file_name.replace(self.file_suffix, "")
           }
       if (page.meta.get('published')):
