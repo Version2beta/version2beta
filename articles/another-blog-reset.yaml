@@ -40,7 +40,7 @@ I'm also preparing a presentation for the Milwaukee PHP User's Group[^mkepug], o
 
 ### Python Flask microframework
 
-I've mentioned Flask[^flask] in other blog posts. It's a Python microframework originally inspired by Ruby's Sinatra[^sinatra] and written by Armin Ronacher[^armin]. I'm a big fan of Armin's work, which includes not only Flask but also Werkzeug,[^werkzeug] Jinja2,[^jinja2], and Sphinxs.[^sphinx]
+I've mentioned Flask[^flask] in other blog posts. It's a Python microframework originally inspired by Ruby's Sinatra[^sinatra] and written by Armin Ronacher[^armin]. I'm a big fan of Armin's work, which includes not only Flask but also Werkzeug,[^werkzeug] Jinja2,[^jinja2], and Sphinx.[^sphinx]
 
 I find writing web applications and restful services in Flask pretty easy. But it wasn't until I was looking at my options for replacing Hyde on this blog that I discovered Frozen-Flask,[^fflask] a Flask extension that takes a static snapshot of a Flask application and stores it in a file system. Frozen-Flask makes Flask into a static site generator.
 
@@ -54,7 +54,7 @@ My Flask application is really quite simple.
 
 Finally it comes down to content, which if I understand correctly is an important part of a blog.
 
-My content is stored in flat files. I like this. It makes it very easy to do version control and store them at Github. In fact with Github's new online editing, I can even create and edit blog posts through their web interface.
+My content is stored in flat files. I like this. It makes it very easy to do version control and store them at Github. In fact with Github's new online editing,[^ghedit] I can even create and edit blog posts through their web interface.
 
 My content is divided into "pages" and "articles". Pages are manually linked to the navigation, or referenced on other pages. Articles are blog posts and always sorted in reverse chronological order (most recent first).
 
@@ -129,6 +129,8 @@ Check out the Vagrant + Chef setup at [https://github.com/Version2beta/vagrant-c
 [sphinx]: http://sphinx-doc.org/ "Sphinx documentation engine."
 [^fflask]: [Frozen-Flask][fflask] turns Flask into a static site generator.
 [fflask]: http://packages.python.org/Frozen-Flask/ "Frozen-Flask freezes a Flask application into a set of static files"
+[^ghedit]: [Github provides online editors now][ghedit]. With these editors you can change existing files or create new ones right from the website. In fact, you can even edit other people's repos online. It forks them for you, and on commit will helpfully send a pull request.
+[ghedit]: https://github.com/blog/905-edit-like-an-ace "Github online editing."
 [^yaml]: [YAML][yaml] is a way to store data in a way that computers find meaningful and people find comfortable.
 [yaml]: http://en.wikipedia.org/wiki/YAML "YAML on Wikipedia"
 [^markdown]: [Markdown][markdown] is a markup language, kinda like HTML but way easier to use and much nicer to read.
