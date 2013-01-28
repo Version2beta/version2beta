@@ -48,7 +48,7 @@ I still need to synchronize filesystems, so I tried another new-to-me program, l
 [^drbd]: I still recommend [DR:BD][drbd], it's cool beans. RAID-1 across a network. Nice.
 [drbd]: http://www.drbd.org "Block storage devices distributed, even mirrored, across servers."
 [^linode-ha]: I've blogged about this before, including a how-to for [building high availability Linode pairs][linode-ha].
-[linode-ha]: http://version2beta.com/archive/2011/high-availability-linode-pairs.html "A how-to of sorts for high-availability Linode pairs."
+[linode-ha]: http://version2beta.com/articles/high-availability-linode-pairs "A how-to of sorts for high-availability Linode pairs."
 [^gluster]: GlusterFS provides multi-master file systems, much like OCFS, but without the poisonous "Oracle" in it's name. (Actually it's now owned by RedHat.)
 [gluster]: http://www.gluster.com/ "Private cloud storage"
 [^docs]: **Important note:** RedHat bought GlusterFS shortly before I started using it, and even though it was only a week ago I was bitching and moaning about the documentation, the new docs are up. Also, when I took my moaning to Twitter, someone almost immediately tweeted back at me that the new docs were coming very soon.

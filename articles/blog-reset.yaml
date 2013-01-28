@@ -33,7 +33,7 @@ I hope you enjoy it.
 [^djangocon]: [DjangoCon][] is the Django community conference. This year it's happening in Portland, OR on September 6 - 10. We're going.
 [djangocon]: http://djangocon.us/ "DjangoCon. Three days of talks and two days of sprints."
 [^ha-pairs]: See my blog post, "[High Availability Linode Pairs][ha-pairs]".
-[ha-pairs]: http://version2beta.com/archive/2011/high-availability-linode-pairs.html "Something like a recipe for creating database and application servers that failover on each other, using Ubuntu and Linode." 
+[ha-pairs]: http://version2beta.com/articles/high-availability-linode-pairs "Something like a recipe for creating database and application servers that failover on each other, using Ubuntu and Linode." 
 [^hyde]: I like [Hyde][] and I'm pretty impressed with it. At least, at version 0.4. It's also getting a complete rewrite and is currently available in a [version 0.8 flavor][hyde0.8] as well that uses Pocoo's Jinja2 templates instead of Django's templates. I don't know how I feel about that version yet.
 [hyde]: http://ringce.com/hyde "Hyde version 0.4"
 [hyde0.8]: http://hyde.github.com/ "Hyde version 0.8"
