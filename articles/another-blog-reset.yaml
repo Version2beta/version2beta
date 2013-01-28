@@ -34,9 +34,9 @@ What I've done this time around is create a Vagrant project (available on my Git
 
 I've been killing birds with stones all over the place with Vagrant and Chef. One of my current $dayjob[^tartan] projects is to create a portable development environment that's quick and easy for a dev to deploy. Another is to create QA environments that are disposable and fast. A third is to set up our production systems on Opscode's Hosted Chef environment.[^hostedchef]
 
-I'm also preparing a presentation for the Milwaukee PHP User's Group[^mkepug], one of our excellent local (Milwaukee) tech meetups. My presentation is on creating and using virtual development environments:
+I'm also preparing a presentation for the Milwaukee PHP User's Group[^mkepug], one of our excellent local (Milwaukee) tech meetups. My presentation is on creating and using virtual development environments:[^smooth]
 
-> Virtual development environments keep your workspace clean and predictable in dev and production, and creating a virtual development machine with Vagrant is quick and easy once you have all the pieces in place. Rob Martin (@version2beta) is going to put all the pieces together and hand them to you, and then show you how you can use them.[^smooth]
+> Virtual development environments keep your workspace clean and predictable in dev and production, and creating a virtual development machine with Vagrant is quick and easy once you have all the pieces in place. Rob Martin (@version2beta) is going to put all the pieces together and hand them to you, and then show you how you can use them.
 
 ### Python Flask microframework
 
@@ -46,9 +46,9 @@ I find writing web applications and restful services in Flask pretty easy. But i
 
 My Flask application is really quite simple.
 
-    * If I run it directly (`python sitebuilder.py`) it launches a development server on port 8000 (which Vagrant has forwarded to port 8000 on the host computer.)
-    * If I run `python sitebuilder.py build` it freezes the website into the ./build directory.
-    * If I run `python sitebuilder.py deploy` it freezes the website and copies the contents of the ./build directory to the S3 bucket, taking the site live.
+* If I run it directly (`python sitebuilder.py`) it launches a development server on port 8000 (which Vagrant has forwarded to port 8000 on the host computer.)
+* If I run `python sitebuilder.py build` it freezes the website into the ./build directory.
+* If I run `python sitebuilder.py deploy` it freezes the website and copies the contents of the ./build directory to the S3 bucket, taking the site live.
 
 ### YAML and markdown
 
@@ -111,8 +111,8 @@ Check out the Vagrant + Chef setup at [https://github.com/Version2beta/vagrant-c
 [blog-github]: https://github.com/Version2beta/version2beta "blog source code"
 [^tartan]: [Tartan Solutions][tartan] is my $dayjob.
 [tartan]: http://tartansolutions.com "Tartan Solutions"
-[^hosted-chef]: Opscode Chef comes in a [online version][hosted-chef] that's pretty slick. I'm using it.
-[hosted-chef]: http://www.opscode.com/hosted-chef/ "Hosted Chef at Opscode."
+[^hostedchef]: Opscode Chef comes in a [online version][hostedchef] that's pretty slick. I'm using it.
+[hostedchef]: http://www.opscode.com/hosted-chef/ "Hosted Chef at Opscode."
 [^mkepug]: Milwaukee has a ton of great meetups. The [PHP User's Group][mkepug] is just one of them.
 [mkepug]: http://www.mkepug.org/ "Milwaukee PHP User's Group"
 [^smooth]: I'll be [presenting][smooth] on February 12, 2013 at 6 PM if you're in the area and available.
@@ -133,5 +133,5 @@ Check out the Vagrant + Chef setup at [https://github.com/Version2beta/vagrant-c
 [yaml]: http://en.wikipedia.org/wiki/YAML "YAML on Wikipedia"
 [^markdown]: [Markdown][markdown] is a markup language, kinda like HTML but way easier to use and much nicer to read.
 [markdown]: http://en.wikipedia.org/wiki/Markdown "Markdown on Wikipedia"
-[^couchdb]: [CouchDB[couchdb] is a JSON-based NoSQL database.
+[^couchdb]: [CouchDB][couchdb] is a JSON-based NoSQL database.
 [couchdb]: http://couchdb.apache.org/ "Relax."
