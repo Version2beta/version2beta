@@ -1,7 +1,7 @@
 pagetitle: Another blog reset
 longtitle: I rebuilt my blog again.
 published: 2013-01-27 17:45:00
-excerpt: Redesign isn't the right word. It seems when I want to freshen my blog, I get down to the nuts and bolts. Also: apparently I'll go to great lengths to avoid Jekyll.
+excerpt: Redesign isn't the right word. It seems when I want to freshen my blog, I get down to the nuts and bolts.
 
 Last time I reset my blog,[^reset] I chose a static site generator called Hyde[^hyde] because it is based on Python and Django[^django]. It was a good choice at the time, but since then it's become heavy and I got tired of carrying it. In fact, in May 2012 I accidentally deleted my blog dev virtualenv environment and decided then I'd rather move the site to a new platform than rebuild the environment. After all, I keep telling myself I need to learn Jekyll[^jekyll]. Or Sinatra.[^sinatra] Or I could build it in Tako[^tako] on Node.js. In fact, at various times I think I started all of those projects.
 
