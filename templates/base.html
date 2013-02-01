@@ -20,13 +20,7 @@
     <link href="http://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet" type="text/css">
     {% block extra_css %}{% endblock %}
     {% endblock %}
-    {% block js %}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="/static/js/css3-mediaqueries.js"></script>
-    {% block extra_js %}{% endblock %}
-    {% endblock %}
     <link rel="shortcut icon" href="/static/favicon.ico" />
-{% include "skeleton/stats.html" %}
 </head>
 
 <body>
@@ -56,8 +50,29 @@
 </div><!-- #site -->
 
 <footer>
-{% include "skeleton/footer.html" %}
+<div id='footer'>
+  <p>general: <a href="mailto:rob@version2beta.com">rob@version2beta.com</a> | twitter: <a href="http://twitter.com/version2beta" title="version2beta is on Twitter">@version2beta</a></p>
+  <p>
+    This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+  </p>
+  <p><a href="/atom.xml" title="A news feed for my blog"><img src="/static/css/rss32p.png" alt="RSS feed icon" /></a></p>
+</div>
 </footer>
 
+{% block js %}
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12023701-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="/static/js/css3-mediaqueries.js"></script>
+{% block extra_js %}{% endblock %}
+{% endblock %}
 </body>
 </html>
