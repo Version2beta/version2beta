@@ -1,6 +1,6 @@
 pagetitle: Development environments with Vagrant, Chef, and Git
 longtitle: About my presentation on Vagrant, Chef, and Git for development environments for the Milwaukee PHP Users Group on February 12, 2013.
-published: 2013-02-12 18:00:00
+published: 
 excerpt: The Milwaukee PHP User's Group invited me to present about Vagrant, Chef, and Git for quickly standing up development environments.
 
 On February 12, 2013 I had the pleasure to discuss using Vagrant, Chef Solo, and Git to create development environments that could be quickly stood up and easily discarded and replaced. My presentation focused heavily on stories about computing and workflow, while demonstrations ran in the background.
