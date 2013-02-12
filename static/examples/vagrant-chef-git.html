@@ -20,7 +20,7 @@
         font: 24px/36 'Capriola', sans-serif;
       }
       .reveal h1 { font: 64px/54px 'Archivo Black', sans-serif; padding-bottom: 20px; }
-      .reveal p { padding: 12px 0; }
+      .reveal p { padding: 12px; }
       .reveal a, .reveal a:visited { color: #015; }
       .reveal img { max-height: 480px; }
       .reveal pre {
@@ -38,6 +38,13 @@
       .Statement { color: #ffff00; }
       .Type { color: #00ff00; }
       .Comment { color: #8080ff; }
+      .reveal section {
+        min-height: 600px;
+        background-color: #ffd;
+        border: 2px solid white;
+        border-radius: 12px;
+        box-shadow: 3px 3px 12px #000;
+      }
       -->
     </style>
   </head>
@@ -112,7 +119,7 @@
 <span class="lnr"> 3 </span>
 <span class="lnr"> 4 </span><span class="Type">Vagrant</span>::<span class="Type">Config</span>.run <span class="Statement">do</span> |<span class="Identifier">config</span>|
 <span class="lnr"> 5 </span>  config.vm.box = <span class="Special">&quot;</span><span class="Constant">precise64</span><span class="Special">&quot;</span>
-<span class="lnr"> 6 </span>  config.vm.box_url = <span class="Special">&quot;</span><span class="Constant"><a href="http://files.vagrantup.com/precise64.box">http://files.vagrantup.com/precise64.box</a></span><span class="Special">&quot;</span>
+<span class="lnr"> 6 </span>  config.vm.box_url = <span class="Special">&quot;</span><span class="Constant">http://files.vagrantup.com/precise64.box</span><span class="Special">&quot;</span>
 <span class="lnr"> 7 </span>
 <span class="lnr"> 8 </span>  <span class="Comment"># Uncomment the next line if you like to watch.</span>
 <span class="lnr"> 9 </span>  <span class="Comment"># config.vm.boot_mode = :gui</span>
@@ -187,15 +194,10 @@
 				controls: true,
 				progress: true,
 				history: true,
-				center: true,
-
+				center: false,
+        rollingLinks: false,
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
-
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
 			});
 
 		</script>
