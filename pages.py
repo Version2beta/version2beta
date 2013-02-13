@@ -39,7 +39,6 @@ class Page(object):
       meta = ''.join(itertools.takewhile(unicode.strip, f))
       content = f.read()
     page = self(name, file_name.replace(".yaml", ""), meta, md.convert(content))
-    print dir(page)
     return page
 
   def __init__(self, name, filename, meta, content, **kwargs):
