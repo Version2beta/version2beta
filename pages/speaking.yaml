@@ -7,7 +7,7 @@ I often have the opportunity to present at local tech meetups, and occasionally 
 
 ## How much should you charge? Managing risk and selling value.
 
-*Presenting at Web414[^web414] in early 2013.*
+*Presenting at Web414[^web414] on February 21, 2013.*
 
 > You're a skilled practitioner of web crafts. You can refactor a repulsive code repository. You can get Google agog. You can send customers clicking to conversions. But you don't know how much to charge.
 
@@ -17,9 +17,11 @@ I often have the opportunity to present at local tech meetups, and occasionally 
 
 ## Smooth moves with Vagrant, Chef-solo, and git
 
-*Presenting at MKEPUG[^mkepug] on February 12, 2013.*
+*Presented at MKEPUG[^mkepug] on February 12, 2013.*
 
 > Virtual development environments keep your workspace clean and predictable in dev and production, and creating a virtual development machine with Vagrant is quick and easy once you have all the pieces in place. Rob Martin (@version2beta) is going to put all the pieces together and hand them to you, and then show you how you can use them.
+
+[A transcript of my presentation](/articles/dev-environments-with-vagrant-chef-and-git/) is posted in my blog, if you want to see what I had to say.
 
 ## Idiomatic Node.js patterns
 
