@@ -222,7 +222,7 @@ Pretty slick. Let's look at it more closely.
 
 Discuss:
 
-Vagrant and Chef are Ruby. Optimized for programmer happiness. And if there's one thing that Ruby has taught us, it this: when you're a happy Ruby programmer, you stop needed to buy boose for medicinal purposes, which frees you up to start buying expensive single malt scotches instead.
+Vagrant and Chef are Ruby. Ruby is optimized for programmer happiness. Really, when Yukihiro Matsumoto created it, he made programmer happiness a primary goal. If there's one thing that Ruby has taught me, it's this: when you're a happy Ruby programmer, you stop needing to buy cheap booze for medicinal purposes, and start buying expensive single malt scotches instead.
 
 Chef is a DSL. That's a domain specific language, which is kind of a fancy way of saying we can make our own commands in the language of our problem domain. In this case, managing servers.
 
