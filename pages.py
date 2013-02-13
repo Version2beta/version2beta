@@ -38,11 +38,13 @@ class Page(object):
     with io.open(file_name, encoding="utf8") as f:
       meta = ''.join(itertools.takewhile(unicode.strip, f))
       content = f.read()
-    page = self(name, meta, md.convert(content))
+    page = self(name, file_name.replace(".yaml", ""), meta, md.convert(content))
+    print dir(page)
     return page
 
-  def __init__(self, name, meta, content, **kwargs):
+  def __init__(self, name, filename, meta, content, **kwargs):
     self.name = name
+    self.filename = filename
     self.meta = yaml.safe_load(meta) or {}
     self.content = content
     for key, value in kwargs.items():
