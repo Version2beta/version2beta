@@ -236,11 +236,11 @@ Outside of chef.vm.provision is all VirtualBox magicness.
 
 Inside of chef.vm.provision is the Chef magicness.
 
-This is Chef Solo. We don't have a Chef server. We're not using hosted Chef. We don't have a persistent store of each Vagrant boxes' configuration. This is kindergarden-level Chef.
+This is Chef Solo. We don't have a Chef server. We're not using hosted Chef. We don't have a persistent store of each Vagrant boxes' configuration. This is kindergarten-level Chef.
 
-In kindergarden they teach you some best practices, right? Like to say excuse me after burping and wash your hands after using the bathroom. We're doing the same thing with Chef - following some best practices, even though we're totally introductory level right now.
+In kindergarten they teach you some best practices, right? Like to say excuse me after burping and wash your hands after using the bathroom. We're doing the same thing with Chef - following some best practices, even though we're totally introductory level right now.
 
-![Slide: Things I learned in kindergarden.](/static/examples/vagrant-chef-git/slide12.png)
+![Slide: Things I learned in kindergarten.](/static/examples/vagrant-chef-git/slide12.png)
 
 So here's a best practice we're using in this recipe. We're following a chef pattern called "Library cookbooks and Configuration cookbooks".
 
