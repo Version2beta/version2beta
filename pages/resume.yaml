@@ -3,13 +3,13 @@ published: 2013-01-23
 
 # R&eacute;sum&eacute; of M. Robert Martin
 
-+1 414-678-1822 | [rob@version2beta.com][] | [@version2beta][] 
++1 414-678-1822 | [rob@version2beta.com][] | [@version2beta][]
 
 Located in Milwaukee, Wisconsin USA
 
 ## Objective
- 
-Currently pursuing project-based contract work or employment up to full time. Areas of interest include devops, web and network applications, especially related to e-commerce and enterprise resource planning.
+
+Looking for occasional moonlighting opportunities, plus participation in meaningful open source or socially/culturally important projects. Areas of interest include devops, microframeworks, service oriented design, autism education and therapy, and appropriate technologies.
 
 ### Technical competencies
 
@@ -26,7 +26,7 @@ Forth, Pascal, C/C++, assembly language, etc.
 #### Database:
 
 - MySQL since 1999
-- MS SQL Server 2005 - 2007
+- MS SQL Server 2005 &mdash; 2007
 - PostgreSQL since 2006
 
 #### Web and web framework:
@@ -43,41 +43,43 @@ Forth, Pascal, C/C++, assembly language, etc.
 - Firewalls and VPNs, including pf[^pf] since 2000, OpenVPN[^openvpn] since 2003, and pfSense[^pfsense] since 2010
 - Server clustering, including DR:BD[^drbd], Linux Heartbeat[^linux-ha], Pacemaker[^pacemaker], and iSCSI[^iscsi]
 - Cloud computing, including Amazon Web Services[^aws] including EC2, S3, and CloudFront; Linode[^linode] virtual private servers; and Rackspace Cloud Servers[^rackspace]
+- Devops tools including Vagrant,[^vagrant] Chef,[^chef] Knife-spork,[^spork] Fabric,[^fabric] Syslog-ng,[^syslog-ng] Loggly,[^loggly] Librato,[^librato] New Relic[^newrelic]
 
 #### Enterprise Resource Planning platforms:
 
 - OpenERP[^openerp] since 2009
 - Tryton[^tryton] since 2011
 
-### Notable contracts (2008 – present)
+### Notable contracts (2008 &mdash; present)
 
 - Rand Corp/Club Car (2008): Wrote the technical specification for Rand Corp's “second generation web
 presence”, based on Microsoft SharePoint Server.
 - Huth Benders Inc. (www.huthbenders.com)[^huth] (2010): Created the information architecture, wireframes,
 UX programming, and complete implementation in MODX content management framework.
-- Accunet Mortgage (www.accunet.com)[^accunet] (2008 - present): Security programming, site redesign including
+- Accunet Mortgage (www.accunet.com)[^accunet] (2008 &mdash; present): Security programming, site redesign including
 information architecture, wireframes, look-and-feel, extensive form design, Goldmine Enterprise
 integration, implemented in MODX with additional custom programming. Currently contracted to
 redeploy the site on a high-availability, high-security server cluster.
-- Fresh Is Best, Inc. (www.freshisbestinc.com)[^fresh] (2010 - present): Information architecture, look-and-feel,
+- Fresh Is Best, Inc. (www.freshisbestinc.com)[^fresh] (2010 &mdash; present): Information architecture, look-and-feel,
 UX, some copy editing, e-commerce implementation in Google Checkout, implementation in MODX.
 
-### Positions held (2000 – present)
+### Positions held (2000 &mdash; present)
 
-- Web Infrastructure Manager (2011 - present), Top Floor Technologies[^topfloor], New Berlin, Wisconsin: I run servers and build applications for Top Floor's customers, and work with a team of talented front and back end developers, designers, SEO/SEM managers, project managers, client service reps (advocates really), and salespeople. 
-- Application Architect (2007 – 2011) and special consultant (present), Quintessential Mischief LLC[^qmuxs], Milwaukee, Wisconsin: I
+- Software and network engineer (2012 &mdash; present), Tartan Solutions, Inc., Milwaukee, Wisconsin and Pittsburgh, Pennsylvania: I do mostly devops with a smattering of software development on the PlaidCloud platform and for related open source projects.
+- Web Infrastructure Manager (2011 &mdash; 2012), Top Floor Technologies[^topfloor], New Berlin, Wisconsin: I run servers and build applications for Top Floor's customers, and work with a team of talented front and back end developers, designers, SEO/SEM managers, project managers, client service reps (advocates really), and salespeople.
+- Application Architect (2007 &mdash; 2011) and special consultant (present), Quintessential Mischief LLC[^qmuxs], Milwaukee, Wisconsin: I
 founded this company with my wife (who specializes in usability, accessibility, search optimization,
 and community-building) and primarily perform application programming and system administration,
 with some basic website and other design work.
-- Owner (2009 – present), Version2beta LLC, Milwaukee, Wisconsin: I formed this as a vehicle for
+- Owner (2009 &mdash; present), Version2beta LLC, Milwaukee, Wisconsin: I formed this as a vehicle for
 contract systems and network administration work, primarily Linux workstations, company firewalls,
 and local servers. I also perform occasional odd jobs such as disinfecting websites and servers,
 server migrations, and top-tier technical support for other small tech and internet hosting companies
 in the Milwaukee area.
-- Director of Information Technology (2002 – 2007), KeyBridge Group Inc.,[^keybridge] Waukesha, Wisconsin: I
+- Director of Information Technology (2002 &mdash; 2007), KeyBridge Group Inc.,[^keybridge] Waukesha, Wisconsin: I
 served as head technology person for a largish (US$750,000,000) real-estate developer in SE Wisconsin.
 Implemented Lotus Notes and Domino Server (2003) and Microsoft Exchange and Project (2006), among many other projects.
-- Co-owner (2000 – 2002), CedarNet LLC,[^cedarnet] Waukesha, Wisconsin: I was primary technical partner, but
+- Co-owner (2000 &mdash; 2002), CedarNet LLC, Waukesha, Wisconsin: I was primary technical partner, but
 also participated in most business decisions, for this local ISP providing dial-up internet access, email,
 and web hosting.
 - Prior to 2000, most of my positions were industrial, both in project work (built controls for a robotic
@@ -101,15 +103,15 @@ an experimental electric car battery system) or product management for industria
 [expert]: http://www.expertrating.com/employers/employers.html "ExpertRating.com page for employers."
 [^modx]: [MODX][] is a PHP-based content management system, originally a fork of Etomite but now a powerful and broadly useful development framework that also provides a user-friendly content manager. MODX was my CMS of choice from 2007 to 2010.
 [modx]: http://modx.com "MODX content management framework"
-[^django]: [Django][] is an open-source MVC web application framework written in Python with powerful ORM ("object-relational mapper", a way to store programming objects in a database). It's designed for creating complex, database-driven websites efficiently. In fact, their motto is "The web framework for perfectionists with deadlines." I think they know something about deadlines, since Django comes from the news industry. The World Company originally developed it, but it's also used by the [New York Times][nyt], [Washington Post][wp], the [Guardian][], and hundreds of other newspapers. It's also used by [Disqus][], which powers the comments on my blog as well as nearly a million other websites and serves nearly a billion visitors a month. 
+[^django]: [Django][] is an open-source MVC web application framework written in Python with powerful ORM ("object-relational mapper", a way to store programming objects in a database). It's designed for creating complex, database-driven websites efficiently. In fact, their motto is "The web framework for perfectionists with deadlines." I think they know something about deadlines, since Django comes from the news industry. The World Company originally developed it, but it's also used by the [New York Times][nyt], [Washington Post][wp], the [Guardian][], and hundreds of other newspapers. It's also used by [Disqus][], which powers the comments on my blog as well as nearly a million other websites and serves nearly a billion visitors a month.
 [django]: http://www.djangoproject.com "Django makes it easier to build web applications quickly and with less code."
 [nyt]: http://www.nytimes.com/ "The New York Times"
 [wp]: http://www.washingtonpost.com/ "The Washington Post"
 [guardian]: http://www.guardian.co.uk/ "The Guardian"
 [disqus]: http://disqus.com/ "Disqus discussion platform"
-[^hyde]: [Hyde][] runs my site. It's a static site generator &mdash; that means it makes static web pages from templates and content, and Hyde does it using the Django engine and templates. It's not for every site, but when it's right, it's very right.
+[^hyde]: I used to use [Hyde][] to run my site. It's a static site generator &mdash; that means it makes static web pages from templates and content, and Hyde does it using the Django engine and templates. It's not for every site, but when it's right, it's very right.
 [hyde]: https://github.com/lakshmivyas/hyde "Hyde static site generator using Django"
-[^flask]: The first thing one might notice about [Flask's website][flask] is that it inspired my simple blog design. Flask is a Python-based web application micro-framework, which means it's infrastructure and tools for building small and medium web applications. I'm beginning to use Flask for projects where Django is overkill.
+[^flask]: [Flask is a Python-based web application micro-framework][flask], which means it's infrastructure and tools for building small and medium web applications. I use Flask as often as I can, including as the platform that generates this website.
 [flask]: http://flask.pocoo.org/ "Python microframework based on Werkzeug, Jinja 2 and good intentions"
 [^openbsd]: [OpenBSD][] is considered by many (including me) to be the most secure operating system available to the public. There are stories here. Suffice to say that OpenBSD founder Theo de Raadt is one of my heroes.
 [openbsd]: http://www.openbsd.org "OpenBSD operating system"
@@ -129,10 +131,28 @@ an experimental electric car battery system) or product management for industria
 [iscsi]: http://en.wikipedia.org/wiki/ISCSI "Wikipedia article on iSCSI"
 [^aws]: [Amazon Web Services][aws] arguably offer the broadest, most scalable virtual hosting product line in the market. I've used more distinct AWS products one one project than most VPS companies offer in total.
 [aws]: http://aws.amazon.com "Amazon Web Services"
-[^linode]: We have had virtual private servers at [Linode][] since 2008, which is not very long when you consider they started in 2003 - 3 years before Amazon and others came to the market. I've been uniformly satisfied with the performance of our equipment, and have written several how-to's about hosting at Linode, especially regarding high-availability services. One of the things I particularly enjoy about Linode is that they now have 5 datacenters, 4 in the US and 1 in England. Each datacenter also hosts DNS, so my hosting business is now represented internationally. Some day I'll have to come up with a reason to get whole servers in the London data center.
+[^linode]: We have had virtual private servers at [Linode][] since 2008, which is not very long when you consider they started in 2003 &mdash; 3 years before Amazon and others came to the market. I've been uniformly satisfied with the performance of our equipment, and have written several how-to's about hosting at Linode, especially regarding high-availability services. One of the things I particularly enjoy about Linode is that they now have 6 datacenters, 4 in the US, 1 in London, and 1 in Tokyo. Each datacenter also hosts DNS, so when I hosted there, my hosting business is now represented internationally. Maybe some day I'll have to come up with a reason to get whole servers in the London or Tokyo data center.
 [linode]: http://www.linode.com "Linode is Linux Node"
-[^rackspace]: I don't have a lot of experience with [Rackspace Cloud][rackspace] yet, as I've only had two servers there and it was so effortless I had little opportunity to gain experience. But you know what they say: "Experience is what you get when you don't get what you want." 
+[^rackspace]: I ended up getting a lot of experience with [Rackspace and RackspaceCloud][rackspace], concurrently managing over 70 real and virtual private servers using a platform I wrote using [Fabric][fabric] and [CouchDB][couchdb].
 [rackspace]: http://www.rackspace.com/cloud/cloud_hosting_products/ "Rackspace Cloud hosting products."
+[couchdb]: http://couchdb.apache.org/ "A JSON, Javascript, and HTTP database. Relax."
+[^vagrant]: [Vagrant provides virtual machines automatically][vagrant]. These are useful for standing up development and QA environments.
+[vagrant]: http://vagrantup.com "Development environments made easy."
+[^chef]: [Chef][chef] is Opscode's automated configuration and deployment tool.
+[chef]: http://www.opscode.com/chef/ "Configuration management, cloud management, continuous delivery, and more."
+[^fabric]: [Fabric][fabric] is a Python library for automating sysadmin tasks on remote systems.
+[fabric]: http://fabfile.org/ "Programmatic SSH for application deployment and sysadmin."
+[^spork]: [Knife-spork][spork] is a library from Jon Cowie at Etsy for managing cookbook versioning.
+[spork]: https://github.com/jonlives/knife-spork "A workflow plugin to help many devs work with cookbooks and environments at once."
+[^syslog-ng]: [Syslog-ng][syslog-ng] is a powerful system logging utility for Linux and Unix.
+[syslog-ng]: http://www.balabit.com/network-security/syslog-ng "Log management infrastructure."
+[^loggly]: [Loggly][loggly] is a cute little log search and management tool that I didn't realize I'd like so much.
+[loggly]: http://loggly.com/ "Simplified log management."
+[^librato]: [Librato][librato] organizes metrics. I even wrote a [Python library called Zibrato][zibrato] that uses their platform.
+[librato]: https://metrics.librato.com/ "Measure everything."
+[zibrato]: https://github.com/Version2beta/zibrato "Log metrics to Librato using zeromq."
+[^newrelic]: [New Relic][newrelic] hooks into your app to show you what's going on.
+[newrelic]: http://newrelic.com/ "Application monitoring."
 [^openerp]: [OpenERP.com][openerp]. I consult on existing and planned OpenERP deployments.
 [openerp]: http://www.openerp.com "OpenERP SA"
 [^tryton]: I list Tryton as an ERP package, and believe that it is. However, it's also a business application development platform. See [Tryton.org][tryton] for more information about this community-driven open-source ERP package. Also, I've written several articles on this site about the software.
@@ -144,11 +164,9 @@ an experimental electric car battery system) or product management for industria
 [^fresh]: [Fresh Is Best Inc.][fresh] is a gem of a small business in Milwaukee's Riverwest Business District. They make raw dog food, frozen and freeze dried. Our dogs have been known to balance a piano on their noses for a Fresh is Best [freeze-dried duck heart][fddh].
 [fresh]: http://www.freshisbestinc.com "Fresh is Best Inc., raw and freeze-dried dog food and treats"
 [fddh]: http://www.freshisbestinc.com/products/pet-treats-chews/freeze-dried-duck-heart-bites "Freeze-dried duck heart bites."
-[^topfloor]: This is right from their site, but I like it: "At Top Floor Technologies, companies receive more than just an online marketing program; they receive documented, bottom-line results that executives on the 'top floor' demand." It also explains why I work in a one-storey building.
+[^topfloor]: This is right from their site, but I like it: "At Top Floor Technologies, companies receive more than just an online marketing program; they receive documented, bottom-line results that executives on the 'top floor' demand." It also explains why I worked in a one-storey building.
 [topfloor]: http://www.topfloortech.com/ "Top Floor specializes in web strategy for business."
-[^qmuxs]: [Quintessential Mischief LLC][qmuxs] was not originally intended to be the name by which we were generally known. When we first started, we had an idea that I'd do business as Version2beta and she'd do business as Senvara LLC, the company she owned when we married. As it turned out, that lasted only a few weeks. Later, like many couples in business together, we had challenges deciding how we would make decisions related to the business. We ended up compromising: she is now full owner and I am an employee, and we are happy to work together. Some day we hope to build out our own website too.
+[^qmuxs]: [Quintessential Mischief LLC][qmuxs] was not originally intended to be the name by which we were generally known. When we first started, we had an idea that I'd do business as Version2beta and she'd do business as Senvara LLC, the company she owned when we married. As it turned out, that lasted only a few weeks. Later, like many couples in business together, we had challenges deciding how we would make decisions related to the business. We ended up compromising: she is now full owner of the company, and I was an employee for a while, and we were happy to work together.
 [qmuxs]: http://www.qmuxs.com "Quintessential Mischief LLC builds business systems."
 [^keybridge]: Like many real estate developers, KeyBridge fell to the recession in 2008.
-[^cedarnet]: CedarNet LLC has been sold multiple times since I was part owner. However, my business partner, Joe Kletch, now owns and manages [Mulehill Networks LLC][mulehill] and still offers the same high-quality customer service for web and email hosting clients throughout the U.S.
-[mulehill]: http://www.mulehill.com "Mulehill Network Services LLC"
 
