@@ -1,9 +1,9 @@
 pagetitle: Managing risk and selling value
 longtitle: My presentation on quoting projects, originally delivered to Web414 on February 21, 2013.
-published: 
+published: 2013-02-21 19:00:00
 excerpt: You're a skilled practitioner of web crafts. You can get Google agog. You can send customers clicking to conversions. You can refactor a repulsive code repository. But you don't know how much to charge. This presentation explores how the three prime factors for pricing your work - complexity, risk, and value - interact with each other and help make the right jobs lucrative for you and your client. This presentation is intended for freelance web craftspeople, bespoke design agencies, and boutique development firms.
 
-Last month I got into a discussion with a few professional members at [BucketWorks][bucketworks]. Two of the participants are mechanical engineers who have a 3D prototyping company, and a third is a developer. The discussion focused on the correct way to price a software development project the mechanical engineers were expected to produce.
+Last month I got into a discussion with a few professional members at BucketWorks[^bucketworks]. Two of the participants are mechanical engineers who have a 3D prototyping company, and a third is a developer. The discussion focused on the correct way to price a software development project the mechanical engineers were expected to produce.
 
 I happened into the conversation, but I'm afraid I may have taken it over a bit. See, I already have a system for pricing software development, so I simply shared it, in condensed form, over a period of ten or fifteen minutes. The mechanical engineers were very kind in their appreciation, which is always cool to have, and the software developer said I should present this at one of the tech meetups.
 
@@ -15,23 +15,39 @@ I write my presentations in advance, and then do my best to present what I wrote
 
 ![Slide: @version2beta and contact information]()
 
-Hi, I'm version2beta. Some people call me Rob. You can call me either. Don't call me Dad though. I only let a small number of people call me Dad.
+Hi, I'm version2beta. Some people call me Rob. You can call me either.
 
 My presentation is about figuring out how much to charge for your work. This is one of those talks where you get to learn from someone who really, really knows what they're talking about. I've done it wrong virtually every way you can, so I came up with a system that, so far and without fail, has told me how much I should have charged for every project I've underquoted.
 
 It works proactively too. In fact, that is the recommended way of using this system.
 
+-----
+
+![Slide: Warning, ahead there be MATHEMATICS]()
+
+_slide_
+
+link to calculator
+
+_slide_
+
+I'm going to warn you right up front, there are going to be mathematics in this presentation. Real math, the kind you need a scientific calculator to do. Or a log table, if you're over the age of 50 and know how to use them.
+
+Or you can use the special calculator I built for doing this math. It's on my website.
+
 Before we get into the details, I'd like to tell you about my first ever paid programming gig.
+
+-----
 
 ![Slide: Economic Order Quantities]()
 
-This formula is used to calculate the economic order quantity for inventory.
+This formula is used to calculate the economic order quantity for inventory.[^eoq]
 
 It's been around a while. I first learned it in 1983, when I was 13 years old. I don't know if it's true or not, but at the time, I was under the impression that my father was one of the creators of this formula. He was inventory control manager for Simpson Paper Company, Eastern Division. His job was to make sure they had the right raw materials on hand, in the right quantities, for all of the plants east of the Mississippi River.
 
 He had this formula that would help him figure out how much stuff to buy. He also had the only IBM PC at Simpson's Vicksburg, Michigan offices.
 
-And he had a very nerdy kid. I didn't know it then, but over the next four years, I was going to write the student council's computer dating program and run the annual computer dating fundraiser all four years.
+And he had a very nerdy kid. I didn't know it then, but I was going to write the student council's computer dating program and run the annual computer dating fundraiser every single year for the next four years.
 
 The formula isn't too bad. Basically, you take the annual demand for an inventory item, multiply that by twice the cost per piece, divide that by the holding cost for one item for a year, and then take the square root. The resulting number is the ideal quantity to minimize your total ordering and holding costs for the year.
 
@@ -39,9 +55,7 @@ I know this isn't actually very interesting. But this formula has a square root 
 
 The short story is that my father had me code this formula. He paid me $30 and took it to the office and that was the last I heard about it for a year.
 
-Let's fast forward to the Superbowl, about a year later. I had a pretty serious crush on Diane DeYoung, and every year she and her sister and parents came to our house for my parents' annual Superbowl party. My crush on Diane doesn't actually have anything to do with the story, though.
-
-The reason the DeYoungs came to our house was because Diane's father David worked with my father at Simpson paper. During this particular Superbowl party, Mr. DeYoung pulled me aside and congratulated me on the program I wrote for my father.
+Let's fast forward to the Superbowl, about a year later. Every year the DeYoungs came to my parents' superbowl party. Mr DeYoung worked with my father at Simpson paper. During this particular Superbowl party, Mr. DeYoung pulled me aside and congratulated me on the program I wrote for my father.
 
 He said, "That program saved us $3 million dollars last year."
 
@@ -53,13 +67,33 @@ It seemed possible I had underquoted that job.
 
 ![Slide: The CRV Model]()
 
+_slide_
+
+Complexity
+
+Risk
+
+Value
+
+_slide_
+
 I have a formula for helping people figure out how much to charge for their work. It's called the CRV Model. C-R-V stands for Complexity, Risk, and Value.
 
 I designed this model when my wife and I owned and ran a web development company together. I found it useful for pricing development work, but really there's nothing about it that limits its utility to programming projects.
 
 It should be useful for modelling any kind of project work. What matters to this formula is that the project is relatively specified in advance, and you're trying to put a fixed price on it.
 
+-----
+
 ![Slide: Some caveats]()
+
+_slide_
+
+1. BYO Business Acumen.
+1. Damn it Jim, it's a model, not a doctor for your business.
+1. When you're pointing fingers, make sure you're looking in the mirror. Kthanxbai.
+
+_slide_
 
 I have some caveats for you:
 
@@ -71,11 +105,19 @@ I have some caveats for you:
 1. At the end of the day you still need to take credit for your own success. No need to call me up and say thank you.
 1. Same goes for your failures, by the way.
 
-![Slide: Ignore everything I'm about to tell you and go do Agile development instead.]()
+-----
 
-It's also important to note that there are better systems. For example:
+![Slide: Ignore everything I'm about to tell you and do Agile development instead.]()
 
-If you trust your client, and your client trusts you, I strongly recommend you ditch fixed price quoting and pursue Agile development and project management. I promise you, properly done, it works better. All you need is a lot of trust, excellent communication skills between you and your client, and the knowledge and experience to do Agile properly.
+_slide_
+
+Pro-tip: Ignore everything I'm about to tell you and do Agile development instead.]()
+
+_slide_
+
+It's also important to note that there are better systems. For example, don't do fixed price quotes.
+
+I'm a fan of Agile methodologies.[^agile] I strongly recommend you ditch fixed price quoting and pursue Agile development and project management. I promise you, properly done, it works better. All you need is a lot of trust, excellent communication skills between you and your client, and the knowledge and experience to do Agile properly.
 
 -----
 
@@ -90,7 +132,7 @@ _slide_
 5. Even when your contract covers out of scope pricing, it can be hard to get paid for it.
 6. Even if they pay for it, cost overruns can stress your relationship with your client.
 
-Let's talk about why we're here. What is the problem I was trying to solve. I see it as three-fold.
+Let's talk about why we're here. What is the problem we're trying to solve. I see it as three-fold.
 
 First. It's very important that you hire the right clients. And in case you get a bad client, it's important to know when to fire them.
 
@@ -105,14 +147,14 @@ This may also be true for you. You should consult with your doctor. If by any ch
 So these are our three goals.
 
 * Pursue the right work, and avoid the wrong work.
-* Charge according to value, not time.
-* Compensate for what you don't know, and for what may go wrong.
+* Make sure the unexpected doesn't hurt too much.
+* Charge according to value, as well as time.
 
 -----
 
-![Slide: The formula : Pq = o * log10((C + R + V) / A) * d + m]()
+![Slide: The formula : Pq = o * log10(C + R + V) / 2 * d + m]()
 
-So here it is. Scary. It even has a logarithm thingamajig in it.
+So here it is. Scary. It even has a logarithm[^logarithm] thingamajig in it.
 
 Let's walk through it, one parameter at a time.
 
@@ -124,10 +166,6 @@ On the left side, we have the quoted price. This will be the product of our calc
 
 C, R, and V stand for Complexity, Risk, and Value. We are going to look at these terms in detail.
 
-![Slide: The formula, hightlighting 'A']()
-
-A stands for Appetite. It represents how hungry you are to land the contract.
-
 ![Slide: The formula, highlighting 'o', 'd', and 'm']()
 
 I'm going to call these three little factors your constants. Overhead, days, and materials.
@@ -138,13 +176,15 @@ The little 'd' is your time estimate in days. It doesn't need to be exact. We'll
 
 The little 'm' are your material and other project costs. If you are going to have project-based expenses other than time, put it in here. If you mark up your direct costs, put the marked up amount in here.
 
+-----
+
 ![Slide: The formula, nothing highlighted]()
 
 So that's the formula.
 
 Add some numbers together. Those are our factors for Complexity, Risk, and Value.
 
-Divide by another number. That factors in how hungry we are to get the order.
+Apply a logarithm. This is the exponent you'd put on the number 10 to get this number. It's also the log10 key on your scientific calculator app.
 
 Multiple by a couple other numbers. That gets us our overhead for the job and how many days of overhead we need to cover.
 
@@ -156,6 +196,12 @@ You've got your price. Let's look at the specifics.
 
 ![Slide: Overhead]()
 
+_slide_
+
+o : Overhead costs per work day
+
+_slide_
+
 While Complexity, Risk, and Value are the real focus of this formula, let's get our constants out of the way first. Let's start with overhead.
 
 Just in case you're wondering, our formula is managerial accounting, not traditional balance-sheet type accounting. For example in cost accounting, our labor is divided into time-based units of measure and we put a cost on each full unit and use that for our basis. That's the system we're getting away from.
@@ -166,81 +212,78 @@ One of the questions we need to answer is, "How much of my overhead costs do I n
 
 Moonlighters, raise your hand. Now keep your hand up if "overhead costs" and "beer money" are roughly the same for you. I've been there. I still do some work that way. I would like to remind you that there are a lot of people trying to feed families doing the same work. Be careful about setting this value too low.
 
-Freelancers, raise your hand. Moonlighters can join back in now. I'd like to suggest that your overhead is the least you're willing to work for, assuming that you're doing this as much as you want to.
-
-* This might be the hourly wage you'd take if you worked a regular job.
-
-* It might be the amount you want to take as a draw plus taxes and self employment taxes plus business expenses.
-
-* You probably ought to include your benefits too. Just because you're self-employed doesn't mean you shouldn't take vacations, or have health insurance.
-
-Freelancers and moonlighters, I encourage you to think about this overhead cost in terms of "days", even though it could be months or weeks or hours instead. The important things are that we need the same unit of measures when we're guessing how much time we're going to put into the project.
-
-I suggest you avoid thinking about it in terms of hours, though. This can lead you right back into cost accounting, and we want to avoid that so we can see a bigger picture.
-
 ![Slide: Overhead example, freelancers]()
 
 _slide_
 
-* Every month I need $2,500 to cover my living expenses.
-* My income and self employment taxes on that are about $600.
-* I need health insurance that costs me $520 per month.
-* I want to spend $250 a month improving my skills.
-* I spend about $400 a month on sales and marketing.
-* Ideally, I hope to be doing project work three full days a week, or about 13 days a month.
+* I'd be willing to keep freelancing if I'm taking home $30,000 a year.
+* My income and self employment taxes on that are about $7,500 a year.
+* Health insurance costs me another $6,000 a year.
+* I want to spend $3,000 a year improving my skills and $2,000 a year on new computers.
+* I spend about $1,800 a year on sales and marketing.
+* I want to work three days a week.
 
-Overhead per work day = (2,500 + 600 + 520 + 250 + 400) / 13
+Overhead per work day = ( 30,000 + 7,500 + 6,000 + 3,000 + 2,000 + 1,800) / 150
 
-Overhead per work day = $328
+Overhead per work day = $415
 
 _slide_
 
-Let's walk through an example calculating overhead for a single person freelancing. No employees. No employer. We have to answer some questions for ourself.
+Let's walk through an example calculating overhead for a single person freelancing. No employees. No employer.
 
-First, what do I need to draw from my business to cover my living expenses.
+If I am this freelancer, this is what I need to know:
 
-Second, what do I need to put aside to cover taxes. The tax man cometh.
+* What's the minimum I could make in a year and still be happy freelancing? Or moonlighting?
 
-Third, what expenses will I have for my business.
+* I need to increase that number by 25% to cover taxes and self employment taxes.
 
-Fourth, how much do I reasonably expect to work.
+* If I plan to do this full time, I'll add in the cost of my health insurance. If you have health insurance that's paid for by someone else, for instance your partner's employer, add in half the value of their insurance benefit. If you don't have health insurance, add at least $6,000.
 
-In the example above, I arrive at a "per project day" overhead cost of $328 for this hypothetical freelancer working something that looks very much like full time on a very modest income of only $30,000 a year take home.
+* Now add in any business expenses I expect to have for the year. Sales and marketing, professional development, equipment costs, insurance, business rent, professional memberships, etc.
 
-Remember that number, $328 per project day. We'll use that in examples later on.
+* Then I figure out about how many days I actually expect do production work, and I divide by this number. If you plan to do this full time, figure on something between 120 and 180, depending on how much time you need to spend selling.
 
+In the example above, I arrive at a "per project day" overhead cost of $415 for this hypothetical freelancer working something that looks very much like full time on a very modest income of only $30,000 a year take home.
 
 ![Slide: Overhead example, agencies]()
 
 _slide_
 
 * Operating Expenses (including payroll): $72,000 / month
-* Employees engaged in production: 6
+* Employees engaged in production: 5
 * Productive days per month: 20
 
-Overhead per day per employee = 72,000 / (6 * 20)
+Overhead per day per employee = 72,000 / (5 * 20)
 
-Overhead per project day = $600
+Overhead per project day = $720
 
 _slide_
 
 Here's another example, this one for a small-ish agency.
 
-For agencies, I think the numbers are pretty simple to follow. Add up all your expenses. This includes payroll, even for billable resources. Divide it across the number of people doing billable work.
+For agencies, I think the numbers are pretty simple to follow. Add up all your expenses, including payroll, even for billable resources. Divide it across the number of people doing billable work.
 
-Again, we're not doing cost accounting. If you're interested, this formula is inspired a bit by Throughput Accounting, but the important thing to remember is that we don't want to slip into the habit of thinking in terms of hours of labor.
+Again, we're not doing cost accounting.[^costaccounting] If you're interested, this formula is inspired a bit by Throughput Accounting,[^throughputaccounting] but the important thing to remember is that we don't want to slip into the habit of thinking in terms of hours of labor.
 
+-----
 
 ![Slide: Time commitment, 'd']()
 
 _slide_
 
-Person-days you expect to commit to the project.
+d : Person-days you expect to commit to the project.
 
 _slide_
 
 We are not going to try to figure out how many hours a job takes. However, we are going to schedule resources - that is, production employees, developers, designers, copywriters - to the project. Little 'd' gives us the number of person-days we expect to commit to this project.
 
+For agencies, this is the number of person-days for production employees that you would assign to the project under the most ideal circumstances.
+
+For freelancers, this is the number of work days you think the project would take you under the most ideal circumstances.
+
+For moonlighters, this is probably the number of evenings or weekends you think you'll need to work on the job. Be sure that your overhead cost was calculated using the same base, though.
+
+-----
 
 ![Slide: Project costs, 'm']()
 
@@ -248,7 +291,7 @@ _slide_
 
 Examples of materials and direct project costs:
 
-* Travel expenses - hotels, meals, mileage, etc. 
+* Travel expenses - hotels, meals, mileage, etc.
 * Hosting a development environment for the specific project
 * Hiring a project manager
 * Contracting specialized work
@@ -260,7 +303,7 @@ _slide_
 
 Little 'm' is easy. It's any direct costs associated with the project, that apply just to this project.
 
-If you need to hire a specialist, put her costs in here.
+For example, if you need to hire a specialist, put his or her costs in here.
 
 Actually, I've done this a bunch of times. On one project, I was programming the controls for an automated heat treating line. This particular system used huge vats of molten salt for heat treating the parts. The system was basically robot arm on a 120 foot long track that picks up baskets of parts, each basket weighing about 300 pounds, and moves them through the heat treating process. Each basket got its own recipe, based on the kinds of parts inside. So a given basket might go in the hottest vat for 30 seconds, then quench for 30 seconds, then do something else.
 
@@ -270,25 +313,23 @@ The hard part of this project was adding the ability for the heat treating compa
 
 Kim is great. Before I went to visit Korea, he taught me to read and speak enough Hangeul so that I could get around town, order food, and find a bathroom. When he did his Masters thesis, I helped him with the programming. When I hired him for this project, he had completed his Ph.D. in Operations Research, done a few years optimizing delivery schedules for FedEx, and was teaching at the University of Tennessee at Oak Ridge.
 
-Kim's time on that project was a direct project cost.
+Paying Kim to work on that project was a direct project cost.
 
+-----
 
 ![Slide: How the scales work]()
 
 We're going to estimate Complexity, Risk, and Value with some pretty fuzzy numbers.
 
-I mean, this isn't an exact science. We really only know how complex something is, if it's not complex at all. We can more accurately predict risk when there's very little. And as well all know, value ranges from little, to a lot, to priceless, which is basically like saying infinity, right?
+This isn't an exact science. I can't tell you that the complexity on a given project is exactly 6,423.5.
 
-So when I make scales for Complexity, Risk, and Value, I want to have a lot of room to move around, and I want the scales to be more accurate on the lower end than on the upper end. I can't really use "infinity" as a value, but it'd be nice to be able to say "A whole lot."
+We really only know how complex something is, if it's not complex at all. We can more accurately predict risk when there's very little. And as well all know, value ranges from nothing, to a lot, to priceless, right?
 
-So the scale we're using goes like this. It should be a number between 1 and a thousand. Or a million. Whatever you want.
+When I make scales for Complexity, Risk, and Value, I want to have a lot of room to move around, and I want the scales to be more accurate on the lower end than on the upper end. I can't really use "infinity" as a value, but it'd be nice to be able to say "A whole damn lot."
 
-If the complexity or risk or value is truly infintessimal, go ahead and use one. I usually think of 10 as my minimum though. One is just too small.
+So the scale we're using goes like this: Pick a number between ten and ten thousand. If any of the factors start really ramping up, use big numbers. That's what the "log10" in the formula does for us. If you really have a project that is so risky, or so complex, or so valuable that you feel like you need really big numbers to describe it, use them.
 
-Once any of the factors start really ramping up, use big numbers. I usually top out around a thousand, but you can go higher. That's what the "log10" in the formula does for us. If you really have a project that is that risky, or that complex, or the valuable that you feel like you need really big numbers to describe it, feel free.
-
-In our examples, we're gonna stick to numbers between 1 and ten thousand. For now anyway.
-
+-----
 
 ![Slide: Complexity scale]()
 
@@ -301,13 +342,13 @@ _slide_
 
 _slide_
 
-I think of complexity in terms of who can do the work.
+I think of complexity in terms of who can do the work. Actually, I tend to think of complexity in terms of how far you'd have to go to find someone else who can do the job. In that way, it's kind of like "competition".
 
-Actually, I tend to think of complexity in terms of how far you'd have to go to find someone else who can do the job. In that way, it's kind of like "competition".
+You could actually use distance to the next nearest person or agency who can do this job as your complexity number. If bunches of people in this room could do it, let's say 10 since I really never use factors lower than 10. If you'd have to go to Chicago for another place that could handle it, let's say 120. New York, about a thousand miles. A univerity in Tokyo? 10,000.
 
 My friend Kim Duk-Won is an example, right? I needed a highly-specialized algorithm that he was uniquely suited to provide. Given that the competition for that position is very limited, he can charge more for his time. It's simple supply and demand.
 
-Here's a better example. I first heard this example from my grandfather, who was an engineer.
+Here's an even better example. I first heard this example from my grandfather, who was an engineer.
 
 There's this guy Gus who retires from his position as lead maintenance person at the local factory. He's put in his time, he's ready to be done working and focus on his fishing.
 
@@ -317,10 +358,9 @@ Gus isn't very happy about this, but he agrees to come look. He walks around the
 
 The plant manager is thrilled until the Comptroller sees Gus' invoice for $50,000. The comptroller tells the plant manager to get an itemized invoice. The plant manager tells Gus to submit an itemized invoice.
 
-The new invoice came with with two line items. The first line item was "One chalk mark: $1." The second line item was "Knowing where to put it: $49,999."
+Gus sends a new invoice came with with two line items. The first line item was "One chalk mark: $1." The second line item was "Knowing where to put it: $49,999."
 
-When you're quoting a project, always try to drive complexity down in the planning stage. It's great when your special skills are hard to find, but you'll want to be sure they're also the right skills for the job.
-
+-----
 
 ![Slide: Risk scale]()
 
@@ -333,11 +373,11 @@ _slide_
 
 _slide_
 
-I remember the first time it occured to me that I could change the price of a job based on who little or how much I know about the project. This happened way later than it should have. I had my hourly rate, and it was my hourly rate. Maybe I'd add in a few extra hours to compensate for some unknown. I could have saved a lot of money and salvaged at least one failed project if I'd only realized sooner that I should always charge more for projects that have more red flags.
+I remember the first time it occured to me that I could change the price of a job based on how little or how much the client actually knows about the project. This happened way later than it should have. I had my hourly rate, and it was my hourly rate. Maybe I'd add in a few extra hours to compensate for some unknown. But I could have saved a lot of money and salvaged at least one failed project if I'd only realized sooner that I should always charge more for projects that have more red flags.
 
 Let's talk about risk.
 
-First, I want to say risk isn't for everybody. At the low end of the scale, we have the cake walk. The job is well defined. The customer knows what they're doing when it comes to executing a project like this. They pay quickly and fairly. Maybe they're even an agency that specializes in contract talent.
+First, I want to say risk isn't for everybody. At the low end of the scale, we have "the cake walk." The job is well defined. The customer knows what they're doing when it comes to executing a project like this. They pay quickly and fairly. Maybe they're even an agency like C2[^c2] that specializes in contract talent.
 
 This is good, steady, low-risk work. It's nice to have this kind of work. Many of us would do well to focus on this kind of work.
 
@@ -351,7 +391,7 @@ The project has weak prospects. The project doesn't have a good cost-benefit rat
 
 The customer seems overly cost-conscious. They may not have the funds required to manage the project well on their side.
 
-The client talks about the previous contractors they've had to fire.
+The client talks about the previous contractors they had to fire.
 
 Sometimes the risk isn't with the client. Let's say you're not well established yet. Maybe you don't have the skills you'd need to feel confident completing the job. Or taking on this project precludes your ability to take on other work or care for your regular clients. These are all risks too.
 
@@ -371,7 +411,15 @@ Maybe you don't have confidence in your ability to finish the project. It may be
 
 But sometimes the client is throwing money at you in spite of the difficulties, and maybe you are pretty tolerant of risk. You might even specialize in difficult clients with deep pockets. There's money in that.
 
-When you're quoting a project, always first try to drive risk down. Build in a discovery phase and price out the full project after there's an adequate scope. Spend extra time establishing reasonable expectations with the customer, in both directions. Discuss your concerns about their ability to manage the project, and how they may benefit from bringing on a professional project manager just for the project. Schedule invoicing more frequently, and require payments be current before each phase begins.
+![Slide: Risk scale]()
+
+_slide_
+
+Drive Risk Down
+
+_slide_
+
+When you're quoting a project, always first try to drive risk down. Build in a discovery phase and price out the full project after there's an adequate scope. Spend extra time establishing reasonable expectations with the customer, in both directions. Discuss your concerns about their ability to manage the project, and how they may benefit from bringing on a professional project manager just for the project. Get a bigger down payment. Schedule invoicing more frequently, and require payments be current before each phase begins.
 
 The risk you're left with drives up your price, and this is entirely reasonable. It does a couple of very valuable things for you. For one, you might not get the job, and depending on how much risk there is, this may be a Very Good Thing.
 
@@ -379,6 +427,7 @@ If the job has significant, unmitigated risks, give it a "walking away" price. D
 
 Then, if you do get the job and things start to head south, you were already being paid extra to deal with it and you can take it on with a smile. Scope creep? No problem - you expected it. Plus you can still try to get paid for it. Stiffed you for the last payment? That's okay, the last payment was the second half of your bonus, not your paycheck. The client is a pain in your butt? You charged the asshole tax up front.
 
+-----
 
 ![Slide: Value scale]()
 
@@ -407,81 +456,158 @@ If the potential gain is small, your client needs to think small, and treat you 
 
 If the potential gain is large, your client is motivated to make big things happen with you, and will support you on the project. It makes your job much more enjoyable, and lucrative too.
 
-
 ![Slide: Always. Maximize. Value.]()
 
 It boils down to this: Always. Maximize. Value.
 
+-----
 
 ![Slide: Hunger.]()
 
 _slide_
 
-10 - You can walk away without giving it another thought.
-100 - You're getting very nervous.
-1000 - Your children are getting very hungry.
-10000 - Just let's not go there, okay?
+Hungry? Knock it off. But only if you have to.
 
 _slide_
 
-We have one more factor to add in to our formula, and it's there to help you undo the benefits of using a pricing model like this at all.
+We have one more factor that we could have added to our formula, but if we did, it'd be there strictly to help you undo the benefits of using a pricing model like this at all.
 
 Sometimes it doesn't matter what you know you should charge, you really need to get the work. Or at least some work. I propose it's still best to know what you should have been charging, and then discount it, rather than ignoring good sense and pricing the work artificially low.
 
-"Appetite" is that factor. The hungrier you are to get the job, the higher you make your appetite factor.
-
-Here's a warning about how this works. If your appetite is set two, your price is halved. At three, your price is cut by two thirds.
+"Hunger" is that factor. The hungrier you are to get the job, the more you'll knock of your price to make sure you get it.
 
 Obviously the best bet is to keep hunger at bay. But since that's often not possible, I'd like to suggest this: If you're hungry, look for snacks not huge meals.
 
+-----
 
-![Slide: Practice]()
+![Slide: Advanced usage]()
 
-Before we get into this part, I need everyone to raise their right hand. Good. Lower it. Now raise your left hand. Lower it. Raise them both. Lower them. Are you warmed up? You're about to become involved in quoting a project.
+_slide_
 
-Now that we know how all the factors work, let's try out some prices.
+nested CRV
 
-I'm a potential client and I have got a project. It's an e-commerce site. I want it to tie into my ERP system. My ERP system is open source, and it is written in Python.
+_slide_
 
-Go.
+I'm just going to throw this out there. You don't have to use the same complexity, risk, and value factors for every part of a project. You can break the project into meaningful pieces and apply the model to each piece.
 
-We don't have time to go through a complete scope, so I'm just going to put in a number of 60 person-days for production. Also, I'm going to say it's a given that we won't have any direct project costs, so 'm' is zero.
+For example, let's say we're quoting a new website for a heat treating company. Most of the project is straight up design and implementation, but they also want their customers to be able to log in and retrieve quality documents about previous jobs. To do that, you need to tie into their internal document management system running under Microsoft Dynamics.
 
-Who wants to set our overhead rate? I'd like a number that you feel is close for your situation, either freelance or agency.
+Now we have a project that involves two kinds of CRV profiles. The web site is relatively easy and moderately valuable, but the document retrieval system is significantly more complicated and valuable. Depending on how much experience your team has with Microsoft Dynamics, it may also add a bit of risk.
 
-Good. Now we're to Complexity. Where might we set the complexity for this kind of a project?
+-----
 
-Excellent. Now Risk. What are some of the risks that might be associated with this project?
+![Slide: Ideal Cost and The CRV Factor]()
 
-Next is Value. Where might we put the value on a project like this?
+_slide_
 
-Okay, finally we have to look at how hungry we are. Who'd like to say how badly we need this work?
+Ideal Cost: o * d
 
-So based on those factors, an overhead rate of $X a day, 60 person-days of production, Complexity set to 'A', Risk set to 'B', and Value set to 'C', and with our hunger at 'Z', the model suggests a price of $XX,XXX.
+CRV Factor: log10 ( C + R + V )
 
-CRV fortune cookies
-Low complexity, low risk
-Three times your minimum is a good working wage. You can afford to hold out for the jobs you want. You enjoy your customers and your work.
-High complexity, high value
-You're a specialist and your customers are lucky to get your attention.
-High risk, low complexity
-There are many assholes in the world, and they really need someone like you. This kind of customer also offers lots of chances to play super hero, which can be very satisfying.
-High risk, low value
-Danger, Will Robinson! Even if everything goes well, the customer may still have reason to be dissatisified since the job probably won't pay out.
-High complexity, high risk, high value
-Have you been working in finance long?
+_slide_
 
-OMG that's too expensive
-Have reason to be confident
-Show your work
-Collaborate with the client
-Explore the complexity
-Mitigate risk
-Frame value to performance bonuses
+You may have noticed that two terms make up the heart of this formula.
 
-Thinking about business
-The more you know about your customer
-The more you know about your field
-The more you know about your market
-The more you know about business management
-CRV as a framework for thinking about all of that
+I call the first one "The Ideal Cost". It's your overhead rate times your time commitment. That's what the job should cost you assuming everything goes swimmingly.
+
+The second term is the "CRV Factor" is your multiplier on the Ideal Cost. It builds in supply and demand, mitigates your risk, and keeps your price commensurate with the value of the project to your customer. The higher the CRV Factor, the higher your total price.
+
+-----
+
+![Slide: Using the CRV Factor]()
+
+You can also use the CRV Factor to quickly analyze almost any project. Let's look at a few.
+
+![Slide: Hard but worth it]()
+
+_slide_
+
+Complexity: 1000
+Risk: 100
+Value: 1000
+CRV Factor: 3.32
+
+Hard but worth it.
+
+_slide_
+
+You're a specialist in a valuable field. Your clients are lucky to have your attention.
+
+![Slide: Assholes and superheroes]()
+
+_slide_
+
+Complexity: 100
+Risk: 1000
+Value: 100
+CRV Factor: 3.08
+
+Assholes and superheroes.
+
+_slide_
+
+We've probably all worked on this project, right? It's a good fit for your skill set, and it's quite worth while for your client, but your client is an ass. Or doesn't have the money. Or needs it next week.
+
+The nice thing about these jobs is this: you get to be the superhero, and if you're willing to work under these pressures, you can really shine.
+
+![Slide: Danger Will Robinson]()
+
+_slide_
+
+Complexity: 2500
+Risk: 2500
+Value: 10
+CRV Factor: 3.70
+
+Danger Will Robinson!
+
+_slide_
+
+Sometimes I feel like every job I quote looks like this. I can't think of anyone else getting it right, but the risks are significant and when it's done, the client isn't going to get their money's worth anyway.
+
+These are the jobs you refactor for your customer. Drive the complexity down. Mitigate more risk up front, maybe by doing a discovery phase. Shift the priorities so there is more value in the final project.
+
+Make this project a better project, or embrace the multiplier of almost four and hope they decide you're too expensive.
+
+![Slide: Sweet spot]()
+
+_slide_
+
+Complexity: 100
+Risk: 100
+Value: 100
+CRV Factor: 2.48
+
+The sweet spot.
+
+_slide_
+
+I like these jobs: Competition's not too tight, the job has manageable risks, and it's going to be worth it to your client. It's a factor of almost 2.5 times your Ideal Cost. You can afford to hold out for the jobs you want. You enjoy your customers and your work.
+
+-----
+
+![Slide: Contact information]()
+
+I want to remind you that this formula is a model for pricing your work. It helps you understand your client, the project, and your self. Along the way it may make you a better businessperson. It's a framework for thinking about the work you do.
+
+Thank you for listening. As always, my presentations come with a 100% money back guarantee plus tech support that is "Free as in beer". That means you buy me a beer and I give you tech support.
+
+
+
+[^bucketworks]: [Bucketworks][bucketworks] is a health club for your brain. It's space for your community, your business, or your meetup. It's a physical wiki. Bucketworks is cool.
+[bucketworks]: http://bucketworks.org "Bucketworks is a health club for your brain."
+[^eoq]: A formula for calculating an order quantity that minimizes the total holding and ordering costs.
+[eoq]: http://en.wikipedia.org/wiki/Economic_order_quantity "Wikipedia article on economic order quantities."
+[^agile]: Agile Software Development attempts to shift the focus of work. Two good places to start learning about Agile are the [Agile Manifesto][manifesto] and the [Twelve Principles of Agile Software][principles].
+[manifesto]: http://agilemanifesto.org/ "The Manifesto for Agile Software Development"
+[principles]: http://agilemanifesto.org/principles.html "Principles behind the Agile Manifesto"
+[^logarithm]: The logarithm (or log) of a number is the exponent you'd put on a base number like 10 or e to get that number. For example, Log10(1000) is 3, because 10^3 is 1000.
+[logarithm]: http://en.wikipedia.org/wiki/Logarithm "Wikipedia article on logarithms."
+[^costaccounting]: [Cost accounting][costaccounting] tries to evaluate production in terms of direct and indirect costs. Traditionally, it views labor as a direct cost.
+[costaccounting]: http://en.wikipedia.org/wiki/Cost_accounting "Wikipedia article on cost accounting."
+[^throughputaccounting]: [Throughput accounting][throughputaccounting] is a simplified managerial accounting model that focuses on simple measures that drive behavior in key areas toward organizational goals. While I was trying to figure out how to describe this, I also found an [interesting article in Forbes Magazine][forbes] about explaining Agile to the CFO using, in part, Throughput Accounting.
+[throughputaccounting]: http://en.wikipedia.org/wiki/Throughput_accounting "Wikipedia article on throughput accounting."
+[forbes]: http://www.forbes.com/sites/stevedenning/2011/08/16/how-do-you-explain-radical-management-or-agile-to-a-cfo/ "Forbes article on explaining Agile to the CFO."
+[^c2]: I used [C2][c2] as an example here because I know them and have worked with them. They're good people.
+[c2]: http://www.c2gps.com/ "C2 Creative Talent"
+
