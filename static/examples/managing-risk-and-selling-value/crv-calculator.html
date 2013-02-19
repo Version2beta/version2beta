@@ -17,23 +17,45 @@
     <style type="text/css">
       <!--
       body {
-        width: 960px;
-        margin: 40px auto;
         background-color: #f8f6b5;
         text-align: center;
         font: 36px/42px 'Archivo Black', sans-serif;
         color: #666;
       }
+      div.container {
+        width: 960px;
+        height: 700px;
+        margin: 40px auto;
+        padding: 80px 0 20px 0;
+        background-color: #ffd;
+        border: 2px solid white;
+        border-radius: 12px;
+        box-shadow: 3px 3px 12px black;
+      }
       div.gauges {
         float: left;
         width: 320px;
       }
-      div#dials {
+      div.dials {
         clear: both;
       }
-      div#dials > div {
+      div.dials > div {
         float: left;
         margin: 20px 40px;
+      }
+      div.factor {
+        clear: both;
+        padding-top: 40px;
+      }
+      p#CRV {
+        margin-top: 80px;
+        font-size: 56px;
+      }
+      p#CRV span {
+        display: inline-block;
+        width: 160px;
+        text-align: left;
+        color: black;
       }
       .dials path {
         stroke: none;
@@ -50,28 +72,32 @@
     </style>
   </head>
   <body>
-    <div class="gauges">
+    <div class="container">
+      <div class="gauges">
         Complexity
-    </div>
-    <div class="gauges">
+      </div>
+      <div class="gauges">
         Risk
-    </div>
-    <div class="gauges">
+      </div>
+      <div class="gauges">
         Value
+      </div>
+      <div class="dials">
+        <input id="C" type="range" min="100" max="400" data-width="240" data-height="240" data-angleOffset="220" data-angleRange="280" />
+        <input id="R" type="range" min="100" max="400" data-width="240" data-height="240" data-angleOffset="220" data-angleRange="280" />
+        <input id="V" type="range" min="100" max="400" data-width="240" data-height="240" data-angleOffset="220" data-angleRange="280" />
+      </div>
+      <div class="factor">
+        <p>CRV Factor:</p>
+        <p>log<sub>10</sub> ( Complexity + Risk + Value )</p>
+        <p id="CRV"></p>
+      </div>
     </div>
-    <div id="dials">
-      <input id="C" type="range" min="100" max="400" data-width="240" data-height="240" data-angleOffset="220" data-angleRange="280" />
-      <input id="R" type="range" min="100" max="400" data-width="240" data-height="240" data-angleOffset="220" data-angleRange="280" />
-      <input id="V" type="range" min="100" max="400" data-width="240" data-height="240" data-angleOffset="220" data-angleRange="280" />
-    </div>
-    <p>CRV Factor:</p>
-    <p>log<sub>10</sub> ( Complexity + Risk + Value )</p>
-    <p style="color: black; margin-top: 60px;">Your CRV Factor is <span id="CRV"></span></p>
     <script type="text/javascript">
       Calculate = function() {
         crv = logValue(Complexity.value) + logValue(Risk.value) + logValue(Value.value);
         factor = Math.round(100 * Math.log(crv) / Math.LN10) / 100;
-        document.getElementById('CRV').innerHTML = factor;
+        document.getElementById('CRV').innerHTML = "Your CRV Factor is <span>" + factor + "</span>";
       }
       Complexity = new Knob(document.getElementById('C'), new Ui.Dials());
       Risk = new Knob(document.getElementById('R'), new Ui.Dials());

@@ -452,7 +452,6 @@ Ui.El.Arc.prototype.getCoords = function(angle) {
 };
 
 logValue = function(x) { 
-  console.log(x);
   if (x < 300) return 10 * Math.round(Math.round(Math.pow(10, x/100))/10);
   if (x >= 300) return 100 * Math.round(Math.round(Math.pow(10, x/100))/100);
 }
