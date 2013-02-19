@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>C R V Calculator</title>
+    <meta charset="utf-8">
+    <meta name="description" content="A calculator for the CRV Model" />
+    <meta name="author" content="M Robert Martin / @version2beta" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/static/css/normalize.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/static/css/1140.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Archivo+Black' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="knob.js"></script>
+    <style type="text/css">
+      <!--
+      body {
+        width: 960px;
+        margin: 40px auto;
+        background-color: #f8f6b5;
+        text-align: center;
+        font: 36px/42px 'Archivo Black', sans-serif;
+        color: #666;
+      }
+      div.gauges {
+        float: left;
+        width: 320px;
+      }
+      div#dials {
+        clear: both;
+      }
+      div#dials > div {
+        float: left;
+        margin: 20px 40px;
+      }
+      .dials path {
+        stroke: none;
+        fill: #CBE86B;
+        stroke-weight: .1;
+      }
+      .dials path:first-child {
+        fill: #F2E9E1;
+      }
+      .dials rect {
+        fill: #CBE86B;
+      }
+      -->
+    </style>
+  </head>
+  <body>
+    <div class="gauges">
+        Complexity
+    </div>
+    <div class="gauges">
+        Risk
+    </div>
+    <div class="gauges">
+        Value
+    </div>
+    <div id="dials">
+      <input id="C" type="range" min="100" max="400" data-width="240" data-height="240" data-angleOffset="220" data-angleRange="280" />
+      <input id="R" type="range" min="100" max="400" data-width="240" data-height="240" data-angleOffset="220" data-angleRange="280" />
+      <input id="V" type="range" min="100" max="400" data-width="240" data-height="240" data-angleOffset="220" data-angleRange="280" />
+    </div>
+    <p>CRV Factor:</p>
+    <p>log<sub>10</sub> ( Complexity + Risk + Value )</p>
+    <p style="color: black; margin-top: 60px;">Your CRV Factor is <span id="CRV"></span></p>
+    <script type="text/javascript">
+      Calculate = function() {
+        crv = Math.pow(10, Complexity.value/100) +
+          Math.pow(10, Risk.value/100) +
+          Math.pow(10, Value.value/100);
+        factor = Math.round(100 * Math.log(crv) / Math.LN10) / 100;
+        document.getElementById('CRV').innerHTML = factor;
+      }
+      Complexity = new Knob(document.getElementById('C'), new Ui.Dials());
+      Risk = new Knob(document.getElementById('R'), new Ui.Dials());
+      Value = new Knob(document.getElementById('V'), new Ui.Dials());
+      Complexity.onchange = Calculate;
+      Risk.onchange = Calculate;
+      Value.onchange = Calculate;
+    </script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12023701-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
