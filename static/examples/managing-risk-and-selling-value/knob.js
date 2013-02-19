@@ -451,6 +451,11 @@ Ui.El.Arc.prototype.getCoords = function(angle) {
   }
 };
 
+logValue = function(x) { 
+  console.log(x);
+  if (x < 300) return 10 * Math.round(Math.round(Math.pow(10, x/100))/10);
+  if (x >= 300) return 100 * Math.round(Math.round(Math.pow(10, x/100))/100);
+}
 
 Ui.Log = function() {};
 
@@ -464,7 +469,7 @@ Ui.Log.prototype.createElement = function(parentEl) {
 };
 
 Ui.Log.prototype.update = function(percent, value) {
-  this.el.node.textContent = Math.round(Math.pow(10, value/100));
+  this.el.node.textContent = logValue(value);
   this.el.center(this.parentEl);
 };
 

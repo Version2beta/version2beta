@@ -69,9 +69,7 @@
     <p style="color: black; margin-top: 60px;">Your CRV Factor is <span id="CRV"></span></p>
     <script type="text/javascript">
       Calculate = function() {
-        crv = Math.pow(10, Complexity.value/100) +
-          Math.pow(10, Risk.value/100) +
-          Math.pow(10, Value.value/100);
+        crv = logValue(Complexity.value) + logValue(Risk.value) + logValue(Value.value);
         factor = Math.round(100 * Math.log(crv) / Math.LN10) / 100;
         document.getElementById('CRV').innerHTML = factor;
       }
