@@ -15,7 +15,7 @@ I often have the opportunity to present at local tech meetups, and occasionally 
 
 > This presentation is intended for freelance web craftspeople, bespoke design agencies, and boutique development firms.
 
-[A transcript of my presentation](/articles/managing-risk-and-selling-value/) is posted in my blog. There is also a [tool for calculating CRV Factors](/static/examples/managing-risk-and-selling-value/crv-calculator.html).
+[A transcript of my presentation](/articles/managing-risk-and-selling-value/) is posted in my blog. [My slides](/static/examples/managing-risk-and-selling-value.html) are also online. I made a [tool for calculating CRV Factors](/static/examples/managing-risk-and-selling-value/crv-calculator.html).
 
 ## Smooth moves with Vagrant, Chef-solo, and git
 
@@ -23,7 +23,7 @@ I often have the opportunity to present at local tech meetups, and occasionally 
 
 > Virtual development environments keep your workspace clean and predictable in dev and production, and creating a virtual development machine with Vagrant is quick and easy once you have all the pieces in place. Rob Martin (@version2beta) is going to put all the pieces together and hand them to you, and then show you how you can use them.
 
-[A transcript of my presentation](/articles/dev-environments-with-vagrant-chef-and-git/) is posted in my blog, if you want to see what I had to say.
+[A transcript of my presentation](/articles/dev-environments-with-vagrant-chef-and-git/) is posted in my blog, if you want to see what I had to say. My [slides are also available](/static/examples/vagrant-chef-git.html).
 
 ## Idiomatic Node.js patterns
 
