@@ -588,6 +588,20 @@ I like these jobs: Competition's not too tight, the job has manageable risks, an
 
 ![Slide: Contact information]()
 
+_slide_
+
+@version2beta
+
+http://twitter.com/version2beta | http://version2beta.com
+
+CRV Factor Calculator: http://version2beta.com/static/examples/managing-risk-and-selling-value/crv-calculator.html
+
+Tech support is always free!*
+
+* Free as in beer. Means you buy me a beer and I give you tech support.
+
+_slide_
+
 I want to remind you that this formula is a model for pricing your work. It helps you understand your client, the project, and your self. Along the way it may make you a better businessperson. It's a framework for thinking about the work you do.
 
 Thank you for listening. As always, my presentations come with a 100% money back guarantee plus tech support that is "Free as in beer". That means you buy me a beer and I give you tech support.
@@ -601,7 +615,7 @@ Thank you for listening. As always, my presentations come with a 100% money back
 [^agile]: Agile Software Development attempts to shift the focus of work. Two good places to start learning about Agile are the [Agile Manifesto][manifesto] and the [Twelve Principles of Agile Software][principles].
 [manifesto]: http://agilemanifesto.org/ "The Manifesto for Agile Software Development"
 [principles]: http://agilemanifesto.org/principles.html "Principles behind the Agile Manifesto"
-[^logarithm]: The logarithm (or log) of a number is the exponent you'd put on a base number like 10 or e to get that number. For example, Log10(1000) is 3, because 10^3 is 1000.
+[^logarithm]: The logarithm (or log) of a number is the exponent you'd put on a base number like 10 or e to get that number. For example, log<sub>10</sub>(1000) is 3, because 10<sup>3</sup> is 1000.
 [logarithm]: http://en.wikipedia.org/wiki/Logarithm "Wikipedia article on logarithms."
 [^costaccounting]: [Cost accounting][costaccounting] tries to evaluate production in terms of direct and indirect costs. Traditionally, it views labor as a direct cost.
 [costaccounting]: http://en.wikipedia.org/wiki/Cost_accounting "Wikipedia article on cost accounting."
