@@ -23,13 +23,7 @@ It works proactively too. In fact, that is the recommended way of using this sys
 
 -----
 
-![Slide: Warning, ahead there be MATHEMATICS]()
-
-_slide_
-
-link to calculator
-
-_slide_
+![Slide: Warning, ahead there be MATH]()
 
 I'm going to warn you right up front, there are going to be mathematics in this presentation. Real math, the kind you need a scientific calculator to do. Or a log table, if you're over the age of 50 and know how to use them.
 
@@ -40,6 +34,15 @@ Before we get into the details, I'd like to tell you about my first ever paid pr
 -----
 
 ![Slide: Economic Order Quantities]()
+
+_ notes on the slide_
+
+Q is quantity
+D is annual demand
+S is fixed cost per order
+H is annual holding cost
+
+_slide_
 
 This formula is used to calculate the economic order quantity for inventory.[^eoq]
 
@@ -125,12 +128,13 @@ I'm a fan of Agile methodologies.[^agile] I strongly recommend you ditch fixed p
 
 _slide_
 
-1. If you're here, you're probably not working for the man. Or you want to stop working for the man.
-2. Even if you're self employed, you still don't want to sell your life by the hour.
-3. Even if you're willing to sell your life by the hour, your client wants a fixed price for the project.
-4. Even when you give a fixed price, there's still the out of scope work.
-5. Even when your contract covers out of scope pricing, it can be hard to get paid for it.
-6. Even if they pay for it, cost overruns can stress your relationship with your client.
+1. Working for the man.
+1. Selling your life by the hour.
+1. Client wants a fixed price.
+1. Client wants to go out of scope.
+1. It can be hard to get paid for out of scope work.
+
+_slide_
 
 Let's talk about why we're here. What is the problem we're trying to solve. I see it as three-fold.
 
@@ -144,11 +148,12 @@ This may also be true for you. You should consult with your doctor. If by any ch
 
 ![Slide: List of goals.]()
 
-So these are our three goals.
+I think we can distill these problems down to a list of goals for a pricing model.
 
-* Pursue the right work, and avoid the wrong work.
-* Make sure the unexpected doesn't hurt too much.
-* Charge according to value, as well as time.
+Pursue the right work.
+Avoid the wrong work.
+Mitigate risk.
+Charge according to value.
 
 -----
 
@@ -176,11 +181,9 @@ The little 'd' is your time estimate in days. It doesn't need to be exact. We'll
 
 The little 'm' are your material and other project costs. If you are going to have project-based expenses other than time, put it in here. If you mark up your direct costs, put the marked up amount in here.
 
------
-
 ![Slide: The formula, nothing highlighted]()
 
-So that's the formula.
+So that's the formula. It's not as scary as it may have seemed at first.
 
 Add some numbers together. Those are our factors for Complexity, Risk, and Value.
 
@@ -210,18 +213,34 @@ Managerial or analytical accounting uses a variety of accounting-type metrics to
 
 One of the questions we need to answer is, "How much of my overhead costs do I need to assign to this project?" This is the little 'o' in our formula. Overhead.
 
-Moonlighters, raise your hand. Now keep your hand up if "overhead costs" and "beer money" are roughly the same for you. I've been there. I still do some work that way. I would like to remind you that there are a lot of people trying to feed families doing the same work. Be careful about setting this value too low.
+![Slide: Overhead example, moonlighters]()
+
+_slide_
+
+Match your preferred beer to your overhead.
+
+* Pabst Blue Ribbon - $50 / night
+* Spotted Cow - $75 / night
+* Guinness - $100 / night
+* Chimay Blue Label - $125 / night
+
+_slide_
+
+I admit, this example is a little bit tongue-in-cheek. If I were serious, I'd have used whiskey in the example.
+
+Moonlighters, raise your hand. Now keep your hand up if "overhead costs" and "beer money" are roughly the same for you. I've been there. I still do some work that way. I would like to remind you that there are a lot of people trying to feed families doing the same work. Be careful about setting this value too low. I suggest you use the freelance example instead, and think about pricing your work as if you are doing it full time.
 
 ![Slide: Overhead example, freelancers]()
 
 _slide_
 
-* I'd be willing to keep freelancing if I'm taking home $30,000 a year.
-* My income and self employment taxes on that are about $7,500 a year.
-* Health insurance costs me another $6,000 a year.
-* I want to spend $3,000 a year improving my skills and $2,000 a year on new computers.
-* I spend about $1,800 a year on sales and marketing.
-* I want to work three days a week.
+* I want to take home about $30,000 a year.
+* Taxes are about $7,500 a year.
+* Health insurance costs $6,000 a year.
+* I spend $1,800 a year on sales and marketing.
+* I spend $2,000 a year on new computers.
+* I spend $3,000 a year improving my skills.
+* I expect to do billable work three days a week.
 
 Overhead per work day = ( 30,000 + 7,500 + 6,000 + 3,000 + 2,000 + 1,800) / 150
 
@@ -271,7 +290,7 @@ Again, we're not doing cost accounting.[^costaccounting] If you're interested, t
 
 _slide_
 
-d : Person-days you expect to commit to the project.
+d : Person-days required for the project under the most ideal circumstances
 
 _slide_
 
