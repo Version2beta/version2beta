@@ -11,6 +11,8 @@ This hadn't occured to me before, but I was happy that Web414 accepted my propos
 
 I write my presentations in advance, and then do my best to present what I wrote, so this post is something close to a transcript of my presentation. Actually, it's a transcript of how I meant to give the presentation, without the 'ums' and 'ahs', nervous pauses, misplaced words, and sections I undoubtedly missed due to various deficiencies in public speaking.
 
+My slides are inline below, but check out [my slide deck online](/static/examples/managing-risk-and-selling-value.html) too. I've been using reveal.js[^reveal] and it's pretty sweet.
+
 -----
 
 ![Slide: @version2beta and contact information](/static/examples/managing-risk-and-selling-value/slide01.png)
@@ -627,6 +629,8 @@ Thank you for listening. As always, my presentations come with a 100% money back
 
 [^bucketworks]: [Bucketworks][bucketworks] is a health club for your brain. It's space for your community, your business, or your meetup. It's a physical wiki. Bucketworks is cool.
 [bucketworks]: http://bucketworks.org "Bucketworks is a health club for your brain."
+[^reveal]: [Reveal.js[reveal] is a very cool HTML & javascript presentation tool. It's been easy to work with on all fronts.
+[reveal]: http://lab.hakim.se/reveal-js/ "Reveal.js HTML presentations made easy."
 [^eoq]: A formula for calculating an order quantity that minimizes the total holding and ordering costs.
 [eoq]: http://en.wikipedia.org/wiki/Economic_order_quantity "Wikipedia article on economic order quantities."
 [^agile]: Agile Software Development attempts to shift the focus of work. Two good places to start learning about Agile are the [Agile Manifesto][manifesto] and the [Twelve Principles of Agile Software][principles].
