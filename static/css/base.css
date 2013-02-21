@@ -161,6 +161,11 @@ ul.sitenav {
  margin-top: -24px;
 }
 
+.readable {
+ float: right;
+ margin-top: -42px;
+}
+
 p.archivelink {
  display: block;
  width: 100%;

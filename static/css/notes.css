@@ -140,6 +140,12 @@ nav {
  margin-top: -24px;
 }
 
+.readable {
+ float: right;
+ font-size: 0.8em;
+ margin-top: -42px;
+}
+
 p.archivelink {
  display: block;
  width: 100%;

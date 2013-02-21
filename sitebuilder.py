@@ -31,7 +31,7 @@ def article(page):
            200,
            {'Content-Type': 'text/html'} )
 
-@app.route('/notes/<page>/')
+@app.route('/articles/<page>/readable/')
 def note(page):
   return ( render_template('note.html', page = Page.load_from_file('articles/' + page)),
            200,
