@@ -13,7 +13,7 @@ I write my presentations in advance, and then do my best to present what I wrote
 
 -----
 
-![Slide: @version2beta and contact information]()
+![Slide: @version2beta and contact information](/static/examples/managing-risk-and-selling-value/slide01.png)
 
 Hi, I'm version2beta. Some people call me Rob. You can call me either.
 
@@ -23,7 +23,7 @@ It works proactively too. In fact, that is the recommended way of using this sys
 
 -----
 
-![Slide: Warning, ahead there be MATH]()
+![Slide: Warning, ahead there be MATH](/static/examples/managing-risk-and-selling-value/slide02.png)
 
 I'm going to warn you right up front, there are going to be mathematics in this presentation. Real math, the kind you need a scientific calculator to do. Or a log table, if you're over the age of 50 and know how to use them.
 
@@ -33,14 +33,14 @@ Before we get into the details, I'd like to tell you about my first ever paid pr
 
 -----
 
-![Slide: Economic Order Quantities]()
+![Slide: Economic Order Quantities](/static/examples/managing-risk-and-selling-value/slide03.png)
 
-_ notes on the slide_
+_slide_
 
-Q is quantity
-D is annual demand
-S is fixed cost per order
-H is annual holding cost
+* Q is quantity
+* D is annual demand
+* S is fixed cost per order
+* H is annual holding cost
 
 _slide_
 
@@ -68,7 +68,7 @@ It seemed possible I had underquoted that job.
 
 -----
 
-![Slide: The CRV Model]()
+![Slide: The CRV Model](/static/examples/managing-risk-and-selling-value/slide04.png)
 
 _slide_
 
@@ -88,7 +88,7 @@ It should be useful for modelling any kind of project work. What matters to this
 
 -----
 
-![Slide: Some caveats]()
+![Slide: Some caveats](/static/examples/managing-risk-and-selling-value/slide05.png)
 
 _slide_
 
@@ -110,11 +110,11 @@ I have some caveats for you:
 
 -----
 
-![Slide: Ignore everything I'm about to tell you and do Agile development instead.]()
+![Slide: Ignore everything I'm about to tell you and do Agile development instead.](/static/examples/managing-risk-and-selling-value/slide06.png)
 
 _slide_
 
-Pro-tip: Ignore everything I'm about to tell you and do Agile development instead.]()
+Pro-tip: Ignore everything I'm about to tell you and do Agile development instead.
 
 _slide_
 
@@ -124,7 +124,7 @@ I'm a fan of Agile methodologies.[^agile] I strongly recommend you ditch fixed p
 
 -----
 
-![Slide: The problem]()
+![Slide: The problem](/static/examples/managing-risk-and-selling-value/slide07.png)
 
 _slide_
 
@@ -146,7 +146,7 @@ Third. It's come to my attention that I have a limited number of hours in my lif
 
 This may also be true for you. You should consult with your doctor. If by any chance your doctor confirms this, then you, like me, are in a position to decide at what hourly rate we're willing to sell our limited lives.  Or if we want to sell our lives by the hour at all.
 
-![Slide: List of goals.]()
+![Slide: List of goals.](/static/examples/managing-risk-and-selling-value/slide08.png)
 
 I think we can distill these problems down to a list of goals for a pricing model.
 
@@ -157,21 +157,21 @@ Charge according to value.
 
 -----
 
-![Slide: The formula : Pq = o * log10(C + R + V) / 2 * d + m]()
+![Slide: The formula : Pq = o * log10(C + R + V) / 2 * d + m](/static/examples/managing-risk-and-selling-value/slide09.png)
 
 So here it is. Scary. It even has a logarithm[^logarithm] thingamajig in it.
 
 Let's walk through it, one parameter at a time.
 
-![Slide: The formula, highlighting 'Pq =']()
+![Slide: The formula, highlighting 'Pq ='](/static/examples/managing-risk-and-selling-value/slide10.png)
 
 On the left side, we have the quoted price. This will be the product of our calculation, and the price the model suggests for your project.
 
-![Slide: The formula, highlighting '(C + R + V)']()
+![Slide: The formula, highlighting '(C + R + V)'](/static/examples/managing-risk-and-selling-value/slide11.png)
 
 C, R, and V stand for Complexity, Risk, and Value. We are going to look at these terms in detail.
 
-![Slide: The formula, highlighting 'o', 'd', and 'm']()
+![Slide: The formula, highlighting 'o', 'd', and 'm'](/static/examples/managing-risk-and-selling-value/slide12.png)
 
 I'm going to call these three little factors your constants. Overhead, days, and materials.
 
@@ -181,7 +181,7 @@ The little 'd' is your time estimate in days. It doesn't need to be exact. We'll
 
 The little 'm' are your material and other project costs. If you are going to have project-based expenses other than time, put it in here. If you mark up your direct costs, put the marked up amount in here.
 
-![Slide: The formula, nothing highlighted]()
+![Slide: The formula, nothing highlighted](/static/examples/managing-risk-and-selling-value/slide13.png)
 
 So that's the formula. It's not as scary as it may have seemed at first.
 
@@ -197,7 +197,7 @@ You've got your price. Let's look at the specifics.
 
 -----
 
-![Slide: Overhead]()
+![Slide: Overhead](/static/examples/managing-risk-and-selling-value/slide14.png)
 
 _slide_
 
@@ -213,7 +213,7 @@ Managerial or analytical accounting uses a variety of accounting-type metrics to
 
 One of the questions we need to answer is, "How much of my overhead costs do I need to assign to this project?" This is the little 'o' in our formula. Overhead.
 
-![Slide: Overhead example, moonlighters]()
+![Slide: Overhead example, moonlighters](/static/examples/managing-risk-and-selling-value/slide15.png)
 
 _slide_
 
@@ -226,11 +226,11 @@ Match your preferred beer to your overhead.
 
 _slide_
 
-I admit, this example is a little bit tongue-in-cheek. If I were serious, I'd have used whiskey in the example.
+Moonlighters, raise your hand. Now keep your hand up if "overhead costs" and "beer money" are roughly the same for you. I've been there. I still do some work that way. I admit, this example is a little bit tongue-in-cheek. If I were serious, I'd have used whiskey in the example
 
-Moonlighters, raise your hand. Now keep your hand up if "overhead costs" and "beer money" are roughly the same for you. I've been there. I still do some work that way. I would like to remind you that there are a lot of people trying to feed families doing the same work. Be careful about setting this value too low. I suggest you use the freelance example instead, and think about pricing your work as if you are doing it full time.
+I would like to remind you that there are a lot of people trying to feed families doing the same work. Be careful about setting this value too low. I suggest you use the freelance example instead, and think about pricing your work as if you are doing it full time.
 
-![Slide: Overhead example, freelancers]()
+![Slide: Overhead example, freelancers](/static/examples/managing-risk-and-selling-value/slide16.png)
 
 _slide_
 
@@ -264,7 +264,7 @@ If I am this freelancer, this is what I need to know:
 
 In the example above, I arrive at a "per project day" overhead cost of $415 for this hypothetical freelancer working something that looks very much like full time on a very modest income of only $30,000 a year take home.
 
-![Slide: Overhead example, agencies]()
+![Slide: Overhead example, agencies](/static/examples/managing-risk-and-selling-value/slide17.png)
 
 _slide_
 
@@ -286,7 +286,7 @@ Again, we're not doing cost accounting.[^costaccounting] If you're interested, t
 
 -----
 
-![Slide: Time commitment, 'd']()
+![Slide: Time commitment, 'd'](/static/examples/managing-risk-and-selling-value/slide18.png)
 
 _slide_
 
@@ -306,7 +306,7 @@ Again, the important thing to remember here is to be a paragon of optimism. Plan
 
 -----
 
-![Slide: Project costs, 'm']()
+![Slide: Project costs, 'm'](/static/examples/managing-risk-and-selling-value/slide19.png)
 
 _slide_
 
@@ -338,7 +338,7 @@ Paying Kim to work on that project was a direct project cost.
 
 -----
 
-![Slide: How the scales work]()
+![Slide: How the scales work](/static/examples/managing-risk-and-selling-value/slide20.png)
 
 _slide_
 
@@ -360,14 +360,14 @@ So the scale we're using goes like this: Pick a number between ten and ten thous
 
 -----
 
-![Slide: Complexity scale]()
+![Slide: Complexity scale](/static/examples/managing-risk-and-selling-value/slide21.png)
 
 _slide_
 
-10 - Anyone could do it.
-100 - There are only a few people in the area who can do it.
-1000 - There are only a few people in the country who could do it.
-10000 - It probably can't be done.
+* 10 - Anyone could do it.
+* 100 - There are only a few people in the area who can do it.
+* 1000 - There are only a few people in the country who could do it.
+* 10000 - It probably can't be done.
 
 _slide_
 
@@ -391,14 +391,14 @@ Gus sends a new invoice came with with two line items. The first line item was "
 
 -----
 
-![Slide: Risk scale]()
+![Slide: Risk scale](/static/examples/managing-risk-and-selling-value/slide22.png)
 
 _slide_
 
-10 - It's a cake walk.
-100 - There are some problems with taking the job.
-1000 - There are significant risks associated with this project.
-10000 - That's just crazy talk.
+* 10 - It's a cake walk.
+* 100 - There are some problems with taking the job.
+* 1000 - There are significant risks associated with this project.
+* 10000 - That's just crazy talk.
 
 _slide_
 
@@ -440,14 +440,6 @@ Maybe you don't have confidence in your ability to finish the project. It may be
 
 But sometimes the client is throwing money at you in spite of the difficulties, and maybe you are pretty tolerant of risk. You might even specialize in difficult clients with deep pockets. There's money in that.
 
-![Slide: Risk scale]()
-
-_slide_
-
-Drive Risk Down
-
-_slide_
-
 When you're quoting a project, always first try to drive risk down. Build in a discovery phase and price out the full project after there's an adequate scope. Spend extra time establishing reasonable expectations with the customer, in both directions. Discuss your concerns about their ability to manage the project, and how they may benefit from bringing on a professional project manager just for the project. Get a bigger down payment. Schedule invoicing more frequently, and require payments be current before each phase begins.
 
 The risk you're left with drives up your price, and this is entirely reasonable. It does a couple of very valuable things for you. For one, you might not get the job, and depending on how much risk there is, this may be a Very Good Thing.
@@ -458,16 +450,16 @@ Then, if you do get the job and things start to head south, you were already bei
 
 -----
 
-![Slide: Value scale]()
+![Slide: Value scale](/static/examples/managing-risk-and-selling-value/slide23.png)
 
 _slide_
 
 Evaluating value
 
-10 - The impact of the project will be at least as great as the cost.
-100 - The impact of the project will be an order of magnitude greater than the cost.
-1000 - The impact of the project will be two orders of magnitude greater than the cost.
-10000 - An Arab Prince has already written you a blank check.
+* 10 - The impact of the project will be at least as great as the cost.
+* 100 - The impact of the project will be an order of magnitude greater than the cost.
+* 1000 - The impact of the project will be two orders of magnitude greater than the cost.
+* 10000 - An Arab Prince has already written you a blank check.
 
 _slide_
 
@@ -485,13 +477,11 @@ If the potential gain is small, your client needs to think small, and treat you 
 
 If the potential gain is large, your client is motivated to make big things happen with you, and will support you on the project. It makes your job much more enjoyable, and lucrative too.
 
-![Slide: Always. Maximize. Value.]()
-
 It boils down to this: Always. Maximize. Value.
 
 -----
 
-![Slide: Hunger.]()
+![Slide: Hunger.](/static/examples/managing-risk-and-selling-value/slide24.png)
 
 _slide_
 
@@ -509,7 +499,7 @@ Obviously the best bet is to keep hunger at bay. But since that's often not poss
 
 -----
 
-![Slide: Advanced usage]()
+![Slide: Advanced usage](/static/examples/managing-risk-and-selling-value/slide25.png)
 
 _slide_
 
@@ -525,7 +515,7 @@ Now we have a project that involves two kinds of CRV profiles. The web site is r
 
 -----
 
-![Slide: Ideal Cost and The CRV Factor]()
+![Slide: Ideal Cost and The CRV Factor](/static/examples/managing-risk-and-selling-value/slide26.png)
 
 _slide_
 
@@ -539,22 +529,20 @@ You may have noticed that two terms make up the heart of this formula.
 
 I call the first one "The Ideal Cost". It's your overhead rate times your time commitment. That's what the job should cost you assuming everything goes swimmingly.
 
+I particularly like the concept of Ideal Cost. We humans are notoriously bad at making predictions. Our emotions get in the way. Ideal Cost eliminates some of that problem by removing the complexity of the negative emotional factors. We don't have to think about what might go wrong at this point - we get to consider just the positive. And this is a nice way to think about a new project.
+
 The second term is the "CRV Factor" is your multiplier on the Ideal Cost. It builds in supply and demand, mitigates your risk, and keeps your price commensurate with the value of the project to your customer. The higher the CRV Factor, the higher your total price.
 
------
+Let's look at some ways you can use the CRV Factor to quickly analyze almost any project.
 
-![Slide: Using the CRV Factor]()
-
-You can also use the CRV Factor to quickly analyze almost any project. Let's look at a few.
-
-![Slide: Hard but worth it]()
+![Slide: Hard but worth it](/static/examples/managing-risk-and-selling-value/slide27.png)
 
 _slide_
 
-Complexity: 1000
-Risk: 100
-Value: 1000
-CRV Factor: 3.32
+* Complexity: 1000
+* Risk: 100
+* Value: 1000
+* CRV Factor: 3.32
 
 Hard but worth it.
 
@@ -562,14 +550,14 @@ _slide_
 
 You're a specialist in a valuable field. Your clients are lucky to have your attention.
 
-![Slide: Assholes and superheroes]()
+![Slide: Assholes and superheroes](/static/examples/managing-risk-and-selling-value/slide28.png)
 
 _slide_
 
-Complexity: 100
-Risk: 1000
-Value: 100
-CRV Factor: 3.08
+* Complexity: 100
+* Risk: 1000
+* Value: 100
+* CRV Factor: 3.08
 
 Assholes and superheroes.
 
@@ -579,14 +567,14 @@ We've probably all worked on this project, right? It's a good fit for your skill
 
 The nice thing about these jobs is this: you get to be the superhero, and if you're willing to work under these pressures, you can really shine.
 
-![Slide: Danger Will Robinson]()
+![Slide: Danger Will Robinson](/static/examples/managing-risk-and-selling-value/slide29.png)
 
 _slide_
 
-Complexity: 2500
-Risk: 2500
-Value: 10
-CRV Factor: 3.70
+* Complexity: 2500
+* Risk: 2500
+* Value: 10
+* CRV Factor: 3.70
 
 Danger Will Robinson!
 
@@ -598,14 +586,14 @@ These are the jobs you refactor for your customer. Drive the complexity down. Mi
 
 Make this project a better project, or embrace the multiplier of almost four and hope they decide you're too expensive.
 
-![Slide: Sweet spot]()
+![Slide: Sweet spot](/static/examples/managing-risk-and-selling-value/slide30.png)
 
 _slide_
 
-Complexity: 100
-Risk: 100
-Value: 100
-CRV Factor: 2.48
+* Complexity: 100
+* Risk: 100
+* Value: 100
+* CRV Factor: 2.48
 
 The sweet spot.
 
@@ -615,7 +603,7 @@ I like these jobs: Competition's not too tight, the job has manageable risks, an
 
 -----
 
-![Slide: Contact information]()
+![Slide: Contact information](/static/examples/managing-risk-and-selling-value/slide31.png)
 
 _slide_
 
