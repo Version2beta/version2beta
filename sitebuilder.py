@@ -31,6 +31,12 @@ def article(page):
            200,
            {'Content-Type': 'text/html'} )
 
+@app.route('/notes/<page>/')
+def note(page):
+  return ( render_template('note.html', page = Page.load_from_file('articles/' + page)),
+           200,
+           {'Content-Type': 'text/html'} )
+
 @app.route('/<page>/')
 def pages(page):
   return ( render_template('pages.html', page = Page.load_from_file('pages/' + page)),
@@ -58,6 +64,7 @@ def page_not_found(error):
 def register_pages():
   for page in Page.get_meta_from_dir('articles'):
     yield "article", { 'page': page['name'] }
+    yield "note", { 'page': page['name'] }
   for page in Page.get_meta_from_dir('pages'):
     yield "pages", { "page": "/" + page['name'] }
 
