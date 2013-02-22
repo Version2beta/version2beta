@@ -86,10 +86,11 @@ dt a:visited {
  color: #445;
  text-decoration: none;
  text-shadow: #fff 1px 1px 1px, #999 2px 2px 12px;
+ border-bottom: 1px dotted #999;
 }
  
 dt a:hover {
- text-decoration: underline;
+ border-bottom: 1px dotted #b22222;
 }
 
 .pubdate time {
