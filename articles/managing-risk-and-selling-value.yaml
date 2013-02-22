@@ -13,6 +13,8 @@ I write my presentations in advance, and then do my best to present what I wrote
 
 [Check out the calculator I made for calculating the CRV Factor](/static/examples/managing-risk-and-selling-value/crv-calculator.html), which is the hard part of the formula. My slides are inline below, but check out [my slide deck online](/static/examples/managing-risk-and-selling-value.html) too. I've been using reveal.js[^reveal] and it's pretty sweet.
 
+Dusty Filippini, one of the @web414[^web414] organizers, streamed this presentation using Google Hangouts, and sent it to YouTube. The video quality is not ideal. The presentation doesn't actually start until about 17:30 and goes for about 55 minutes plus questions and answers. About six minutes into my presentation, I have computer problems and we switch machines. But once it gets going, the sound quality is pretty decent. [Watch "Managing risk and selling value" on YouTube.](http://www.youtube.com/watch?v=and2kexFxt0)
+
 -----
 
 ![Slide: @version2beta and contact information](/static/examples/managing-risk-and-selling-value/slide01.png)
@@ -643,6 +645,8 @@ Thank you for listening. As always, my presentations come with a 100% money back
 [bucketworks]: http://bucketworks.org "Bucketworks is a health club for your brain."
 [^reveal]: [Reveal.js[reveal] is a very cool HTML & javascript presentation tool. It's been easy to work with on all fronts.
 [reveal]: http://lab.hakim.se/reveal-js/ "Reveal.js HTML presentations made easy."
+[^web414]: [Web414][web414] is Milwaukee's web community. 
+[web414]: http://www.meetup.com/web414/ "Web414 at Meetup.com."
 [^eoq]: A formula for calculating an order quantity that minimizes the total holding and ordering costs.
 [eoq]: http://en.wikipedia.org/wiki/Economic_order_quantity "Wikipedia article on economic order quantities."
 [^agile]: Agile Software Development attempts to shift the focus of work. Two good places to start learning about Agile are the [Agile Manifesto][manifesto] and the [Twelve Principles of Agile Software][principles].
