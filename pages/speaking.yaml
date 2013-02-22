@@ -33,6 +33,14 @@ I often have the opportunity to present at local tech meetups, and occasionally 
 
 Much to my surprise, a participant at this presentation [recorded audio and uploaded it to archive.org](http://archive.org/details/IdiomaticNode.jsPatterns). Also, [I made my presentation slides public](https://docs.google.com/presentation/d/1H1VZu71L6nI5cZ2ZgvV1iNz8orOKTeTllOBgZp2AQwc/edit?pli=1#slide=id.p) on Google Drive.
 
+## Get out of the Generic Aisle
+
+*Presented at Web414, June 14, 2012*
+
+> Arlen Walker (@arlen) and Rob Martin (@version2beta) will present Backbone.js as a tool to take your typical canned widget functionality a step further, and set your work apart from the masses. Backbone.js is a client-side JavaScript framework, but who really cares about that? What's important is what you can do with it. Arlen and Rob will live code (ooh, scary!) a Twitter widget demonstrating backbone's ability to easily acquire, process and present arbitrary data from diverse sources. **Speakers:** Rob and Arlen worked on their first project together over two decades ago - they just didn't know it at the time. It was the 1992 Solar and Electric Vehicle Association race. Arlen was on the battery team, and Rob was on the embedded controls team, and the car won first place. Today, Arlen programs under his own flag, Paladin Web Services, and Rob is top devops person at Top Floor Technologies.
+
+Arlen and I prepared our slides using Showoff, a Ruby framework on Sinatra for presentations. They're online at [https://github.com/Version2beta/backboneslides](https://github.com/Version2beta/backboneslides). Rather than live code, we created a git repository with tags for twelve steps in the presentation. That's at [https://github.com/Version2beta/backbone-twidget-presentation](https://github.com/Version2beta/backbone-twidget-presentation). During our demonstration we produced a backbone-based twitter widget, which is at [https://github.com/Version2beta/backbone-twidget](https://github.com/Version2beta/backbone-twidget).
+
 ## MODX can beat up your Content Management System
 
 *Presented at the Milwaukee Web Design Meetup,[^mwdm] December 2011*
