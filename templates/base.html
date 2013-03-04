@@ -4,22 +4,26 @@
     <meta charset="utf-8" />
     <title>{% block title %}version2beta{% endblock %}</title>
     <!--[if IE]><script src="../j/html5.js"></script><![endif]-->
-    {% block meta_tags %}
+    {% block meta_tags -%}
+    {% if page.longtitle -%}
+    <meta name="description" content="{{ page.longtitle }}" />
+    {%- else -%}
     <meta name="description" content="version2beta: A technical blog." />
+    {%- endif %}
     <meta name="keywords" content="" />
-    {% endblock %}
-    {% block feeds %}
+    {%- endblock %}
+    {% block feeds -%}
     <link href="/archive/atom.xml" rel="alternate" title="version2beta" type="application/atom+xml" />
-    {% endblock %}
-    {% block css %}
+    {%- endblock %}
+    {% block css -%}
     <link rel="stylesheet" href="/static/css/normalize.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="/static/css/1140.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="/pygments.css" type="text/css" media="screen" />
     <link href="http://fonts.googleapis.com/css?family=Bevan" rel="stylesheet" type="text/css" />
     <link href="http://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet" type="text/css" />
-    {% block extra_css %}{% endblock %}
-    {% endblock %}
+    {%- block extra_css -%}{%- endblock -%}
+    {%- endblock %}
     <link rel="shortcut icon" href="/static/favicon.ico" />
 </head>
 

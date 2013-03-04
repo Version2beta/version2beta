@@ -21,6 +21,7 @@ def index():
 @app.route('/articles/')
 def articles():
   return ( render_template('articles.html',
+           page = {},
            pages = Page.get_meta_from_dir('articles')),
            200,
            {'Content-Type': 'text/html'} )
@@ -46,6 +47,7 @@ def pages(page):
 @app.route('/atom.xml')
 def feed():
   return render_template('feed.xml',
+      page = {},
       pages = Page.get_meta_from_dir('articles'),
       now = datetime.now()), 200, {'Content-Type': 'application/xml'}
 
