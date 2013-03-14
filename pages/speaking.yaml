@@ -2,6 +2,18 @@ pagetitle: Presentations
 longtitle: I am very much enjoying the opportunity to talk tech with groups of people. It is a pleasure and an honor.
 published: 2013-01-24
 
+# Presentations I'd like to give
+
+## Put people first: Navigating the bazaar of open source libraries
+
+[I've proposed this talk](http://opensourcebridge.org/proposals/1059) for Open Source Bridge 2013, June 18 - 21, in Portland, Oregon:[^osbridge]
+
+> Choosing a software library &mdash; a module for a content management system, a gem for Ruby, a Python or Node.js package &mdash; is a daunting and sometimes improbable task. The community is prolific and choices are bewildering. Choosing well requires not only a technical analysis of features and code, but every bit as much an understanding of dynamic social relationships at work in the community. "Put people first" explores not only how to navigate this bazaar of coders and code, but also how to engage the authors, contribute in kind, and ultimately become part of the community.
+
+## The Tyranny of the Database
+
+I'm preparing this presentation first as a lightning talk for PyCon 2013, March 15 - 17, in Santa Clara, California. The topic will quickly draw attention to the problems with using a database, especially a single database, as our canonical representation of state or reality. From there I'll question the value of ORMs, and the common practice of imposing schema on data.
+
 # Presentations I've given
 
 I often have the opportunity to present at local tech meetups, and occasionally present for corporate training events. Here are some of the presentations I've given. Many of these presentations are available to schedule.
@@ -17,6 +29,8 @@ I often have the opportunity to present at local tech meetups, and occasionally 
 > This presentation is intended for freelance web craftspeople, bespoke design agencies, and boutique development firms.
 
 [A transcript of my presentation](/articles/managing-risk-and-selling-value/) is posted in my blog. [My slides](/static/examples/managing-risk-and-selling-value.html) are also online. I made a [tool for calculating CRV Factors](/static/examples/managing-risk-and-selling-value/crv-calculator.html).
+
+Also, [@dustyf](https://twitter.com/dustyf) created a video of this presentation. The presentation starts at 17:30 and goes about 55 minutes. I think a few of the questions and answers were included, but not all - we continued informal discussion for more than an hour after the presentation. And if you enjoy the kind of humor that involves seeing people suffer, my computer locks up and I have to borrow another machine, and it's kind of funny in that sad way.
 
 ## Smooth moves with Vagrant, Chef-solo, and git
 
@@ -58,12 +72,19 @@ An overview of new features in PostgreSQL version 9.
 
 I created a Prezi for this presentation, and [you can view it online](http://prezi.com/bggemp3ca7em/5-cool-things-about-postgresql/?kw=view-bggemp3ca7em&rc=ref-136841).
 
+## @version2beta's Prezi Prezi
+
+At DjangoCon 2011 I presented a lightning talk showing off Prezi. It's online at [blip.tv](http://blip.tv/djangocon/lightning-talks-wed-am-5576513) and [PyVideo.org](http://pyvideo.org/video/74/djangocon-2011--lightning-talks---wednesday-morni). My talk is last, starting at 16:20. [My Prezi is also available online](http://prezi.com/ntrlqxhxpzbv/a-prezi-on-prezi-for-djangocon/?kw=view-ntrlqxhxpzbv&rc=ref-136841).
+
 ## Overview of Cloud Computing
 
 *Presented at Web414[^web414], August 2011*
 
 Presented a survey and comparison of cloud computing options from Amazon Web Services, Rackspace, and Linode.
 
+[^osbridge]: [Open Source Bridge][osbridge] is a conference for developers working with and learning the open source way. [Follow them on Twitter too][osbtwitter].
+[osbridge]: http://opensourcebridge.org/ "Connecting open source developers across projects, languages, and backgrounds."
+[osbtwitter]: https://twitter.com/osbridge "Open Source Bridge on Twitter."
 [^web414]: [Web414 is Milwaukee's Web Community][web414] with monthly meetups and presentations varying from frameworks and content managers to version control to business and freelance management.
 [web414]: http://www.meetup.com/web414/ "Web414 - Milwaukee's Web Community"
 [^mkepug]: [The Milwaukee PHP Users Group][mkepug] meets monthly to discuss issues related to PHP development.
