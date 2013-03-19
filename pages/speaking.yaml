@@ -12,7 +12,11 @@ published: 2013-01-24
 
 ## The Tyranny of the Database
 
-I'm preparing this presentation first as a lightning talk for PyCon 2013, March 15 - 17, in Santa Clara, California. The topic will quickly draw attention to the problems with using a database, especially a single database, as our canonical representation of state or reality. From there I'll question the value of ORMs, and the common practice of imposing schema on data.
+I prepared this lightning talk to present at PyCon 2013 on March 16 in Santa Clara, California. Unfortunately, talks were         selected at random. I wasn't selected Saturday evening, and even though I was select Sunday morning, apparently I was in the overflow     list in case others didn't show.
+
+Surely I'll have opportunity to give this talk somewhere. Meanwhile, it's here for you.
+
+Ultimately this is part one of a talk introducing Arbitrary, followed by sections covering service oriented design and creating a JSON workflow engine.
 
 # Presentations I've given
 
