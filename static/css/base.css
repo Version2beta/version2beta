@@ -128,7 +128,7 @@ a.listing {
 ul.sitenav {
  font: 500 48px/2.0 'Bevan', Georgia, serif;
  list-style-type: none;
- line-height: 2.0em;
+ line-height: 1.6em;
  position: fixed;
 }
 
@@ -292,23 +292,31 @@ div#action h2 {
 /* ============================= */
 /*   Layout for mobile version   */
 /* ============================= */
-@media handheld, only screen and (max-width: 767px) {
+@media handheld, only screen and (max-width: 800px) {
 
 #sitename {
- display: block;
- text-align: center;
- font-size: 240%;
+ text-align: left;
+ font-size: 64px;
  letter-spacing: 4px;
  text-shadow: #666 2px 2px 12px, #bbb 2px 2px 24px;
  text-decoration: none;
  color: black;
- padding: 0.25em 0 0.5em 0;
+ padding: 8px 0 96px 24px;
 }
 
 ul.sitenav {
  font: 500 28px/2.0 'Bevan', Georgia, serif;
  list-style-type: none;
  line-height: 2.5em;
+ position: absolute;
+ top: 80px;
+ left: 24px;
+ padding: 0;
+}
+
+ul.sitenav li {
+  display: block;
+  float: left;
 }
 
 li.home {
@@ -317,8 +325,8 @@ li.home {
 
 .sitenav a {
  display: block;
- text-align: center;
- width: 100%;
+ text-align: left;
+ width: 116px;
  text-decoration: none;
  color: #aab;
  text-shadow: #fff 0 0 4px, #aab 2px 2px 12px;
@@ -329,4 +337,19 @@ li.home {
  text-shadow: #fff 0 0 2px, #aab 2px 2px 12px;
 }
 
+h1 {
+ font-size: 1.5em;
+}
+
+h2 {
+ font-size: 1.25em;
+}
+
+h3, dt {
+ font-size: 1.125em;
+}
+
+h4 {
+ font-size: 1.0em;
+}
 }
