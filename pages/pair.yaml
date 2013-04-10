@@ -1,0 +1,28 @@
+pagetitle: Pair programming with Version2beta
+longtitle: I'm interested in learning to be a better programmer, and helping others become better programmers, through pair programming.
+published: 2013-04-08
+
+# Pair program with me
+
+It's seems that Avdi Grimm[^avdi] started this cool thing called \#pairwithme[^pairwithme]. Use the hash tag on Twitter as a welcome mat for pair programming.
+
+My mat is out. [Email me](mailto:rob@version2beta.com) or [tweet at me](http://twitter.com/version2beta) and let's get started.
+
+Thank you for the encouragement, Avdi!
+
+![Pair program with Version2beta](http://pairprogramwith.me/badge.png)
+
+## Pair-and-tell
+
+2013-04-10 Remote paired with [@StephenBallNC](https://twitter.com/StephenBallNC) over our lunch hours. Worked on a Words With Friends cheater script and explored Ruby's Array intersection abilities.
+
+_Venue: Google Hangout, my EC2 t1.micro instance, Ubuntu, tmux, vim, chruby, Ruby 2.0.0, rspec._
+
+[^avdi]: Avdi Grimm is on [Twitter][avdi], [Wide Teams][wideteams], and is a regular panelist on [Ruby Rogues][rogues]. He's a bunch of other places too. Check out his [tapas][tapas] at the very least.
+[avdi]: https://twitter.com/avdi "Avdi on Twitter."
+[wideteams]: http://www.wideteams.com/category/podcast/ "Wide Teams podcast."
+[rogues]: http://rubyrogues.com/ "Ruby Rogues podcast."
+[tapas]: http://www.rubytapas.com/ "Ruby tapas from Avdi Grimm."
+[^pairwithme]: The [\#pairwithme hashtag][pwm] and [PairProgramWith.me][ppwm] are some shortcuts for offering to pair program. Try them out?
+[pwm]: https://twitter.com/search?q=%23pairwithme "Search Twitter for the #pairwithme hash tag."
+[ppwm]: http://www.pairprogramwith.me/ "Pair widely. Pair often."
