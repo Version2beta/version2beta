@@ -8,85 +8,85 @@ published: 2013-01-23
 
 Located in Milwaukee, Wisconsin USA
 
-## Objective
+## Problem domain
 
-Looking for occasional moonlighting opportunities, plus participation in meaningful open source or socially/culturally important projects. Areas of interest include devops, microframeworks, service oriented design, autism education and therapy, and appropriate technologies.
+My problems are not big enough. I'm looking for opportunities to discuss and participate in solving large scale web application and systems architecture problems, on a consulting, moonlighting, or open-source basis.
 
 ### Technical competencies
 
-Skilled programmer specializing in database-driven web and network applications. Extensive devops experience. Security experience.
+Skilled programmer with experience in SQL- and NoSQL-driven web and networked applications. TDD, BDD, and Agile emphasis. Local and remote pairing. Extensive devops experience. Security experience.
 
 #### Programming:
 
-- PHP[^php] since 1998
+- PHP since 1998
 - Perl since 1999
 - Python since 2009
-- Other programming experience going back to 1981 in more than a dozen languages, including
-Forth, Pascal, C/C++, assembly language, etc.
+- Javascript since 2004 and Node.js since 2011
+- Ruby since 2012
+- Test driven development with Rspec (Ruby); Nose, Expecter, Dingus (Python); and Jasmine / Jasmine-Node (Javascript)
+- 2013 Google Code Jam qualifier
+- Regular participation in Code Retreats[^coderetreat] and hackathons
+- #pairwithme[^pair] participant
+- Author of Zibrato[^zibrato] code instrumentation library
+- Author of Pysamlsp[^pysamlsp] Python library for SAML2.0 service providers
+- My programming experience goes back to 1981 and includes more than a dozen languages, including Forth, Pascal, C/C++, VisualBasic, assembly language (RISC and CISC), programmable logic controllers, etc.
 
 #### Database:
 
 - MySQL since 1999
 - MS SQL Server 2005 &mdash; 2007
 - PostgreSQL since 2006
+- MongoDB since 2011
+- CouchDB since 2011
+- Limited Redis experience since 2011
 
 #### Web and web framework:
 
-- HTML[^html], XHTML, CSS[^css] since 1997
-- Javascript since 2004
+- HTML, XHTML, CSS since 1997
 - MODX[^modx] since 2007
+- Drupal[^drupal] 2009 - 2012
 - Django[^django], Hyde[^hyde], Flask[^flask] since 2011
+- Limited Tornado[^tornado] experience since 2012
 
 #### Systems and network administration:
 
-- Linux, primarily Debian-based, since 1996
-- OpenBSD[^openbsd] and FreeBSD, since 2000
+- Linux (currently ArchLinux and Ubuntu) since 1996
+- OpenBSD[^openbsd] and FreeBSD, 2000 - 2007
 - Firewalls and VPNs, including pf[^pf] since 2000, OpenVPN[^openvpn] since 2003, and pfSense[^pfsense] since 2010
 - Server clustering, including DR:BD[^drbd], Linux Heartbeat[^linux-ha], Pacemaker[^pacemaker], and iSCSI[^iscsi]
-- Cloud computing, including Amazon Web Services[^aws] including EC2, S3, and CloudFront; Linode[^linode] virtual private servers; and Rackspace Cloud Servers[^rackspace]
-- Devops tools including Vagrant,[^vagrant] Chef,[^chef] Knife-spork,[^spork] Fabric,[^fabric] Syslog-ng,[^syslog-ng] Loggly,[^loggly] Librato,[^librato] New Relic[^newrelic]
+- Amazon Web Services,[^aws] including EC2, S3, Route53, IAM, RDS, and CloudFront
+- Other virtual private servers including Linode,[^linode] Rackspace Cloud Servers,[^rackspace] Storm On Demand,[^storm] and Digital Ocean.[^ocean]
+- Devops tools including Vagrant[^vagrant] 1 and 2, Chef,[^chef] Fabric,[^fabric] Syslog-ng,[^syslog-ng] Loggly,[^loggly] Librato,[^librato] and New Relic[^newrelic]
 
 #### Enterprise Resource Planning platforms:
 
 - OpenERP[^openerp] since 2009
 - Tryton[^tryton] since 2011
 
-### Notable contracts (2008 &mdash; present)
+### Presentations
 
-- Rand Corp/Club Car (2008): Wrote the technical specification for Rand Corp's “second generation web
-presence”, based on Microsoft SharePoint Server.
-- Huth Benders Inc. (www.huthbenders.com)[^huth] (2010): Created the information architecture, wireframes,
-UX programming, and complete implementation in MODX content management framework.
-- Accunet Mortgage (www.accunet.com)[^accunet] (2008 &mdash; present): Security programming, site redesign including
-information architecture, wireframes, look-and-feel, extensive form design, Goldmine Enterprise
-integration, implemented in MODX with additional custom programming. Currently contracted to
-redeploy the site on a high-availability, high-security server cluster.
-- Fresh Is Best, Inc. (www.freshisbestinc.com)[^fresh] (2010 &mdash; present): Information architecture, look-and-feel,
-UX, some copy editing, e-commerce implementation in Google Checkout, implementation in MODX.
+- "Managing risk and selling value." This talk introduces the Complexity - Risk - Value formula for producing fixed price quotations. Presented at Web414 in Milwaukee, Wisconsin in February 2013.
+- "Smooth moves with Vagrant, Chef-solo, and git." Building virtual development environments. Presented at Milwaukee PHP Users' Group (February 2013). Presenting at Fox Cities PHP Users' Group in May 2013.
+- "Idiomatic Node.js patterns." This talk at Bar Camp Milwaukee explores the three primary idioms in Node.js programming: modules, callbacks, and streams.
+- "Get out of the generic aisle." I gave this talk with Arlen Walker at Web414, presenting on Backbone.js.
+- "MODX can beat up you content management system." My presentation on MODX Evolution at Milwaukee Web Design Meetup CMS megapanel smackdown in December 2011.
+- "5 Cool things about PostgreSQL." An overview of new features in PostgreSQL version 9, presented at Bar Camp Milwaukee in October 2011.
+- "Overview of cloud computing." A survey of cloud computing offerings from Amazon, Rackspace, and Linode, presented at Web414 in August 2011.
+- I currently have proposals under consideration for Open Source Bridge, That Conference, Steel City Ruby, and Wordcamp.
+
+Please see my [page on speaking][speaking] for slides, transcripts, video, and audio.
+
+[speaking]: http://version2beta.com/speaking/ "Presentations I've given (or can give) for regional conferences, local meetups, and corporate training."
 
 ### Positions held (2000 &mdash; present)
 
-- Software and network engineer (2012 &mdash; present), Tartan Solutions, Inc., Milwaukee, Wisconsin and Pittsburgh, Pennsylvania: I do mostly devops with a smattering of software development on the PlaidCloud platform and for related open source projects.
-- Web Infrastructure Manager (2011 &mdash; 2012), Top Floor Technologies[^topfloor], New Berlin, Wisconsin: I run servers and build applications for Top Floor's customers, and work with a team of talented front and back end developers, designers, SEO/SEM managers, project managers, client service reps (advocates really), and salespeople.
-- Application Architect (2007 &mdash; 2011) and special consultant (present), Quintessential Mischief LLC[^qmuxs], Milwaukee, Wisconsin: I
-founded this company with my wife (who specializes in usability, accessibility, search optimization,
-and community-building) and primarily perform application programming and system administration,
-with some basic website and other design work.
-- Owner (2009 &mdash; present), Version2beta LLC, Milwaukee, Wisconsin: I formed this as a vehicle for
-contract systems and network administration work, primarily Linux workstations, company firewalls,
-and local servers. I also perform occasional odd jobs such as disinfecting websites and servers,
-server migrations, and top-tier technical support for other small tech and internet hosting companies
-in the Milwaukee area.
-- Director of Information Technology (2002 &mdash; 2007), KeyBridge Group Inc.,[^keybridge] Waukesha, Wisconsin: I
-served as head technology person for a largish (US$750,000,000) real-estate developer in SE Wisconsin.
-Implemented Lotus Notes and Domino Server (2003) and Microsoft Exchange and Project (2006), among many other projects.
-- Co-owner (2000 &mdash; 2002), CedarNet LLC, Waukesha, Wisconsin: I was primary technical partner, but
-also participated in most business decisions, for this local ISP providing dial-up internet access, email,
-and web hosting.
-- Prior to 2000, most of my positions were industrial, both in project work (built controls for a robotic
-laser welder, automated a molten salt heat treating line, designed the controls and driver interface for
-an experimental electric car battery system) or product management for industrial equipment
-(including marketing and sales channel management.)
+- Software and systems engineer (2012 &mdash; present), Tartan Solutions, Inc., Milwaukee, Wisconsin and Pittsburgh, Pennsylvania: Devops and software development on the PlaidCloud platform and for related open source projects. Nearly 100% remote work with some pair programming.
+- Web Infrastructure Manager (2011 &mdash; 2012), Top Floor Technologies[^topfloor], New Berlin, Wisconsin: I managed 72 virtual private servers and three real ones, built applications for Top Floor's customers, and worked with a team of talented front and back end developers, designers, SEO/SEM managers, project managers, client service reps (advocates really), and salespeople.
+- Application Architect (2007 &mdash; 2011) and special consultant (present), Quintessential Mischief LLC[^qmuxs], Milwaukee, Wisconsin: I founded this company with my wife (who specializes in usability, accessibility, search optimization, and community-building) and primarily perform application programming and system administration, with some basic website and other design work.
+- Owner (2009 &mdash; present), Version2beta LLC, Milwaukee, Wisconsin: I formed this as a vehicle for contract systems and network administration work, primarily programming, and managing Linux workstations, company firewalls, and servers. I also perform occasional odd jobs such as disinfecting websites and servers, server migrations, and top-tier technical support for other small tech and internet hosting companies in the Milwaukee area.
+- Director of Information Technology (2002 &mdash; 2007), KeyBridge Group Inc.,[^keybridge] Waukesha, Wisconsin: I served as head technology person for a largish (US$750,000,000) real-estate developer in SE Wisconsin. Implemented Lotus Notes and Domino Server (2003) and Microsoft Exchange and Project (2006), among many other projects.
+- Co-owner (2000 &mdash; 2002), CedarNet LLC, Waukesha, Wisconsin: I was primary technical partner, but also participated in most business decisions, for this local ISP providing dial-up internet access, email, and web hosting.
+- Prior to 2000, most of my positions were industrial, both in project work (built controls for a robotic laser welder, automated a molten salt heat treating line, designed the controls and driver interface for an experimental electric car battery system) or product management for industrial equipment (including marketing and sales channel management.)
 
 *Educational background and references available on request.*
 
@@ -95,15 +95,15 @@ an experimental electric car battery system) or product management for industria
 [rob@version2beta.com]: mailto:rob@version2beta.com "Click to open a new email message to Rob"
 [@version2beta]: http://www.twitter.com/version2beta "version2beta on Twitter"
 
-[^php]: I scored 9 out of 10 for an 'Expert' performance, but only 85th percentile, on [ExpertRating.com][expert] PHP5 test. My lowest scores were in variables and data types, and advanced concepts, but scored perfect in syntax and PHP5 new concepts. At any rate, I'll be brushing up on variables and data types. You can see the [PDF of my report][php].
-[php]: /static/site/expert-rating-php5.pdf "PDF of my test results for PHP5."
-[^html]: I scored 9 out of 10 on HTML 4.01 too. That's also 'Expert' performance according to the testing company. I got perfect scores on 4 out of 6 areas (advanced tags, forms and frames, fundamentals, links and images) but scored only 'average' and 'good' on tables and tags, respectively. They show me at the 95th percentile among everyone taking the test. [PDF of my report][html].
-[html]: /static/site/expert-rating-html4-01.pdf "PDF of my test results for HTML4.01."
-[^css]: For CSS2.1, I scored 9 out of 10 and 'Expert' at [ExpertRating.com][expert]. Highest scores in advanced techniques, page media, text and font styles; lower scores in basic styles, fundamentals, and selectors. [PDF report][css].
-[css]: /static/site/expert-rating-css2-1.pdf "PDF of my test results for CSS2.1."
-[expert]: http://www.expertrating.com/employers/employers.html "ExpertRating.com page for employers."
+[^coderetreat]: [Code Retreat][coderetreat] is a day-long coding practice even focusing on fundamentals.
+[coderetreat]: http://coderetreat.org/ "honing the craft together"
+[^pair]: In response to Avdi Grimm's call at Ancient City Ruby for more pair programming experiences, I've put out a remote pair programming welcome mat. For more information, see [my pairing page][pair] and [pairprogramwith.me][ppwm].
+[pair]: http://version2beta.com/pair/ "My page on pair programming."
+[ppwm]: http://www.pairprogramwith.me/ "Pair widely. Pair often."
 [^modx]: [MODX][] is a PHP-based content management system, originally a fork of Etomite but now a powerful and broadly useful development framework that also provides a user-friendly content manager. MODX was my CMS of choice from 2007 to 2010.
 [modx]: http://modx.com "MODX content management framework"
+[^drupal]: [Drupal][drupal] is an widely-used, open-source PHP framework and content management system.
+[drupal]: http://drupal.org/ "Come for the software, stay for the community."
 [^django]: [Django][] is an open-source MVC web application framework written in Python with powerful ORM ("object-relational mapper", a way to store programming objects in a database). It's designed for creating complex, database-driven websites efficiently. In fact, their motto is "The web framework for perfectionists with deadlines." I think they know something about deadlines, since Django comes from the news industry. The World Company originally developed it, but it's also used by the [New York Times][nyt], [Washington Post][wp], the [Guardian][], and hundreds of other newspapers. It's also used by [Disqus][], which powers the comments on my blog as well as nearly a million other websites and serves nearly a billion visitors a month.
 [django]: http://www.djangoproject.com "Django makes it easier to build web applications quickly and with less code."
 [nyt]: http://www.nytimes.com/ "The New York Times"
@@ -114,6 +114,8 @@ an experimental electric car battery system) or product management for industria
 [hyde]: https://github.com/lakshmivyas/hyde "Hyde static site generator using Django"
 [^flask]: [Flask is a Python-based web application micro-framework][flask], which means it's infrastructure and tools for building small and medium web applications. I use Flask as often as I can, including as the platform that generates this website.
 [flask]: http://flask.pocoo.org/ "Python microframework based on Werkzeug, Jinja 2 and good intentions"
+[^tornado]: [Tornado][tornado] is an asynchronous web server written in Python and designed for high performance applications.
+[tornado]: http://www.tornadoweb.org/en/stable/ "Scalable, non-blocking web server and web application framework."
 [^openbsd]: [OpenBSD][] is considered by many (including me) to be the most secure operating system available to the public. There are stories here. Suffice to say that OpenBSD founder Theo de Raadt is one of my heroes.
 [openbsd]: http://www.openbsd.org "OpenBSD operating system"
 [^pf]: [pf][] is the nuts and bolts of a secure firewall. Written by Daniel Hartmeier and maintained now by the entire OpenBSD team, it is the most powerful tool I've used for building custom firewalls. Up until I began using pfSense last year, every firewall I built was custom, based on OpenBSD and pf.
@@ -136,6 +138,10 @@ an experimental electric car battery system) or product management for industria
 [linode]: http://www.linode.com "Linode is Linux Node"
 [^rackspace]: I ended up getting a lot of experience with [Rackspace and RackspaceCloud][rackspace], concurrently managing over 70 real and virtual private servers using a platform I wrote using [Fabric][fabric] and [CouchDB][couchdb].
 [rackspace]: http://www.rackspace.com/cloud/cloud_hosting_products/ "Rackspace Cloud hosting products."
+[^storm]: Liquid Web's [Storm on Deman][storm] provides high-performance virtual private servers.
+[storm]: https://www.stormondemand.com/ "On-demand hosting infrastructure"
+[^ocean]: [Digital Ocean][ocean] offers $5 per month single-CPU virtual private servers with solid state disk drives and a very simple API.
+[ocean]: https://www.digitalocean.com/ "Simple Cloud Hosting"
 [couchdb]: http://couchdb.apache.org/ "A JSON, Javascript, and HTTP database. Relax."
 [^vagrant]: [Vagrant provides virtual machines automatically][vagrant]. These are useful for standing up development and QA environments.
 [vagrant]: http://vagrantup.com "Development environments made easy."
@@ -154,6 +160,11 @@ an experimental electric car battery system) or product management for industria
 [zibrato]: https://github.com/Version2beta/zibrato "Log metrics to Librato using zeromq."
 [^newrelic]: [New Relic][newrelic] hooks into your app to show you what's going on.
 [newrelic]: http://newrelic.com/ "Application monitoring."
+[^zibrato]: [Zibrato][zibrato] provides Python decorators and context managers for timing and counting. Metrics are immediately handed over to a [ZeroMQ][zeromq] queue manager where various backend workers filter data packages and forward them to an appropriate back end such as [Librato][librato].
+[zibrato]: https://github.com/Version2beta/zibrato "Zibrato project on Github"
+[zeromq]: http://www.zeromq.org/ "ZeroMQ is a socket library ideal for building queues."
+[^pysamlsp]: [Pysamlsp][pysamlsp] is a Python library for SAML2.0 single sign on implementation.
+[pysamlsp]: https://github.com/PlaidCloud/pysamlsp "Pysamlsp on Github"
 [^openerp]: [OpenERP.com][openerp]. I consult on existing and planned OpenERP deployments.
 [openerp]: http://www.openerp.com "OpenERP SA"
 [^tryton]: I list Tryton as an ERP package, and believe that it is. However, it's also a business application development platform. See [Tryton.org][tryton] for more information about this community-driven open-source ERP package. Also, I've written several articles on this site about the software.
