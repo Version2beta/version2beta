@@ -95,14 +95,19 @@ Please see my [page on speaking][speaking] for slides, transcripts, video, and a
 [rob@version2beta.com]: mailto:rob@version2beta.com "Click to open a new email message to Rob"
 [@version2beta]: http://www.twitter.com/version2beta "version2beta on Twitter"
 
-[^coderetreat]: [Code Retreat][coderetreat] is a day-long coding practice even focusing on fundamentals.
+[^coderetreat]: [Code Retreat][coderetreat] is a day-long coding practice event focusing on fundamentals.
 [coderetreat]: http://coderetreat.org/ "honing the craft together"
 [^pair]: In response to Avdi Grimm's call at Ancient City Ruby for more pair programming experiences, I've put out a remote pair programming welcome mat. For more information, see [my pairing page][pair] and [pairprogramwith.me][ppwm].
 [pair]: http://version2beta.com/pair/ "My page on pair programming."
 [ppwm]: http://www.pairprogramwith.me/ "Pair widely. Pair often."
+[^zibrato]: [Zibrato][zibrato] provides Python decorators and context managers for timing and counting. Metrics are immediately handed over to a [ZeroMQ][zeromq] queue manager where various backend workers filter data and forward metrics to an appropriate back end such as [Librato][librato].
+[zibrato]: https://github.com/Version2beta/zibrato "Zibrato project on Github"
+[zeromq]: http://www.zeromq.org/ "ZeroMQ is a socket library ideal for building queues."
+[^pysamlsp]: [Pysamlsp][pysamlsp] is a Python library for SAML2.0 single sign on implementation.
+[pysamlsp]: https://github.com/PlaidCloud/pysamlsp "Pysamlsp on Github"
 [^modx]: [MODX][] is a PHP-based content management system, originally a fork of Etomite but now a powerful and broadly useful development framework that also provides a user-friendly content manager. MODX was my CMS of choice from 2007 to 2010.
 [modx]: http://modx.com "MODX content management framework"
-[^drupal]: [Drupal][drupal] is an widely-used, open-source PHP framework and content management system.
+[^drupal]: [Drupal][drupal] is an widely-used open-source PHP framework and content management system.
 [drupal]: http://drupal.org/ "Come for the software, stay for the community."
 [^django]: [Django][] is an open-source MVC web application framework written in Python with powerful ORM ("object-relational mapper", a way to store programming objects in a database). It's designed for creating complex, database-driven websites efficiently. In fact, their motto is "The web framework for perfectionists with deadlines." I think they know something about deadlines, since Django comes from the news industry. The World Company originally developed it, but it's also used by the [New York Times][nyt], [Washington Post][wp], the [Guardian][], and hundreds of other newspapers. It's also used by [Disqus][], which powers the comments on my blog as well as nearly a million other websites and serves nearly a billion visitors a month.
 [django]: http://www.djangoproject.com "Django makes it easier to build web applications quickly and with less code."
@@ -134,7 +139,7 @@ Please see my [page on speaking][speaking] for slides, transcripts, video, and a
 [iscsi]: http://en.wikipedia.org/wiki/ISCSI "Wikipedia article on iSCSI"
 [^aws]: [Amazon Web Services][aws] arguably offer the broadest, most scalable virtual hosting product line in the market. I've used more distinct AWS products one one project than most VPS companies offer in total.
 [aws]: http://aws.amazon.com "Amazon Web Services"
-[^linode]: We have had virtual private servers at [Linode][] since 2008, which is not very long when you consider they started in 2003 &mdash; 3 years before Amazon and others came to the market. I've been uniformly satisfied with the performance of our equipment, and have written several how-to's about hosting at Linode, especially regarding high-availability services. One of the things I particularly enjoy about Linode is that they now have 6 datacenters, 4 in the US, 1 in London, and 1 in Tokyo. Each datacenter also hosts DNS, so when I hosted there, my hosting business is now represented internationally. Maybe some day I'll have to come up with a reason to get whole servers in the London or Tokyo data center.
+[^linode]: We have had virtual private servers at [Linode][] since 2008, which is not very long when you consider they started in 2003 &mdash; 3 years before Amazon and others came to the market. I've been uniformly satisfied with the performance of our equipment, and have written several how-to's about hosting at Linode, especially regarding high-availability services. One of the things I particularly enjoy about Linode is that they now have 6 datacenters, 4 in the US, 1 in London, and 1 in Tokyo. Each datacenter also hosts DNS, so when I hosted there, my hosting business was international. Maybe some day I'll have to come up with a reason to get a whole server in the London or Tokyo data center.
 [linode]: http://www.linode.com "Linode is Linux Node"
 [^rackspace]: I ended up getting a lot of experience with [Rackspace and RackspaceCloud][rackspace], concurrently managing over 70 real and virtual private servers using a platform I wrote using [Fabric][fabric] and [CouchDB][couchdb].
 [rackspace]: http://www.rackspace.com/cloud/cloud_hosting_products/ "Rackspace Cloud hosting products."
@@ -157,14 +162,8 @@ Please see my [page on speaking][speaking] for slides, transcripts, video, and a
 [loggly]: http://loggly.com/ "Simplified log management."
 [^librato]: [Librato][librato] organizes metrics. I even wrote a [Python library called Zibrato][zibrato] that uses their platform.
 [librato]: https://metrics.librato.com/ "Measure everything."
-[zibrato]: https://github.com/Version2beta/zibrato "Log metrics to Librato using zeromq."
 [^newrelic]: [New Relic][newrelic] hooks into your app to show you what's going on.
 [newrelic]: http://newrelic.com/ "Application monitoring."
-[^zibrato]: [Zibrato][zibrato] provides Python decorators and context managers for timing and counting. Metrics are immediately handed over to a [ZeroMQ][zeromq] queue manager where various backend workers filter data packages and forward them to an appropriate back end such as [Librato][librato].
-[zibrato]: https://github.com/Version2beta/zibrato "Zibrato project on Github"
-[zeromq]: http://www.zeromq.org/ "ZeroMQ is a socket library ideal for building queues."
-[^pysamlsp]: [Pysamlsp][pysamlsp] is a Python library for SAML2.0 single sign on implementation.
-[pysamlsp]: https://github.com/PlaidCloud/pysamlsp "Pysamlsp on Github"
 [^openerp]: [OpenERP.com][openerp]. I consult on existing and planned OpenERP deployments.
 [openerp]: http://www.openerp.com "OpenERP SA"
 [^tryton]: I list Tryton as an ERP package, and believe that it is. However, it's also a business application development platform. See [Tryton.org][tryton] for more information about this community-driven open-source ERP package. Also, I've written several articles on this site about the software.
