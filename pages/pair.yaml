@@ -14,7 +14,15 @@ Thank you for the encouragement, Avdi!
 
 ## Pair-and-tell
 
-2013-04-10 Remote paired with [@StephenBallNC](https://twitter.com/StephenBallNC) over our lunch hours. Worked on a Words With Friends cheater script and explored Ruby's Array intersection abilities.
+**2013-04-10 with [@PhoenixToFlame](https://twitter.com/PhoenixToFlame)**
+
+Miranda is my 19 year old daughter, and I'd given her an exercise to figure out an algorithm for making a Words With Friends cheater program. She did, and that's what I'd worked from with earlier in the day so I would be ready to code with her. (I'm not a very experienced Ruby programmer yet and didn't want my inexperience to muddle her learning Ruby.) So after I learned how to write it, she and I started from scratch and did it together. Our version is on her new Github account at [https://github.com/mirandahandley/Tautological-Words](https://github.com/mirandahandley/Tautological-Words).
+
+_Venue: Workstation in my home office, shared keyboard. Arch Linux, OpenBox, tmux, vim, chruby, Ruby 2.0.0, rspec. Also wrote a Python 2.7.3 version of the same program with nosetests using expecter: [https://github.com/Version2beta/py-wwfcheater](https://github.com/Version2beta/py-wwfcheater)._
+
+**2013-04-10 with [@StephenBallNC](https://twitter.com/StephenBallNC)**
+
+Stephen and I paired over our lunch hours in Eastern and Central time. We worked on a Words With Friends cheater script and explored Ruby's Array intersection abilities. I suggested this project because I'm not strong with Ruby yet, and it's the project I would do later that day with my daughter, so I wanted to be prepared. Plus, I got to do some light functional programming in Ruby. The project Stephen and I worked together on is at [https://github.com/Version2beta/wwfcheater](https://github.com/Version2beta/wwfcheater).
 
 _Venue: Google Hangout, my EC2 t1.micro instance, Ubuntu, tmux, vim, chruby, Ruby 2.0.0, rspec._
 
