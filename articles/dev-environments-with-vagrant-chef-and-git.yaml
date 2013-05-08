@@ -7,8 +7,11 @@ On February 12, 2013 I had the pleasure to discuss using Vagrant, Chef Solo, and
 
 My slides ran on [Reveal.js][reveal] and are available [here][slides]. Because I write my presentations long-hand before I give them, I can post something very close to a transcript of it below.
 
+Update 2013-05-08: Tonight I'm presenting this same talk for the [Fox Cities PHP Users' Group][fox]. I chose to update this post with the latest version of my slides and presentation. It feels a bit revisionist, but I did it anyway.
+
 [reveal]: http://lab.hakim.se/reveal-js/ "Reveal is a javascript presentation package"
 [slides]: /static/examples/vagrant-chef-git.html "Slide deck for my Vagrant, Chef, and Git presentation"
+[fox]: http://www.meetup.com/fox-cities-php/ "Fox Cities PHP"
 
 -----
 
@@ -18,25 +21,21 @@ Hi. I'm version2beta. That's version, the number two, beta. I'm version2beta on 
 
 In meat space, some people call me Rob. There are also some short people who call me Dad.
 
-Since we're talking about Vagrant, I decided to dress like a vagrant. I even have a hole in my armpit. But then again, I dress like this every day.
+Since we're talking about Vagrant, I decided to dress like a vagrant. I even have a hole in my armpit. Since the last time I gave this presentation, I've developed a hole in my other armpit too.
 
 ![Slide: Julia Childs cooking](/static/examples/vagrant-chef-git/slide2.png)
 
 We're talking about Chef tonight, so I'm going to run this like a cooking show. We'll start by putting the casserole in the oven.
 
-That's how it works, right? The TV chef makes up the entire dish in advance and tosses it in the oven so it can come out at just the right time, usually about 30 seconds after he or she puts another dish in the oven. You know, the one they just prepared live right in front of you.
+That's how it works, right? The TV chef makes up the entire dish in advance and tosses it in the oven just before the cameras start rolling. Then, live in front of a studio audience - that's you - they make the dish from scratch. And they put it in the oven. And then they pull the other one, the one they've had cooking all along, out of the other oven.
 
-Preparing live right in front of you sounds a little scary, so instead, we'll just toss this one in the oven and let it bake, while we just talk some about the ingredients.
+That's what we're going to do. Preparing this dish live right in front of you sounds a little scary, so instead, we'll just toss this one in the oven and let it bake, while we just talk some about the ingredients.
 
-I think this is actually going to work out pretty well, because I actually made a whole bunch of these casseroles in advance and stuck them up at Github. All you have to do is grab one and throw it in the microwave for about six minutes.
+I think this is actually going to work out pretty well, because I actually made a whole bunch of these casseroles in advance and stuck them up at Github. All you have to do is grab one and throw it in the microwave for about six minutes. The first step is to grab a frozen casserole from Github. There's the link if you want to follow along real-time, we're going to go slow enough. But no worries, it'll be up again.
 
-So the first step is to grab a frozen casserole from Github. There's the link if you want to follow along real-time, we're going to go slow enough. But no worries, it'll be up again.
+Actually the zeroeth step is to install VirtualBox and Vagrant if you haven't already. That's the other link, Vagrant Up Dot Com. We don't cover installing these two programs because it's easy and they cover it just fine on the website. If you want to install them right now, that's fine. You'll have plenty of time. I haven't even told you about my grandfather yet.
 
-Actually the zeroeth step is to install Vagrant if you haven't already. That's the other link, Vagrant Up Dot Com. We don't cover installing Vagrant because it's easy and they cover it just fine on the website.
-
-If you want to install Vagrant as we go, that's fine. You'll have plenty of time in about two minutes when I start telling you about my grandfather.
-
-Okay so real quick, I'm going to git clone this repository -
+But first, I'm going to git clone this repository -
 
 [Shell: git clone git@github.com:Version2beta/vagrant-chef-wordpress.git]
 
@@ -44,7 +43,7 @@ and then change directories into the repository -
 
 [Shell: cd vagrant-chef-wordpress]
 
-and then run vagrant up. I love that. Vagrant Up. I always wanna say Vagrant up, muthafucka, Vagrant up. I don't know why.
+and then run vagrant up. I love that. Vagrant Up. I always wanna say Vagrant up, muthafucka, Vagrant up. I don't know why. Or when I'm in a family friendly venue, I just say Vagrant up, yo.
 
 [Shell: vagrant up]
 
@@ -54,7 +53,7 @@ That'll be done cooking in about 6 minutes. We'll come back to it.
 
 Okay, I'm Version2beta. I know a lot of people start off their presentations with the "Why should you listen to me anyway?" slide. "I'm blah blah blah and I blah blah blah so you can blah blah blah."
 
-Unlike some people around here, I haven't written any books, or keynoted any conferences. So I decided to tell you about my grandfather instead. And then maybe about my mom.
+I haven't written any books, or keynoted any conferences. I have a few cool open source repositories and a small Twitter following. So instead of bragging about the little things, I decided to tell you about my grandfather instead. And my mom, too.
 
 ![Slide: "Charles Miles Brindley. Screwup. Geek. My grandpa."](/static/examples/vagrant-chef-git/slide3.png)
 
@@ -74,7 +73,7 @@ Hey this is cool. I recently discovered that Grandpa wrote a book in 1951 called
 
 In comparison, my Uncle Bill was a slacker. In four years of college all he managed was a bachelors and a masters in chemical engineering. But look at this. At the beginning of college Grandpa and Grandma had only one child, my mother. At the end of the four years, they still only had one child. When Grandpa and Bill started at the university, Bill and June didn't have any kids. Four years later they had four kids. So Bill was maybe more productive during his college years than my grandfather was.
 
-Uncle Bill went on to become a senior engineer on the team that invented PVC. And later he died of cancer. I think there's a connection.
+Uncle Bill went on to become a senior engineer on the team that invented PVC. And later he died of cancer. I could be wrong, but I've always suspected a connection.
 
 The story about my grandfather doesn't really have anything to do with our topic for tonight, I just like telling it. But I do have a story that can tie it together. On Valentines Day in 1946, the Moore School of Electrical Engineering at the University of Pennsylvania announced they had built the first general purpose electronic computer. You've probably heard of it. It was called Eniac. Eniac was Turing complete, back in the days when Alan Turing himself was still Turing complete. Eniac was capable of solving a wide variety of problems, all of which had to do with the firing of artillery.
 
@@ -82,13 +81,9 @@ The story about my grandfather doesn't really have anything to do with our topic
 
 Around this same time, Grandpa had a habit of hanging around the Moore School, and my mother had a habit of hanging around him.
 
-I know when we were kids we had a lot more freedom than kids today. When I was in elementary school, I ran the streets ‘til dusk, rode my bike wherever I wanted, hung out with friends, and only sometimes got in trouble for it.
+I know when I was a kid, I had a lot more freedom than kids have today. When I was in elementary school, I ran the streets &rsquo;til dusk, rode my bike wherever I wanted, hung out with friends, and only sometimes got in trouble for it.
 
-My mother apparently had a little more freedom. When she was in elementary school, she was allowed to hang around with college boys and play tic tac toe against the world's first electronic computer.
-
-In fact my mom beat the computer at tic tac toe. Her story is that Grandpa accused her of lying and said no one could beat the computer at tic tac toe. Grandpa denied everything.
-
-So I guess this is my "Why should you listen to me, anyway" story. I hope you liked it.
+My mother apparently had a little more freedom. When she was in elementary school, she was allowed to hang around with college boys and play tic tac toe against the world's first electronic computer. In fact my mom beat the computer at tic tac toe. At least, that's her story. She also says that Grandpa accused her of lying and said no one could beat the computer at tic tac toe. When I asked him about it, Grandpa denied ever doubting her.
 
 -----
 
@@ -104,15 +99,15 @@ Don't tell anyone but back then, I was running IIS on Windows NT 4.0 Server.
 
 ![Slide: Windows NT 4.0 Server. A very complicated development environment. Not too terribly hard to virtualize. Pretty good at Tic Tac Toe.](/static/examples/vagrant-chef-git/slide6.png)
 
-For like the first six months. I hosted my own Windows web server in my office at home, connected to the ‘Net with two 56K modems. Shotgun.
+For like the first six months. I hosted my own Windows web server in my office at home, connected to the internets with two 56K modems. Shotgun.
 
-This was my first Internet dev environment. It was also my first Internet production environment. I broke it a lot. Soon, I replaced IIS with Apache, and Windows with Red Hat and then NetBSD and then FreeBSD.
+This was my first internet dev environment. It was also my first internet production environment. I broke it a lot. Soon, I replaced IIS with Apache, and Windows with Red Hat and then NetBSD and then FreeBSD.
 
 These were exciting times. I got a lot of experience.
 
 ![Slide: Person photo. Experience is what you get when you don't get what you want.](/static/examples/vagrant-chef-git/slide7.png)
 
-These were the days when just being there on the ‘Net would get you visitors. Having one modest web site was enough to keep the average hobbyist busy. Plus my website had naked people on it.
+These were the days when just being there on the &rsquo;net would get you visitors. Having one modest web site was enough to keep the average hobbyist busy. Plus my website had naked people on it.
 
 -----
 
@@ -142,7 +137,7 @@ Okay now keep your hands up if you're also versioning your database?
 
 ![Slide: Ommani's multiple versions with symlink htdocs](/static/examples/vagrant-chef-git/slide9.png)
 
-For about five years almost all of my web work was done in an application framework and content management system called MODX. It's pretty cool, works okay.
+For about five years most of my web work was done in an application framework and content management system called MODX. It's pretty cool, works okay.
 
 Here is a site that is running on MODX now. Over the past four years, it has gone through three different major rewrites. The first one I saw was static. I didn't build it, that's what I inherited. That's version 1.0.
 
@@ -164,15 +159,15 @@ And you don't need very many versions, or branches, on the code.
 
 And you always have internet access.
 
-And when you don't have to worry about dependency hell. You know, when one version of the site needs one version of a package, but the development version needs a newer version. That's why God made virtualenv. And rvm. And rbenv.
+And when you don't have to worry about dependency hell. You know, when one version of the site needs one version of a package, but the development version needs a newer version. That's why god made virtualenv. And rvm. And rbenv. And chruby. And so on.
 
-This way of doing it also works really well when you want your development site to use the production site's database. Which of course you never do.
+This way of doing it also works really well when you want your development site to use the production site's database. Which of course you never do. Especially not by accident. There are some stories there.
 
 So yeah, this was the state of the art for me a couple of years ago. It's not like git and mercurial and svn and everything else weren't available, I just wasn't using them.
 
 -----
 
-I work now for a company called Tartan Solutions and they make a platform for running programs that do profit and cost management stuff for big companies. For instance, one of the programs will calculate how much every product in a product line will cost next year given current forecasts if you took these three little parts that are used in a bunch of different products and combined them into two parts and got them from a different provider? Say in China.
+I work now for a company called Tartan Solutions and they make a platform for running programs that do profit and cost management stuff for big companies. For instance, one of the programs will calculate how much every product in a product line will cost for the next year given current sales forecasts. Even if you took these three little parts that are used in a bunch of different products and combined them into two parts and got them from a different provider, say in China.
 
 When I was interviewing for my job, I hit on a real winner for selling myself. I said, "My problems are not big enough."
 
@@ -222,19 +217,23 @@ Pretty slick. Let's look at it more closely.
 
 Discuss:
 
-Vagrant and Chef are Ruby. Ruby is optimized for programmer happiness. Really, when Yukihiro Matsumoto created it, he made programmer happiness a primary goal. If there's one thing that Ruby has taught me, it's this: when you're a happy Ruby programmer, you stop needing to buy cheap booze for medicinal purposes, and start buying expensive single malt scotches instead.
+Vagrant and Chef are Ruby. Ruby is optimized for programmer happiness. Really, when Yukihiro Matsumoto created it, he made programmer happiness a primary goal. Here's one think I've learned from observing the Ruby community: You know you're a Ruby programmer when you stop buying cheap booze for medicinal purposes and start buying expensive whiskeys instead.
 
-Chef is a DSL. That's a domain specific language, which is kind of a fancy way of saying we can make our own commands in the language of our problem domain. In this case, managing servers.
+Chef is a DSL, a domain specific language, which is a way of saying we can make our own commands in the language of our problem domain. In this case, managing servers.
 
-This Vagrantfile specifies Ubuntu 12.04 from vagrantup.com. Vagrantup.com doesn't offer very many choices for boxes, but there are lots more at vagrantbox.es, plus you can make your own.
+Does anyone here read TheChangelog, or listen to the podcast? Vagrant was created mostly by Mitchell Hashimoto, and yesterday they recorded a podcast with him as the guest. It was his second appearance on the show. I got to listen to it live, and I asked Mitchell several questions, including whether there was anything he wanted me to tell you tonight. There wasn't.
+
+Vagrant recently came out with version 2. Not really, but that's what the part that says "configure('2')" means. It is version 2 of the configuration, even if Mitchell is building up to Vagrant version 2 slowly, starting with versions 1.1 and 1.2.
+
+This Vagrantfile specifies Ubuntu 12.04 from vagrantup.com. Vagrantup.com doesn't offer very many choices for boxes, but there are other sources too, and it's easy to make your own.
 
 We're forwarding port 8000 to port 80 on the Vagrant guest. This is happening on all addresses for the host computer, so you can access the guest's web server from any host on the local network.
 
 We share a folder between the host and the guest operating system. This makes it convenient for passing files in.
 
-Outside of chef.vm.provision is all VirtualBox magicness.
+Outside of config.vm.provision is all VirtualBox magicness.
 
-Inside of chef.vm.provision is the Chef magicness.
+Inside of config.vm.provision is the Chef magicness.
 
 This is Chef Solo. We don't have a Chef server. We're not using hosted Chef. We don't have a persistent store of each Vagrant boxes' configuration. This is kindergarten-level Chef.
 
@@ -260,15 +259,13 @@ That's what the configuration cookbook is for. It puts the curry on the rice. Yu
 
 Just real quick, under a Vagrant project you're gonna have a few folders. Cookbooks live in the cookbook folder. Both library cookbooks and configuration cookbooks, all mixed up together.
 
-Anyone here like Korean food? There's a Korean dish called Bi Bim Bap. It's a great name. Not only does it sound cool, but it exactly describes the dish. Bap means rice. Bim is vegetable. Bi is ‘all mixed up'.
+Anyone here like Korean food? There's a Korean dish called Bi Bim Bap. It's a great name. Not only does it sound cool, but it exactly describes the dish. Bap means rice. Bim is vegetable. Bi is 'all mixed up'.
 
-Files that contain data about the system as a whole like to hang out in ‘databags' folder.
+Files that contain data about the system as a whole like to hang out in 'databags' folder.
 
 ![Slide: databag json](/static/examples/vagrant-chef-git/slide14.png)
 
-What's a databag? It's just a collect of JSON files that you can use to store information that one or more of your recipes might need.
-
-We reference these values inside our recipes. Like this information includes a public and a private SSH key that my github account knows about. That way I can work my git repository from the Vagrant box.
+A databag is just a collect of JSON files that you can use to store information that one or more of your recipes might need. We can reference these values inside our recipes. Like this information includes a public and a private SSH key that my github account knows about. That way I can work my git repository from the Vagrant box. I don't actually do it this way anymore though, because private keys are a pain to put into JSON, so I just do it manually. If you use one of my dev environments, you'll have some choices of how to get connected to Github. Ask me about that later if you want to know.
 
 ![Slide: Chef cookbook structure from vagrant-chef-wordpress](/static/examples/vagrant-chef-git/slide15.png)
 
@@ -324,7 +321,7 @@ We connected to a brand-spanking-new Wordpress.
 
 Clone my repository and use it if it helps. If you improve it, please remember to send me a pull request.
 
-I made another repository that's similar to this one, but it runs Vagrant, Chef, and Composer. It's a decent starting point for a Composer project.
+I made a couple more repositories that are similar to this one, but run Vagrant, Chef, and Composer. One of them is a nearly-empty Composer project, and the other one installs Drupal7.
 
 [Shell: vagrant halt vagrant-chef-wordpress]
 
@@ -348,7 +345,7 @@ Since I was working with Python, I went looking for a Python version of Jekyll. 
 
 Hyde was cool, but the dev environment you needed for it was a bit heavy for me. In fact, I broke my dev environment almost year ago, and never quite found the energy to go fix it. So I stopped blogging from May of 2012 until the end of January of 2013.
 
-Last month I decided I needed to fix my blog. I almost used Jekyll, which would have made sense since I've been learning me some Ruby here and there.
+In January I decided I needed to fix my blog. I almost used Jekyll, which would have made sense since I've been learning me some Ruby here and there.
 
 Apparently I still must be inspired by Larry Wall, the creator of the Perl programming language. He says the three characteristics of a good programmer are laziness, impatience, and hubris.
 
@@ -388,21 +385,17 @@ Then the last step tells Chef to go to Github, as me, and clone or pull my blog 
 
 My workflow is really easy then.
 
-I create or edit my content.
-
-[Shell: @mkepug was here post]
-
-I commit my changes and push to Github.
-
-[Shell: git add and git commit and git push]
-
 I run a simple command to launch my dev server.
 
 [Shell: python sitebuilder.py]
 
+I create or edit my content.
+
 I check it out in a browser.
 
 [Browser: http://localhost:8000]
+
+I commit my changes and push to Github.
 
 I like it so I launch it.
 
@@ -410,18 +403,23 @@ I like it so I launch it.
 
 I think that's pretty damn easy to use. I'm happy with it.
 
-I've been building a development environment for our developers at my day job too. It involves multiple virtual machines, many more library cookbooks, four configuration cookbooks, at least a dozen Github repositories, dozens of Python packages, preloading over a gigabyte of data into the database - and that's just the development database.
+I've been building a development environment for our developers at my day job too. It involves multiple virtual machines, many more library cookbooks, four configuration cookbooks, at least a dozen Github repositories, dozens of Python packages, preloading over a gigabyte of data into the database, and it's all written to work with Vagrant, or a virtual private server, or bare metal - whatever you choose.
 
 I'm happy to say it works, even scaled out, comparatively.
 
-I want to thank you for listening. As always, my presentations come with a 100% money back guarantee plus tech support that is "Free as in beer". That means you buy me a beer and I give you tech support.
-
 ![Slide: twitter, github contact info, "Free as in beer" tech support](/static/examples/vagrant-chef-git/slide17.png)
 
-Just a reminder, there are three repositories related to this on my Github account.
+Let's wrap it up. There are four repositories on my Github account showing off how you can make dev environments with Vagrant and Chef. Three of them are set up so that you can just clone them and go.
 
-The first one is called vagrant-chef-wordpress, and if you clone it, you can go straight from vagrant up to picking your wordpress name. Clone it, star it, use it, make it better, send me pull requests. Did I mention you should star it?
+The first one is called vagrant-chef-wordpress, and if you clone it, you can go straight from vagrant up to picking your wordpress name. Clone it, star it, use it, make it better, send me pull requests.
 
-The second one is called vagrant-chef-composer, and it gets you in a LAMP environment with composer and a starter composer.json file. Clone it, star it, use it, make it better, send me pull requests. Did I mention you should star it?
+The second one is called vagrant-chef-composer, and it gets you in a LAMP environment with composer and a starter composer.json file. Clone it, star it, use it, make it better, send me pull requests.
 
-The third one is called vagrant-chef-flask, and it's my blog development environment. I recommend against working with it right now. It's really a single purpose kind of thing. I may be inspired to release it as a super-simple Python-based static site generator for blogging sometime in the near future. Watch that space.
+The third one is called vagrant-chef-drupal7, and it gets you the same composer environment, but this one is ready to run Drupal. Clone it, star it, use it, make it better, send me pull requests.
+
+I really like stars, by the way. I hope to get more of them.
+
+The fourth one is called vagrant-chef-flask, and it's my blog development environment. I recommend against working with it right now. It's really a single purpose kind of thing. My daughter Miranda and I are working on making it into a general purpose static site generator called Kobol. It's in Python, not PHP, but maybe you'll have both her and I back to talk about it sometime.
+
+I want to thank you for listening. As always, my presentations come with a 100% money back guarantee plus tech support that is "Free as in beer". That means you buy me a beer and I give you tech support.
+

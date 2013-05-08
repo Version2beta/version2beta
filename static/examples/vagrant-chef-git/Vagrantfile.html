@@ -1,21 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/Development/vagrant-chef-wordpress/Vagrantfile.html</title>
+<meta name="Generator" content="Vim/7.3">
+<meta name="plugin-version" content="vim7.3_v10">
+<meta name="syntax" content="ruby">
+<meta name="settings" content="number_lines,use_css,pre_wrap,expand_tabs">
 <style type="text/css">
 <!--
 pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 .lnr { color: #ffff00; }
-.Constant { color: #ff6060; }
-.Special { color: #ff40ff; }
 .Identifier { color: #00ffff; }
 .Statement { color: #ffff00; }
+.Constant { color: #ff6060; }
+.Special { color: #ff40ff; }
 .Type { color: #00ff00; }
 .Comment { color: #8080ff; }
 -->
 </style>
+</head>
+<body>
 <pre>
 <span class="lnr"> 1 </span><span class="Comment"># -*- mode: ruby -*-</span>
 <span class="lnr"> 2 </span><span class="Comment"># vi&#0058; set ft=ruby :</span>
 <span class="lnr"> 3 </span>
-<span class="lnr"> 4 </span><span class="Type">Vagrant</span>::<span class="Type">Config</span>.run <span class="Statement">do</span> |<span class="Identifier">config</span>|
+<span class="lnr"> 4 </span><span class="Type">Vagrant</span>.configure(<span class="Special">&quot;</span><span class="Constant">2</span><span class="Special">&quot;</span>) <span class="Statement">do</span> |<span class="Identifier">config</span>|
 <span class="lnr"> 5 </span>  config.vm.box = <span class="Special">&quot;</span><span class="Constant">precise64</span><span class="Special">&quot;</span>
 <span class="lnr"> 6 </span>  config.vm.box_url = <span class="Special">&quot;</span><span class="Constant"><a href="http://files.vagrantup.com/precise64.box">http://files.vagrantup.com/precise64.box</a></span><span class="Special">&quot;</span>
 <span class="lnr"> 7 </span>
@@ -23,24 +34,25 @@ body { font-family: monospace; color: #000000; background-color: #ffffff; }
 <span class="lnr"> 9 </span>  <span class="Comment"># config.vm.boot_mode = :gui</span>
 <span class="lnr">10 </span>
 <span class="lnr">11 </span>  <span class="Comment"># Port 8000 on the host will go to port 80 on the Vagrant box</span>
-<span class="lnr">12 </span>  config.vm.forward_port <span class="Constant">80</span>, <span class="Constant">8000</span>, { <span class="Constant">:auto</span> =&gt; <span class="Constant">true</span> }
+<span class="lnr">12 </span>  config.vm.network <span class="Constant">:forwarded_port</span>, <span class="Constant">guest</span>: <span class="Constant">80</span>, <span class="Constant">host</span>: <span class="Constant">8000</span>, <span class="Constant">auto_correct</span>: <span class="Constant">true</span>
 <span class="lnr">13 </span>
 <span class="lnr">14 </span>  <span class="Comment"># Here's a folder for passing stuff back and forth</span>
-<span class="lnr">15 </span>  config.vm.share_folder <span class="Special">&quot;</span><span class="Constant">v-data</span><span class="Special">&quot;</span>, <span class="Special">&quot;</span><span class="Constant">/home/vagrant/host_shared</span><span class="Special">&quot;</span>, <span class="Special">&quot;</span><span class="Constant">./shared</span><span class="Special">&quot;</span>
+<span class="lnr">15 </span>  config.vm.synced_folder <span class="Special">&quot;</span><span class="Constant">./shared</span><span class="Special">&quot;</span>, <span class="Special">&quot;</span><span class="Constant">/home/vagrant/host_shared</span><span class="Special">&quot;</span>
 <span class="lnr">16 </span>
 <span class="lnr">17 </span>  config.vm.provision <span class="Constant">:chef_solo</span> <span class="Statement">do</span> |<span class="Identifier">chef</span>|
 <span class="lnr">18 </span>    chef.json = {
 <span class="lnr">19 </span>      <span class="Constant">:mysql</span> =&gt; {
-<span class="lnr">20 </span>        <span class="Constant">:server_root_password</span>   =&gt; <span class="Special">&quot;</span><span class="Constant">open sesame ha ha ha</span><span class="Special">&quot;</span>,
-<span class="lnr">21 </span>        <span class="Constant">:server_repl_password</span>   =&gt; <span class="Special">&quot;</span><span class="Constant">open sesame ha ha ha</span><span class="Special">&quot;</span>,
-<span class="lnr">22 </span>        <span class="Constant">:server_debian_password</span> =&gt; <span class="Special">&quot;</span><span class="Constant">open sesame ha ha ha</span><span class="Special">&quot;</span>
+<span class="lnr">20 </span>        <span class="Constant">:server_root_password</span>   =&gt; <span class="Special">&quot;</span><span class="Constant">six pasta obsessed wreck</span><span class="Special">&quot;</span>,
+<span class="lnr">21 </span>        <span class="Constant">:server_repl_password</span>   =&gt; <span class="Special">&quot;</span><span class="Constant">six pasta obsessed wreck</span><span class="Special">&quot;</span>,
+<span class="lnr">22 </span>        <span class="Constant">:server_debian_password</span> =&gt; <span class="Special">&quot;</span><span class="Constant">six pasta obsessed wreck</span><span class="Special">&quot;</span>
 <span class="lnr">23 </span>      }
 <span class="lnr">24 </span>    }
 <span class="lnr">25 </span>    chef.cookbooks_path = <span class="Special">&quot;</span><span class="Constant">cookbooks</span><span class="Special">&quot;</span>
-<span class="lnr">26 </span>    chef.data_bags_path = <span class="Special">&quot;</span><span class="Constant">data_bags</span><span class="Special">&quot;</span>
-<span class="lnr">27 </span>    chef.add_recipe <span class="Special">&quot;</span><span class="Constant">apt</span><span class="Special">&quot;</span>
-<span class="lnr">28 </span>    chef.add_recipe <span class="Special">&quot;</span><span class="Constant">ohai</span><span class="Special">&quot;</span>
-<span class="lnr">29 </span>    chef.add_recipe <span class="Special">&quot;</span><span class="Constant">configure</span><span class="Special">&quot;</span>
-<span class="lnr">30 </span>  <span class="Statement">end</span>
-<span class="lnr">31 </span><span class="Statement">end</span>
+<span class="lnr">26 </span>    chef.add_recipe <span class="Special">&quot;</span><span class="Constant">apt</span><span class="Special">&quot;</span>
+<span class="lnr">27 </span>    chef.add_recipe <span class="Special">&quot;</span><span class="Constant">ohai</span><span class="Special">&quot;</span>
+<span class="lnr">28 </span>    chef.add_recipe <span class="Special">&quot;</span><span class="Constant">configure</span><span class="Special">&quot;</span>
+<span class="lnr">29 </span>  <span class="Statement">end</span>
+<span class="lnr">30 </span><span class="Statement">end</span>
 </pre>
+</body>
+</html>
