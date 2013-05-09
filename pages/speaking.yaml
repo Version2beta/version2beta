@@ -36,9 +36,11 @@ I often have the opportunity to present at local tech meetups, and occasionally 
 
 Also, [@dustyf](https://twitter.com/dustyf) created a video of this presentation. The presentation starts at 17:30 and goes about 55 minutes. I think a few of the questions and answers were included, but not all - we continued informal discussion for more than an hour after the presentation. And if you enjoy the kind of humor that involves seeing people suffer, my computer locks up and I have to borrow another machine, and it's kind of funny in that sad way.
 
-## Smooth moves with Vagrant, Chef-solo, and git
+## Dev environments with Vagrant
 
 *Presented at MKEPUG[^mkepug] on February 12, 2013.*
+
+*Presented at Fox Cities PHP on May 8, 2013.*
 
 > Virtual development environments keep your workspace clean and predictable in dev and production, and creating a virtual development machine with Vagrant is quick and easy once you have all the pieces in place. Rob Martin (@version2beta) is going to put all the pieces together and hand them to you, and then show you how you can use them.
 
