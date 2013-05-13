@@ -2,25 +2,66 @@ pagetitle: Presentations
 longtitle: I am very much enjoying the opportunity to talk tech with groups of people. It is a pleasure and an honor.
 published: 2013-01-24
 
-# Presentations I'd like to give
+# Upcoming presentations
 
-## Put people first: Navigating the bazaar of open source libraries
+## [Intro to Civic Hacking][mte-hack]
 
-[I've proposed this talk](http://opensourcebridge.org/proposals/1059) for Open Source Bridge 2013, June 18 - 21, in Portland, Oregon:[^osbridge]
+[Milwaukee Tech Engine][mte], June 6, 2013, at Bucketworks in Milwaukee, Wisconsin
+
+> Some programs are never meant to be written. Often we just have a bunch of data that we need to crunch or parse or munge or just understand better. Python, and the iPython Notebook give us some excellent tools for exploring a problem domain from the inside out, using a powerful scripting language that's still considered 'the easiest programming language to learn'. In this presentation, we'll work hands-on with iPython and the Pandas data analysis library to explore some 'big data' and see what kind of answers we can tease out of it.
+
+[mte-hack]: http://www.meetup.com/Milwaukee-Tech-Engine/events/119085922/ "Intro to Civic Hacking"
+[mte]: http://www.meetup.com/Milwaukee-Tech-Engine/ "Milwaukee Tech Engine focuses on engineering, even outside of web development"
+
+## [Managing Risk and Selling Value][crv-wordcamp]
+
+[Wordcamp Milwaukee][wcmke], June 7 - 9, 2013 at Bucketworks in Milwaukee, Wisconsin
+
+> You're a skilled practitioner of web crafts. You can make WordPress sing. You can get Google agog. You can send customers clicking to conversions. But do you know how much to charge? This presentation explores how the three prime factors for pricing your work &mdash; complexity, risk, and value &mdash; interact with each other. W'll also learn a C-R-V formula that helps you select the right jobs and makes each one lucrative for both you and your client.
+
+[crv-wordcamp]: http://2013.milwaukee.wordcamp.org/session/managing-risk-and-selling-value-wcbizdev/ "My talk on pricing projects based on complexity, risk, and value."
+[wcmke]: http://2013.milwaukee.wordcamp.org/ "Wordcamp Milwaukee"
+
+## [Put people first: Navigating the bazaar of open source libraries][bazaar]
+
+[That Conference][thatc], August 12 - 14, 2013 at Kalahari Resort, Wisconsin Dells, Wisconsin
 
 > Choosing a software library &mdash; a module for a content management system, a gem for Ruby, a Python or Node.js package &mdash; is a daunting and sometimes improbable task. The community is prolific and choices are bewildering. Choosing well requires not only a technical analysis of features and code, but every bit as much an understanding of dynamic social relationships at work in the community. "Put people first" explores not only how to navigate this bazaar of coders and code, but also how to engage the authors, contribute in kind, and ultimately become part of the community.
 
-## The Tyranny of the Database
-
-I prepared this lightning talk to present at PyCon 2013 on March 16 in Santa Clara, California. Unfortunately, talks were         selected at random. I wasn't selected Saturday evening, and even though I was select Sunday morning, apparently I was in the overflow     list in case others didn't show.
-
-Surely I'll have opportunity to give this talk somewhere. Meanwhile, it's here for you.
-
-Ultimately this is part one of a talk introducing Arbitrary, followed by sections covering service oriented design and creating a JSON workflow engine.
+[bazaar]: http://www.thatconference.com/Sessions/session_870 "Put People First: Navigating the bazaar of open source libraries"
+[thatc]: http://www.thatconference.com "Summer camp for geeks"
 
 # Presentations I've given
 
 I often have the opportunity to present at local tech meetups, and occasionally present for corporate training events. Here are some of the presentations I've given. Many of these presentations are available to schedule.
+
+## MODX can beat up your Content Management System
+
+*Presented at Web414's[^web414] Content Management System Showdown, May 9, 2013, where I served as a panelist.*
+
+*Presented at the Milwaukee Web Design Meetup,[^mwdm] December 2011, where I served as a panelist.*
+
+A presentation on the MODX content management framework during a CMS megapanel discussion and presentation.
+
+I created a Prezi for this presentation. [You can view it at prezi.com](http://prezi.com/xemmat6oavos/modx-can-beat-up-your-content-management-system/?kw=view-xemmat6oavos&rc=ref-136841).
+
+## Dev environments with Vagrant
+
+*Presented at Fox Cities PHP[^foxphp] on May 8, 2013.*
+
+*Presented at MKEPUG[^mkepug] on February 12, 2013.*
+
+> Virtual development environments keep your workspace clean and predictable in dev and production, and creating a virtual development machine with Vagrant is quick and easy once you have all the pieces in place. Rob Martin (@version2beta) is going to put all the pieces together and hand them to you, and then show you how you can use them.
+
+[A transcript of my presentation](/articles/dev-environments-with-vagrant-chef-and-git/) is posted in my blog, if you want to see what I had to say. My [slides are also available](/static/examples/vagrant-chef-git.html).
+
+## The Tyranny of the Database (lightning talk)
+
+*Presented at RubyMKE[^rubymke], April 16, 2013*
+
+This short talk explores the weaknesses of traditional databases and how we use them, and argues for using services for more decoupling of the data layer from the application layer. This is part one of a larger presentation I'm preparing on the Arbitrary framework.
+
+[A transcript of my presentation](/articles/tyranny-of-the-database/) is posted in my blog, and [my slides are also available online](/static/examples/tyranny-of-the-database.html).
 
 ## How much should you charge? Managing risk and selling value.
 
@@ -35,16 +76,6 @@ I often have the opportunity to present at local tech meetups, and occasionally 
 [A transcript of my presentation](/articles/managing-risk-and-selling-value/) is posted in my blog. [My slides](/static/examples/managing-risk-and-selling-value.html) are also online. I made a [tool for calculating CRV Factors](/static/examples/managing-risk-and-selling-value/crv-calculator.html).
 
 Also, [@dustyf](https://twitter.com/dustyf) created a video of this presentation. The presentation starts at 17:30 and goes about 55 minutes. I think a few of the questions and answers were included, but not all - we continued informal discussion for more than an hour after the presentation. And if you enjoy the kind of humor that involves seeing people suffer, my computer locks up and I have to borrow another machine, and it's kind of funny in that sad way.
-
-## Dev environments with Vagrant
-
-*Presented at MKEPUG[^mkepug] on February 12, 2013.*
-
-*Presented at Fox Cities PHP on May 8, 2013.*
-
-> Virtual development environments keep your workspace clean and predictable in dev and production, and creating a virtual development machine with Vagrant is quick and easy once you have all the pieces in place. Rob Martin (@version2beta) is going to put all the pieces together and hand them to you, and then show you how you can use them.
-
-[A transcript of my presentation](/articles/dev-environments-with-vagrant-chef-and-git/) is posted in my blog, if you want to see what I had to say. My [slides are also available](/static/examples/vagrant-chef-git.html).
 
 ## Idiomatic Node.js patterns
 
@@ -61,14 +92,6 @@ Much to my surprise, a participant at this presentation [recorded audio and uplo
 > Arlen Walker (@arlen) and Rob Martin (@version2beta) will present Backbone.js as a tool to take your typical canned widget functionality a step further, and set your work apart from the masses. Backbone.js is a client-side JavaScript framework, but who really cares about that? What's important is what you can do with it. Arlen and Rob will live code (ooh, scary!) a Twitter widget demonstrating backbone's ability to easily acquire, process and present arbitrary data from diverse sources. **Speakers:** Rob and Arlen worked on their first project together over two decades ago - they just didn't know it at the time. It was the 1992 Solar and Electric Vehicle Association race. Arlen was on the battery team, and Rob was on the embedded controls team, and the car won first place. Today, Arlen programs under his own flag, Paladin Web Services, and Rob is top devops person at Top Floor Technologies.
 
 Arlen and I prepared our slides using Showoff, a Ruby framework on Sinatra for presentations. They're online at [https://github.com/Version2beta/backboneslides](https://github.com/Version2beta/backboneslides). Rather than live code, we created a git repository with tags for twelve steps in the presentation. That's at [https://github.com/Version2beta/backbone-twidget-presentation](https://github.com/Version2beta/backbone-twidget-presentation). During our demonstration we produced a backbone-based twitter widget, which is at [https://github.com/Version2beta/backbone-twidget](https://github.com/Version2beta/backbone-twidget).
-
-## MODX can beat up your Content Management System
-
-*Presented at the Milwaukee Web Design Meetup,[^mwdm] December 2011*
-
-A presentation on the MODX content management framework during a CMS megapanel discussion and presentation.
-
-I created a Prezi for this presentation. [You can view it at prezi.com](http://prezi.com/xemmat6oavos/modx-can-beat-up-your-content-management-system/?kw=view-xemmat6oavos&rc=ref-136841).
 
 ## 5 Cool Things About PostgreSQL
 
@@ -88,11 +111,12 @@ At DjangoCon 2011 I presented a lightning talk showing off Prezi. It's online at
 
 Presented a survey and comparison of cloud computing options from Amazon Web Services, Rackspace, and Linode.
 
-[^osbridge]: [Open Source Bridge][osbridge] is a conference for developers working with and learning the open source way. [Follow them on Twitter too][osbtwitter].
-[osbridge]: http://opensourcebridge.org/ "Connecting open source developers across projects, languages, and backgrounds."
-[osbtwitter]: https://twitter.com/osbridge "Open Source Bridge on Twitter."
 [^web414]: [Web414 is Milwaukee's Web Community][web414] with monthly meetups and presentations varying from frameworks and content managers to version control to business and freelance management.
 [web414]: http://www.meetup.com/web414/ "Web414 - Milwaukee's Web Community"
+[^rubymke]: [RubyMKE is a meetup][rubymke] for Milwaukee's burgeoning Ruby community, often bringing 20 or 30 people into the regular weekly meetups and attacting twice that to Railsbridge-style training courses.
+[rubymke]: http://www.meetup.com/RubyMKE/ "Meetup for Ruby enthusiasts in and around Milwaukee, Wisconsin"
+[^foxphp]: [Fox Cities PHP][foxphp] serves a wide variety of developers spread across a significant portion of the state in and around the Neenah-Appleton area but going much further in every direction.
+[foxphp]: http://www.meetup.com/fox-cities-php/ "PHP meetup for the Fox Cities, including Appleton, Kaukauna, Menasha, Neenah, Oshkosh, and other communities."
 [^mkepug]: [The Milwaukee PHP Users Group][mkepug] meets monthly to discuss issues related to PHP development.
 [mkepug]: http://www.mkepug.org/ "Milwaukee PHP Users Group"
 [^bcmke]: [Bar Camp Milwaukee][bcmke] is an annual tech conference (often referred to as an "unconference"). In Milwaukee, they typically last two days.
