@@ -3,11 +3,11 @@
 /* ============================== */
 
 body {
- font: 500 18px 'Pontano Sans', Verdana, Helvetica, sans-serif;
- text-shadow: #999 0 0 2px;
+ font: 500 18px 'Droid Sans', Verdana, Helvetica, sans-serif;
+ /*text-shadow: #999 0 0 2px;*/
  color: #222;
  background: #ddddf0 url(bg.png) repeat fixed;
- line-height: 28px;
+ line-height: 32px;
 }
 
 h1, h2, h3, h4, #sitename, dt {
@@ -177,7 +177,7 @@ p.archivelink {
 }
 
 div.footnotes {
- font-size: 0.85em;
+ font-size: 16px;
  color: #444;
 }
 
@@ -228,8 +228,8 @@ blockquote p {
 textarea,
 code,
 pre {
- font-family: 'Consolas', 'Menlo', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace!important;
- font-size: 13px;
+ font-family: 'Ubuntu Mono', 'Menlo', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace!important;
+ font-size: 16px;
  background: #e8e8e8;
 }
 
