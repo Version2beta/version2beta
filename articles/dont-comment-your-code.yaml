@@ -176,6 +176,19 @@ describe Matcher do
 end
 ```
 
+## Stop commenting your code
+
+I've written tens of thousands of inline comments in the last 30 years. I can absolutely promise you that most of them are useless. They are all written from good intentions. Many of them inject humor, or at least personality. Quite a few of them were written to demonstrate how clever I am. Some of them might even help the poor sod who is now stuck maintaining that code understand what I was trying to do. The majority of them are probably no longer consistent with the operation of the program.
+
+My motivations demonstrate why comments are often bad. My personality and attempts at being funny have little to do with shipping code. My clever programming was rarely an asset, and usually just made my code less understandable. And comments that no longer document the code as it stands now do nothing to enlighten the current maintainer. They confuse the issue.
+
+I've been on the other side too, stuck with a code base that may have hundreds of lines of inline comments that made sense to someone at some point, but are useless to me now. Often I want to start from scratch rather than wallow through someone else's wall of text figuring out what's true and what's not.
+
+Using these directives, my code is cleaner. It's not perfect, and I'm still learning, but at least the person who has to read it has a fighting chance.
+
+Give it a try. Stop commenting your code, and see if it doesn't make you a better programmer.
+
+
 
 [^rr79]: [Ruby Rogues][rubyrogues] is a podcast about Ruby, as you may have guessed, but I started listening to it more than a year before I considered myself a Ruby programmer. The Rogues have consistently been one of my best sources for learning to be a better programmer, regardless of language. It's fair to say I've been writing this blog post in my head ever since I listened to episode 79, [Documenting Code][rrdc].
 [rubyrogues]: http://rubyrogues.com/ "Ruby Rogues podcast"
