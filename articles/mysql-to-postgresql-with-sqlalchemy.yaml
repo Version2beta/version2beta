@@ -1,6 +1,0 @@
-pagetitle: MySQL to PostgreSQL with SQLAlchemy
-longtitle: Guest blogger Paul Morel discusses some gotchas he encountered while switching from MySQL to PostgreSQL.
-published: 
-excerpt: Guest blogger Paul Morel recently moved his company's cloud service from MySQL to PostgreSQL. Like many such projects, there were surprises along the way. Paul has documented them here.
-
-
