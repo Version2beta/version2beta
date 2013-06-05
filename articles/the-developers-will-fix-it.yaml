@@ -1,0 +1,14 @@
+pagetitle: The developers will fix it
+longtitle: How to introduce library updates to production
+published: 
+excerpt: Much of our code depends on an ecosystem of open source libraries built by third party developers. Here's my take on getting library updates into production, at least when you have a small team of developers.
+
+I'm pretty sure my dev team thinks I have it out for them.
+
+I do devops and dev, and I work in both capacities with a small team of developers - five other devs including both owners of the company. Since I started with the company, I think I may have broken everything at least once.
+
+My job includes responsibility for managing development, continuous integration, customer acceptance, and production environments.
+
+
+
+
