@@ -154,8 +154,10 @@ Data frames are two-dimensional, like a matrix or a table. This slide has some e
 
 ```
 df1 = pandas.DataFrame(np.random.rand(10,4), index=range(10), columns=list('ABCD'))
-df2 = pandas.DataFrame(np.random.randn(10,4), index=list('abcdefghij'), columns=list('ABCD')) (randn is standard normal distribution)
-df3 = pandas.DataFrame({'A': list('ABCDEFGHIJ'), 'B': np.random.choice(list('ABCDEFGHIJ'),10), 'C': range(10)})
+df2 = pandas.DataFrame(
+    np.random.randn(10,4), index=list('abcdefghij'), columns=list('ABCD')) 
+df3 = pandas.DataFrame(
+    {'A': list('ABCDEFGHIJ'), 'B': np.random.choice(list('ABCDEFGHIJ'),10), 'C': range(10)})
 ```
 
 -----
@@ -185,18 +187,18 @@ Selecting data from a data frame returns either a series if you select one colum
 Try each of these selections:
 
 ```
-df1['A'] -> column A
-df3.loc[0] -> row 0, where index is 0 - 9
-df3.loc[0:3] -> the first four rows, where index is 0 - 9
-df2.loc['a'] -> row 'a', where index is 'a' - 'j'
-df2.loc['a':'d'] -> the first four rows, where index is 'a' - 'j'
-df2.iloc[3] -> the third row, regardless of how the data frame is indexed
-df2.loc['a':'c', ['A', 'C']] -> columns A and C for the first three rows where index is 'a' - 'j'
-df2.iloc[0:2, 0:2] -> the first two rows and columns, regardless of how the data frame is indexed
-df2.at['a','A'] -> the single value at row 'a' column 'A'
-df2.iat[0,0] -> the single value in the first row and first column, regardless of how the data is indexed
-df1.ix[1:3,0:2] -> The second and third row, first and second column, indexed by label
-df2.ix[1:3,0:2] -> The second and third row, first and second column, indexed by integer position
+df1['A'] # column A
+df3.loc[0] # row 0, where index is 0 - 9
+df3.loc[0:3] # the first four rows, where index is 0 - 9
+df2.loc['a'] # row 'a', where index is 'a' - 'j'
+df2.loc['a':'d'] # the first four rows, where index is 'a' - 'j'
+df2.iloc[3] # the third row
+df2.loc['a':'c', ['A', 'C']] # columns A and C for the first three rows
+df2.iloc[0:2, 0:2] # the first two rows and columns
+df2.at['a','A'] # the single value at row 'a' column 'A'
+df2.iat[0,0] # the single value in the first row and first column
+df1.ix[1:3,0:2] # The second and third row, first and second column
+df2.ix[1:3,0:2] # The second and third row, first and second column
 ```
 
 -----
@@ -210,7 +212,7 @@ Try these selections:
 ```
 df1[df1['A'] > 0.5]
 df2[df2 > 0]
-df3[df3['b'] < 'h']
+df3[df3['B'] < 'h']
 ```
 
 -----
@@ -220,7 +222,7 @@ df3[df3['b'] < 'h']
 You can use the selection statements to assign values. Try these:
 
 ```
-df3.at[9,'c'] = 10
+df3.at[9,'C'] = 10
 df3['d'] = pandas.Series([9,8,7,6,5,4,3,2,1], index=range(10))
 df2.iat[0,0] = 0
 df2 = -df2
@@ -262,12 +264,12 @@ Let's take a break for a moment and talk about interesting data sets before we g
 
 -----
 
-![Slide: Loading external data](/static/examples/civic-hacking-with-ipython-and-pandas/slide18.png)
+![Slide: Challenge 1 Milwaukee Water Usage](/static/examples/civic-hacking-with-ipython-and-pandas/slide18.png)
 
 Water data set from [https://github.com/milwaukeedata/MilwaukeeWater2011](https://github.com/milwaukeedata/MilwaukeeWater2011):
 
 ```
-dfw = pandas.read_csv('data/Milwaukee-2011-07-14.csv', index_col=False, parse_dates=[4,5])
+dfw = pandas.read_csv('MilwaukeeWater2011/Milwaukee-2011-07-14.csv', index_col=False, parse_dates=[4,5])
 dfw.iloc[0]
 ```
 
@@ -278,10 +280,16 @@ Some challenges:
 * Medium: Address with most water use
 * Hard: Average water use per day
 
-Parking tickets data set from [https://github.com/milwaukeedata/MilwaukeeWater2011](https://github.com/milwaukeedata/MilwaukeeWater2011):
+-----
+
+![Slide: Challenge 2 Milwaukee Parking Tickets](/static/examples/civic-hacking-with-ipython-and-pandas/slide19.png)
+
+Parking tickets data set from [https://github.com/milwaukeedata/MKE_2012_Parking_Violations](https://github.com/milwaukeedata/MKE_2012_Parking_Violations):
 
 ```
-dft = pandas.read_csv('data/2012_MKE_tickets_issued.csv', parse_dates=[1], index_col=1)
+dft = pandas.read_csv(
+    'MKE_2012_Parking_Violations/2012_MKE_tickets_issued.csv',
+    parse_dates=[1], index_col=1)
 dft.iloc[0]
 ```
 
@@ -293,7 +301,7 @@ Some challenges:
 
 -----
 
-![Slide: Final slide](/static/examples/civic-hacking-with-ipython-and-pandas/slide19.png)
+![Slide: Final slide](/static/examples/civic-hacking-with-ipython-and-pandas/slide20.png)
 
 I'd like to thank you for listening. As always, my presentations come with a 100% money back guarantee plus tech support that is "Free as in beer", which of course means if you buy me a beer, I'll give you tech support.
 

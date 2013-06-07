@@ -181,9 +181,18 @@
           <h2>Pandas Data Frames</h2>
           <pre>
 
-  df1 = pandas.DataFrame(np.random.rand(10,4), index=range(10), columns=list('ABCD'))
-  df2 = pandas.DataFrame(np.random.randn(10,4), index=list('abcdefghij'), columns=list('ABCD')) (randn is standard normal distribution)
-  df3 = pandas.DataFrame({'A': list('ABCDEFGHIJ'), 'B': np.random.choice(list('ABCDEFGHIJ'),10), 'C': range(10)})
+  df1 = pandas.DataFrame(
+      np.random.rand(10,4),
+      index=range(10),
+      columns=list('ABCD'))
+  df2 = pandas.DataFrame(
+      np.random.randn(10,4),
+      index=list('abcdefghij'),
+      columns=list('ABCD')) # randn is standard normal distribution
+  df3 = pandas.DataFrame({
+      'A': list('ABCDEFGHIJ'),
+      'B': np.random.choice(list('ABCDEFGHIJ'),10),
+      'C': range(10)})
           </pre>
         </section>
         <section class="slide">
@@ -225,14 +234,14 @@
 
   df1[df1['A'] > 0.5]
   df2[df2 > 0]
-  df3[df3['b'] < 'h']
+  df3[df3['B'] < 'h']
           </pre>
         </section>
         <section class="slide">
           <h2>Assigning Values</h2>
           <pre>
 
-  df3.at[9,'c'] = 10
+  df3.at[9,'C'] = 10
   df3['d'] = pandas.Series([9,8,7,6,5,4,3,2,1], index=range(10))
   df2.iat[0,0] = 0
   df2 = -df2
@@ -268,11 +277,13 @@
           </ul>
         </section>
         <section class="slide">
-          <h2>Loading data from CSV</h2>
+          <h2>Challenge #1</h2>
           <p>Water data set from <a href="https://github.com/milwaukeedata/MilwaukeeWater2011">https://github.com/milwaukeedata/MilwaukeeWater2011</a></p>
           <pre>
 
-  dfw = pandas.read_csv('data/Milwaukee-2011-07-14.csv', index_col=False, parse_dates=[4,5])
+  dfw = pandas.read_csv(
+      'MilwaukeeWater2011/Milwaukee-2011-07-14.csv',
+      index_col=False, parse_dates=[4,5])
   dfw.iloc[0]
           </pre>
           <p>Some challenges:</p>
@@ -284,11 +295,13 @@
           </ul>
         </section>
         <section class="slide">
-          <h2>Loading data from CSV</h2>
-          <p>Parking tickets from <a href="https://github.com/milwaukeedata/MKE_2012_Parking_Violations">https://github.com/milwaukeedata/MKE_2012_Parking_Violations</a></p>
+          <h2>Challenge #2</h2>
+          <p>Parking tickets from <a href="https://github.com/milwaukeedata/MKE_2012_Parking_Violations">https://github.com/<br />milwaukeedata/MKE_2012_Parking_Violations</a></p>
           <pre>
 
-  dft = pandas.read_csv('data/2012_MKE_tickets_issued.csv', parse_dates=[1], index_col=1)
+  dft = pandas.read_csv(
+      'MKE_2012_Parking_Violations/2012_MKE_tickets_issued.csv',
+      parse_dates=[1], index_col=1)
   dft.iloc[0]
           </pre>
           <p>Some challenges:</p>
@@ -306,7 +319,6 @@
             <a href="http://twitter.com/version2beta" title="version2beta on Twitter">http://twitter.com/version2beta</a> |
             <a href="http://version2beta.com" title="version2beta's blog">http://version2beta.com</a>
           </p>
-          <p style="font-size: smaller"><a href="/static/examples/managing-risk-and-selling-value/crv-calculator.html" target="_blank">version2beta's CRV calculator</a></p>
           <p>Tech support is always free!*</p>
           <p style="font-size: smaller">* Free as in beer.<br />Means you buy me a beer and I give you tech support.</p>
         </section>
