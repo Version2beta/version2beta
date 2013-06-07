@@ -26,16 +26,20 @@ published: 2013-01-24
 
 I often have the opportunity to present at local tech meetups, and occasionally present for corporate training events. Here are some of the presentations I've given. Many of these presentations are available to schedule.
 
-## [Intro to Civic Hacking][civichack]
+## Civic hacking with IPython and Pandas
 
-Joint meetup between the [Milwaukee Data Initiative][mdi] ([meetup][mdimeetup]) and [Milwaukee Tech Engine][mte], June 6, 2013, at Bucketworks in Milwaukee, Wisconsin
+*Presented at a joint meetup between the [Milwaukee Data Initiative][mdi] ([meetup][mdimeetup]) and [Milwaukee Tech Engine][mte], June 6, 2013, at Bucketworks in Milwaukee, Wisconsin.*
 
 > Some programs are never meant to be written. Often we just have a bunch of data that we need to crunch or parse or munge or just understand better. Python, and the iPython Notebook give us some excellent tools for exploring a problem domain from the inside out, using a powerful scripting language that's still considered 'the easiest programming language to learn'. In this presentation, we'll work hands-on with iPython and the Pandas data analysis library to explore some 'big data' and see what kind of answers we can tease out of it.
+
+A [transcript of my civic hacking presentation][chtranscript] is available. My [civic hacking slides][chslides] are also online.
 
 [civichack]: http://www.meetup.com/Milwaukee-Tech-Engine/events/119085922/ "Intro to Civic Hacking"
 [mdi]: http://milwaukeedata.org/ "Web site for the Milwaukee Data Initiative"
 [mdimeetup]: http://www.meetup.com/MKEData/ "Meetup page for the Milwaukee Data Initiative"
 [mte]: http://www.meetup.com/Milwaukee-Tech-Engine/ "Milwaukee Tech Engine focuses on engineering, even outside of web development"
+[chtranscript]: /articles/civic-hacking-with-ipython-and-pandas/ "A transcript of my civic hacking presentation"
+[chslides]: /static/examples/civic-hacking-with-ipython-and-pandas.html "Slide deck of my civic hacking presentation"
 
 ## MODX can beat up your Content Management System
 
