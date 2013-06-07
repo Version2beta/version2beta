@@ -157,7 +157,7 @@ ds4 = pandas.Series(np.random.choice(list('AEIOU'), 10))
 
 ![Slide: Pandas Data Frames](/static/examples/civic-hacking-with-ipython-and-pandas/slide11.png)
 
-Data frames are two-dimensional, like a matrix or a table. This slide has some examples on how you might create a data frame. Try one.
+Data frames are two-dimensional, like a matrix or a table. Each column in a data frame is a series, except that they all share the same index. This slide has some examples on how you might create a data frame. Enter all three of these - we'll reference them again.
 
 ```
 df1 = pandas.DataFrame(np.random.rand(10,4), index=range(10), columns=list('ABCD'))
@@ -185,6 +185,8 @@ df1.sort(columns='A')
 df1.describe()
 ```
 
+I should point out about this point that this is hands on learning. I'm pulling a Zed Shaw, Learning Code The Hard Way on you. I want you to type it all in and learn it with your fingers, not copy and paste. I want you to remember the input, see the output, and make connections in your head. If you're not seeing it, interrupt me and let's talk through it.
+
 -----
 
 ![Slide: Selecting data](/static/examples/civic-hacking-with-ipython-and-pandas/slide13.png)
@@ -207,6 +209,10 @@ df2.iat[0,0] # the single value in the first row and first column
 df1.ix[1:3,0:2] # The second and third row, first and second column
 df2.ix[1:3,0:2] # The second and third row, first and second column
 ```
+
+```loc``` is location. ```iloc``` is integer location, regardless of how the data frame is indexed. ```ix``` is cool - it will try what you give it first as labels for the row and column, then as integer locations.
+
+One thing I've learned with Pandas is that there are a number of ways to get to your data. Many of them are wrong and end up looking pretty ugly. It's good to know several ways, so when things get ugly, you can try a different way.
 
 -----
 
