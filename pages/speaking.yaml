@@ -4,15 +4,6 @@ published: 2013-01-24
 
 # Upcoming presentations
 
-## [Intro to Civic Hacking][mte-hack]
-
-[Milwaukee Tech Engine][mte], June 6, 2013, at Bucketworks in Milwaukee, Wisconsin
-
-> Some programs are never meant to be written. Often we just have a bunch of data that we need to crunch or parse or munge or just understand better. Python, and the iPython Notebook give us some excellent tools for exploring a problem domain from the inside out, using a powerful scripting language that's still considered 'the easiest programming language to learn'. In this presentation, we'll work hands-on with iPython and the Pandas data analysis library to explore some 'big data' and see what kind of answers we can tease out of it.
-
-[mte-hack]: http://www.meetup.com/Milwaukee-Tech-Engine/events/119085922/ "Intro to Civic Hacking"
-[mte]: http://www.meetup.com/Milwaukee-Tech-Engine/ "Milwaukee Tech Engine focuses on engineering, even outside of web development"
-
 ## [Managing Risk and Selling Value][crv-wordcamp]
 
 [Wordcamp Milwaukee][wcmke], June 7 - 9, 2013 at Bucketworks in Milwaukee, Wisconsin
@@ -34,6 +25,17 @@ published: 2013-01-24
 # Presentations I've given
 
 I often have the opportunity to present at local tech meetups, and occasionally present for corporate training events. Here are some of the presentations I've given. Many of these presentations are available to schedule.
+
+## [Intro to Civic Hacking][civichack]
+
+Joint meetup between the [Milwaukee Data Initiative][mdi] ([meetup][mdimeetup]) and [Milwaukee Tech Engine][mte], June 6, 2013, at Bucketworks in Milwaukee, Wisconsin
+
+> Some programs are never meant to be written. Often we just have a bunch of data that we need to crunch or parse or munge or just understand better. Python, and the iPython Notebook give us some excellent tools for exploring a problem domain from the inside out, using a powerful scripting language that's still considered 'the easiest programming language to learn'. In this presentation, we'll work hands-on with iPython and the Pandas data analysis library to explore some 'big data' and see what kind of answers we can tease out of it.
+
+[civichack]: http://www.meetup.com/Milwaukee-Tech-Engine/events/119085922/ "Intro to Civic Hacking"
+[mdi]: http://milwaukeedata.org/ "Web site for the Milwaukee Data Initiative"
+[mdimeetup]: http://www.meetup.com/MKEData/ "Meetup page for the Milwaukee Data Initiative"
+[mte]: http://www.meetup.com/Milwaukee-Tech-Engine/ "Milwaukee Tech Engine focuses on engineering, even outside of web development"
 
 ## MODX can beat up your Content Management System
 
