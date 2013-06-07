@@ -7,7 +7,7 @@ In February 2013 I heard about the MKE Event for the International Open Data Hac
 
 The next month I attended PyCon 2013[^pycon] in Santa Clara, California, and through a series of mishaps ended up in a tutorial called "Learn Python Through Public Data Hacking", led by David Beazley.[^beazleytutorial] He started off with a warning that "Learn Python" was the important part of the tutorial title, and that it wasn't a tutorial on hacking public data. I was disappointed, since I felt like I already knew Python pretty well and looked forward to pursuing my new-found interest in civic data hacking. I was in for a surprise. Not only did I learn a ton about civic data hacking in the next 3 hours and 20 minutes, but he absolutely kicked my butt with Python, too.
 
-I started attending the Milwaukee Data Initiative meetups regularly, and I got a brief opportunity to demonstrate some of the code I wrote in David's tutorial. That led to this presentation on exploring data sets from the inside-out using IPython and Pandas.
+I started attending the Milwaukee Data Initiative meetups regularly, and I got a brief opportunity to demonstrate some of the code I wrote in David's tutorial. That led to this presentation on exploring data sets from the inside-out using IPython and Pandas. It also led to a conversation with Rafael Santana, a founder of the Milwaukee Tech Engine.[^techengine] Ultimately I presented at a joint meetup for members of the Milwaukee Data Initiative, Milwaukee Tech Engine, and MKE Python.[^mkepython]
 
 This presentation is not about learning Python. In fact, using Python is ancillary to the workshop - only enough Python is demonstrated to work interactively with various data sets. To a limited extent, it is a workshop about using IPython[^ipython], an interactive Python shell that can be run in the browser and supports rich media like charts and graphs. To a greater extent, it's about Pandas,[^pandas] a data analysis library for Python. These two technologies are presented in the context of civic hacking, with a couple of provided data sets and some challenges that participants might solve using these tools.
 
@@ -22,6 +22,13 @@ I write my presentations in advance, and then do my best to present what I wrote
 [^beazleytutorial]: Here's the PyCon 2013 tutorial listing for [David Beazley's][beazley] [Learn Python through Public Data Hacking][beazleytutorial].
 [beazley]: http://www.dabeaz.com/ "David Beazley's website"
 [beazleytutorial]: https://us.pycon.org/2013/schedule/presentation/2/ "The PyCon 2013 tutorial on learning Python through public data hacking"
+[^technengine]: [Milwaukee Tech Engine][techengine] is one of the technical meetup groups in the area. I was impressed from the start because, although Milwaukee has a plethora of awesome tech meetups (I've been known to attend three a week, even two in one night once) Tech Engine was different. It doesn't focus on the internet. In fact, their first meetup was on antenna design, and their next one is on low-cost single board computers.
+[techengine]: http://www.meetup.com/Milwaukee-Tech-Engine/ "Milwaukee Tech Engine meetup page"
+[^mkepython]: I used to introduce myself at the [RubyMKE][rubymke] and [MilwaukeeJS][mkejs] meetups as a Python programmer without a Python meetup. It's true, we had Ruby and Javascript and HTML5 and .Net, but no Python meetup. I attended these other language meetups in order to improve myself as a programmer. Anyway, someone heard me (TJ Kells and his employer, [Corvisa][corvisa]) and soon there was a Python meetup too. Actually, soon there was also a Perl meetup, which is actually pretty cool, even if I haven't used much Perl in the last decade.
+[rubymke]: http://www.meetup.com/RubyMKE/ "RubyMKE meetup page"
+[mkejs]: http://www.meetup.com/milwaukeejs/ "Milwaukee JS meetup page"
+[mkepython]: http://www.meetup.com/MKE-Python-Meetup/ "Milwaukee Python meetup page"
+[corvisa]: http://corvisa.com/ "Corvisa is hiring. Check them out."
 [^ipython]: [IPython][ipython] is an interactive Python shell running in the terminal, in Qt-based windows, and in the browser with support for code, text, mathematical expressions, inline plotting, and other rich media.
 [ipython]: http://ipython.org/ "The IPython Interactive Computing website"
 [^pandas]: [Pandas][pandas] is an open source Python library that provides high-performance, easy-to-use data structures and data analysis tools.
