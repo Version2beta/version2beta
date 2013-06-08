@@ -163,8 +163,7 @@ ul.sitenav {
 }
 
 .readable {
- float: right;
- margin-top: -42px;
+  text-align: right;
 }
 
 p.archivelink {
