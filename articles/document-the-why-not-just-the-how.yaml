@@ -1,5 +1,6 @@
 pagetitle: A Response to Tom Henrich's Document The Why
 longtitle: An example of documenting why code was written the way it was.
+author: Rob Martin
 published: 2012-03-26 10:15:00
 excerpt: >
   On his blog, Tom Henrich calls for better developer documentation on <em>why</em> a design decision was made, rather than just <em>what</em> decision was made. In this post I share my example.

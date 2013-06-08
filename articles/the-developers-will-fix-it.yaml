@@ -1,5 +1,6 @@
 pagetitle: The developers will fix it
 longtitle: How to introduce library updates to production
+author: Rob Martin
 published: 
 excerpt: Much of our code depends on an ecosystem of open source libraries built by third party developers. Here's my take on getting library updates into production, at least when you have a small team of developers.
 

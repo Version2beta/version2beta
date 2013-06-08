@@ -1,5 +1,6 @@
 pagetitle: High Availability Linode Pairs
 longtitle: A recipe for creating automatic failover virtual server pairs at Linode.
+author: Rob Martin
 published: 2011-08-08 20:08:08
 excerpt: Something like a recipe for creating database and application servers that failover on each other. This recipe is for Lighttpd and MySQL, but it can be extended easily for other applications. Later, I'll do one for Tryton and PostgreSQL. I use Ubuntu 11.04 64-bit on two Linode virtual private servers.
 

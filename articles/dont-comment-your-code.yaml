@@ -1,5 +1,6 @@
 pagetitle: Don't comment your code
 longtitle: Feel inclined to write a comment? Do this instead.
+author: Rob Martin
 published: 2013-05-15 8:30:00
 excerpt: Comments lie. Instead of writing comments, write specs and functions. This post talks about why and how to do this.
 
