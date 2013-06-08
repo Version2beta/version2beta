@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Managing Risk and Selling Value</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Slides for my presentation on Managing Risk and Selling Value." />
+    <meta name="author" content="M Robert Martin / @version2beta" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/static/css/normalize.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/static/examples/vagrant-chef-git/reveal.css">
+    <link href='http://fonts.googleapis.com/css?family=Archivo+Black' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+      <!--
+      body {
+        background-color: #f8f6b5;
+        color: #d52e00;
+        font: 32px 'Capriola', sans-serif;
+        line-height: 54px;
+      }
+      .reveal h1 { font: 48px/54px 'Archivo Black', sans-serif; padding: 20px 0; }
+      .reveal h2 { font: 42px/54px 'Archivo Black', sans-serif; padding: 20px 0; }
+      .reveal p { padding: 12px; }
+      .reveal a, .reveal a:visited { color: #015; }
+      .reveal img { max-height: 480px; }
+      .reveal pre {
+        font: 22px/28px Inconsolata, monospace;
+        white-space: pre-wrap;
+        color: #000000;
+        background-color: #ffffff;
+        max-height: 560px;
+        overflow: auto;
+      }
+      .lnr { color: #ffff00; }
+      .Constant { color: #ff6060; }
+      .Special { color: #ff40ff; }
+      .Identifier { color: #00ffff; }
+      .Statement { color: #ffff00; }
+      .Type { color: #00ff00; }
+      .Comment { color: #8080ff; }
+      section.slide {
+        min-height: 600px;
+        border: 2px solid white;
+        border-radius: 12px;
+        box-shadow: 3px 3px 12px #000;
+        padding: 36px;
+        background: #ffd url(/static/examples/managing-risk-and-selling-value-wordcamp/wcmke.png) no-repeat right bottom;
+      }
+      div.scale {
+        clear: both;
+        width: 340px;
+        padding: 0;
+      }
+      div.scale p {
+        font-size: 18px;
+        line-height: 20px;
+        padding: 12px 0;
+        margin: 0;
+      }
+      -->
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="slide">
+          <h1>How much should you charge?<br />Managing Risk and Selling Value</h1>
+          <p>Rob Martin / @version2beta</p>
+          <img class="slide_image" src="/static/examples/avatar.jpg" style="border-radius: 12px; border: 4px solid white" />
+          <p><a href="http://twitter.com/version2beta" title="version2beta on Twitter">http://twitter.com/version2beta</a></p>
+          <p><a href="http://version2beta.com" title="version2beta's blog">http://version2beta.com</a></p>
+          <p><a href="https://github.com/version2beta" title="version2beta's Github">https://github.com/Version2beta</a></p>
+        </section>
+        <section class="slide" style="background: #ffd url(managing-risk-and-selling-value-wordcamp/dragon.png) no-repeat center;">
+          <h2 style="margin: 160px 0;">Warning:<br />Ahead there be MATH</h1>
+          <p><a href="/static/examples/managing-risk-and-selling-value-wordcamp/crv-calculator.html" target="_blank">(But I made a calculator for you.)</a></p>
+        </section>
+        <section class="slide">
+          <h2>Economic Order Quantities</h2>
+          <p style="text-align: center"><img src="managing-risk-and-selling-value-wordcamp/eoq.png" /></p>
+        </section>
+        <section class="slide">
+          <h2>The CRV Model</h2>
+          <ul style="line-height: 1.6;">
+            <li>Complexity</li>
+            <li>Risk</li>
+            <li>Value</li>
+          </ul>
+        </section>
+        <section class="slide">
+          <h2>Some Caveats</h2>
+          <ul style="font-size: smaller; line-height: 1.6;">
+            <li>BYO Business Acumen.</li>
+            <li>Damn it Jim, it's a model, not a doctor.</li>
+            <li>If you're pointing fingers,<br />make sure you're looking in the mirror. Kthxbai.</li>
+          </ul>
+        </section>
+        <section class="slide" style="">
+          <h2>Some problems</h2>
+          <ol style="line-height: 1.6;">
+            <li>Working for the man.</li>
+            <li>Selling your life by the hour.</li>
+            <li>Client wants a fixed price.</li>
+            <li>Client wants to go out of scope.</li>
+            <li>It can be hard to get paid for out of scope work.</li>
+          </ol>
+        </section>
+        <section class="slide" style="">
+          <h2>Some goals</h2>
+          <ol style="line-height: 1.6;">
+            <li>Pursue the right work.</li>
+            <li>Avoid the wrong work.</li>
+            <li>Mitigate risk.</li>
+            <li>Charge according to value.</li>
+          </ol>
+        </section>
+        <section>
+          <section class="slide" style="">
+            <h2>The model</h2>
+            <p style="letter-spacing: 8px; margin-top: 32px;">
+              <span style="letter-spacing: 0">P<sub>q</sub></span> =
+              o <sub>*</sub>
+              <span style="letter-spacing: 0">log<sub>10</sub></span>
+              (C + R + V)
+              <sub>*</sub> d + m
+            </p>
+          </section>
+          <section class="slide" style="">
+            <h2>The model</h2>
+            <p style="letter-spacing: 8px; margin-top: 32px;">
+              <span style="letter-spacing: 0">P<sub>q</sub></span>
+              <span style="color: #999">
+                = 
+                o <sub>*</sub>
+                <span style="letter-spacing: 0">log<sub>10</sub></span>
+                (C + R + V)
+                <sub>*</sub> d + m
+              </span>
+            </p>
+            <p>Pq:<br />Quote price.</p>
+          </section>
+          <section class="slide" style="">
+            <h2>The model</h2>
+            <p style="letter-spacing: 8px; margin-top: 32px;">
+              <span style="color: #999">
+                <span style="letter-spacing: 0">P<sub>q</sub></span> =
+                o <sub>*</sub>
+                <span style="letter-spacing: 0">log<sub>10</sub></span>
+              </span>
+              (C + R + V)
+              <span style="color: #999">
+                <sub>*</sub> d + m
+              </span>
+            </p>
+            <p>C, R, V:<br />Complexity, Risk, and Value</p>
+          </section>
+          <section class="slide" style="">
+            <h2>The model</h2>
+            <p style="letter-spacing: 8px; margin-top: 32px;">
+              <span style="color: #999">
+                <span style="letter-spacing: 0">P<sub>q</sub></span> =
+              </span>
+              o
+              <span style="color: #999">
+                <sub>*</sub>
+                <span style="letter-spacing: 0">log<sub>10</sub></span>
+                (C + R + V)
+                <sub>*</sub>
+              </span>
+              d <span style="color: #999">+</span> m
+            </p>
+            <p>o:<br />Overhead</p>
+            <p>d:<br />Ideal days</p>
+            <p>m:<br />Material and direct project costs</p>
+          </section>
+          <section class="slide" style="">
+            <h2>The model</h2>
+            <p style="letter-spacing: 8px; margin-top: 32px;">
+              <span style="letter-spacing: 0">P<sub>q</sub></span> =
+              o <sub>*</sub>
+              <span style="letter-spacing: 0">log<sub>10</sub></span>
+              (C + R + V)
+              <sub>*</sub> d + m
+            </p>
+          </section>
+        </section>
+        <section>
+          <section class="slide" style="">
+            <h2>Overhead</h2>
+            <p style="letter-spacing: 8px; margin-top: 32px;">
+              <span style="color: #999">
+                <span style="letter-spacing: 0">P<sub>q</sub></span> =
+              </span>
+              o
+              <span style="color: #999">
+                <sub>*</sub>
+                <span style="letter-spacing: 0">log<sub>10</sub></span>
+                (C + R + V)
+                <sub>*</sub>
+                d + m
+              </span>
+            </p>
+            <p>o: Overhead</p>
+          </section>
+          <section class="slide">
+            <h2>Overhead</h2>
+            <p>Moonlighter's example:</p>
+            <div style="font-size: 20px">
+              <p>Match your preferred beer to your overhead rate.</p>
+              <ul style="margin-bottom: 20px; line-height: 1.6;">
+                <li>Pabst Blue Ribbon - $50 / night</li>
+                <li>Spotted Cow - $75 / night</li>
+                <li>Guinness - $100 / night</li>
+                <li>Chimay Blue Label - $125 / night</li>
+              </ul>
+            </div>
+          </section>
+          <section class="slide">
+            <h2>Overhead</h2>
+            <p>Freelance example:</p>
+            <div style="font-size: 20px">
+              <ul style="margin-bottom: 20px; line-height: 1.6;">
+                <li>I want to take home about $30,000 a year.</li>
+                <li>Taxes are about $7,500 a year.</li>
+                <li>Health insurance costs $6,000 a year.</li>
+                <li>I spend $1,800 a year on sales and marketing.</li>
+                <li>I spend $2,000 a year on new computers.</li>
+                <li>I spend $3,000 a year improving my skills.</li>
+                <li>I expect to do billable work three days a week.</li>
+              </ul>
+              <p>Overhead per work day = ( 30,000 + 7,500 + 6,000 + 3,000 + 2,000 + 1,800) / 150</p>
+            </div>
+            <p>Overhead per work day = $415</p>
+          </section>
+          <section class="slide">
+            <h2>Overhead</h2>
+            <p>Agency example:</p>
+            <div style="font-size: 20px">
+              <ul style="margin-bottom: 20px; line-height: 1.6;">
+                <li>Operating Expenses (including payroll): $72,000 / month</li>
+                <li>Employees engaged in production: 5</li>
+                <li>Productive days per month: 20</li>
+              </ul>
+              <p>Overhead per day per employee = 72,000 / (5 * 20)</p>
+            </div>
+            <p>Overhead per project day, per person = $720</p>
+          </section>
+        </section>
+        <section class="slide" style="background: #ffd url(/static/examples/managing-risk-and-selling-value-wordcamp/unicorn-and-rainbow.png) no-repeat 95% 95%;">
+          <h2>Ideal days</h2>
+          <p style="letter-spacing: 8px; margin-top: 32px;">
+            <span style="color: #999">
+              <span style="letter-spacing: 0">P<sub>q</sub></span> =
+              o
+              <sub>*</sub>
+              <span style="letter-spacing: 0">log<sub>10</sub></span>
+              (C + R + V)
+              <sub>*</sub>
+            </span>
+            d
+            <span style="color: #999">
+              + m
+            </span>
+          </p>
+          <p>d:<br />Person-days required for the project<br />under the most ideal circumstances</p>
+          <p class="attribution" style="position: absolute; bottom: -18px; right: 36px; font-size: 10px;">Unicorn by <a href="http://www.flickr.com/photos/vblibrary/8472794574/">Enokson</a></p>
+        </section>
+        <section class="slide">
+          <h2>Direct project costs</h2>
+          <p style="letter-spacing: 8px; margin-top: 32px;">
+            <span style="color: #999">
+              <span style="letter-spacing: 0">P<sub>q</sub></span> =
+              o
+              <sub>*</sub>
+              <span style="letter-spacing: 0">log<sub>10</sub></span>
+              (C + R + V)
+              <sub>*</sub>
+              d +
+            </span>
+            m
+          </p>
+          <p>m: Materials and direct project costs.</p>
+          <div style="font-size: 20px">
+            <p>Examples:</p>
+            <ul style="line-height: 1.6;">
+              <li>Travel expenses - hotels, meals, mileage, etc.</li>
+              <li>Hosting a development environment for the specific project.</li>
+              <li>Hiring a project manager.</li>
+              <li>Contracting specialized work.</li>
+              <li>Buying project-specific training materials.</li>
+              <li>Software licensing.</li>
+              <li>Etc.</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <section class="slide" style="">
+            <h2 style="color: transparent; text-shadow: 0 0 8px rgba(213,46,0,0.7); font-size: 72px;">Fuzzy Math</h2>
+            <p style="margin: 80px 0"><img src="managing-risk-and-selling-value-wordcamp/logscale.png" /></p>
+            <p>Not actually fuzzy, just logarithmic.</p>
+          </section>
+          <section class="slide">
+            <h2 style="margin-bottom: 48px;">Complexity scale</h2>
+            <div class="scale" style="margin-left: 0px;"><p>Pretty much anyone in your field could do it.</p></div>
+            <div class="scale" style="margin-left: 200px;"><p>There are few people in the area who can do it.</p></div>
+            <div class="scale" style="margin-left: 400px;"><p>There are few people in the country who can do it.</p></div>
+            <div class="scale" style="margin-left: 600px;"><p>It probably can't be done.</p></div>
+            <p><img src="managing-risk-and-selling-value-wordcamp/logscale.png" /></p>
+          </section>
+          <section class="slide">
+            <h2 style="margin-bottom: 48px;">Risk scale</h2>
+            <div class="scale" style="margin-left: 0px;"><p>It's a cake walk.</p></div>
+            <div class="scale" style="margin-left: 200px;"><p>There are some problems with the project.</p></div>
+            <div class="scale" style="margin-left: 400px;"><p>There are signficant risks with taking the project.</p></div>
+            <div class="scale" style="margin-left: 600px;"><p>That's just crazy talk.</p></div>
+            <p><img src="managing-risk-and-selling-value-wordcamp/logscale.png" /></p>
+          </section>
+          <section class="slide">
+            <h2 style="margin-bottom: 48px;">Value scale</h2>
+            <div class="scale" style="margin-left: 0px;"><p>The financial impact of the project will be at least double the cost.</p></div>
+            <div class="scale" style="margin-left: 200px;"><p>The financial impact of the project will be an order of magnitude greater than the cost.</p></div>
+            <div class="scale" style="margin-left: 400px;"><p>The financial impact of the project will be two orders of magnitude greater than the cost.</p></div>
+            <div class="scale" style="margin-left: 600px;"><p>An Arab prince has already written you a blank check.</p></div>
+            <p><img src="managing-risk-and-selling-value-wordcamp/logscale.png" /></p>
+          </section>
+        </section>
+        <section>
+          <section class="slide" style="">
+            <h2>Analyzing projects</h2>
+            <p style="padding-top: 42px; line-height: 64px;">Ideal Cost: <strong style="padding: 0 32px;">o * d</strong></p>
+            <p style="padding-top: 42px; line-height: 64px;">CRV factor: <strong style="padding: 0 32px;">log<sub>10</sub> ( C + R + V )</strong></p>
+            <p style="padding-top: 42px; line-height: 64px;">Calculator: <span style="padding: 0 32px;">http://goo.gl/bCtQT</span></p>
+          </section>
+          <section class="slide">
+            <h2>Hard, but worth it</h2>
+            <p><img style="height: 400px" src="managing-risk-and-selling-value-wordcamp/1000-100-1000.png" /></p>
+          </section>
+          <section class="slide">
+            <h2>Assholes and superheroes</h2>
+            <p><img style="height: 400px" src="managing-risk-and-selling-value-wordcamp/100-1000-100.png" /></p>
+          </section>
+          <section class="slide">
+            <h2>Danger Will Robinson!</h2>
+            <p><img style="height: 400px" src="managing-risk-and-selling-value-wordcamp/2500-2500-10.png" /></p>
+          </section>
+          <section class="slide">
+            <h2>Sweet spot<h2>
+            <p><img style="height: 400px" src="managing-risk-and-selling-value-wordcamp/100-100-100.png" /></p>
+          </section>
+        </section>
+        <section class="slide" style="">
+          <img class="slide_image" src="/static/examples/avatar.jpg" style="border-radius: 12px; border: 4px solid white" />
+          <p>@version2beta</p>
+          <p style="font-size: smaller">
+            <a href="http://twitter.com/version2beta" title="version2beta on Twitter">http://twitter.com/version2beta</a> |
+            <a href="http://version2beta.com" title="version2beta's blog">http://version2beta.com</a>
+          </p>
+          <p style="font-size: smaller"><a href="/static/examples/managing-risk-and-selling-value-wordcamp/crv-calculator.html" target="_blank">version2beta's CRV calculator</a></p>
+          <p>Tech support is always free!*</p>
+          <p style="font-size: smaller">* Free as in beer.<br />Means you buy me a beer and I give you tech support.</p>
+        </section>
+      </div>
+    </div>
+    <script src="/static/examples/vagrant-chef-git/reveal.min.js" type="text/javascript"></script>
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: false,
+        rollingLinks: false,
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+			});
+
+		</script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12023701-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
