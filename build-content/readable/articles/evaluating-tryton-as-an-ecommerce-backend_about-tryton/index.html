@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Tryton as an e-commerce back-end - About Tryton - readable &#124; version2beta</title><link rel="canonical" href="http://version2beta.com/evaluating-tryton-as-an-ecommerce-backend_about-tryton"><meta name="description" content="version2beta: A technical blog."><meta name="keywords" content=""><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><link href="/archive/atom.xml" rel="alternate" title="version2beta" type="application/atom+xml"><link rel="stylesheet" href="/style/layout.css" type="text/css" media="screen"><link rel="stylesheet" href="/style/text-styling.css" type="text/css" media="screen"><link rel="stylesheet" href="/style/responsive.css" type="text/css" media="screen"><link rel="shortcut icon" href="/static/site/favicon.png"></head><body><div id="site-readable"><div id="readable-content"><div id="content-header"><h1>Tryton as an e-commerce back-end - About Tryton</h1><p><span class="author">by <a href="https://plus.google.com/115037548656448421726?rel=author">Rob Martin</a>  on </span><span class="post-date"><time pubdate>2011-06-05 at 15:24</time></span><span class="category"><a href="/undefined"></a></span></p><p class="readable"><a href="/articles/evaluating-tryton-as-an-ecommerce-backend_about-tryton">Regular version</a></p></div><div id="post-content"><p>This is part one in a series exploring how Tryton might fair as the heavy-lifting portion of an e-commerce package. This first part describes Tryton - architecture, features, community, license.</p>
+<p>Upcoming parts (as planned, anyway):</p>
+<ul>
+<li>Part 1: About Tryton</li>
+<li><a href="/articles/evaluating-tryton-as-an-ecommerce-backend_stalking-the-tryton-community" title="Evaluation Tryton as an e-commerce back-end: Stalking the Tryton community">Part 2: Stalking the Tryton community</a></li>
+<li><a href="/articles/evaluating-tryton-as-an-ecommerce-backend_web-framework" title="Tryton as an e-commerce back-end: Tryton needs a web framework.">Part 3: The crux of the matter</a></li>
+</ul>
+<h2>About Tryton</h2>
+<p>I want to call Tryton<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> an open source ERP<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup> system, and it is,
+but I like their description of the project better: A
+three-tier<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup> high-level general purpose application platform
+released under the GPL-3<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup> license, written in Python<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup>, using
+PostgreSQL<sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup> as its database engine.</p>
+<p>That’s a lot of descriptors, but basically what it says to me is
+that it’s a platform for building stuff, made from tech I like, and
+licensed under the GPLv3. And when you look at the base modules
+that come with Tryton, you can see it has an emphasis on ERP:
+accounting, invoicing, sales management, purchasing management,
+inventory management.</p>
+<p><em>[Note to past self: In the future, you're going to get excited about this stuff. No, not anxious. I said excited.]</em></p>
+<p><em>[Note from past selves: Did you forget your first professional programming project - 1985 - was calculating economic order quantities? And your first industrial automation job - 1991 - counted feet of magnetic wire coming off 50 machines for integration with their business systems? Loser. We're ready. You're the anxious one.]</em></p>
+<h3>Architecture</h3>
+<p>So Tryton is made up of three main components <em>(tiers)</em>: A client,
+a database, and some code stuck in the middle to make things go
+smoothly.</p>
+<ul>
+<li>On the client side, we have a Python GTK+ program that runs on
+a bunch of desktop operating systems (unfortunately not yet
+including mobile.) But there’s lots of ways to look at what the
+client application is. In some ways, my e-commerce websites will be
+the client, too.</li>
+<li>Opposite the client, we have PostgreSQL, a badass database
+powerhouse. ‘Nuff said.</li>
+<li>In the middle comes a bunch of Python programming that does all
+sorts of cool stuff. From my perspective, it manages a bunch of
+objects (as in Object Oriented Programming<sup class="footnote-ref"><a href="#fn7" id="fnref7">[7]</a></sup>) like ‘Orders’ and
+‘Persons’, and keeps most of them tucked safely away in the
+database for future reference. This is where the magic happens.
+It’s also where the growth happens, because Tryton is modular,
+which means you can create new objects, introduce Tryton to them,
+and wham-bam you get new features. For example, instead of blogging
+about Tryton right now I’m supposed to be building two new modules
+for Tryton’s cousin, OpenERP<sup class="footnote-ref"><a href="#fn8" id="fnref8">[8]</a></sup>, adding increased functionality
+for interfacing with UPS<sup class="footnote-ref"><a href="#fn9" id="fnref9">[9]</a></sup> for shipping and CyberSource<sup class="footnote-ref"><a href="#fn10" id="fnref10">[10]</a></sup> for
+payments.</li>
+</ul>
+<p>That middle layer between the client and the database is also the
+reason Tryton isn’t just an ERP system, because really, you can use
+it to manage any data-intensive application. There’s nothing about
+Tryton that intrinsically says “You must have an Certified Public
+Accountant involved in this project” – Tryton’s design lets it
+manage schools and hospitals and music festivals and motorcycles
+and people and emails and whatnots just as easily procurement
+orders or P&amp;L statements.</p>
+<p>While the middle tier provides the magic, there’s an important
+consideration in the client, too.
+<strong>The client doesn’t have to be human</strong>. If I had my druthers, I’d
+no longer develop any web applications that don’t provide an
+API, or Application Programming Interface<sup class="footnote-ref"><a href="#fn11" id="fnref11">[11]</a></sup>. Tryton’s server,
+known as trytond or “the Tryton daemon”, connects to the regular
+old client using a protocol known as XML-RPC<sup class="footnote-ref"><a href="#fn12" id="fnref12">[12]</a></sup>, or “eXtensible
+Markup Language – Remote Procedure Call”. trytond uses XML-RPC to
+tell the client what to show, and the client responds in XML-RPC to
+tell the server what to do. Well, that means that any program that
+knows the secret handshake and how to speak XML-RPC can be a Tryton
+client. (For accuracy’s sake, I’d like to point out that Trytond is
+like, trilingual. It’s fluent in XML-RPC<sup class="footnote-ref"><a href="#fn13" id="fnref13">[13]</a></sup>, JSON-RPC<sup class="footnote-ref"><a href="#fn14" id="fnref14">[14]</a></sup>, and
+Net-RPC<sup class="footnote-ref"><a href="#fn15" id="fnref15">[15]</a></sup>. It’s also gets by with WebDAV<sup class="footnote-ref"><a href="#fn16" id="fnref16">[16]</a></sup>, psycopg<sup class="footnote-ref"><a href="#fn17" id="fnref17">[17]</a></sup>, and
+even some OpenOffice<sup class="footnote-ref"><a href="#fn18" id="fnref18">[18]</a></sup> – you know, enough to ask where the
+bathroom is, how to hail a cab, what’s safe to order at a
+restaurant.) The upshot of this, of course, is that I can create an
+e-commerce site running on MODX<sup class="footnote-ref"><a href="#fn19" id="fnref19">[19]</a></sup> Revolution<sup class="footnote-ref"><a href="#fn20" id="fnref20">[20]</a></sup> or Django<sup class="footnote-ref"><a href="#fn21" id="fnref21">[21]</a></sup>
+that interfaces completely with Tryton because
+<strong>my website is the client</strong>.</p>
+<h3>Features</h3>
+<p>I feel like I should mention something about what Tryton actually
+does, which is an interesting concept. I almost think of it like I
+would a programming language – not what it does, but what you can
+do with it. Given enough time.</p>
+<p>Despite my inclination to see multiple uses for it, Tryton focuses
+on business systems. Install the standard modules and it will
+handle the business of a catalog retailer, for example:</p>
+<ul>
+<li>Manage contacts: customers, vendors, companies, employees,
+addresses, etc.</li>
+<li>Workflow management</li>
+<li>Issue RFQs (requests for quotation) and purchase orders to
+suppliers, keep track of current and historical costs associated
+with products</li>
+<li>Receive stock, track inventory by location, move stock around
+and out the door, get the value of inventory by location, set
+orderpoints</li>
+<li>Process invoices for accounts payable, reconcile the invoices
+against received product, make payments</li>
+<li>Track leads, schedule meetings and events</li>
+<li>Create customer quotations, accept purchase orders, schedule
+delivery</li>
+<li>Issue invoices, accept payments, reconcile accounts</li>
+<li>Manage projects, including billing for time on projects</li>
+<li>Review finances, generate reports, close out financial periods</li>
+<li>Track specialized business intelligence</li>
+<li>Generate standard and customized reports</li>
+</ul>
+<p>There are certainly some things that Tryton doesn’t do, that a
+typical ERP system might (or should, or maybe I wish it would) do:</p>
+<ul>
+<li>Manage production (work orders, repair orders, schedule
+resources, etc.)</li>
+<li>Comprehensive CRM (track emails, phone calls, social media;
+manage issues or complaints; delegate accounts and tasks, etc.)</li>
+<li>Better localization support for the United States</li>
+<li>Support mobile clients</li>
+</ul>
+<p>That’s not to say Tryton can’t do these things. It can – some
+assembly required, please allow six to eight months for delivery.</p>
+<p>Looking at my target application, however – performing as the
+backend for a large-scale e-commerce system – Tryton has much of
+what I need:</p>
+<ul>
+<li>Account management</li>
+<li>Catalog management</li>
+<li>Stock management and product availability</li>
+<li>Multiple pricelists and multi-tiered pricelists</li>
+<li>Sales quotations (often called “shopping carts” and “wish
+lists”)</li>
+<li>Sales orders (“Complete your order”)</li>
+<li>Order management</li>
+<li>Customer support</li>
+<li>Process integration (“track your order”)</li>
+</ul>
+<p>Alas, there are a few things I’d want to add to that list:</p>
+<ul>
+<li>Online payment support through Authorize.net, PayPal, Google
+Checkout, etc.</li>
+<li>Shipping integration with UPS, USPS, and FedEx</li>
+<li>WYSIWYG editing of product data</li>
+<li>A decent point of sale terminal interface for e-commerce stores
+with a brick-and-mortar presence</li>
+</ul>
+<p>While I might not expect it to be part of Tryton, there’s always
+the rest of the e-commerce site too – content management, templates,
+dynamic content outside of the store, etc. I think it could be
+interesting to see a merger between these elements, but I am not
+convinced it’s a good marriage. Should an ERP system provide
+internet and intranet, online document management, institutional
+knowledge management? Sounds like a question for another blog post.
+Meanwhile there’s MODx and Django.</p>
+<h3>Community</h3>
+<p>I’ll discuss community more in the next post, but Tryton seems to
+be developed under what’s called a Community Open Source model. If
+you ask me, that’s the old school way of doing it. You know, the
+right way, before the new fangled methods came along and perverted
+the process. (I’m not opinionated or anything.)</p>
+<p>Tryton is developed by a federation of companies and individual
+developers. There seem to be at least five main companies involved,
+all of which also provide commercial services for the system as
+well. Of course, there is a strong argument that these companies
+are most expert in the software. This expertise translates into
+demand, and revenue.</p>
+<p>In contrast, some open source projects (examples include
+OpenERP<sup class="footnote-ref"><a href="#fn22" id="fnref22">[22]</a></sup> and Magento<sup class="footnote-ref"><a href="#fn23" id="fnref23">[23]</a></sup>) follow what’s called a Commercial
+Open Source model. In this model, one company typically calls the
+shots (or “edits”) the software. They often do most of the
+development, especially early on, but they also draw upon work done
+by users and developers of the system. If the editor likes your
+code, they pull it into the main branch. If they like your idea but
+not your code, they might implement your idea themselves. If they
+don’t want either your idea or your code, it sits out there for
+others to find and use. Often, the commercial open source model
+matures into a dual-release model, where the package is released in
+a community (open source) version, and an enterprise (proprietary)
+version.</p>
+<h3>License</h3>
+<p>I’ve developed in OpenERP and already had that uncomfortable
+discussion with the client where you teach them how to read a
+specification, especially the section defining how the code is
+licensed. OpenERP is, curiously, licensed under the
+GNU Affero General Public License version 3.0<sup class="footnote-ref"><a href="#fn24" id="fnref24">[24]</a></sup>. It’s just like
+the (in)famous GNU General Public License version 3.0<sup class="footnote-ref"><a href="#fn25" id="fnref25">[25]</a></sup>, except
+it adds a bit of text closing what’s called the “Application
+Service Provider Loophole”. That is, the user of a system licensed
+under the AGPL has a right to the source code for the system, even
+if they’re accessing the system over a network. Even if it’s been
+customized. Even if it’s got trade secrets in it. In practice (and
+I Am Not A Lawyer) this seems to mean that the people using the
+OpenERP client to connect to an OpenERP server over a network
+should be able to retrieve the source code for custom modules.
+Generally speaking, this would be the customer who paid a developer
+to create the modules, and of course they should get the code.
+Likewise, the person who owns a website that connects to an OpenERP
+server should be able to get any custom OpenERP module code that
+supports the website connecting to it. Phew. But I don’t think it
+goes farther than that – I don’t believe this means that the
+website needs to be licensed AGPL, or that visitors to the website
+should be able to download code for the website, or any custom
+OpenERP modules.</p>
+<p>Tryton, on the other hand, is licensed under the regular old
+GNU General Public License version 3.0, complete with ASP
+loophole. That tells me that the source code for any customization
+made to the Tryton code (a custom module, for instance) used by a
+client over a network does not need that custom code offered to the
+client. I don’t have a problem playing nicely with others. I like
+to share. I appreciate those subtle shades of difference between
+the AGPL and GPL. But when it comes to splitting the hairs of
+freedom, it seems that distributing custom code to lowly users
+causes palpitations among some clients, typically those with legal
+departments.</p>
+<h3>What else is there?</h3>
+<ul>
+<li>Part 1: About Tryton. An overview of Tryton – architecture,
+business model, features, license.</li>
+<li><a href="/articles/evaluating-tryton-as-an-ecommerce-backend_stalking-the-tryton-community" title="Evaluation Tryton as an e-commerce back-end: Stalking the Tryton community">Part 2: Stalking the Tryton community</a>. There are some
+impressive people working on this project. I’m pleased to get to
+know them.</li>
+<li><a href="/articles/evaluating-tryton-as-an-ecommerce-backend_web-framework" title="Tryton as an e-commerce back-end: Tryton needs a web framework.">Part 3: The crux of the matter</a>. Tryton needs a web framework so we don't have to do things twice.</li>
+</ul>
+<p><em>If I’ve inspired a response from you (probably the type of response that deserves an apology), mention <a href="http://twitter.com/version2beta" title="Me, twitterfied">@version2beta</a> on <a href="http://twitter.com/" title="All of twitter, including me.">Twitter</a> and I’ll see it there. Or, if you can’t comment in less than 126 characters (my handle takes 14 characters with a space), blog about it and tweet that.</em></p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1"  class="footnote-item"><p><a href="http://tryton.org/" title="Tryton home page">http://tryton.org/</a> Tryton project home <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2"  class="footnote-item"><p>Don't know what <a href="http://en.wikipedia.org/wiki/Enterprise_resource_planning" title="Wikipedia article on enterprise resource planning.">Enterprise Resource Planning</a> is? Wikipedia does. <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn3"  class="footnote-item"><p>Three-tiered architecture structures applications so that the data, business logic, and presentation are separate modules, independently maintained and applied, with all actions passing through the business logic tier. Wikipedia also has an article on <a href="http://en.wikipedia.org/wiki/Three_layer_architecture" title="Wikipedia article on multi-tier architecture">multi-tiered architectures</a>. <a href="#fnref3" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn4"  class="footnote-item"><p><a href="http://www.gnu.org/licenses/gpl-3.0.html" title="The Gnu General Public License version 3.0">The Gnu General Public License version 3.0</a>. Tryton is licensed under these terms. <a href="#fnref4" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn5"  class="footnote-item"><p>The <a href="http://www.python.org/" title="The Python programming language official website. Hello, Guido!">Python programming language official website</a>. Guido van Rossum started development on Python in 1986, and named it in part after Monty Python's Flying Circus. <a href="#fnref5" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn6"  class="footnote-item"><p>Have I mentioned how much I like <a href="http://www.postgresql.org/" title="Have I mentioned how much I like PostgreSQL before?">PostgreSQL</a> before? I really did discount and ignore it before I had to start using it on a project, and that's all it took. I prefer PostgreSQL now over every other SQL database I've used. <a href="#fnref6" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn7"  class="footnote-item"><p>Wikipedia's article on <a href="http://en.wikipedia.org/wiki/Object-oriented_programming" title="Primer on Object-oriented Programming from Wikipedia. Remind me to tell you sometime about my first OOP class.">object oriented programming</a> is a good primer. My first class on OOP, back in the early 90's, was interesting. The instructor started to describe an object like a telephone. &quot;It has a phone number associated with it, that's a property. It has the ability to call out, and that's a method. It can also receive incoming calls and ring, and that's an event.&quot; Just then, the phone in the back of the room rang. Everyone looked around to see if it was a prop, or a real call, and eventually someone got up and answered it. They listened for a moment and then called out, &quot;Is there a Rob Martin here?&quot; It was my office, sending me to California. I had three hours to pack and get to the airport. I managed to pick up object oriented programming on my own later. <a href="#fnref7" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn8"  class="footnote-item"><p><a href="http://openerp.com" title="OpenERP SA home page">OpenERP</a> and Tryton share a lineage, but don't see eye-to-eye on philosophy. I can relate. That's what my family is like too. <a href="#fnref8" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn9"  class="footnote-item"><p>UPS, <a href="http://ups.com" title="United Parcel Service.">United Parcel Service</a>. <a href="#fnref9" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn10"  class="footnote-item"><p><a href="http://cybersource.com" title="Cybersource is like Authorize.net, but for grown-up companies.">CyberSource</a> is like Authorize.net, but for companies with over US$3M a year in sales. Actually the local salesperson might think that number is higher. I brought them a customer with nearly double that, and we gave up on her ever sending a contract after three months. <a href="#fnref10" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn11"  class="footnote-item"><p>Wikipedia just knows it all, you know what I mean? Here's the <a href="http://en.wikipedia.org/wiki/Api" title="Wikipedia article on Application Programming Interfaces">application programming interface article</a>. <a href="#fnref11" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn12"  class="footnote-item"><p><a href="http://en.wikipedia.org/wiki/Xml-rpc" title="XML-RPC at Wikipedia. I wasn't kidding. Sometimes I think Wikipedia is smarter than Google. At least it's right more often.">XML-RPC at Wikipedia</a>. I wasn't kidding. Sometimes I think Wikipedia is smarter than Google. At least it's right more often. <a href="#fnref12" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn13"  class="footnote-item"><p>Geeky readers may want to glance at the <a href="http://www.xmlrpc.com/" title="XML-RPC specification">spec</a>. Truly geeky ones already have it memorized. I'm in the former group. <a href="#fnref13" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn14"  class="footnote-item"><p><a href="http://en.wikipedia.org/wiki/JSON-RPC" title="JSON-RPC Wikipedia article.">JSON-RPC</a> is like XML-RPC, but quieter. <a href="#fnref14" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn15"  class="footnote-item"><p><a href="http://docs.python.org/library/pickle.html" title="Python library article about Pickle.">Net-RPC</a> is XML-RPC that's been pickled in Python. <a href="#fnref15" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn16"  class="footnote-item"><p><a href="http://en.wikipedia.org/wiki/Webdav" title="WebDAV is HTTP with a bit more Ooomph.">WebDAV</a> is HTTP with a bit more Ooomph. <a href="#fnref16" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn17"  class="footnote-item"><p><a href="http://www.initd.org/psycopg/" title="Psycopg implements a database API in Python. I don't know (yet) how Tryton uses it.">Psycopg</a> implements a database API in Python. I don't know (yet) how Tryton uses it. <a href="#fnref17" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn18"  class="footnote-item"><p>See <a href="http://www.libreoffice.org/" title="Libre Office home.">http://www.libreoffice.org/</a>. <a href="#fnref18" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn19"  class="footnote-item"><p><a href="http://modx.com" title="MODx home page.">MODX</a> is a content management framework, easy for the user and powerful for the developer. <a href="#fnref19" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn20"  class="footnote-item"><p><a href="http://modx.com/revolution/" title="Revolution section of the MODX website.">MODX Revolution</a> is the &quot;advanced&quot; version of MODX. <a href="#fnref20" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn21"  class="footnote-item"><p><a href="https://www.djangoproject.com/" title="Django is a Python-based web framework for delivering content efficiently">Django</a> is a Python-based web framework for delivering content efficiently. Originally developed by newspaper publisher The World Company in Lawrence, Kansas, it's not used in a wide variety of applications throughout the internet. The largest Django site right now is Disqus, which will host comments for my blog when I get around to implementing that. <a href="#fnref21" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn22"  class="footnote-item"><p>OpenERP SA is the editor and holder of the <a href="http://openerp.com" title="OpenERP SA home page">OpenERP</a> project. <a href="#fnref22" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn23"  class="footnote-item"><p>Varien publishes the <a href="http://www.magentocommerce.com/">Magento e-commerce system</a>. That's kind of like the advice Mom gave me. If you can't say anything nice, don't say anything at all. <a href="#fnref23" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn24"  class="footnote-item"><p>The full and official text of the <a href="http://www.gnu.org/licenses/agpl.html" title="Affero General Public License version 3.0.">GNU Affero General Public License version 3.0</a> <a href="#fnref24" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn25"  class="footnote-item"><p>The full and official text of the <a href="http://www.gnu.org/licenses/gpl-3.0.html" title="The Gnu General Public License version 3.0">GNU General Public License version 3.0</a> <a href="#fnref25" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+</div><hr><p class="readable"><a href="/articles/evaluating-tryton-as-an-ecommerce-backend_about-tryton">Regular version</a></p><script type="text/javascript">var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-12023701-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script><script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script><script src="/static/js/css3-mediaqueries.js"></script></div></div></body></html>

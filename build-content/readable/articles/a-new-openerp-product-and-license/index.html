@@ -1,0 +1,432 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>A new OpenERP product and license - readable &#124; version2beta</title><link rel="canonical" href="http://version2beta.com/a-new-openerp-product-and-license"><meta name="description" content="version2beta: A technical blog."><meta name="keywords" content=""><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><link href="/archive/atom.xml" rel="alternate" title="version2beta" type="application/atom+xml"><link rel="stylesheet" href="/style/layout.css" type="text/css" media="screen"><link rel="stylesheet" href="/style/text-styling.css" type="text/css" media="screen"><link rel="stylesheet" href="/style/responsive.css" type="text/css" media="screen"><link rel="shortcut icon" href="/static/site/favicon.png"></head><body><div id="site-readable"><div id="readable-content"><div id="content-header"><h1>A new OpenERP product and license</h1><p><span class="author">by <a href="https://plus.google.com/115037548656448421726?rel=author">Rob Martin</a>  on </span><span class="post-date"><time pubdate>2011-06-27 at 20:03</time></span><span class="category"><a href="/undefined"></a></span></p><p class="readable"><a href="/articles/a-new-openerp-product-and-license">Regular version</a></p></div><div id="post-content"><p>Last Friday (June 24, 2011) under an unassuming headline 'Improved OpenERP Website',<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> OpenERP announced the new Enterprise edition of the OpenERP software. The response among community members was swift. Two topics attracted most of the conversation: the new OpenERP AGPL + Private Use license<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup> available only to Enterprise edition customers, and apparent policy changes regarding security alerts.</p>
+<h2>The OpenERP AGPL + Private Use license</h2>
+<p>Essentially, OpenERP SA has introduced a dual licensing model for
+the OpenERP program.</p>
+<ul>
+<li>Download the community version and the code is strictly
+licensed under the GNU Affero Public License<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>, which is much
+like the GNU General Public License<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup> except that it closes what
+is sometimes called the “Application Service Provider Loophole”.</li>
+<li>Subscribers of the OpenERP Enterprise Edition receive much the
+same code as the community users, but they are conveyed the right
+to create “private modules”. These modules are meant for companies
+that need to include confidential data and/or business practices in
+their customizations to the program. This second, private license
+grants such users an exception to the AGPL so that they are not
+required to distribute that sensitive code to users of the system,
+but only under very limited circumstances.</li>
+</ul>
+<p>I have no doubt this additional license addresses a need or meets a
+demand among some users of OpenERP. Certainly I can see how it
+might desirable, or even necessary in some applications.
+Nonetheless, members of the OpenERP community raised serious
+concerns about this announcement.</p>
+<h3>The right to license</h3>
+<p>OpenERP SA owns the rights to a significant portion of the source
+code for the OpenERP system. However, portions of the core code for
+OpenERP, and the vast majority of the 1,200 modules for OpenERP,
+were written by developers who have not handed their rights over to
+OpenERP SA. As such, these developers have the right to release
+their code as they choose. In fact, they have exercised that right
+in releasing their code under the GNU AGPL license, which is why
+their modules can be distributed along with the rest of the OpenERP
+system.</p>
+<p>For clarity I should note that
+<strong>all OpenERP modules must be licensed under the AGPL</strong>, as they
+are derivative works of OpenERP, which is released under the AGPL
+license. (There is an exception for GPL licensed code; more below.)
+This isn’t to say that anyone anywhere should have access to the
+source code for any custom OpenERP module ever written, but because
+OpenERP itself is released
+<strong>under the AGPL, the users of any given OpenERP system have the right to the source code for the entire system including the custom modules</strong>.</p>
+<p>It is unclear at this point exactly what code OpenERP SA will be
+offering under this new dual license. It could be as described
+above – only including core code and modules to which OpenERP owns
+all the rights. It’s my opinion (and I am not a lawyer) that they
+could license a system comprised only of OpenERP SA code under any
+license they wish. But some community members fear it will include
+work they created, relicensed without their permission.</p>
+<p>One basis for this concern is that OpenERP SA code, without modules
+and base code contributed by community developers, may be
+insufficient for building an effective ERP system. If this is the
+case, every Enterprise edition installation will include community
+code.</p>
+<p>Another basis for this concern might be drawn from the new dual
+license itself. In reviewing the text of their OpenERP AGPL +
+Private Use license, some of the terms seem to include code created
+by the community.</p>
+<p>Under section 0, <em>Additional Definitions</em>, the license defines
+Program to include all components without limitation (emphasis is
+mine):</p>
+<blockquote>
+<p>In the context of this License, the Program refers to OpenERP
+<strong><em>including all its components: client programs, server system, modules, etc.</em></strong>
+“OpenERP modules” are extensions to the Program that can be
+activated separately.</p>
+</blockquote>
+<p>Under section 1, <em>Exceptions to section 13 of the GNU AGPL</em>,
+describing the conditions required for the exception, the license
+implies that OpenERP SA is the original licensor of the program
+defined to include all components in section 0 (again, emphasis is
+mine):</p>
+<blockquote>
+<p>\a. You have received written permission to do so
+<strong><em>from the original licensor of the Program, OpenERP S.A.</em></strong></p>
+<p>\b. You do not convey the covered work.</p>
+</blockquote>
+<p>One could read this as OpenERP SA claiming licensing rights to code
+written by the community, and several developers in the community
+interpreted the announcement in exactly this way.</p>
+<h3>Compatible licenses</h3>
+<p>Under the terms of the dual license, nearly all of the code
+distributed to an Enterprise edition subscriber is licensed AGPL.
+The subscriber then has the option of creating a derived work (in
+the form of a module that extends the functionality of the system)
+that is not open source. Under the GPL this is clearly allowed. The
+Free Software Foundation has made this clear in the
+Frequently Asked Questions about the GNU Licenses:<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup> ”The GPL
+does not require you to release your modified version, or any part
+of it. You are free to make modifications and use them privately,
+without ever releasing them.” In fact, OpenERP’s language even
+parallels that of the Free Software Foundation in terming the
+license “AGPL + Private Use”.</p>
+<p>If OpenERP were released under the GPL (as it used to be), private
+use of modified source code could cover Application Service
+Providers offering the program as a service over a network, and
+then the provider would not be required to offer their customers
+the source code for the program. OpenERP base code and all modules,
+however, are released under the Affero GPL license that plugs the
+Application Service Provider loophole. Users of the system, even
+those accessing it as an online service, must be prominently
+offered the opportunity to download all corresponding source code.</p>
+<p>I mentioned briefly above that there is the option to combine
+another (possibly non-derivative) work licensed under the GPL with
+OpenERP licensed under the AGPL. The terms of the AGPL suggest the
+GPL portion of the combined work would be covered under the GPL
+license. However, Section 13 of the GPL clearly states that “the
+special requirements of the GNU Affero General Public License,
+section 13, concerning interaction through a network will apply to
+the combination as such.” So even combined with the explicitly
+compatible GPL license, the more restrictive (from the publishers
+perspective) requirement to prominently offer source code applies,
+even to the GPL code.</p>
+<h3>Why it matters</h3>
+<p>In many cases, an OpenERP installation with base and
+community-developed modules will be sufficient all by itself. No
+additional modules are needed, let alone custom modules containing
+hard-coded sensitive business intelligence. In cases where custom
+modules are required, much or all of the sensitive business
+intelligence can or should be integrated as data, not program code.
+(Pricelists, for instance, are data and under normal circumstances
+would never need to be distributed with the source code for a
+program.) In the rare circumstances where business methods are
+implemented by a module, the source code must be available to the
+company that performed (or hired) the modifications, and their
+users.</p>
+<p>Those final three words, “and their users”, contain the key to
+understanding the change. The GPL was created in large part to
+protect users by ensuring they have access to the source code of
+the programs on which they depend, and some companies would not
+wish employees and other system users to have access to the source
+code.</p>
+<p>The AGPL extends that protection to include another class of users,
+those that access the system across a network. In this case, that
+will include users who subscribe to OpenERP under a
+Software as a Service (SaaS)<sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup> model. Under the AGPL, no company
+(including OpenERP SA) could offer OpenERP as a hosted service
+without offering links to download their service’s source code,
+including custom modules. Under the dual license, only the code
+which is distributed (sold or given away to other companies) must
+include the option to download source.</p>
+<p>SaaS is a powerful and lucrative force in the market. OpenERP SA
+itself is promoting their
+online service at 39€ per month per user<sup class="footnote-ref"><a href="#fn7" id="fnref7">[7]</a></sup>. In the US, a company
+of merely twenty employees would be paying $11,760.00 a year for
+the service. Under the AGPL, OpenERP SA is required to allow me
+(assuming I am an online user) to download the source code,
+including the source code for any modules they’ve written
+exclusively for their online service, which I may then use to
+create a competing service. Under the dual license, for some amount
+of money starting at 1,950€ per year, I can create a custom module
+for SaaS and not offer the source code to my users. Or, if I’m
+OpenERP, perhaps I can just do it for free.</p>
+<h3>Community Relations</h3>
+<p>In the two years I’ve been working with OpenERP, I’ve watched
+OpenERP SA sink in the estimation of many community members and
+developers. The release of the Enterprise edition with a dual
+license may have created a new low.</p>
+<a href="http://twitter.com/#!/fpopenerp/status/73712952632545280" title="Click the image to view Fabien Pinckaers' tweet at Twitter.com" target="_blank">
+  <img src="/static/2011/openerp-no-dual-license-tweet-may-26-2011.png" alt="Fabien's No Dual License tweet" />
+</a>
+<p>(<strong>Update 23 August 2011:</strong> This tweet has been removed from Fabien Pinckaer's Twitter account, so if you click on the image, you'll see a Twitter 404 page.)</p>
+<p>I first heard of the dual license possibility from the transcript
+of a Certified Training Partner (CTP) meeting held on IRC in May.
+(I am not a CTP, but a link to the transcript was provided by an
+attendee.) Some partners in the meeting expressed considerable
+opposition to the idea at that time, and Fabien Pinckaers made what
+many would consider an unequivocable statement on May 26th that
+there would be no dual-license. Nonetheless, the June 24
+announcement indicates Enterprise subscribers will have access to
+the new dual license.</p>
+<p>It could be argued that Fabien’s tweet has not been violated:</p>
+<ul>
+<li>The new license is a modified AGPL, granting additional
+permissions in limited circumstances.</li>
+<li>Only undistributed custom modules qualify for the private use
+license. For the rest of the software, the license is modified from
+AGPL only enough to allow for those private modules to be installed
+with the system.</li>
+<li>Fabien didn’t <em>actually</em> say they wouldn’t dual license, only
+that they didn’t have to. (Okay, this one feels like a stretch.)</li>
+</ul>
+<p>I haven’t heard these arguments presented by anyone in the
+community, but my impression is they are not reassuring. My own
+employer tweeted last Friday:</p>
+<a href="http://twitter.com/#!/lageekitude/status/84306783111352320" title="Click the image to view @LaGeekitude's tweet at Twitter.com" target="_blank">
+  <img src="/static/2011/openerp-tryton-house-tweet-jun-242.png" alt="Ditching OpenERP for Tryton?" />
+</a>
+<h2>Security Alerts</h2>
+<p>On the OpenERP ‘Buy’ page<sup class="footnote-ref"><a href="#fn8" id="fnref8">[8]</a></sup> showing the options for purchase and
+download, the presence of ‘Security Alerts’ under OpenERP
+Enterprise, and only under Enterprise, attracted conversation.</p>
+<p><a href="http://twitter.com/#!/sharoonthomas/status/84269468506800128" title="A Twitter comment by @SharoonThomas">@SharoonThomas</a>:</p>
+<blockquote>
+<p>Acc to <a href="http://twitter.com/openerp">@openerp</a> community users will not get security alerts.
+Not needed since community has always found security holes, not
+openerp SA</p>
+</blockquote>
+<p><a href="http://twitter.com/#!/sharoonthomas/status/84269785071882240" title="A follow-up comment by @sharoonthomas">@SharoonThomas</a>:</p>
+<blockquote>
+<p><a href="http://twitter.com/openerp">@openerp</a> how dare u talk about security alerts when u dont know
+why software needs encrypted passwords &amp; not plain text??
+<a href="http://j.mp/lffPGi">http://j.mp/lffPGi</a></p>
+</blockquote>
+<p><a href="http://twitter.com/#!/lageekitude/status/84279132279672832" title="A Twitter comment by @lageekitude">@LaGeekitude</a>:</p>
+<blockquote>
+<p>Security alerts should be public announcements. All users deserve
+notice. <a href="http://twitter.com/openerp">@OpenERP</a> <a href="http://twitter.com/fpopenerp">@fpopenerp</a></p>
+</blockquote>
+<p>Upon closer review, it’s apparent that OpenERP only promises that
+Enterprise customers will receive notices in advance of a public
+disclosure. This is detailed on the multiple product pages
+describing OpenERP Enterprise, such as
+the page describing the 70 to 150 user license<sup class="footnote-ref"><a href="#fn9" id="fnref9">[9]</a></sup> (emphasis is
+mine):</p>
+<blockquote>
+<p>If we detect a security issue on OpenERP
+<strong><em>we develop the patch and warn our customers three weeks before a public announcement</em></strong>.
+We also provide you with the explanation on how to migrate or apply
+the security patch. After three weeks, we do a public communication
+about the security hole for the rest of the community. We strongly
+advice you to apply the patch to your server within these three
+weeks to avoid any security trouble.</p>
+</blockquote>
+<p>Under the OpenERP Publisher’s Warranty, the promise regarding
+security alerts was even less favorable to community users (again,
+emphasis is mine):</p>
+<blockquote>
+<p>As OpenERP manages critical data for your company, it is important
+to be very proactive in case of a vulne­rability issue detection in
+the OpenERP software. Once a security bug is detected by OpenERP sa
+or by the community,
+<strong><em>we provide you with a patch to fix the issue one month before the public announce of the security fix</em></strong>.
+This allows you to update your installation before the public
+announce and release of the patch.</p>
+</blockquote>
+<p>Since the new Enterprise offerings replace the OpenERP Publisher’s
+Warranty, it seems likely that the Enterprise policy on security
+alerts will become the current practice. In effect, this is an
+improvement over the previous practice.</p>
+<h2>OpenERP SA and the commercial open source business model</h2>
+<p>I can certainly relate to the community of developers who are
+concerned and frustrated by OpenERP SA’s announcement. Some of the
+developers have devoted literally months of their time to make
+OpenERP a better product, and have reason to feel used, even
+abused, by liberties that may be (or have been) taken with their
+hard work. Because of this, I’ve tried to discuss the situation
+objectively, and I hope I’ve demonstrated that the situation is not
+quite as bad as it seemed at first. There are unanswered questions,
+and I trust OpenERP SA will answer those through further
+communication and their future actions.</p>
+<p>It is important to consider that OpenERP SA is working to cement
+their commercial open source business model. We know what to
+expect: a difficult transition, especially for early adopters and
+contributors as more of the product is brought under the company’s
+control. They are master editor of the software, selling services
+to end users as well as companies offering services related to
+their software. With persistence and planning, OpenERP SA and many
+of their partners will enjoy a profitable future.</p>
+<p>One freedom often ascribed to the GPL is the freedom to not use the
+software. Don’t like the fact you have to release your source code?
+Don’t use it. Don’t like the direction the project is going? Fork
+it.</p>
+<p><strong>Please don’t hesitate to do your own investigation about the new OpenERP products and licenses.</strong>
+Visit their website<sup class="footnote-ref"><a href="#fn10" id="fnref10">[10]</a></sup>, especially their FAQ on the changes<sup class="footnote-ref"><a href="#fn11" id="fnref11">[11]</a></sup>
+and community section<sup class="footnote-ref"><a href="#fn12" id="fnref12">[12]</a></sup> for information on all of their
+communication channels.</p>
+<h3>In related news…</h3>
+<p>Nicolas Évrard of B2CK<sup class="footnote-ref"><a href="#fn13" id="fnref13">[13]</a></sup> posted to the Tryton mailing list<sup class="footnote-ref"><a href="#fn14" id="fnref14">[14]</a></sup>
+last Saturday a
+call for comments on the creation of the Tryton Software Foundation<sup class="footnote-ref"><a href="#fn15" id="fnref15">[15]</a></sup>.
+B2CK proposes this foundation as a consensus-based community formed
+to promote and protect the freedom of Tryton. As Tryton and OpenERP
+share a common lineage (both can be traced back to TinyERP, each
+with improvements in different areas), OpenERP users and
+contributors frustrated by OpenERP’s business model may find a more
+favorable environment among Tryton’s community open source model.</p>
+<p>I have been writing a series of articles on Tryton on this blog; consult
+them or visit Tryton’s website<sup class="footnote-ref"><a href="#fn16" id="fnref16">[16]</a></sup> for more information.</p>
+<h3><em>Updated 28 June 2011</em></h3>
+<p>There has been remarkable conversation on Twitter regarding this
+post, and I’m grateful for all the feedback. I’d especially like to
+thank Olivier Dony (<a href="http://twitter.com/#!/odony" title="Olivier Dony on Twitter">@odony</a> on Twitter), Community Manager at
+OpenERP SA, for his clarifications on some of the points I’ve
+raised.</p>
+<p>The biggest comes from this tweet, which <a href="http://twitter.com/#!/rvalyi" title="Raphaël Valyi on Twitter">@ravlyi</a> described as
+“the missing OpenERP re-licensing FAQ”:</p>
+<a href="http://twitter.com/#!/odony/status/85706734865367040" title="Click the image to view Olivier Dony's tweet at Twitter.com" target="_blank">
+  <img src="/static/2011/openerp-relicensing-faq-tweet-from-odony.png" alt="Olivier Dony's Not Compatible tweet" />
+</a>
+<p>This certainly seems to make clear that no Enterprise edition
+customer using private modules may install any AGPL-only modules.
+It doesn’t answer concerns about what happens if an Enterprise
+edition subscriber installs a community module, or about community
+contributions to OpenERP core code, such as the netsvc.py<sup class="footnote-ref"><a href="#fn17" id="fnref17">[17]</a></sup> file
+<a href="http://twitter.com/#!/cedrickrier" title="Cédric Krier on Twitter">@cedrickrier</a> tweeted from OpenERP-server trunk, as excerpted
+here:</p>
+<pre><code>…
+5 \# OpenERP, Open Source Management Solution
+6 \# Copyright (C) 2004-2009 Tiny SPRL (). All Rights Reserved
+7 \# The refactoring about the OpenSSL support come from Tryton
+8 \# Copyright (C) 2007-2009 Cédric Krier.
+9 \# Copyright (C) 2007-2009 Bertrand Chenal.
+10 \# Copyright (C) 2008 B2CK SPRL.
+…
+</code></pre>
+<p>Also, one aspect I did not address in the original post was
+OpenERP’s original transition from GPL to AGPL.
+Fabien Pinckaers discussed it on his Blogspot blog<sup class="footnote-ref"><a href="#fn18" id="fnref18">[18]</a></sup> and
+reviewing this clears any question about his thoughts at that time
+on SaaS and OpenERP:</p>
+<blockquote>
+<p>“Our goal is to better promote and maintain the free and open
+source nature of OpenERP. We think this licence will better protect
+the community to ‘evil’ SaaS offers that do not want to release
+their source code to the community.”</p>
+</blockquote>
+<p>It’s my opinion (and again, I am not a lawyer) that the new
+AGPL+Private enables the ‘evil SaaS offers’ Fabien warns about, so
+long as the SaaS provider is either a paying OpenERP Enterprise
+subscriber, or OpenERP SA themselves.
+<strong>I am in no way saying it is OpenERP SA’s intention to support a secondary SaaS market based on private modules, or to create private modules for their own SaaS product.</strong>
+I merely point at the license and say I think it could be done
+under these terms.</p>
+<h3><em>Updated 23 August 2011</em></h3>
+<p>I was doing maintenance on this post (moving it to the version2beta.com domain with the rest of my blog) and came across some discrepencies between linked documents when I wrote the post, and how those documents appear today. For example, the netsvc.py<sup class="footnote-ref"><a href="#fn17" id="fnref17:1">[17]</a></sup> discussion above: Cédric Krier's copyright no longer appears in the header in the trunk source code. I researched the revision and found this:<sup class="footnote-ref"><a href="#fn19" id="fnref19">[19]</a></sup></p>
+<pre><code>Committer: Olivier Dony
+Date: 2011-06-29 09:51:38
+Revision ID: odo@openerp.com-20110629095138-hmo91mvk1m8u4643
+[FIX] netsvc: corrected copyright header
+
+Corrected license to AGPLv3, and removed obsolete copyright lines
+as confirmed by Cedric Krier by email on 2011-06-29.
+These copyright lines referred to a refactoring copied from Tryton
+in revision rev 1439 - stephane@tinyerp.com-20081218235433-cnsc5a4iyfzqvbdx
+All this code has disappeared since then, specifically after
+a major rewrite by xrg, merged at revision 1900
+(mga@tinyerp.com-20091126113653-0ym60nvtjinvp82h).
+</code></pre>
+<p>This was reassuring, that the copyright notice was in error. I believe it is better that my research into the issue exposed an oversight rather than a disagreement over who owns the code. According to Oliver Dony's forum post two weeks later, all such issues are resolved:<sup class="footnote-ref"><a href="#fn20" id="fnref20">[20]</a></sup></p>
+<blockquote>
+<p>…</p>
+</blockquote>
+<blockquote>
+<p>OpenERP SA does own the copyright to the server, clients, and all modules whose author is OpenERP/Tiny. And we are exclusively offering the AGPL+PrivateUse option for those pieces of code, and nothing else. If someone believes they own copyright on a contribution within that specific set of source code lines, and are against the AGPL+PrivateUse license, they can contact us, and we'll find a solution. We've only seen one such claim so far (from C.Krier), and it was about code that was long gone from our source, so there was no problem. So if you are such a person, please contact us.</p>
+</blockquote>
+<blockquote>
+<p>…</p>
+</blockquote>
+<p>Again, this claim is reassuring. However, I understand these are not the only items in question or the only copyright that has been contested. Here are three more sections of code with conflicted copyright.</p>
+<p>In the OpenERP client, widget/view/list.py:<sup class="footnote-ref"><a href="#fn21" id="fnref21">[21]</a></sup></p>
+<pre><code>…
+4 #    OpenERP, Open Source Management Solution
+5 #    Copyright (C) 2004-2010 Tiny SPRL (&lt;http://tiny.be&gt;). All Rights Reserved
+6 #    Copyright (c) 2008-2009 B2CK, Bertrand Chenal, Cedric Krier (D&amp;D in lists)
+…
+</code></pre>
+<p>In the OpenERP base_vat module:<sup class="footnote-ref"><a href="#fn22" id="fnref22">[22]</a></sup></p>
+<pre><code>…
+4 #    OpenERP, Open Source Management Solution
+5 #    Copyright (C) 2004-2010 Tiny SPRL (&lt;http://tiny.be&gt;). All Rights Reserved
+6 #    Copyright (C) 2008-2009 B2CK, Cedric Krier, Bertrand Chenal (the methods &quot;check_vat_[a-z]{2}&quot;
+…
+</code></pre>
+<p>And in the webdav module:<sup class="footnote-ref"><a href="#fn23" id="fnref23">[23]</a></sup></p>
+<pre><code>…
+4 #    OpenERP, Open Source Management Solution
+5 #    Copyright (C) 2004-2010 Tiny SPRL (&lt;http://tiny.be&gt;).
+6 #    Copyright (c) 1999 Christian Scholz (ruebe@aachen.heimat.de)
+…
+</code></pre>
+<p>Without a complete audit of the source code, all such copyright discrepencies may not be recognized, and it would seem to me that such an audit should occur before the product is relicensed.</p>
+<p><strong>One last note:</strong> Several people have raised the question whether modules in OpenERP (or, in two cases, themes in Wordpress - a similar but not identical question) are in fact derivative works that must be licensed AGPL. This is a big question, of course, and deserves more than merely a mention in an addendum to a months-old blog post. Here I'd like to point out that I make the statement in my original post that modules must be licensed AGPL, and that this statement is debatable. I hope to question that statement in a future blog post.</p>
+<p><em>If I’ve inspired a response from you (probably the type of response that deserves an apology), mention <a href="http://twitter.com/version2beta" title="Me, twitterfied">@version2beta</a> on <a href="http://twitter.com/" title="All of twitter, including me.">Twitter</a> and I’ll see it there. Or, if you can’t comment in less than 126 characters (my handle takes 14 characters with a space), blog about it and tweet that.</em></p>
+<p><a href="http://bazaar.launchpad.net/~openerp/openobject-client/trunk/view/head:/bin/widget/view/list.py#L6">http://bazaar.launchpad.net/~openerp/openobject-client/trunk/view/head:/bin/widget/view/list.py#L6</a></p>
+<p><a href="http://bazaar.launchpad.net/~openerp/openobject-addons/trunk/view/head:/base_vat/base_vat.py#L6">http://bazaar.launchpad.net/~openerp/openobject-addons/trunk/view/head:/base_vat/base_vat.py#L6</a></p>
+<p><a href="http://bazaar.launchpad.net/~openerp/openobject-addons/trunk/view/head:/document_webdav/webdav.py#L6">http://bazaar.launchpad.net/~openerp/openobject-addons/trunk/view/head:/document_webdav/webdav.py#L6</a></p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1"  class="footnote-item"><p>I found the headline to be a little disengenuous. I'm not sure why they decided to launch a significant new product (OpenERP Enterprise) under the headline '<a href="http://www.openerp.com/node/836" title="OpenERP post about the updates to their website, including a world map of partners and a significant upset to their marketing strategy">Improved OpenERP Website</a>'. Nonetheless, they got a lot of attention. <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2"  class="footnote-item"><p>The <a href="http://www.openerp.com/legal" title="The new OpenERP license.">new OpenERP license</a>, described as a GNU Affero GPL plus more permissive exceptions available under limited circumstances. <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn3"  class="footnote-item"><p>Read the Free Software Foundation's text of the <a href="http://www.gnu.org/licenses/agpl.html" title="The GNU Affero General Public License.">Affero General Public License</a>, version 3. It's not long, and it's not full of legalese. It's really pretty accessible. <a href="#fnref3" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn4"  class="footnote-item"><p>Read the Free Software Foundation's text of the GNU General Public License, version 3. Really, this stuff is important. How much software do you use that is licensed under the GPL? Have you published under the GPL? <a href="#fnref4" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn5"  class="footnote-item"><p>The GNU FAQ is useful in understanding the intent of the licenses, too. Read <a href="http://www.gnu.org/licenses/gpl-faq.html#GPLRequireSourcePostedPublic" title="The GNU FAQ on distributed source code for modified versions that are not publicly distributed">this answer</a> on distributed source code for modified versions that are not publicly redistributed. <a href="#fnref5" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn6"  class="footnote-item"><p>Here is the <a href="http://en.wikipedia.org/wiki/Software_as_a_service" title="Wikipedia article about Software as a Service, AKA On-demand software or cloud-based services.">Wikipedia article about Software as a Service</a>, AKA On-demand software or cloud-based services. <a href="#fnref6" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn7"  class="footnote-item"><p>OpenERP offers a SaaS version of their software already. It's in their catalog and costs 39€ per user per month, or if you're in the US, USD$49 per user per month. <a href="#fnref7" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn8"  class="footnote-item"><p>Again, here is <a href="http://www.openerp.com/catalog" title="Three options of OpenERP, and what's not included in the less expensive versions">OpenERP's catalog page</a>. <a href="#fnref8" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn9"  class="footnote-item"><p>Here is the page at OpenERP.com describing what's included with <a href="http://www.openerp.com/node/819" title="The page describing what's included with OpenERP's 15,500€ license package">OpenERP's 15,500€ license package</a>. <a href="#fnref9" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn10"  class="footnote-item"><p><a href="http://www.openerp.com" title="The home page for OpenERP SA">http://www.openerp.com</a>: OpenERP SA's website. <a href="#fnref10" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn11"  class="footnote-item"><p><a href="http://www.openerp.com/services/faq-onsite" title="OpenERP Enterprise and OpenERP Community, Modules and Licensing, Bug fixing, Support and Migrations FAQ">http://www.openerp.com/services/faq-onsite</a>: &quot;OpenERP Enterprise and OpenERP Community, Modules and Licensing, Bug fixing, Support and Migrations FAQ&quot; <a href="#fnref11" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn12"  class="footnote-item"><p><a href="http://www.openerp.com/community" title="The OpenERP community section">http://www.openerp.com/community</a>: OpenERP offers a wide variety of ways to stay connected and join the conversation. <a href="#fnref12" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn13"  class="footnote-item"><p><a href="http://www.b2ck.com/" title="B2CK SPRL">http://www.b2ck.com/</a> I've described B2CK as the main driving force behind Tryton. They are certainly a substantial contributor. <a href="#fnref13" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn14"  class="footnote-item"><p>Tryton has an <a href="http://groups.google.com/group/tryton/" title="The Tryton Google group discussion list">English-language Google Groups email discussion list</a>. There are <a href="http://www.tryton.org/community.html" title="The Tryton community page lists Google Groups in other languages.">other language lists</a> available too. <a href="#fnref14" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn15"  class="footnote-item"><p>Read the <a href="http://groups.google.com/group/tryton/browse_thread/thread/7eda95e01ddd8b3c" title="Discussion around the creation of the Tryton Software Foundation.">discussion around the creation of the Tryton Software Foundation</a> on the Tryton discussion list. <a href="#fnref15" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn16"  class="footnote-item"><p><a href="http://tryton.org" title="Tryton home page.">http://tryton.org</a>: Tryton home page <a href="#fnref16" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn17"  class="footnote-item"><p>Originally this footnote linked to this <a href="http://bazaar.launchpad.net/~openerp/openobject-server/trunk/view/head:/openerp/netsvc.py#L8" title="Source code for netsvc.py file in the OpenERP core">source code for netsvc.py</a>, but I have since visited the link and the copyright notice was changed. The <a href="http://bazaar.launchpad.net/~openerp/openobject-server/trunk/revision/3485" title="Revision 3485 to netsvc.py copyright header">revision note</a> explains why. <a href="#fnref17" class="footnote-backref">↩</a> <a href="#fnref17:1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn18"  class="footnote-item"><p><a href="http://fptiny.blogspot.com/2009/10/openerp-and-agpl.html" title="Fabien Pinckaers' Blogspot blog post">Fabien Pinckaers' post 15 October 2009 regarding OpenERP's licensing change from GPL to AGPL.</a> <a href="#fnref18" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn19"  class="footnote-item"><p><a href="http://bazaar.launchpad.net/~openerp/openobject-server/trunk/revision/3485" title="Revision 3485 to netsvc.py copyright header">Olivier Dony's revision note</a> for openerp/netsvc.py. <a href="#fnref19" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn20"  class="footnote-item"><p><a href="http://www.openerp.com/forum/topic26369-30.html#p87266" title="OpenERP forum post re: Licensing Community Modules for Private Use.">Olivier Dony's forum posa</a>t regarding the new license, making clear that OpenERP SA's position is they exclusively own copyright to OpenERP server and client, and all modules whose author is OpenERP or Tiny. <a href="#fnref20" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn21"  class="footnote-item"> <a href="#fnref21" class="footnote-backref">↩</a></li>
+<li id="fn22"  class="footnote-item"> <a href="#fnref22" class="footnote-backref">↩</a></li>
+<li id="fn23"  class="footnote-item"> <a href="#fnref23" class="footnote-backref">↩</a></li>
+</ol>
+</section>
+</div><hr><p class="readable"><a href="/articles/a-new-openerp-product-and-license">Regular version</a></p><script type="text/javascript">var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-12023701-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script><script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script><script src="/static/js/css3-mediaqueries.js"></script></div></div></body></html>

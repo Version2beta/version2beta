@@ -1,0 +1,434 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Managing risk and selling value &#124; version2beta</title><meta name="description" content="My presentation on quoting projects, originally delivered to Web414 on February 21, 2013."><meta name="keywords" content=""><meta name="viewport" content="width=device-width, initial-scale=1"><link href="/archive/atom.xml" rel="alternate" title="version2beta" type="application/atom+xml"><link rel="stylesheet" href="/style/layout.css" type="text/css" media="screen"><link rel="stylesheet" href="/style/text-styling.css" type="text/css" media="screen"><link rel="stylesheet" href="/style/responsive.css" type="text/css" media="screen"><link rel="shortcut icon" href="/static/site/favicon.png"></head><body><div id="site"><div id="menu"><div id="sitename"><a href="/">version2beta</a></div><nav id="top-nav"><div id="menu-toggle"><a href="#top-nav" class="open-menu"><img src="/static/site/menu-toggle.png" alt="+"></a><a href="#" class="close-menu"><img src="/static/site/menu-toggle-close.png" alt="—"></a></div><ul id="sitenav"><li><a href="/about">about</a></li><li><a href="/speaking">speak</a></li><li><a href="/hire">hire</a></li><li><a href="/">blog</a></li></ul></nav></div><div class="content"><article id="main-content"><div id="content-header"><h1>Managing risk and selling value</h1><p><span class="author">by <a href="https://plus.google.com/115037548656448421726?rel=author">Rob Martin</a>  on </span><span class="post-date"><time pubdate>2013-02-21 at 19:00</time></span><span class="post-tag"><span></span></span></p><p class="readable"><a href="/readable/articles/managing-risk-and-selling-value">Highly readable version</a></p></div><div id="post-content"><p>Last month I got into a discussion with a few professional members at BucketWorks<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>. Two of the participants are mechanical engineers who have a 3D prototyping company, and a third is a developer. The discussion focused on the correct way to price a software development project the mechanical engineers were expected to produce.</p>
+<p>I happened into the conversation, but I'm afraid I may have taken it over a bit. See, I already have a system for pricing software development, so I simply shared it, in condensed form, over a period of ten or fifteen minutes. The mechanical engineers were very kind in their appreciation, which is always cool to have, and the software developer said I should present this at one of the tech meetups.</p>
+<p>This hadn't occured to me before, but I was happy that Web414 accepted my proposal and invited me to give this presentation on pricing project work.</p>
+<p>I write my presentations in advance, and then do my best to present what I wrote, so this post is something close to a transcript of my presentation. Actually, it's a transcript of how I meant to give the presentation, without the 'ums' and 'ahs', nervous pauses, misplaced words, and sections I undoubtedly missed due to various deficiencies in public speaking.</p>
+<p><a href="/static/examples/managing-risk-and-selling-value/crv-calculator.html">Check out the calculator I made for calculating the CRV Factor</a>, which is the hard part of the formula. My slides are inline below, but check out <a href="/static/examples/managing-risk-and-selling-value.html">my slide deck online</a> too. I've been using reveal.js<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup> and it's pretty sweet.</p>
+<p>Dusty Filippini, one of the @web414<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup> organizers, streamed this presentation using Google Hangouts, and sent it to YouTube. The video quality is not ideal. The presentation doesn't actually start until about 17:30 and goes for about 55 minutes plus questions and answers. About six minutes into my presentation, I have computer problems and we switch machines. But once it gets going, the sound quality is pretty decent. <a href="http://www.youtube.com/watch?v=and2kexFxt0">Watch &quot;Managing risk and selling value&quot; on YouTube.</a></p>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide01.png" alt="Slide: @version2beta and contact information"></p>
+<p>Hi, I'm version2beta. Some people call me Rob. You can call me either.</p>
+<p>My presentation is about figuring out how much to charge for your work. This is one of those talks where you get to learn from someone who really, really knows what they're talking about. I've done it wrong virtually every way you can, so I came up with a system that, so far and without fail, has told me how much I should have charged for every project I've underquoted.</p>
+<p>It works proactively too. In fact, that is the recommended way of using this system.</p>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide02.png" alt="Slide: Warning, ahead there be MATH"></p>
+<p>I'm going to warn you right up front, there are going to be mathematics in this presentation. Real math, the kind you need a scientific calculator to do. Or a log table, if you're over the age of 50 and know how to use them.</p>
+<p>Or you can use the <a href="/static/examples/managing-risk-and-selling-value/crv-calculator.html">special calculator I built</a> for doing this math. It's on my website.</p>
+<p>Before we get into the details, I'd like to tell you about my first ever paid programming gig.</p>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide03.png" alt="Slide: Economic Order Quantities"></p>
+<p><em>slide</em></p>
+<ul>
+<li>Q is quantity</li>
+<li>D is annual demand</li>
+<li>S is fixed cost per order</li>
+<li>H is annual holding cost</li>
+</ul>
+<p><em>slide</em></p>
+<p>This formula is used to calculate the economic order quantity for inventory.<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup></p>
+<p>It's been around a while. I first learned it in 1983, when I was 13 years old. I don't know if it's true or not, but at the time, I was under the impression that my father was one of the creators of this formula. He was inventory control manager for Simpson Paper Company, Eastern Division. His job was to make sure they had the right raw materials on hand, in the right quantities, for all of the plants east of the Mississippi River.</p>
+<p>He had this formula that would help him figure out how much stuff to buy. He also had the only IBM PC at Simpson's Vicksburg, Michigan offices.</p>
+<p>And he had a very nerdy kid. I didn't know it then, but I was going to write the student council's computer dating program and run the annual computer dating fundraiser every single year for the next four years.</p>
+<p>The formula isn't too bad. Basically, you take the annual demand for an inventory item, multiply that by twice the cost per piece, divide that by the holding cost for one item for a year, and then take the square root. The resulting number is the ideal quantity to minimize your total ordering and holding costs for the year.</p>
+<p>I know this isn't actually very interesting. But this formula has a square root symbol in it, so it's going to make the formulas I show you in a little while look easy. So it's important you pay attention.</p>
+<p>The short story is that my father had me code this formula. He paid me $30 and took it to the office and that was the last I heard about it for a year.</p>
+<p>Let's fast forward to the Superbowl, about a year later. Every year the DeYoungs came to my parents' superbowl party. Mr DeYoung worked with my father at Simpson paper. During this particular Superbowl party, Mr. DeYoung pulled me aside and congratulated me on the program I wrote for my father.</p>
+<p>He said, &quot;That program saved us $3 million dollars last year.&quot;</p>
+<p>Even as a freshman in high school, I could do math pretty quick in my head. The $3 million dollars was a very significant return on investment for the $30 I was paid.</p>
+<p>It seemed possible I had underquoted that job.</p>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide04.png" alt="Slide: The CRV Model"></p>
+<p><em>slide</em></p>
+<p>Complexity</p>
+<p>Risk</p>
+<p>Value</p>
+<p><em>slide</em></p>
+<p>I have a formula for helping people figure out how much to charge for their work. It's called the CRV Model. C-R-V stands for Complexity, Risk, and Value.</p>
+<p>I designed this model when I worked for my wife Barbara, in her web development company. Barbara spent extensive amounts of time considering how our pricing models, indeed our entire working environments, were inadequate. She deserves a lot of credit for ideas behind the model, and the conversations inspiring it. She was invaluable in developing and testing this model.</p>
+<p>I wish I could say it was a great success, but some credit for the model is also due our largest and most risky customer, whose $68,000 default not only demonstrated the need for this model, but also contributed to the downfall of my wife's company.</p>
+<p>All of my experience using this model has been focused on web development and programming, but it should be useful for modeling any kind of project work. What matters to this formula is that the project is at least loosely specified in advance, and you're trying to put a fixed price on it.</p>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide05.png" alt="Slide: Some caveats"></p>
+<p><em>slide</em></p>
+<ol>
+<li>BYO Business Acumen.</li>
+<li>Damn it Jim, it's a model, not a doctor for your business.</li>
+<li>When you're pointing fingers, make sure you're looking in the mirror. Kthanxbai.</li>
+</ol>
+<p><em>slide</em></p>
+<p>I have some caveats for you:</p>
+<ol>
+<li>You're going to need some business instinct to use this model.</li>
+<li>In fact, the more business acumen you have, the better this model will work for you.</li>
+<li>If you have a good sense of business, you probably don't need this model.</li>
+<li>If you don't have a good business sense, this model will help you develop one.</li>
+<li>This is not a silver bullet. It's a model. It helps you understand the world a little better.</li>
+<li>At the end of the day you still need to take credit for your own success. No need to call me up and say thank you.</li>
+<li>Same goes for your failures, by the way.</li>
+</ol>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide06.png" alt="Slide: Ignore everything I'm about to tell you and do Agile development instead."></p>
+<p><em>slide</em></p>
+<p>Pro-tip: Ignore everything I'm about to tell you and do Agile development instead.</p>
+<p><em>slide</em></p>
+<p>It's also important to note that there are better systems. For example, don't do fixed price quotes.</p>
+<p>I'm a fan of Agile methodologies.<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup> I strongly recommend you ditch fixed price quoting and pursue Agile development and project management. I promise you, properly done, it works better. All you need is a lot of trust, excellent communication skills between you and your client, and the knowledge and experience to do Agile properly.</p>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide07.png" alt="Slide: The problem"></p>
+<p><em>slide</em></p>
+<ol>
+<li>Working for the man.</li>
+<li>Selling your life by the hour.</li>
+<li>Client wants a fixed price.</li>
+<li>Client wants to go out of scope.</li>
+<li>It can be hard to get paid for out of scope work.</li>
+</ol>
+<p><em>slide</em></p>
+<p>Let's talk about why we're here. What is the problem we're trying to solve. I see it as three-fold.</p>
+<p>First. It's very important that you hire the right clients. And in case you get a bad client, it's important to know when to fire them.</p>
+<p>Second. Even good clients sometimes suck. They want a fixed price bid. Then they want to go out of scope. Then they want to blame you that they went out of scope, that you should have thought of that. Then they don't want to pay for going out of scope. Then if they do pay you for going out of scope, maybe they resent it.</p>
+<p>Third. It's come to my attention that I have a limited number of hours in my life. I know that sometimes it feels infinite, but I've consulted with some pretty good doctors, and they assure me I have an expiration date. It's true.</p>
+<p>This may also be true for you. You should consult with your doctor. If by any chance your doctor confirms this, then you, like me, are in a position to decide at what hourly rate we're willing to sell our limited lives.  Or if we want to sell our lives by the hour at all.</p>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide08.png" alt="Slide: List of goals."></p>
+<p>I think we can distill these problems down to a list of goals for a pricing model.</p>
+<p>Pursue the right work.
+Avoid the wrong work.
+Mitigate risk.
+Charge according to value.</p>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide09.png" alt="Slide: The formula : Pq = o * log10(C + R + V) / 2 * d + m"></p>
+<p>So here it is. Scary. It even has a logarithm<sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup> thingamajig in it.</p>
+<p>Let's walk through it, one parameter at a time.</p>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide10.png" alt="Slide: The formula, highlighting 'Pq ='"></p>
+<p>On the left side, we have the quoted price. This will be the product of our calculation, and the price the model suggests for your project.</p>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide11.png" alt="Slide: The formula, highlighting '(C + R + V)'"></p>
+<p>C, R, and V stand for Complexity, Risk, and Value. We are going to look at these terms in detail.</p>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide12.png" alt="Slide: The formula, highlighting 'o', 'd', and 'm'"></p>
+<p>I'm going to call these three little factors your constants. Overhead, days, and materials.</p>
+<p>The little 'o' is your overhead. This is just enough to cover you basic costs. This will vary a lot based on how big your business is, whether you subcontract, etc. We'll discuss this in more detail.</p>
+<p>The little 'd' is your time estimate in days. It doesn't need to be exact. We'll cover this more too.</p>
+<p>The little 'm' are your material and other project costs. If you are going to have project-based expenses other than time, put it in here. If you mark up your direct costs, put the marked up amount in here.</p>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide13.png" alt="Slide: The formula, nothing highlighted"></p>
+<p>So that's the formula. It's not as scary as it may have seemed at first.</p>
+<p>Add some numbers together. Those are our factors for Complexity, Risk, and Value.</p>
+<p>Apply a logarithm. This is the exponent you'd put on the number 10 to get this number. It's also the log10 key on your scientific calculator app.</p>
+<p>Multiple by a couple other numbers. That gets us our overhead for the job and how many days of overhead we need to cover.</p>
+<p>Add in the remainder. That's any direct or material costs.</p>
+<p>You've got your price. Let's look at the specifics.</p>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide14.png" alt="Slide: Overhead"></p>
+<p><em>slide</em></p>
+<p>o : Overhead costs per work day</p>
+<p><em>slide</em></p>
+<p>While Complexity, Risk, and Value are the real focus of this formula, let's get our constants out of the way first. Let's start with overhead.</p>
+<p>Just in case you're wondering, our formula is managerial accounting, not traditional balance-sheet type accounting. For example in cost accounting, our labor is divided into time-based units of measure and we put a cost on each full unit and use that for our basis. That's the system we're getting away from.</p>
+<p>Managerial or analytical accounting uses a variety of accounting-type metrics to answer specific questions, usually questions about the future. That's what we're doing. We're using a handful of metrics to ask questions about the future cost of doing a project.</p>
+<p>One of the questions we need to answer is, &quot;How much of my overhead costs do I need to assign to this project?&quot; This is the little 'o' in our formula. Overhead.</p>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide15.png" alt="Slide: Overhead example, moonlighters"></p>
+<p><em>slide</em></p>
+<p>Match your preferred beer to your overhead.</p>
+<ul>
+<li>Pabst Blue Ribbon - $50 / night</li>
+<li>Spotted Cow - $75 / night</li>
+<li>Guinness - $100 / night</li>
+<li>Chimay Blue Label - $125 / night</li>
+</ul>
+<p><em>slide</em></p>
+<p>Moonlighters, raise your hand. Now keep your hand up if &quot;overhead costs&quot; and &quot;beer money&quot; are roughly the same for you. I've been there. I still do some work that way. I admit, this example is a little bit tongue-in-cheek. If I were serious, I'd have used whiskey in the example</p>
+<p>I would like to remind you that there are a lot of people trying to feed families doing the same work. Be careful about setting this value too low. I suggest you use the freelance example instead, and think about pricing your work as if you are doing it full time.</p>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide16.png" alt="Slide: Overhead example, freelancers"></p>
+<p><em>slide</em></p>
+<ul>
+<li>I want to take home about $30,000 a year.</li>
+<li>Taxes are about $7,500 a year.</li>
+<li>Health insurance costs $6,000 a year.</li>
+<li>I spend $1,800 a year on sales and marketing.</li>
+<li>I spend $2,000 a year on new computers.</li>
+<li>I spend $3,000 a year improving my skills.</li>
+<li>I expect to do billable work three days a week.</li>
+</ul>
+<p>Overhead per work day = ( 30,000 + 7,500 + 6,000 + 3,000 + 2,000 + 1,800) / 150</p>
+<p>Overhead per work day = $415</p>
+<p><em>slide</em></p>
+<p>Let's walk through an example calculating overhead for a single person freelancing. No employees. No employer.</p>
+<p>If I am this freelancer, this is what I need to know:</p>
+<ul>
+<li>
+<p>What's the minimum I could make in a year and still be happy freelancing? Or moonlighting?</p>
+</li>
+<li>
+<p>I need to increase that number by 25% to cover taxes and self employment taxes.</p>
+</li>
+<li>
+<p>If I plan to do this full time, I'll add in the cost of my health insurance. If you have health insurance that's paid for by someone else, for instance your partner's employer, add in half the value of their insurance benefit. If you don't have health insurance, add at least $6,000.</p>
+</li>
+<li>
+<p>Now add in any business expenses I expect to have for the year. Sales and marketing, professional development, equipment costs, insurance, business rent, professional memberships, etc.</p>
+</li>
+<li>
+<p>Then I figure out about how many days I actually expect do production work, and I divide by this number. If you plan to do this full time, figure on something between 120 and 180, depending on how much time you need to spend selling.</p>
+</li>
+</ul>
+<p>In the example above, I arrive at a &quot;per project day&quot; overhead cost of $415 for this hypothetical freelancer working something that looks very much like full time on a very modest income of only $30,000 a year take home.</p>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide17.png" alt="Slide: Overhead example, agencies"></p>
+<p><em>slide</em></p>
+<ul>
+<li>Operating Expenses (including payroll): $72,000 / month</li>
+<li>Employees engaged in production: 5</li>
+<li>Productive days per month: 20</li>
+</ul>
+<p>Overhead per day per employee = 72,000 / (5 * 20)</p>
+<p>Overhead per project day = $720</p>
+<p><em>slide</em></p>
+<p>Here's another example, this one for a small-ish agency.</p>
+<p>For agencies, I think the numbers are pretty simple to follow. Add up all your expenses, including payroll, even for billable resources. Divide it across the number of people doing billable work.</p>
+<p>Again, we're not doing cost accounting.<sup class="footnote-ref"><a href="#fn7" id="fnref7">[7]</a></sup> If you're interested, this formula is inspired a bit by Throughput Accounting,<sup class="footnote-ref"><a href="#fn8" id="fnref8">[8]</a></sup> but the important thing to remember is that we don't want to slip into the habit of thinking in terms of hours of labor.</p>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide18.png" alt="Slide: Time commitment, 'd'"></p>
+<p><em>slide</em></p>
+<p>d : Person-days required for the project under the most ideal circumstances</p>
+<p><em>slide</em></p>
+<p>We are not going to try to figure out how many hours or days or weeks a job will actually take. However, we are going to consider how much time it would take under the most ideal circumstances.</p>
+<p>I think this is a real selling point for this model. We'll talk about this more in a few minutes, but when we're using this model we get to think in terms of the best possible circumstance. This is a huge advantage because it's easiest for us to accurately predict what's going to happen if everything goes perfectly, rather than if all hell breaks loose.</p>
+<p>So at this point, we can say sayonara to contingencies. We can ignore plans B and C. We can put in the number that only happens when the stars are perfectly aligned.</p>
+<p>Just make sure that &quot;days&quot; means the same thing here that it meant when you were figuring your overhead per day. For agencies, this is the number of person-days for production employees that you would assign to the project - under the most ideal circumstances. For freelancers, this is the number of work days you think the project would take you - under the most ideal circumstances. For moonlighters, this is probably the number of evenings or weekends you think you'll need to work on the job. Under the most ideal circumstances.</p>
+<p>Again, the important thing to remember here is to be a paragon of optimism. Plan on rainbows and unicorns.</p>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide19.png" alt="Slide: Project costs, 'm'"></p>
+<p><em>slide</em></p>
+<p>Examples of materials and direct project costs:</p>
+<ul>
+<li>Travel expenses - hotels, meals, mileage, etc.</li>
+<li>Hosting a development environment for the specific project</li>
+<li>Hiring a project manager</li>
+<li>Contracting specialized work</li>
+<li>Buying project-specific training materials</li>
+<li>Software licensing</li>
+<li>Etc.</li>
+</ul>
+<p><em>slide</em></p>
+<p>Little 'm' is easy. It's any direct costs associated with the project, that apply just to this project.</p>
+<p>For example, if you need to hire a specialist, put his or her costs in here.</p>
+<p>Actually, I've done this a bunch of times. On one project, I was programming the controls for an automated heat treating line. This particular system used huge vats of molten salt for heat treating the parts. The system was basically robot arm on a 120 foot long track that picks up baskets of parts, each basket weighing about 300 pounds, and moves them through the heat treating process. Each basket got its own recipe, based on the kinds of parts inside. So a given basket might go in the hottest vat for 30 seconds, then quench for 30 seconds, then do something else.</p>
+<p>Believe it or not, that was the easy part.</p>
+<p>The hard part of this project was adding the ability for the heat treating company to tell the computer what parts were coming up, so that the computer could decide when each basket should be loaded in order to maximize throughput. For that I hired an outside consultant, a guy named Kim Duk-Won.</p>
+<p>Kim is great. Before I went to visit Korea, he taught me to read and speak enough Hangeul so that I could get around town, order food, and find a bathroom. When he did his Masters thesis, I helped him with the programming. When I hired him for this project, he had completed his Ph.D. in Operations Research, done a few years optimizing delivery schedules for FedEx, and was teaching at the University of Tennessee at Oak Ridge.</p>
+<p>On this particular project, Kim gave me a fixed price quote. You know, because I'm that kind of customer.</p>
+<p>Paying Kim to work on that project was a direct project cost.</p>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide20.png" alt="Slide: How the scales work"></p>
+<p><em>slide</em></p>
+<p>Fuzzy Math</p>
+<p>Not actually fuzzy, just logarithmic.</p>
+<p><em>slide</em></p>
+<p>We're going to estimate Complexity, Risk, and Value with some pretty fuzzy numbers.</p>
+<p>This isn't an exact science. I can't tell you that the complexity on a given project is exactly 6,423.5.</p>
+<p>We really only know how complex something is, if it's not complex at all. We can more accurately predict risk when there's very little. And as well all know, value ranges from nothing, to a lot, to priceless, right?</p>
+<p>When I make scales for Complexity, Risk, and Value, I want to have a lot of room to move around, and I want the scales to be more accurate on the lower end than on the upper end. I can't really use &quot;infinity&quot; as a value, but it'd be nice to be able to say &quot;A whole damn lot.&quot;</p>
+<p>So the scale we're using goes like this: Pick a number between ten and ten thousand. If any of the factors start really ramping up, use big numbers. That's what the &quot;log10&quot; in the formula does for us. If you really have a project that is so risky, or so complex, or so valuable that you feel like you need really big numbers to describe it, use them.</p>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide21.png" alt="Slide: Complexity scale"></p>
+<p><em>slide</em></p>
+<ul>
+<li>10 - Anyone could do it.</li>
+<li>100 - There are only a few people in the area who can do it.</li>
+<li>1000 - There are only a few people in the country who could do it.</li>
+<li>10000 - It probably can't be done.</li>
+</ul>
+<p><em>slide</em></p>
+<p>I think of complexity in terms of who can do the work. Actually, I tend to think of complexity in terms of how far you'd have to go to find someone else who can do the job. In that way, it's kind of like &quot;competition&quot;.</p>
+<p>You could actually use distance to the next nearest person or agency who can do this job as your complexity number. If bunches of people in this room could do it, let's say 10 since I really never use factors lower than 10. If you'd have to go to Chicago for another place that could handle it, let's say 120. New York, about a thousand miles. A univerity in Tokyo? 10,000.</p>
+<p>My friend Kim Duk-Won is an example, right? I needed a highly-specialized algorithm that he was uniquely suited to provide. Given that the competition for that position is very limited, he can charge more for his time. It's simple supply and demand.</p>
+<p>Here's an even better example. I first heard this example from my grandfather, who was an engineer.</p>
+<p>There's this guy Gus who retires from his position as lead maintenance person at the local factory. He's put in his time, he's ready to be done working and focus on his fishing.</p>
+<p>One day shortly after Gus retires, an absolutely critical machine fails. It's making a horrible noise. Nobody in maintenance knows what to do with it, so they tell the plant manager he's gotta get Gus to come back and fix it.</p>
+<p>Gus isn't very happy about this, but he agrees to come look. He walks around the machine. He listens to it. And then he pulls a piece of chalk from his pocket and puts an 'X' on one part. 'Replace that,' he says.</p>
+<p>The plant manager is thrilled until he sees Gus' invoice for $50,000. The plant manager tells Gus to submit an itemized invoice.</p>
+<p>Gus sends a new invoice came with with two line items. The first line item was &quot;One chalk mark: $1.&quot; The second line item was &quot;Knowing where to put it: $49,999.&quot;</p>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide22.png" alt="Slide: Risk scale"></p>
+<p><em>slide</em></p>
+<ul>
+<li>10 - It's a cake walk.</li>
+<li>100 - There are some problems with taking the job.</li>
+<li>1000 - There are significant risks associated with this project.</li>
+<li>10000 - That's just crazy talk.</li>
+</ul>
+<p><em>slide</em></p>
+<p>I remember the first time it occured to me that I could change the price of a job based on how little or how much the client actually knows about the project. This happened way later than it should have. I had my hourly rate, and it was my hourly rate. Maybe I'd add in a few extra hours to compensate for some unknown. But I could have saved a lot of money and salvaged at least one failed project if I'd only realized sooner that I should always charge more for projects that have more red flags.</p>
+<p>Let's talk about risk.</p>
+<p>First, I want to say risk isn't for everybody. At the low end of the scale, we have &quot;the cake walk.&quot; The job is well defined. The customer knows what they're doing when it comes to executing a project like this. They pay quickly and fairly. Maybe they're even an agency like C2<sup class="footnote-ref"><a href="#fn9" id="fnref9">[9]</a></sup> that specializes in contract talent.</p>
+<p>This is good, steady, low-risk work. It's nice to have this kind of work. Many of us would do well to focus on this kind of work.</p>
+<p>Or maybe you can tolerate a little more risk, so we slide up the scale a little bit.</p>
+<p>&quot;There are some problems with taking the job.&quot; Here we start to see some red flags, and we need to take them into consideration.</p>
+<p>The specification is weak. The client seems uncertain of what they want. They don't respond well to suggestions. Their ideas seem overly fluid. That's a nice way of saying they are a high risk for scope creep.</p>
+<p>The project has weak prospects. The project doesn't have a good cost-benefit ratio. It's unlikely to bring value to the client.</p>
+<p>The customer seems overly cost-conscious. They may not have the funds required to manage the project well on their side.</p>
+<p>The client talks about the previous contractors they had to fire.</p>
+<p>Sometimes the risk isn't with the client. Let's say you're not well established yet. Maybe you don't have the skills you'd need to feel confident completing the job. Or taking on this project precludes your ability to take on other work or care for your regular clients. These are all risks too.</p>
+<p>&quot;There are significant risks associated with the project.&quot; Now we're getting into some serious red-flaggage.</p>
+<p>Maybe the project has no specification, and the client doesn't want to do a discovery phase.</p>
+<p>Maybe the client's expectation for delivery, price, and / or quality are unreasonable.</p>
+<p>Maybe the client seems to be hitting on you.</p>
+<p>Maybe you have little confidence in the client's ability to fulfill their part of the contract. You know, like paying you.</p>
+<p>Maybe you don't have confidence in your ability to finish the project. It may be too big, too hard, to many moving parts.</p>
+<p>&quot;That's just crazy talk.&quot; Projects at this level of risk are the ones we walk away from. These are the projects with abusive clients, or projects we have no expectation will ever finish successfully.</p>
+<p>But sometimes the client is throwing money at you in spite of the difficulties, and maybe you are pretty tolerant of risk. You might even specialize in difficult clients with deep pockets. There's money in that.</p>
+<p>When you're quoting a project, always first try to drive risk down. Build in a discovery phase and price out the full project after there's an adequate scope. Spend extra time establishing reasonable expectations with the customer, in both directions. Discuss your concerns about their ability to manage the project, and how they may benefit from bringing on a professional project manager just for the project. Get a bigger down payment. Schedule invoicing more frequently, and require payments be current before each phase begins.</p>
+<p>The risk you're left with drives up your price, and this is entirely reasonable. It does a couple of very valuable things for you. For one, you might not get the job, and depending on how much risk there is, this may be a Very Good Thing.</p>
+<p>If the job has significant, unmitigated risks, give it a &quot;walking away&quot; price. Don't put a lot of effort into quoting the job. Bump up the risk to an appropriate level based on the problems with the job and your less-well-considered quotation, and send it over without expectation.</p>
+<p>Then, if you do get the job and things start to head south, you were already being paid extra to deal with it and you can take it on with a smile. Scope creep? No problem - you expected it. Plus you can still try to get paid for it. Stiffed you for the last payment? That's okay, the last payment was the second half of your bonus, not your paycheck. The client is a pain in your butt? You charged the asshole tax up front.</p>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide23.png" alt="Slide: Value scale"></p>
+<p><em>slide</em></p>
+<p>Evaluating value</p>
+<ul>
+<li>10 - The impact of the project will be at least as great as the cost.</li>
+<li>100 - The impact of the project will be an order of magnitude greater than the cost.</li>
+<li>1000 - The impact of the project will be two orders of magnitude greater than the cost.</li>
+<li>10000 - An Arab Prince has already written you a blank check.</li>
+</ul>
+<p><em>slide</em></p>
+<p>My microeconomics professor at the University of Maine was a fish economist. He told us how he'd been approached by Heinz Corporation way back in 1969 to assess the potential market for cocktail sauce. They asked him for a daily rate, and he gave them a price of $100 a day.</p>
+<p>He didn't get the contract. They found someone who'd charge them $1,000 a day.</p>
+<p>I've worked on big websites for small companies that cost $20,000. I've worked on small websites for big companies that cost $20,000. When it comes down to it, people want to pay a price commensurate to the value they get.</p>
+<p>I told you up front you need some business instinct to use this model. That's perhaps most true when it comes to figuring out the value your client will gain from your work. Understanding that number will do much to free you from hourly drudgery.</p>
+<p>Don't do work that has limited value.</p>
+<p>If the potential gain is small, your client needs to think small, and treat you small. It makes your job much less enjoyable.</p>
+<p>If the potential gain is large, your client is motivated to make big things happen with you, and will support you on the project. It makes your job much more enjoyable, and lucrative too.</p>
+<p>It boils down to this: Always. Maximize. Value.</p>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide24.png" alt="Slide: The Hunger Game."></p>
+<p><em>slide</em></p>
+<p>How to discount your work:</p>
+<ul>
+<li>Look for snacks, not huge meals.</li>
+<li>Quote full price and then apply a discount.</li>
+<li>Your discount may be a marketing expense. Talk to your accountant.</li>
+</ul>
+<p><em>slide</em></p>
+<p>We have one more factor that we could have added to our formula, but if we did, it'd be there strictly to help you undo the benefits of using a pricing model like this at all.</p>
+<p>Sometimes it doesn't matter what you know you should charge, you really need to get the work. Or at least some work. I propose it's still best to know what you should have been charging, and then discount it, rather than ignoring good sense and pricing the work artificially low.</p>
+<p>&quot;Hunger&quot; is that factor. The hungrier you are to get the job, the more you'll knock of your price to make sure you get it.</p>
+<p>Obviously the best bet is to keep hunger at bay. But since that's often not possible, I have a couple of suggestions that may be helpful:</p>
+<ul>
+<li>If you're hungry, look for snacks, not huge meals. Once you get something in the pipeline, that sense of hunger is going to start going away. You don't want to be paying for it long term. Sometimes you can even turn a big job into a snack. For example, it may be beneficial for everyone if you got paid for a 40 hour discovery project and use that to spec out the big job at regular price.</li>
+<li>Quote your work at full price and then add your discount as a line item. Offer a new client a &quot;new customer discount&quot;. Apply a coupon. Do a cross-promotion with your client. Your client gets the price they need, but you're instilling an expectation about your future charges.</li>
+<li>Talk to your accountant. It's possible that discount you're giving might actually be a marketing expense, and this might improve your tax situation.</li>
+</ul>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide25.png" alt="Slide: Advanced usage"></p>
+<p><em>slide</em></p>
+<p>nested CRV</p>
+<p><em>slide</em></p>
+<p>I'm just going to throw this out there. You don't have to use the same complexity, risk, and value factors for every part of a project. You can break the project into meaningful pieces and apply the model to each piece.</p>
+<p>For example, let's say we're quoting a new website for a heat treating company. Most of the project is straight up design and implementation, but they also want their customers to be able to log in and retrieve quality documents about previous jobs. To do that, you need to tie into their internal document management system running under Microsoft Dynamics.</p>
+<p>Now we have a project that involves two kinds of CRV profiles. The web site is relatively easy and moderately valuable, but the document retrieval system is significantly more complicated and valuable. Depending on how much experience your team has with Microsoft Dynamics, it may also add a bit of risk.</p>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide26.png" alt="Slide: Ideal Cost and The CRV Factor"></p>
+<p><em>slide</em></p>
+<p>Ideal Cost: o * d</p>
+<p>CRV Factor: log10 ( C + R + V )</p>
+<p><em>slide</em></p>
+<p>You may have noticed that two terms make up the heart of this formula.</p>
+<p>I call the first one &quot;The Ideal Cost&quot;. It's your overhead rate times your time commitment. That's what the job should cost you assuming everything goes swimmingly.</p>
+<p>I particularly like the concept of Ideal Cost. We humans are notoriously bad at making predictions. Our emotions get in the way. Ideal Cost eliminates some of that problem by removing the complexity of the negative emotional factors. We don't have to think about what might go wrong at this point - we get to consider just the positive. And this is a nice way to think about a new project.</p>
+<p>The second term is the &quot;CRV Factor&quot; is your multiplier on the Ideal Cost. It builds in supply and demand, mitigates your risk, and keeps your price commensurate with the value of the project to your customer. The higher the CRV Factor, the higher your total price.</p>
+<p>Let's look at some ways you can use the CRV Factor to quickly analyze almost any project.</p>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide27.png" alt="Slide: Hard but worth it"></p>
+<p><em>slide</em></p>
+<ul>
+<li>Complexity: 1000</li>
+<li>Risk: 100</li>
+<li>Value: 1000</li>
+<li>CRV Factor: 3.32</li>
+</ul>
+<p>Hard but worth it.</p>
+<p><em>slide</em></p>
+<p>You're a specialist in a valuable field. Your clients are lucky to have your attention.</p>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide28.png" alt="Slide: Assholes and superheroes"></p>
+<p><em>slide</em></p>
+<ul>
+<li>Complexity: 100</li>
+<li>Risk: 1000</li>
+<li>Value: 100</li>
+<li>CRV Factor: 3.08</li>
+</ul>
+<p>Assholes and superheroes.</p>
+<p><em>slide</em></p>
+<p>We've probably all worked on this project, right? It's a good fit for your skill set, and it's quite worth while for your client, but your client is an ass. Or doesn't have the money. Or needs it next week.</p>
+<p>The nice thing about these jobs is this: you get to be the superhero, and if you're willing to work under these pressures, you can really shine.</p>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide29.png" alt="Slide: Danger Will Robinson"></p>
+<p><em>slide</em></p>
+<ul>
+<li>Complexity: 2500</li>
+<li>Risk: 2500</li>
+<li>Value: 10</li>
+<li>CRV Factor: 3.70</li>
+</ul>
+<p>Danger Will Robinson!</p>
+<p><em>slide</em></p>
+<p>Sometimes I feel like every job I quote looks like this. I can't think of anyone else getting it right, but the risks are significant and when it's done, the client isn't going to get their money's worth anyway.</p>
+<p>These are the jobs you refactor for your customer. Drive the complexity down. Mitigate more risk up front, maybe by doing a discovery phase. Shift the priorities so there is more value in the final project.</p>
+<p>Make this project a better project, or embrace the multiplier of almost four and hope they decide you're too expensive.</p>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide30.png" alt="Slide: Sweet spot"></p>
+<p><em>slide</em></p>
+<ul>
+<li>Complexity: 100</li>
+<li>Risk: 100</li>
+<li>Value: 100</li>
+<li>CRV Factor: 2.48</li>
+</ul>
+<p>The sweet spot.</p>
+<p><em>slide</em></p>
+<p>I like these jobs: Competition's not too tight, the job has manageable risks, and it's going to be worth it to your client. It's a factor of almost 2.5 times your Ideal Cost. You can afford to hold out for the jobs you want. You enjoy your customers and your work.</p>
+<hr>
+<p><img src="/static/examples/managing-risk-and-selling-value/slide31.png" alt="Slide: Contact information"></p>
+<p><em>slide</em></p>
+<p>@version2beta</p>
+<p>http://twitter.com/version2beta | http://version2beta.com</p>
+<p>CRV Factor Calculator: http://version2beta.com/static/examples/managing-risk-and-selling-value/crv-calculator.html</p>
+<p>Tech support is always free!*</p>
+<ul>
+<li>Free as in beer. Means you buy me a beer and I give you tech support.</li>
+</ul>
+<p><em>slide</em></p>
+<p>I want to remind you that this formula is a model for pricing your work. It helps you understand your client, the project, and your self. Along the way it may make you a better businessperson. It's a framework for thinking about the work you do.</p>
+<p>Thank you for listening. As always, my presentations come with a 100% money back guarantee plus tech support that is &quot;Free as in beer&quot;. That means you buy me a beer and I give you tech support.</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1"  class="footnote-item"><p><a href="http://bucketworks.org" title="Bucketworks is a health club for your brain.">Bucketworks</a> is a health club for your brain. It's space for your community, your business, or your meetup. It's a physical wiki. Bucketworks is cool. <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2"  class="footnote-item"><p>[Reveal.js<a href="http://lab.hakim.se/reveal-js/" title="Reveal.js HTML presentations made easy.">reveal</a> is a very cool HTML &amp; javascript presentation tool. It's been easy to work with on all fronts. <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn3"  class="footnote-item"><p><a href="http://www.meetup.com/web414/" title="Web414 at Meetup.com.">Web414</a> is Milwaukee's web community. <a href="#fnref3" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn4"  class="footnote-item"><p>A formula for calculating an order quantity that minimizes the total holding and ordering costs. <a href="#fnref4" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn5"  class="footnote-item"><p>Agile Software Development attempts to shift the focus of work. Two good places to start learning about Agile are the <a href="http://agilemanifesto.org/" title="The Manifesto for Agile Software Development">Agile Manifesto</a> and the <a href="http://agilemanifesto.org/principles.html" title="Principles behind the Agile Manifesto">Twelve Principles of Agile Software</a>. <a href="#fnref5" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn6"  class="footnote-item"><p>The logarithm (or log) of a number is the exponent you'd put on a base number like 10 or e to get that number. For example, log<sub>10</sub>(1000) is 3, because 10<sup>3</sup> is 1000. <a href="#fnref6" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn7"  class="footnote-item"><p><a href="http://en.wikipedia.org/wiki/Cost_accounting" title="Wikipedia article on cost accounting.">Cost accounting</a> tries to evaluate production in terms of direct and indirect costs. Traditionally, it views labor as a direct cost. <a href="#fnref7" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn8"  class="footnote-item"><p><a href="http://en.wikipedia.org/wiki/Throughput_accounting" title="Wikipedia article on throughput accounting.">Throughput accounting</a> is a simplified managerial accounting model that focuses on simple measures that drive behavior in key areas toward organizational goals. While I was trying to figure out how to describe this, I also found an <a href="http://www.forbes.com/sites/stevedenning/2011/08/16/how-do-you-explain-radical-management-or-agile-to-a-cfo/" title="Forbes article on explaining Agile to the CFO.">interesting article in Forbes Magazine</a> about explaining Agile to the CFO using, in part, Throughput Accounting. <a href="#fnref8" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn9"  class="footnote-item"><p>I used <a href="http://www.c2gps.com/" title="C2 Creative Talent">C2</a> as an example here because I know them and have worked with them. They're good people. <a href="#fnref9" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+<h3>Talk back to me</h3><p>You can comment below. Or <a href="http://www.twitter.com/#!/version2beta" title="version2beta on twitter">tweet at me</a>. I'm always open to a good conversation.</p><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'version2beta';
+var disqus_identifier = '/articles/managing-risk-and-selling-value';
+var disqus_url = 'http://version2beta.com/articles/managing-risk-and-selling-value';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></article></div></div></body><footer><div id="footer"><p class="contact"><a href="https://plus.google.com/115037548656448421726?rel=author">Rob Martin</a>: <a href="mailto:rob@version2beta.com">rob@version2beta.com</a></p><p class="creative-commons">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p><p id="social"><a href="/rss.xml" title="A news feed for my blog"><img src="/static/site/rss-icon.png" alt="RSS feed icon"></a><a href="http://twitter.com/version2beta" title="Find me on Twitter"><img src="/static/site/twitter-icon.png" alt="Twitter icon"></a></p></div></footer><script type="text/javascript">var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-12023701-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script><script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script><script src="/static/js/css3-mediaqueries.js"></script></html>

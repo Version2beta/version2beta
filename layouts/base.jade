@@ -1,0 +1,61 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    block title
+      title version2beta
+    block meta_tags
+      meta(name='description', content=longtitle?longtitle:'version2beta: A technical blog.')
+    meta(name='keywords', content='')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    block feeds
+      link(href='/archive/atom.xml', rel='alternate', title='version2beta', type='application/atom+xml')
+    block css
+      link(rel='stylesheet', href='/style/layout.css', type='text/css', media='screen')
+      link(rel='stylesheet', href='/style/text-styling.css', type='text/css', media='screen')
+      link(rel='stylesheet', href='/style/responsive.css', type='text/css', media='screen')
+      link(rel='shortcut icon', href='/static/site/favicon.png')
+  body
+    #site
+      #menu
+        #sitename
+          a(href='/').
+            version2beta
+        nav#top-nav
+          #menu-toggle
+            a.open-menu(href='#top-nav')
+              img(src='/static/site/menu-toggle.png', alt='+')
+            a.close-menu(href='#')
+              img(src='/static/site/menu-toggle-close.png', alt='—')
+          ul#sitenav
+            li
+              a(href='/about') about
+            li
+              a(href='/speaking') speak
+            li
+              a(href='/hire') hire
+            li
+              a(href='/') blog
+      .content
+        block content
+  footer
+    #footer
+      p.contact.
+        #[a(href='https://plus.google.com/115037548656448421726?rel=author') Rob Martin]: #[a(href='mailto:rob@version2beta.com') rob@version2beta.com]
+      p.creative-commons.
+        This work is licensed under a #[a(rel='license', href='http://creativecommons.org/licenses/by-sa/3.0/') Creative Commons Attribution-ShareAlike 3.0 Unported License].
+      p#social
+        a(href='/rss.xml', title='A news feed for my blog'): img(src='/static/site/rss-icon.png', alt='RSS feed icon')
+        a(href='http://twitter.com/version2beta', title='Find me on Twitter'): img(src='/static/site/twitter-icon.png', alt='Twitter icon')
+  block js
+    script(type="text/javascript").
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12023701-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js')
+    script(src='/static/js/css3-mediaqueries.js')

@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>A quick note on MongoDB replica sets - readable &#124; version2beta</title><link rel="canonical" href="http://version2beta.com/mongod-replica-set-slave"><meta name="description" content="version2beta: A technical blog."><meta name="keywords" content=""><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><link href="/archive/atom.xml" rel="alternate" title="version2beta" type="application/atom+xml"><link rel="stylesheet" href="/style/layout.css" type="text/css" media="screen"><link rel="stylesheet" href="/style/text-styling.css" type="text/css" media="screen"><link rel="stylesheet" href="/style/responsive.css" type="text/css" media="screen"><link rel="shortcut icon" href="/static/site/favicon.png"></head><body><div id="site-readable"><div id="readable-content"><div id="content-header"><h1>A quick note on MongoDB replica sets</h1><p><span class="author">by <a href="https://plus.google.com/115037548656448421726?rel=author">Rob Martin</a>  on </span><span class="post-date"><time pubdate>2011-11-29 at 11:49</time></span><span class="category"><a href="/undefined"></a></span></p><p class="readable"><a href="/articles/mongod-replica-set-slave">Regular version</a></p></div><div id="post-content"><p>MongoDB is replying to a replica-set add command with &quot;Need most members up to reconfigure, not ok&quot;. The problem is with my configuration.</p>
+<p>Here's the error:</p>
+<pre><code>PRIMARY&gt; rs.add(&quot;nosql1-private:27017&quot;)
+{
+    &quot;assertion&quot; : &quot;need most members up to reconfigure, not ok : nosql1-private:27017&quot;,
+    &quot;assertionCode&quot; : 13144,
+    &quot;errmsg&quot; : &quot;db assertion failure&quot;,
+    &quot;ok&quot; : 0
+}
+</code></pre>
+<p>The problem is in my configuration on the slave Mongod. Note that I'm using a configuration file, rather than command line options, which is how the tutorials are written. This fits in with my init file, which I can share if anyone wants an Ubuntu init for MongoDB 2.0.2.</p>
+<pre><code>fork = true
+bind_ip = nosql1-private
+port = 27017 # default port
+logpath = /var/log/mongodb/mongod.log
+logappend = true
+cpu = true # log CPU activity periodically
+journal = true
+auth = true
+replSet = gedc
+</code></pre>
+<p>I disabled journal (shouldn't be needed on a slave, right?) and auth, which seems to actually be the problem. After, the rs.add() works fine.</p>
+<pre><code>PRIMARY&gt; rs.add(&quot;nosql1-private:27017&quot;)
+{ &quot;ok&quot; : 1 }
+</code></pre>
+<p>I'm not sure I don't have to go back and get auth reenabled, though, because now my status says that the second server is &quot;still initializing&quot; and &quot;(not reachable/healthy)&quot;. But when I try to add authentication credentials, I get this error:</p>
+<pre><code>uncaught exception: error { &quot;$err&quot; : &quot;not master and slaveok=false&quot;, &quot;code&quot; : 13435 }
+</code></pre>
+<p>So, I did discover what I really needed was a keyFile directive<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> in my mongod.conf. The file itself contains a base64 text key the servers will use for communicating.</p>
+<pre><code>...
+keyFile = /etc/mongodb/key.txt
+...
+</code></pre>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1"  class="footnote-item"><p>See the &quot;Replica Set and Sharding Authentication&quot; section on the <a href="http://www.mongodb.org/display/DOCS/Security+and+Authentication#SecurityandAuthentication-ReplicaSetandShardingAuthentication" title="MongoDB docs for security and authentication, including key files for shards and replica sets.">MongoDB doc page for Security and Authentication</a>. <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+</div><hr><p class="readable"><a href="/articles/mongod-replica-set-slave">Regular version</a></p><script type="text/javascript">var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-12023701-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script><script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script><script src="/static/js/css3-mediaqueries.js"></script></div></div></body></html>

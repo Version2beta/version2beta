@@ -1,0 +1,80 @@
+<html>
+<head>
+
+  <meta charset="utf-8" />
+  <title>Multi-file uploader demo page</title>
+
+  <style tyle="text/css">
+    body {
+      width: 560px;
+      margin: 40px auto;
+    }
+
+    form fieldset {
+      width: 100%;
+      padding: 20px;
+      border: 6px solid #ccc;
+      border-radius: 20px;
+    }
+
+    #cabinet {
+      width: 480px;
+      height: 240px;
+      margin: 4px 40px 20px 40px;
+      overflow: auto;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: "Courier New", Consolas, "Liberation Mono", monospace;
+      font-size: 0.8em;
+    }
+
+    #cabinet p, h2 {
+      padding: 4px 0;
+      margin: 0 0 2px 2px;
+    }
+
+    #cabinet p.multiup-odd {
+      background-color: #ccc;
+    }
+
+    input {
+      width: 480px;
+      margin: 0 40px;
+    }
+
+    .multiup-delete {
+      color: #a33;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+      padding: 0 12px;
+      cursor: pointer;
+    }
+  </style>
+
+</head>
+<body>
+
+  <form action="#" enctype="multipart/form-data" method="POST">
+    <fieldset>
+      <div id="cabinet">
+        <h2>You've selected:</h2>
+      </div>
+      <input type="submit" />
+    </fieldset>
+  </form>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="jquery-1.6.2.min.js"><\/script>')</script>
+  <script type="text/javascript" src="multiup.js"></script>
+  <script>
+    $('#cabinet').multiup();
+    $('input[type="submit"]').click(function() { $('input.multiup-input[value]').remove(); $('.multiup-listing').remove(); return false; });
+  </script>
+
+  <p>
+    <a href='/archive/2011/jquery-multiup-plugin.html'>jQuery.multiup plugin for multiple files</a> blog post<br />
+    <a href="http://version2beta.com" title="version2beta home">version2beta home</a>
+  </p>
+
+</body>
+</html>

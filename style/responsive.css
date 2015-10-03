@@ -1,0 +1,184 @@
+@media (max-width: 1200px) {
+  ul#sitenav li {
+    padding: 18px 50px;
+  }
+}
+@media (max-width: 1080px) {
+  ul#sitenav li {
+    padding: 18px 35px;
+  }
+}
+@media (max-width: 950px) {
+  ul#sitenav li {
+    padding: 18px 25px;
+  }
+}
+@media (max-width: 825px) {
+  #sitename {
+    float: none;
+    text-align: center;
+  }
+  #sitename a, ul#sitenav li a {
+    font-size: 30px;
+  }
+  #main-content, #home-content {
+    margin-top: 25px;
+  }
+  ul#sitenav li {
+    padding: 18px 24px;
+  }
+}
+@media (max-width: 590px) {
+  body {
+   font-size: 15px;
+   line-height: 30px;
+  }
+  #site {
+    margin: 80px auto -195px;
+  }
+  #site:after {
+    content: "";
+    display: block;
+    height: 195px;
+  }
+  #menu {
+    position: fixed;
+    top: 0px;
+  }
+  #sitenav {
+    display: none;
+  }
+  #menu-toggle {
+    display: block;
+  }
+  #top-nav a.close-menu {
+    display: none;
+  }
+  #top-nav a.open-menu {
+    display: block;
+  }
+  #top-nav #menu-toggle img {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0px;
+  }
+  #top-nav:target #sitenav{
+    display: block;
+  }
+  /* Hide Open Toggle Link */
+  #top-nav:target #menu-toggle a.open-menu{
+    display: none;
+  }
+  /* Show Close Toggle Link */
+  #top-nav:target #menu-toggle a.close-menu {
+    display: block;
+  }
+  h1, h2 {
+    line-height: 45px;
+  }
+  h1 {
+    font-size: 23px;
+  }
+  #site-readable #content-header h1 {
+      font-size: 40px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  #site-readable h2 {
+      font-size: 30px;
+  }
+  h3, h4 {
+    font-size: 18px;
+  }
+#site-readable h3, #site-readable h4 {
+    font-size: 27px;
+  }
+  h5, h6 {
+    font-size: 15px;
+  }
+  #site-readable h5, #site-readable h6 {
+      font-size: 24px;
+  }
+  #readable-content, #readable-content p, #readable-content pre, #readable-content blockquote, #readable-content ul, #readable-content li, #readable-content ol, #readable-content time, #readable-content dl {
+    font-size: 22px;
+    line-height: 45px;
+  }
+  #readable-content ul {
+    padding-left: 15px;
+  }
+  #readable-content ol {
+    padding-left: 30px;
+  }
+  #readable-content ul li {
+    text-indent: -26px;
+  }
+  #readable-content ul li:before {
+    padding-right: 10px;
+  }
+  #site-readable #readable-content {
+    margin: 0px;
+  }
+  ul#sitenav li {
+    padding: 12px 20px;
+    text-align: left;
+  }
+  #menu nav {
+    text-align: left;
+  }
+  ul#sitenav li {
+    padding: 18px 30px;
+  }
+  #content-header h1, #home-content h2 a {
+    font-size: 35px;
+  }
+  #readable-content code, #readable-content samp, #readable-content kbd {
+    font-size: 20px;
+  }
+  #content-header h1 {
+    line-height: 45px;
+  }
+  #home-content h2 {
+    line-height: 38px;
+  }
+  #main-content, .blog-entry .article-undefined, .blog-entry .article-cto, .blog-entry .article-dev, .blog-entry .article-devops, .blog-entry .article-community, .blog-entry .article-personal {
+    width: 100%;
+    padding: 10px;
+  }
+  #main-content, #home-content {
+    margin: 10px 0px;
+    -webkit-box-shadow: 0px -5px 5px 2px rgba(53,56,63,0.05);
+    -moz-box-shadow: 0px -5px 5px 2px rgba(53,56,63,0.05);
+    box-shadow: 0px -5px 5px 2px rgba(53,56,63,0.05);
+  }
+  .post-date time {
+    font-size: 16px;
+  }
+  .category {
+    display: block;
+  }
+  ul li, ol li {
+    padding-left: 0px;
+  }
+  ul, ol {
+    margin-left: 0px;
+  }
+  blockquote {
+    padding-left: 20px;
+  }
+  pre {
+    padding: 10px 15px;
+  }
+  code, samp, kbd {
+    font-family: monaco, Consolas, Lucida Console, monospace;
+    font-size: 14px;
+  }
+  .creative-commons {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  footer .contact {
+    margin-bottom: 10px;
+  }
+}

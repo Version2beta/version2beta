@@ -1,0 +1,825 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>High Availability Linode Pairs &#124; version2beta</title><meta name="description" content="A recipe for creating automatic failover virtual server pairs at Linode."><meta name="keywords" content=""><meta name="viewport" content="width=device-width, initial-scale=1"><link href="/archive/atom.xml" rel="alternate" title="version2beta" type="application/atom+xml"><link rel="stylesheet" href="/style/layout.css" type="text/css" media="screen"><link rel="stylesheet" href="/style/text-styling.css" type="text/css" media="screen"><link rel="stylesheet" href="/style/responsive.css" type="text/css" media="screen"><link rel="shortcut icon" href="/static/site/favicon.png"></head><body><div id="site"><div id="menu"><div id="sitename"><a href="/">version2beta</a></div><nav id="top-nav"><div id="menu-toggle"><a href="#top-nav" class="open-menu"><img src="/static/site/menu-toggle.png" alt="+"></a><a href="#" class="close-menu"><img src="/static/site/menu-toggle-close.png" alt="—"></a></div><ul id="sitenav"><li><a href="/about">about</a></li><li><a href="/speaking">speak</a></li><li><a href="/hire">hire</a></li><li><a href="/">blog</a></li></ul></nav></div><div class="content"><article id="main-content"><div id="content-header"><h1>High Availability Linode Pairs</h1><p><span class="author">by <a href="https://plus.google.com/115037548656448421726?rel=author">Rob Martin</a>  on </span><span class="post-date"><time pubdate>2011-08-08 at 20:08</time></span><span class="post-tag"><span></span></span></p><p class="readable"><a href="/readable/articles/high-availability-linode-pairs">Highly readable version</a></p></div><div id="post-content"><p>Something like a recipe for creating database and application servers that failover on each other. This recipe is for Lighttpd and MySQL, but it can be extended easily for other applications. Later, I'll do one for Tryton and PostgreSQL. I use Ubuntu 11.04 64-bit on two Linode virtual private servers.</p>
+<h2>Initial configuration, from within the Linode<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> dashboard</h2>
+<p>Repeat the following procedure for each member of the pair:</p>
+<ol>
+<li>
+<p>Go to the Remote Access tab on the Linode dashboard.</p>
+<ul>
+<li>
+<p>Note the public IP. We'll need that later.</p>
+</li>
+<li>
+<p>Add a private IP, and note it. We'll need that later, too.</p>
+</li>
+<li>
+<p>If by any chance you have an IPv6 private address, note that. We'll use it all. If you don't have one, click on &quot;Enable IPv6&quot; and get one. We really are going to use it.</p>
+</li>
+<li>
+<p>Set a Lish password. I use APG<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup> to generate new passwords, e.g. <code>apg -n 100</code>.</p>
+</li>
+<li>
+<p>Add an SSH public key to the Keys box. This is in addition to the Lish password.  Or instead of it, if you prefer.</p>
+</li>
+<li>
+<p>This is also good time to write to Linode support. You'll need to order an additional public IP address, and by default you are unable to purchase an additional IP address until you've requested and justified it specifically with support. You'll also need another <em>private</em> IP address, which doesn't cost anything but it takes a support person to do it - there's no way to automatically add more than one private IP address. These addresses will float between the pairs, so it doesn't matter which of the pair get these additional addresses. Make note of these floating addresses.</p>
+</li>
+</ul>
+</li>
+</ol>
+<ol start="2">
+<li>
+<p>Go to the Settings tab in the Linode dashboard.</p>
+<ul>
+<li>
+<p>Give the Linode a good name.</p>
+</li>
+<li>
+<p>Name a display group for your pair. Generally we use &quot;location pair&quot;, e.g. &quot;newark pair&quot;, &quot;dallas pair&quot;, etc.</p>
+</li>
+<li>
+<p>Change the email alert thresholds</p>
+<p>CPU Usage: 50% (Default 80% over two hours is too high)</p>
+<p>Disk I/O Rate: 2000 I/O Ops/sec (Default 1000 ops over two hours is too low)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Go to the Dashboard tab in the Linode dashboard, and click on &quot;Create a new Disk Image&quot;.</p>
+<ul>
+<li>
+<p>Create a disk image called &quot;var-www&quot;, type &quot;unformatted / raw&quot;, with a size that's half your available space (just as a rule of thumb).</p>
+</li>
+<li>
+<p>Create another disk image called &quot;var-mysql&quot;, also type &quot;unformatted / raw&quot;, with a size that's half your <em>remaining</em> available space (again, a rule of thumb).</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Also on the Linode dashboard tab, choose to deploy a Linux distribution.</p>
+<ul>
+<li>
+<p>I like the latest Ubuntu<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>. Right now, that's 11.04 64bit.</p>
+</li>
+<li>
+<p>Set the swap partition size next. Max it out, which on Linode seems to be 1 x RAM.</p>
+</li>
+<li>
+<p>Use everything that's left for the deployment disk size.</p>
+</li>
+<li>
+<p>Set a good root password.</p>
+</li>
+<li>
+<p>Press the Deploy button. That takes you back to the dashboard.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>The configuration profile name is too pedestrian. &quot;My Ubuntu blah blah blah&quot;. I already knew it was mine, after all I made it, didn't I? Click the &quot;Edit&quot; link to the right of the profile.</p>
+<ul>
+<li>
+<p>Change the label to something with some teeth. Something like &quot;Ubuntu 11.04-64bit high availability pair&quot;.</p>
+</li>
+<li>
+<p>Assign block devices for our DR:BD drives. Put var-mysql on /dev/xvdc, and var-www on /dev/xvdd. Save the changes, and you'll be taken back to the dashboard.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Each server needs to be able to assume the IP address from the other. From the &quot;Remote Access&quot; tab for each server, select all of the addresses, both the public and private, for IP Failover.</p>
+</li>
+<li>
+<p>Boot the system and log in, either through SSH using the root password you just assigned, or through Lish.</p>
+<p>This is a good time to repeat the previous six steps on the other member of the pair. Once that is done, continue to the final step in the Linode dashboard.</p>
+</li>
+</ol>
+<p>##Some notes before we get into it</p>
+<p>We have a number of implementation specific details, stuff that changes for each cluster. I'd like to refer to things in here in a way that is internally consistent, yet easy to use. So here is an index of variable data:</p>
+<p>Server names: <code>alice</code> and <code>gertrude</code>. If you're running <code>vi</code> or <code>vim</code> against this document, and wanted to name your systems Fred and Wilma, you should be able to run <code>:%s/alice/fred/g</code> followed by <code>:%s/gertrude/wilma/g</code>.</p>
+<p>IP addresses:</p>
+<ul>
+<li>
+<p>Public IP on alice: <code>pub.a.a.a</code></p>
+</li>
+<li>
+<p>Private IP on alice: <code>priv.a.a.a</code></p>
+</li>
+<li>
+<p>IPv6 on alice: <code>ipv6:pub:a</code></p>
+</li>
+<li>
+<p>Public IP on gertrude: <code>pub.g.g.g</code></p>
+</li>
+<li>
+<p>Private IP on gertrude: <code>priv.g.g.g</code></p>
+</li>
+<li>
+<p>IPv6 on gertrude: <code>ipv6:pub:g</code></p>
+</li>
+<li>
+<p>Floating public IP: <code>pub.f.f.f</code></p>
+</li>
+<li>
+<p>Floating private IP: <code>priv.f.f.f</code></p>
+</li>
+</ul>
+<p>##Initial configuration, operating system</p>
+<p>Again, repeat the following steps for each member of the pair:</p>
+<ol>
+<li>
+<p>Name the server.</p>
+<p><code>echo 'alice' &gt; /etc/hostname</code><sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup></p>
+</li>
+<li>
+<p>Fix (as in &quot;make permanent&quot;) the networking in <code>/etc/network/interfaces</code>:</p>
+<pre><code> #vi /etc/network/interfaces
+
+     # The loopback interface
+     auto lo
+     iface lo inet loopback
+
+     # Configuration for eth0 and aliases
+
+     # This line ensures that the interface will be brought up during boot.
+     auto eth0 eth0:0
+
+     # eth0 - This is the main IP address that will be used for most outbound connections.
+     # The address, netmask and gateway are all necessary.
+     iface eth0 inet static
+      address pub.a.a.a
+      netmask 255.255.255.0
+      gateway gate.a.a.a
+
+     # eth0:0
+     # This is a private IP
+     iface eth0:0 inet static
+      address priv.a.a.a
+      netmask 255.255.128.0
+
+     # eth0 ipv6
+     iface eth0 inet6 static
+      address ipv6:pub:a
+      netmask 64
+      gateway fe80::1
+</code></pre>
+</li>
+<li>
+<p>Deal with some networking stuff that makes our life easier.</p>
+<pre><code> #vi /etc/hosts
+
+     127.0.0.1       localhost.localdomain       localhost
+     pub.a.a.a       alice.version2beta.com      # FQDN is public
+     priv.a.a.a  alice               # short name is private
+     pub.g.g.g   gertrude.version2beta.com   # FQDN is public
+     priv.g.g.g  gertrude            # short name is private
+     pub.f.f.f   ag.version2beta.com     # public floating IP
+     priv.f.f.f  ag              # private floating IP
+
+     #IPv6 addresses
+     ipv6:a      ip6-alice
+     ipv6:g      ip6-gertrude
+
+     # The following lines are desirable for IPv6 capable hosts
+     ::1     ip6-localhost ip6-loopback
+     fe00::0 ip6-localnet
+     ff00::0 ip6-mcastprefix
+     ff02::1 ip6-allnodes
+     ff02::2 ip6-allrouters
+</code></pre>
+<p>SSH Keys</p>
+<pre><code> # ssh-keygen -t rsa
+</code></pre>
+<p>Copy <code>/etc/.ssh/id_rsa.pub</code> into the other server's <code>/etc/.ssh/authorized_keys</code>, which you'll need to create. While you're at it, put your key in there too.</p>
+</li>
+</ol>
+<ol start="4">
+<li>
+<p>Restart networking. (If there's a mistake in the previous step, we'll catch it either here or in the next few steps.)</p>
+<pre><code> # /etc/init.d/networking restart
+</code></pre>
+</li>
+<li>
+<p>Bring the package database, and installed packages, up to date.</p>
+<pre><code> # apt-get update &amp;&amp; apt-get upgrade
+</code></pre>
+</li>
+</ol>
+<h2>Install and configure DR:BD</h2>
+<ol>
+<li>
+<p>Install the tools</p>
+<p>First, try:</p>
+<pre><code> # apt-get install drbd8-utils
+ # drbdadm -V
+</code></pre>
+<p>At the top of the options, it will give the version of the DRBD module and userland version. If these match, you're golden. If they don't (as is the case currently for me), you need to build userland tools from source.</p>
+<pre><code> # drbdadm -V
+
+ DRBD module version: 8.3.10
+    userland version: 8.3.9
+ you should upgrade your drbd tools!
+</code></pre>
+<p>Building drbd8-utils from source:</p>
+<pre><code> # apt-get remove drbd8-utils
+ # apt-get install psmisc build-essential flex git xsltproc
+ # wget http://oss.linbit.com/drbd/8.3/drbd-8.3.10.tar.gz
+ # tar xvzf drbd-8.3.10.tar.gz
+ # cd drbd-8.3.10
+ # ./configure
+ # make
+ # make install
+</code></pre>
+<p>All good? Try the drbdadm -V again:</p>
+<pre><code> # drbdadm -V
+
+ ...
+ Version: 8.3.10 (api:88)
+ GIT-hash: 5c0b0469666682443d4785d90a2c603378f9017b build by root@alice, 2011-08-06 22:35:11
+</code></pre>
+<p>Configure DR:BD global settings in <code>/usr/local/etc/drbd.d/global_common.conf</code>:</p>
+<pre><code> # vi /usr/local/etc/drbd.d/global_common.conf
+
+     global {
+         usage-count yes;
+         # minor-count dialog-refresh disable-ip-verification
+     }
+
+     common {
+         protocol C;
+
+         handlers {
+             pri-on-incon-degr &quot;/usr/lib/drbd/notify-pri-on-incon-degr.sh; /usr/lib/drbd/notify-emergency-reboot.sh; echo b &gt; /proc/sysrq-trigger ; reboot -f&quot;;
+             pri-lost-after-sb &quot;/usr/lib/drbd/notify-pri-lost-after-sb.sh; /usr/lib/drbd/notify-emergency-reboot.sh; echo b &gt; /proc/sysrq-trigger ; reboot -f&quot;;
+             local-io-error &quot;/usr/lib/drbd/notify-io-error.sh; /usr/lib/drbd/notify-emergency-shutdown.sh; echo o &gt; /proc/sysrq-trigger ; halt -f&quot;;
+             # fence-peer &quot;/usr/lib/drbd/crm-fence-peer.sh&quot;;
+             split-brain &quot;/usr/lib/drbd/notify-split-brain.sh root&quot;;
+             # out-of-sync &quot;/usr/lib/drbd/notify-out-of-sync.sh root&quot;;
+             # before-resync-target &quot;/usr/lib/drbd/snapshot-resync-target-lvm.sh -p 15 -- -c 16k&quot;;
+             # after-resync-target /usr/lib/drbd/unsnapshot-resync-target-lvm.sh;
+         }
+
+         startup {
+             # wfc-timeout degr-wfc-timeout outdated-wfc-timeout wait-after-sb
+             wfc-timeout 15;
+             degr-wfc-timeout 60;
+         }
+
+         disk {
+             # on-io-error fencing use-bmbv no-disk-barrier no-disk-flushes
+             # no-disk-drain no-md-flushes max-bio-bvecs
+         }
+
+         net {
+             # sndbuf-size rcvbuf-size timeout connect-int ping-int ping-timeout max-buffers
+             # max-epoch-size ko-count allow-two-primaries cram-hmac-alg shared-secret
+             # after-sb-0pri after-sb-1pri after-sb-2pri data-integrity-alg no-tcp-cork
+             cram-hmac-alg sha1;
+         }
+
+         syncer {
+             # rate after al-extents use-rle cpu-mask verify-alg csums-alg
+             rate 4M;
+         }
+     }
+</code></pre>
+<p>Configure DR:BD resource settings for mysql in <code>/usr/local/etc/drbd.d/mysql.res</code>:</p>
+<pre><code> # vi /usr/local/etc/drbd.d/mysql.res
+
+     resource mysql {
+         net {
+             shared-secret &quot;DONTTELL!&quot;;
+         }
+         on alice {
+             device /dev/drbd0;
+             disk /dev/xvdc;
+             address ipv6 [ipv6:a]:7801;
+             meta-disk internal;
+         }
+         on gertrude {
+             device /dev/drbd0;
+             disk /dev/xvdc;
+             address ipv6 [ipv6:g]:7801;
+             meta-disk internal;
+         }
+     }
+</code></pre>
+<p>And create resource settings for www in <code>/usr/local/etc/drbd.d/www.res</code>:</p>
+<pre><code> # vi /usr/local/etc/drbd.d/www.res
+
+     resource www {
+         net {
+             shared-secret &quot;DON'T TELL!&quot;;
+         }
+         on alice {
+             device /dev/drbd1;
+             disk /dev/xvdd;
+             address ipv6 [ipv6:a]:7802;
+             meta-disk internal;
+         }
+         on gertrude {
+             device /dev/drbd1;
+             disk /dev/xvdd;
+             address ipv6 [ipv6:g]:7802;
+             meta-disk internal;
+         }
+     }
+</code></pre>
+<p>On this setup, drbd expects configuration files to be in /usr/local/etc/, and won't recognize them in /etc/. So we've put all our new stuff in the right place. Now get rid of the old. BUT, the cluster resource manager IS going to want them in /etc/, so we'll create symbolic links.</p>
+<pre><code> # rm -rd /etc/drbd.*
+ # ln -s /usr/local/etc/drbd.conf /etc/drbd.conf
+ # ln -s /usr/local/etc/drbd.d /etc/drbd.d
+</code></pre>
+</li>
+<li>
+<p>Start up DR:BD</p>
+<p>Create metadata for the devices (only need to do this on one host):</p>
+<pre><code> # drbdadm create-md mysql
+ # drbdadm create-md www
+</code></pre>
+<p>Modify the init script for drbd to accomodate a problem where IPv6 might not be ready when drbd starts:</p>
+<pre><code> # vi /etc/init.d/drbd # Add a sleep to the top of the script
+
+     ### END INIT INFO
+     sleep 5
+</code></pre>
+<p>On each server, at roughly the same time, start drbd:</p>
+<pre><code> # /etc/init.d/drbd start
+</code></pre>
+<p>On the server that will be primarily a database server:</p>
+<pre><code> # drbdadm -- --overwrite-data-of-peer primary mysql
+ # drbdadm disconnect mysql
+ # drbdadm connect mysql
+ # drbdadm disconnect www
+ # drbdadm connect www
+</code></pre>
+<p>On the server that will be primarily a web application server:</p>
+<pre><code> # drbdadm -- --overwrite-data-of-peer primary www
+ # drbdadm disconnect www
+ # drbdadm connect www
+ # drbdadm disconnect mysql
+ # drbdadm connect mysql
+</code></pre>
+<p>On either or both servers, check to make sure the primaries are primary, the secondaries are secondary, and the sync is syncing:</p>
+<pre><code> # cat /proc/drbd
+
+ version: 8.3.10 (api:88/proto:86-96)
+ built-in
+  0: cs:SyncSource ro:Primary/Secondary ds:UpToDate/Inconsistent C r-----
+     ns:3116484 nr:0 dw:0 dr:3593516 al:0 bm:219 lo:0 pe:2 ua:1 ap:0 ep:1 wo:f oos:1649980
+     [============&gt;.......] sync'ed: 65.5% (1608/4652)Mfinish: 0:05:08 speed: 5,328 (5,056) K/sec
+  1: cs:SyncTarget ro:Secondary/Primary ds:Inconsistent/UpToDate C r-----
+     ns:0 nr:2976256 dw:2976256 dr:0 al:0 bm:181 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:7509148
+     [====&gt;...............] sync'ed: 28.4% (7332/10236)Mfinish: 0:24:20 speed: 5,136 (5,060) want: 4,096 K/sec
+</code></pre>
+<p>Format the DR:BD devices, each on the server that is primary for that device. On the database server:</p>
+<pre><code> # apt-get install jfsutils
+ # mkfs.jfs /dev/drbd0
+</code></pre>
+<p>And on the web application server:</p>
+<pre><code> # apt-get install jfsutils
+ # mkfs.ext4 /dev/drbd1
+</code></pre>
+<p>On both servers, create the mount points:</p>
+<pre><code> # mkdir /var/www
+ # mkdir /var/mysql
+
+ # vi /etc/fstab // Add two lines
+
+     /dev/drbd/by-res/www    /var/www        ext4    noauto,noatime
+     /dev/drbd/by-res/mysql  /var/mysql      jfs     noauto
+</code></pre>
+<p>Mount the drives, each on it's primary server:</p>
+<pre><code> # mount /dev/drbd/by-res/mysql /var/mysql/
+ # mount /dev/drbd/by-res/www /var/www
+</code></pre>
+<p>And there you have it - RAID 1 drives over a network. Failover comes later, after we install and configure the server software.</p>
+</li>
+</ol>
+<h2>Services: MySQL and Lighttpd, plus a few other little things I like to have</h2>
+<ol>
+<li>
+<p>Install stuff. Not too much stuff. Just the right stuff.</p>
+<pre><code> # apt-get install bc whois apg s3cmd lsof traceroute exim4 mailutils mutt \
+     aspell-doc wamerican spellutils ispell mysql-server mysql-client lighttpd \
+     lighttpd-doc lighttpd-mod-magnet lua5.1 php5-cli php5-cgi php5 php5-mcrypt \
+     php5-mhash php5-gd php5-mysql php5-imagick php5-curl php5-memcache php5-ps \
+     php5-pspell php5-tidy php5-xmlrpc php5-xsl libgd-tools libmagickcore3-extra \
+     libmcrypt-dev mcrypt rrdtool
+
+ # dpkg-reconfigure exim4-config
+</code></pre>
+</li>
+<li>
+<p>Configure MySQL.</p>
+<p>Edit <code>/etc/mysql/my.cnf</code>:</p>
+<pre><code> # vi /etc/mysql/my.cnf
+
+     [client]
+     port            = 3306
+     socket          = /var/run/mysqld/mysqld.sock
+
+     [mysqld_safe]
+     socket          = /var/run/mysqld/mysqld.sock
+     nice            = 0
+
+     [mysqld]
+     user            = mysql
+     socket          = /var/run/mysqld/mysqld.sock
+     port            = 3306
+     basedir         = /usr
+     datadir         = /var/mysql
+     tmpdir          = /tmp
+     skip-external-locking
+     bind-address            = priv.f.f.f
+     key_buffer              = 16M
+     max_allowed_packet      = 16M
+     thread_stack            = 192K
+     thread_cache_size       = 8
+     myisam-recover         = BACKUP
+     #max_connections        = 100
+     #table_cache            = 64
+     #thread_concurrency     = 10
+     query_cache_limit       = 1M
+     query_cache_size        = 16M
+     #general_log_file        = /var/log/mysql/mysql.log
+     #general_log             = 1
+     log_error                = /var/log/mysql/error.log
+     #server-id              = 1
+     #log_bin                        = /var/log/mysql/mysql-bin.log
+     expire_logs_days        = 10
+     max_binlog_size         = 100M
+     #binlog_do_db           = include_database_name
+     #binlog_ignore_db       = include_database_name
+     # ssl-ca=/etc/mysql/cacert.pem
+     # ssl-cert=/etc/mysql/server-cert.pem
+     # ssl-key=/etc/mysql/server-key.pem
+
+     [mysqldump]
+     quick
+     quote-names
+     max_allowed_packet      = 16M
+
+     [mysql]
+     #no-auto-rehash # faster start of mysql but no tab completition
+
+     [isamchk]
+     key_buffer              = 16M
+
+     !includedir /etc/mysql/conf.d/
+</code></pre>
+<p>We changed the default directory for MySQL, so we need to move it's files into the correct directory.</p>
+<pre><code> # stop mysql
+ # chown mysql:mysql /var/mysql
+ # cp -Rp /var/lib/mysql/* /var/mysql/
+ # ifconfig eth0:1 priv.f.f.f netmask 255.255.128.0
+ # start mysql
+</code></pre>
+<p>Sync these settings with the other server (both need the same configuration so that either can run the service off the same data).</p>
+<pre><code> # scp -r /etc/mysql root@gertrude:/etc/
+</code></pre>
+</li>
+<li>
+<p>Configure Lighttpd. (Substitute other instructions for nginx, apache, etc.)</p>
+<p>Edit <code>/etc/lighttpd/lighttpd.conf</code> on the web application server:</p>
+<pre><code> # vi /etc/lighttpd/lighttpd.conf
+
+     server.modules = (
+         &quot;mod_access&quot;,
+         &quot;mod_alias&quot;,
+         &quot;mod_compress&quot;,
+         &quot;mod_redirect&quot;,
+             &quot;mod_rewrite&quot;,
+     )
+
+     server.document-root        = &quot;/var/www&quot;
+     server.upload-dirs          = ( &quot;/var/www/cache/uploads&quot; )
+     server.errorlog             = &quot;/var/www/logs/error.log&quot;
+     server.pid-file             = &quot;/var/run/lighttpd.pid&quot;
+     server.username             = &quot;www-data&quot;
+     server.groupname            = &quot;www-data&quot;
+
+     index-file.names            = ( &quot;index.php&quot;, &quot;index.html&quot;)
+
+     url.access-deny             = ( &quot;~&quot;, &quot;.inc&quot; )
+
+     static-file.exclude-extensions = ( &quot;.php&quot;, &quot;.pl&quot;, &quot;.fcgi&quot; )
+
+     ## Use ipv6 if available
+     include_shell &quot;/usr/share/lighttpd/use-ipv6.pl&quot;
+
+     dir-listing.encoding        = &quot;utf-8&quot;
+     server.dir-listing          = &quot;enable&quot;
+
+     compress.cache-dir          = &quot;/var/www/cache/compress/&quot;
+     compress.filetype           = ( &quot;application/x-javascript&quot;, &quot;text/css&quot;, &quot;text/html&quot;, &quot;text/plain&quot; )
+
+     include_shell &quot;/usr/share/lighttpd/create-mime.assign.pl&quot;
+     include_shell &quot;/usr/share/lighttpd/include-conf-enabled.pl&quot;
+
+     magnet.attract-physical-path-to = ( &quot;/etc/lighttpd/modx.lua&quot; )
+</code></pre>
+<p>Enable some more modules:</p>
+<pre><code> # lighttpd-enable-mod fastcgi
+ # lighttpd-enable-mod simple-vhost
+ # lighttpd-enable-mod accesslog
+ # lighttpd-enable-mod magnet
+ # lighttpd-enable-mod status
+</code></pre>
+<p>Edit more config files:</p>
+<pre><code> # vi /etc/lighttpd/conf-enabled/10-accesslog.conf
+
+     server.modules += ( &quot;mod_accesslog&quot; )
+     accesslog.filename = &quot;/var/www/logs/access.log&quot;
+
+ # vi /etc/lighttpd/conf-enabled/10-simple-vhost.conf
+
+     server.modules += ( &quot;mod_simple_vhost&quot; )
+     simple-vhost.server-root         = &quot;/var/www/servers/&quot;
+     simple-vhost.document-root       = &quot;htdocs&quot;
+     simple-vhost.default-host        = &quot;{hostname}&quot;
+
+ # vi /etc/lighttpd/conf-enabled/10-fastcgi.conf
+
+     server.modules += ( &quot;mod_fastcgi&quot; )
+     fastcgi.server    = ( &quot;.php&quot; =&gt;
+             ((
+                     &quot;bin-path&quot; =&gt; &quot;/usr/bin/php-cgi&quot;,
+                     &quot;socket&quot; =&gt; &quot;/tmp/php.socket&quot;,
+                     &quot;max-procs&quot; =&gt; 2,
+                     &quot;idle-timeout&quot; =&gt; 20,
+                     &quot;bin-environment&quot; =&gt; (
+                             &quot;PHP_FCGI_CHILDREN&quot; =&gt; &quot;4&quot;,
+                             &quot;PHP_FCGI_MAX_REQUESTS&quot; =&gt; &quot;10000&quot;
+                     ),
+                     &quot;bin-copy-environment&quot; =&gt; (
+                             &quot;PATH&quot;, &quot;SHELL&quot;, &quot;USER&quot;
+                     ),
+                     &quot;broken-scriptfilename&quot; =&gt; &quot;enable&quot;
+             ))
+     )
+
+ # vi /etc/lighttpd/modx.lua
+
+     attr = lighty.stat(lighty.env[&quot;physical.doc-root&quot;] .. &quot;manager/includes/config.inc.php&quot;) -- Appears to be a ModX site
+     if (attr) then
+       attr = lighty.stat(lighty.env[&quot;physical.path&quot;])
+       if (not attr) then -- Requested resource doesn't exist in the file system
+         path = &quot;/index.php&quot;
+         uri = lighty.env[&quot;request.uri&quot;]
+         uri2 = string.gsub(lighty.env[&quot;request.uri&quot;], &quot;\?&quot;, &quot;\&amp;&quot;)
+         -- print(&quot;Original request.uri: &quot; .. uri .. &quot; Replaced with: &quot; .. uri2)
+         lighty.env[&quot;uri.query&quot;] = &quot;q=&quot; .. string.gsub(uri, &quot;\?&quot;, &quot;\&amp;&quot;)
+         lighty.env[&quot;uri.path&quot;] = path
+         lighty.env[&quot;request.uri&quot;] = path .. &quot;?&quot; .. lighty.env[&quot;uri.query&quot;]
+         -- print(&quot;New request.uri: &quot; .. lighty.env[&quot;request.uri&quot;])
+         lighty.env[&quot;physical.rel-path&quot;] = path
+         lighty.env[&quot;physical.path&quot;] = lighty.env[&quot;physical.doc-root&quot;] .. string.sub(lighty.env[&quot;physical.rel-path&quot;], 2)
+         -- print(&quot;New physical.path: &quot; .. lighty.env[&quot;physical.path&quot;])
+       end
+     end
+
+ # vi /etc/lighttpd/wp-rewrite.conf
+
+     # Use when a site has a blog
+     # Example:
+     # $HTTP[&quot;host&quot;] =~ &quot;www\.example\.com&quot; {
+     #   var.wpdir = &quot;/blog/&quot;
+     #   include &quot;wp-rewrite.conf&quot;
+     # }
+
+     url.rewrite-once = (
+       &quot;^&quot; + wpdir + &quot;(wp-.+).*/?&quot; =&gt; &quot;$0&quot;,
+       &quot;^&quot; + wpdir + &quot;(sitemap.xml)&quot; =&gt; &quot;$0&quot;,
+       &quot;^&quot; + wpdir + &quot;(xmlrpc.php)&quot; =&gt; &quot;$0&quot;,
+       &quot;^&quot; + wpdir + &quot;keyword/([A-Za-z_0-9-])/?$&quot; =&gt; wpdir + &quot;index.php?keyword=$1&quot;,
+       &quot;^&quot; + wpdir + &quot;(.+)/?$&quot; =&gt; wpdir + &quot;index.php/$1&quot;
+     )
+</code></pre>
+<p>Edit <code>/etc/php5/cgi/php.ini</code> so that these lines are correct:</p>
+<pre><code> display_errors = stderr
+ error_log = /var/www/logs/php_errors.log
+</code></pre>
+<p>Create some directories we just specified, but don't yet have:</p>
+<pre><code> # mkdir /var/www/run /var/www/cache /var/www/cache/compress /var/www/cache/uploads /var/www/logs /var/www/servers /var/www/servers/{hostname} /var/www/servers/{hostname}/htdocs
+ # chown -R www-data:www-data /var/www/run /var/www/cache /var/www/logs/ /var/www/servers
+</code></pre>
+<p>Restart the local server and sync these settings with the other server (both need the same configuration so that either can run the service off the same data).</p>
+<pre><code> # /etc/init.d/lighttpd restart
+ # scp -r /etc/php5 /etc/lighttpd root@alice:/etc/
+</code></pre>
+</li>
+<li>
+<p>Test that either server can run either service.</p>
+<p>On the database server:</p>
+<pre><code> # stop mysql
+ # ifconfig eth0:1 down
+ # umount /var/mysql/
+ # drbdadm secondary mysql
+</code></pre>
+<p>On the web application server:</p>
+<pre><code> # drbdadm primary mysql
+ # mount /dev/drbd0 /var/mysql/
+ # ifconfig eth0:1 priv.f.f.f netmask 255.255.128.0
+ # start mysql
+ # mysql -p
+ # stop mysql
+ # ifconfig eth0:1 down
+ # umount /var/mysql/
+ # drbdadm secondary mysql
+ # /etc/init.d/lighttpd stop
+ # umount /var/www
+ # drbdadm secondary www
+</code></pre>
+<p>On the database server:</p>
+<pre><code> # drbdadm primary mysql
+ # drbdadm primary www
+ # mount /dev/drbd0 /var/mysql/
+ # mount /dev/drbd1 /var/www/
+ # /etc/init.d/lighttpd start
+ # ps ax | grep light
+ # /etc/init.d/lighttpd stop
+ # umount /var/www
+ # drbdadm secondary www
+ # ifconfig eth0:1 priv.f.f.f 255.255.128.0
+ # start mysql
+</code></pre>
+<p>On the web application server:</p>
+<pre><code> # drbdadm primary www
+ # mount /dev/drbd1 /var/www
+ # /etc/init.d/lighttpd start
+</code></pre>
+</li>
+</ol>
+<h2>Configure a failover cluster</h2>
+<p>Just a note here before we start. I would have liked to run corosync<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup> rather than heartbeat<sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup> based solely on my understanding of pacemaker<sup class="footnote-ref"><a href="#fn7" id="fnref7">[7]</a></sup>, how and why it split from heartbeat. However, corosync seems to mostly require multicast networking to work<sup class="footnote-ref"><a href="#fn8" id="fnref8">[8]</a></sup> and after some struggles, I've learned that Linode doesn't support multicast.</p>
+<ol>
+<li>
+<p>Set up heartbeat and pacemaker</p>
+<p>Install and configure software on both servers</p>
+<pre><code> # apt-get install heartbeat pacemaker
+</code></pre>
+<p>Edit <code>/usr/lib/ocf/resource.d/heartbeat/Filesystem</code> to comment out this whole block. This will fix a problem with the script's handling of jfs filesystems. Besides, they say right in the code, &quot;Why should a filesystem resource agent magically load a kernel module?&quot; I agree. Lemme handle that part and just mount the drive please.</p>
+<pre><code> # vi /usr/lib/ocf/resource.d/heartbeat/Filesystem
+
+     #       if [ &quot;X${HOSTOS}&quot; != &quot;XOpenBSD&quot; ];then
+     #               # Insert SCSI module
+     #               # TODO: This probably should go away. Why should the filesystem
+     #               # RA magically load a kernel module?
+     #               $MODPROBE scsi_hostadapter &gt;/dev/null
+     #
+     #               if [ -z &quot;$FSTYPE&quot; -o &quot;$FSTYPE&quot; = none ]; then
+     #                       : No FSTYPE specified, rely on the system has the right file-system support already
+     #               else
+     #                       # Insert Filesystem module
+     #                       $MODPROBE $FSTYPE &gt;/dev/null
+     #                       grep -e &quot;$FSTYPE&quot;'$' /proc/filesystems &gt;/dev/null
+     #                       if [ $? -ne 0 ] ; then
+     #                               ocf_log err &quot;Couldn't find filesystem $FSTYPE in /proc/filesystems&quot;
+     #                               return $OCF_ERR_INSTALLED
+     #                       fi
+     #               fi
+     #       fi
+</code></pre>
+<p>Configuration files:</p>
+<pre><code> # vi /etc/ha.d/authkeys
+
+     auth 1
+     1 sha1 Don'tTell
+
+ # chmod 600 /etc/heartbeat/authkeys
+
+ # vi /etc/ha.d/ha.cf
+
+     autojoin none
+     logfacility daemon
+     keepalive 2
+     deadtime 15
+     warntime 5
+     initdead 120
+     udpport 694
+     ucast eth0 priv.a.a.a
+     ucast eth0 priv.g.g.g
+     node alice
+     node gertrude
+     auto_failback on
+     use_logd yes
+     crm respawn
+</code></pre>
+<p>Propogate the configuration and restart each server</p>
+<pre><code> # scp -r /etc/ha.d/* root@gertrude:/etc/ha.d/
+
+ # /etc/init.d/heartbeat restart
+</code></pre>
+<p>Disable automatic start of Lighttpd (using LSB) and MySQL (using Upstart)</p>
+<pre><code> # update-rc.d lighttpd disable
+ # vi /etc/init/mysql.conf
+
+     # Comment out the startup
+     #start on (net-device-up
+     #          and local-filesystems
+     #         and runlevel [2345])
+</code></pre>
+<p>Configure the resources</p>
+<pre><code> # vi /usr/lib/ocf/resource.d/linbit/drbd
+
+     OCF_RESKEY_drbdconf_default=&quot;/usr/local/etc/drbd.conf&quot;
+
+ # crm configure
+
+     primitive db_alert ocf:heartbeat:MailTo \
+         params email=&quot;root&quot; subject=&quot;(db)&quot;
+     primitive db_drbd ocf:linbit:drbd \
+         params drbd_resource=&quot;mysql&quot; \
+         op start interval=&quot;0&quot; timeout=&quot;240&quot; \
+         op stop interval=&quot;0&quot; timeout=&quot;100&quot;
+     primitive db_fs ocf:heartbeat:Filesystem \
+         params device=&quot;/dev/drbd0&quot; directory=&quot;/var/mysql&quot; fstype=&quot;jfs&quot; \
+         op start interval=&quot;0&quot; timeout=&quot;60&quot; \
+         op stop interval=&quot;0&quot; timeout=&quot;120&quot;
+     primitive db_ip ocf:heartbeat:IPaddr \
+         params ip=&quot;priv.f.f.f&quot; cidr_netmask=&quot;24&quot;
+     primitive db_mysql lsb:mysql \
+         op monitor interval=&quot;0&quot; enabled=&quot;false&quot;
+
+     primitive www_alert ocf:heartbeat:MailTo \
+         params email=&quot;root&quot; subject=&quot;(www)&quot;
+     primitive www_drbd ocf:linbit:drbd \
+         params drbd_resource=&quot;www&quot; \
+         op start interval=&quot;0&quot; timeout=&quot;240&quot; \
+         op stop interval=&quot;0&quot; timeout=&quot;100&quot;
+     primitive www_fs ocf:heartbeat:Filesystem \
+         params device=&quot;/dev/drbd1&quot; directory=&quot;/var/www&quot; fstype=&quot;ext4&quot; \
+         op start interval=&quot;0&quot; timeout=&quot;60&quot; \
+         op stop interval=&quot;0&quot; timeout=&quot;120&quot;
+     primitive www_ip ocf:heartbeat:IPaddr \
+         params ip=&quot;pub.f.f.f&quot; cidr_netmask=&quot;24&quot;
+     primitive www_lighty lsb:lighttpd \
+         op monitor interval=&quot;0&quot; enabled=&quot;false&quot;
+
+     group db db_ip db_fs db_mysql db_alert \
+         meta target-role=&quot;Started&quot;
+
+     group www www_fs www_ip www_lighty www_alert \
+         meta target-role=&quot;Started&quot;
+
+     ms ms_db_drbd db_drbd \
+         meta master-max=&quot;1&quot; master-node-max=&quot;1&quot; clone-max=&quot;2&quot; clone-node-max=&quot;1&quot; notify=&quot;true&quot;
+
+     ms ms_www_drbd www_drbd \
+         meta master-max=&quot;1&quot; master-node-max=&quot;1&quot; clone-max=&quot;2&quot; clone-node-max=&quot;1&quot; notify=&quot;true&quot;
+
+     location db_gertrude db 10: gertrude
+     location db_alice db 100: alice
+     location www_gertrude www 100: gertrude
+     location www_alice www 10: alice
+
+     colocation db_on_drbd inf: db ms_db_drbd:Master
+     colocation www_on_drbd inf: www ms_www_drbd:Master
+
+     order db_after_drbd inf: ms_db_drbd:promote db:start
+     order www_after_drbd inf: ms_www_drbd:promote www:start
+
+     property cluster-infrastructure=&quot;Heartbeat&quot; \
+         stonith-enabled=&quot;false&quot; \
+         no-quorum-policy=&quot;ignore&quot; \
+         default-resource-stickiness=&quot;5&quot;
+</code></pre>
+</li>
+</ol>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1"  class="footnote-item"><p>I didn't realize that Linode has a referral program, so I'm updating this footnote! If you sign up, kindly use this link: <a href="http://www.linode.com/?r=3056f385845a7a1f538397b0daa697357e884da1" title="A link to Linode that includes my referral code, which means I could get paid a little bit.">Linode.com</a>. <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2"  class="footnote-item"><p>I built a <a href="http://perlmonks.org/index.pl?node_id=101324" title="Password generator using a linguistic rule base, by me, long before I started using the version2beta handle.">pronouncable password generator</a> too, in Perl, more than a decade ago. Got lots of reputations points on PerlMonks.org. But <a href="http://www.adel.nursat.kz/apg/" title="Automatic Password Generator">APG</a> is cool too. <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn3"  class="footnote-item"><p>I used to use <a href="http://www.debian.org" title="You know, Debian. The standard Linux distro.">Debian</a>, and got the install down to 1.3GB comfortably. But since I started running Ubuntu on my desktop I've simplified my life and got <a href="http://www.ubuntu.com/business/server/overview" title="Ubuntu is based on Debian, so it's got that going for it.">Ubuntu Server</a> <a href="#fnref3" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn4"  class="footnote-item"><p>We name our servers after couples who inspired each other in their art and life. The example shown refers to Alice B. Toklas, partner and lover of Gertrude Stein for nearly 40 years, author of The Alice B. Toklas Cookbook which contains among other recipes what we often refer to as &quot;magic brownies&quot; (She called it &quot;Haschich Fudge&quot;.) Gertrude was pretty cool too. <a href="#fnref4" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn5"  class="footnote-item"><p>This cluster management stuff gets complicated. I have to really wrap my head around it when I'm making it work, and I still only have 80% confidence I understand what it's doing, even if I have 100% confidence what I've done works. And this is a how-to, not a why-for, so I don't want to bog it down a lot. So I'll just send you to <a href="http://en.wikipedia.org/wiki/Corosync_(project)" title="Corosync on Wikipedia gives a decent overview, not too technical">the Wikipedia page for the Corosync project</a>. <a href="#fnref5" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn6"  class="footnote-item"><p>Keeping in line with the last footnote, here's the <a href="http://en.wikipedia.org/wiki/Linux-HA" title="High Availability Linux on Wikipedia">Wikipedia page for Linux-ha (high availability Linux)</a>, the project that puts out heartbeat. <a href="#fnref6" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn7"  class="footnote-item"><p>Okay, so you get some theory anyway. Heartbeat is how the system knows which members of a cluster are online. Pacemaker is how it determines which resources belong with cluster node. Got it? Pacemaker strikes me as the bad boy of Linux high availability. It got spun off from the Linux-ha project back in '07 in a brouhaha that involved one guy leaving the project and not replying to emails, the head of kernel R&amp;D at SuSE talking street, really just a big clusterf**k. Well, I may be overstating it, but the first time I configured one of these pairs, I didn't have to deal with the politics of project development to try to figure out where all the pieces came from and how they went together.</p>
+<p>Oh, Pacemaker doesn't have a Wikipedia page, but there's a <a href="http://clusterlabs.org/wiki/Pacemaker" title="Wiki page on Pacemaker at ClusterLabs.org">Wiki page at clusterlabs.org</a>. <a href="#fnref7" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn8"  class="footnote-item"><p><a href="http://en.wikipedia.org/wiki/IP_multicast" title="IP Multicasting article at Wikipedia">IP Multicasting</a> is a way for one computer to talk to more than one computer at a time, in one transmission. It's kinda like tuning into a TV channel - you pick the channel you want to listen to, and then there's all this stuff happening. Except not at Linode. <a href="#fnref8" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+<h3>Talk back to me</h3><p>You can comment below. Or <a href="http://www.twitter.com/#!/version2beta" title="version2beta on twitter">tweet at me</a>. I'm always open to a good conversation.</p><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'version2beta';
+var disqus_identifier = '/articles/high-availability-linode-pairs';
+var disqus_url = 'http://version2beta.com/articles/high-availability-linode-pairs';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></article></div></div></body><footer><div id="footer"><p class="contact"><a href="https://plus.google.com/115037548656448421726?rel=author">Rob Martin</a>: <a href="mailto:rob@version2beta.com">rob@version2beta.com</a></p><p class="creative-commons">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p><p id="social"><a href="/rss.xml" title="A news feed for my blog"><img src="/static/site/rss-icon.png" alt="RSS feed icon"></a><a href="http://twitter.com/version2beta" title="Find me on Twitter"><img src="/static/site/twitter-icon.png" alt="Twitter icon"></a></p></div></footer><script type="text/javascript">var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-12023701-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script><script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script><script src="/static/js/css3-mediaqueries.js"></script></html>

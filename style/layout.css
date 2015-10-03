@@ -1,0 +1,128 @@
+/* ------ SITE-WIDE ------ */
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+html, body {
+    height: 100%;
+}
+html {
+  overflow-x: hidden;
+  background: #F2F5F9;
+}
+body {
+  margin: 0px;
+  min-height: 100%;
+}
+#site {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -223px;
+}
+#site:after {
+  content: "";
+  display: block;
+  height: 223px;
+}
+#sitename {
+  background: #FF3E3E;
+  padding: 17.5px 25px;
+  float: left;
+}
+#menu {
+  margin: 0 auto;
+  width: 100%;
+  line-height: normal;
+  background: #474C59;
+}
+#menu nav {
+  text-align: center;
+}
+ul#sitenav {
+  margin: 0px;
+}
+ul#sitenav li {
+  display: inline-block;
+  padding: 18px 60px;
+}
+#menu-toggle {
+  display: none;
+}
+footer {
+  background: #474C59;
+  border-bottom: 10px solid #FF3E3E;
+}
+#social img {
+  margin: 20px;
+  -webkit-box-shadow: -10px 10px 0px 0px rgba(53,56,63,1);
+  -moz-box-shadow: -10px 10px 0px 0px rgba(53,56,63,1);
+  box-shadow: -10px 10px 0px 0px rgba(53,56,63,1);
+}
+
+/* ------ CONTENT WRAPPERS ------ */
+
+#main-content, .blog-entry .article-undefined, .blog-entry .article-cto, .blog-entry .article-dev, .blog-entry .article-devops, .blog-entry .article-community, .blog-entry .article-personal {
+  background: #FFFFFF;
+  -webkit-box-shadow: 25px 25px 10px 2px rgba(53,56,63,0.05);
+  -moz-box-shadow: 25px 25px 10px 2px rgba(53,56,63,0.05);
+  box-shadow: 25px 25px 10px 2px rgba(53,56,63,0.05);
+  width: 95%;
+  padding: 50px;
+  padding-left: 15%;
+  padding-right: 10%;
+}
+#main-content, #home-content {
+  margin: 5% 0%;
+}
+#site-readable {
+  background: #FFFFFF;
+  padding: 2% 5%;
+}
+#readable-content {
+  margin: 20px;
+}
+#site-readable footer {
+  background: none;
+  border-bottom: none;
+}
+/* ------ BLOG ENTRY & TAG WRAPPERS ------ */
+
+.blog-entry {
+  border-bottom: 1px solid #F2F5F9;
+}
+.blog-entry .article-cto {
+  border-left: 20px solid #FF833E;
+}
+.blog-entry .article-cto .post-tag a {
+  color: #FF833E;
+}
+.blog-entry .article-dev {
+  border-left: 20px solid #FFD400;
+}
+.blog-entry .article-dev .post-tag a {
+  color: #FFD400;
+}
+.blog-entry .article-devops {
+  border-left: 20px solid #78EFFF;
+}
+.blog-entry .article-devops .post-tag a {
+  color: #78EFFF;
+}
+.blog-entry .article-community {
+  border-left: 20px solid #77EDBF;
+}
+.blog-entry .article-community .post-tag a {
+  color: #77EDBF;
+}
+.blog-entry .article-personal {
+  border-left: 20px solid #FF3E3E;
+}
+.blog-entry .article-personal .post-tag a {
+  color: #FF3E3E;
+}
+.blog-entry .article-undefined {
+  border-left: 20px solid #AAB2BC;
+}

@@ -1,0 +1,34 @@
+extends base.jade
+
+block content
+  #home-content
+    if collections.articles && collections.articles.length > 0
+      each post in collections.articles
+        .blog-entry
+          if post.tags
+            div(class='article-'+post.tags[0])
+              h2
+                a(href='/'+post.path)!= post.pagetitle
+              div
+                span.post-date
+                  time(pubdate)!= post.published
+                span!= post.snippet
+                span.read-more
+                  a(href='/'+post.path) // read more
+              .post-tag
+                | filed under:
+                each tag in post.tags
+                  | &nbsp;#[a(href='/topics/#{tag}') #{tag}]
+          else
+            div(class='article-undefined')
+              h2
+                a(href='/'+post.path)!= post.pagetitle
+              div
+                span.post-date
+                  time(pubdate)!= post.published
+                span!= post.snippet
+                span.read-more
+                  a(href='/'+post.path) // read full article
+    else
+      h2= collections.articles.length
+      h2 No articles to show

@@ -1,0 +1,38 @@
+extends base.jade
+
+block title
+  title #{pagetitle} &#124; version2beta
+block content
+  article#main-content
+    #content-header
+      h1 #{pagetitle}
+      p
+        span.author.
+          by #[a(href='https://plus.google.com/115037548656448421726?rel=author') #{author}] #{content=published?' on ':''}
+        span.post-date
+          time(pubdate) #{moment(published).format("YYYY-MM-DD [at] HH:mm")}
+        span.post-tag
+          if tags && tags.length > 0
+            each tag in tags
+              span.post-tag.
+                &nbsp;// #[a(href='/topics/#{tag}') #{tag}]
+          else
+            span()
+      p.readable.
+        #[a(href='/readable/#{path}') Highly readable version]
+    #post-content !{contents}
+      h3 Talk back to me
+      p.
+        You can comment below. Or #[a(href='http://www.twitter.com/#!/version2beta', title='version2beta on twitter') tweet at me]. I'm always open to a good conversation.
+      #disqus_thread
+      script(type='text/javascript').
+        var disqus_shortname = 'version2beta';
+        var disqus_identifier = '/#{path}';
+        var disqus_url = 'http://version2beta.com/#{path}';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      noscript.
+        Please enable JavaScript to view the #[a(href='http://disqus.com/?ref_noscript') comments powered by Disqus.]

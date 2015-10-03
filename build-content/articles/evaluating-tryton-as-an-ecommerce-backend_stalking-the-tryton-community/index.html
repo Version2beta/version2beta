@@ -1,0 +1,119 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Tryton as an e-commerce back-end - Stalking the Tryton community &#124; version2beta</title><meta name="description" content="I spend some time learning about the people behind Tryton."><meta name="keywords" content=""><meta name="viewport" content="width=device-width, initial-scale=1"><link href="/archive/atom.xml" rel="alternate" title="version2beta" type="application/atom+xml"><link rel="stylesheet" href="/style/layout.css" type="text/css" media="screen"><link rel="stylesheet" href="/style/text-styling.css" type="text/css" media="screen"><link rel="stylesheet" href="/style/responsive.css" type="text/css" media="screen"><link rel="shortcut icon" href="/static/site/favicon.png"></head><body><div id="site"><div id="menu"><div id="sitename"><a href="/">version2beta</a></div><nav id="top-nav"><div id="menu-toggle"><a href="#top-nav" class="open-menu"><img src="/static/site/menu-toggle.png" alt="+"></a><a href="#" class="close-menu"><img src="/static/site/menu-toggle-close.png" alt="—"></a></div><ul id="sitenav"><li><a href="/about">about</a></li><li><a href="/speaking">speak</a></li><li><a href="/hire">hire</a></li><li><a href="/">blog</a></li></ul></nav></div><div class="content"><article id="main-content"><div id="content-header"><h1>Tryton as an e-commerce back-end - Stalking the Tryton community</h1><p><span class="author">by <a href="https://plus.google.com/115037548656448421726?rel=author">Rob Martin</a>  on </span><span class="post-date"><time pubdate>2011-06-17 at 12:58</time></span><span class="post-tag"><span></span></span></p><p class="readable"><a href="/readable/articles/evaluating-tryton-as-an-ecommerce-backend_stalking-the-tryton-community">Highly readable version</a></p></div><div id="post-content"><p>This is part two in a series exploring how Tryton might fair as the heavy-lifting portion of an e-commerce package. This part discusses some of my experiences with members of the Tryton community.</p>
+<p>The whole series, at least as planned:</p>
+<ul>
+<li><a href="/articles/evaluating-tryton-as-an-ecommerce-backend_about-tryton" title="Tryton as an e-commerce back-end: About Tryton">Part 1: About Tryton</a></li>
+<li>Part 2: Stalking the Tryton community</li>
+<li><a href="/articles/evaluating-tryton-as-an-ecommerce-backend_web-framework" title="Tryton as an e-commerce back-end: Tryton needs a web framework.">Part 3: The crux of the matter</a></li>
+</ul>
+<h2>The Tryton community</h2>
+<p>My first experience with Tryton was two years ago, when we were
+evaluating open source ERP packages for a business systems
+integration project. I came, I saw, and I moved on to OpenERP,
+which offered more features and centralized commercial support. Now
+that we have considerably more experience with OpenERP, I’ve come
+back for a closer look at Tryton.</p>
+<p>I started with the community, and I suspect that is a very valid
+approach. I’m looking for a long term relationship. I wanted to
+meet the family. So naturally I hid behind some bushes and watched
+them for a month or so. Some of the things I noticed:</p>
+<ul>
+<li>They don’t bicker very much. Like, hardly at all. Most of the
+communication I’ve seen is in non-native English, and they speak
+carefully so as not to be misunderstood.</li>
+<li>Mostly they are proactive, identifying potential problems and
+solutions before people become invested in various outcomes.</li>
+<li>They air their laundry (bugs, issues, etc) as well as most open
+source projects. It seems they don’t have as much laundry to air,
+though.</li>
+</ul>
+<p>The Tryton family has some key members. I’ve identified some of
+them from looking at the services page on the website<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>, some
+from the Google groups for Tryton<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup> and Tryton-dev<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>, and some
+on IRC<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup>. Many of these people I also recognized from the OpenERP
+community, as there’s considerable overlap. I’m reluctant to point
+names and name fingers (with a nod to Jack Sparrow<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup>) as I’m far
+too likely to miss someone’s most excellent contribution, and that
+would be an unfortunate oversight.  <strong>Kudos and gratitude to everyone who has worked on Tryton.</strong> Despite my reluctance, I still want to point out a few people.</p>
+<p>There is no doubt a reason why the Tryton.org website<sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup> looks so
+much like <strong>B2CK Software Development’s website<sup class="footnote-ref"><a href="#fn7" id="fnref7">[7]</a></sup></strong>. I’ve read
+hundreds of emails on the mailing lists from Cédric Krier, Nicolas
+Évrard, and others in this company. Clearly these are key people in
+Tryton development and I cannot say enough nice things. Cédric is a
+programming god: targeted, responsive, attentive, and sharp. I
+greatly enjoyed the night Udo Spallek recommended two accessibility
+improvements to the Tryton GUI and Cédric replied 52 minutes later
+with the one word “Done”.</p>
+<p>I already had a healthy respect (perhaps even a geek-crush) on
+<strong>Sharoon Thomas</strong><sup class="footnote-ref"><a href="#fn8" id="fnref8">[8]</a></sup>, CEO of <strong>Openlabs in the UK and India</strong><sup class="footnote-ref"><a href="#fn9" id="fnref9">[9]</a></sup>.
+Sharoon and Openlabs have written about
+using Tryton as a Python module in Django<sup class="footnote-ref"><a href="#fn10" id="fnref10">[10]</a></sup>,
+integrated UPS international shipping with OpenERP<sup class="footnote-ref"><a href="#fn11" id="fnref11">[11]</a></sup>, and built
+Callisto e-commerce for OpenERP<sup class="footnote-ref"><a href="#fn12" id="fnref12">[12]</a></sup> as well as
+Nereid for Tryton<sup class="footnote-ref"><a href="#fn13" id="fnref13">[13]</a></sup>. Sharoon has clearly already considered the
+question of Tryton and e-commerce, as indicated in
+his email list discussion on building a Magento Connector for Tryton<sup class="footnote-ref"><a href="#fn14" id="fnref14">[14]</a></sup>. (My favorite part: “An integration with
+Magento does not add 'The best e-commerce possibility for Tryton'
+but does make 'A great ERP backend for Magento'.&quot;)</p>
+<p>Again I want to add, there are others. I can just barely read
+French, German, and Spanish, and do not know the developers who
+spend most of their time in these channels. Even among the
+participants in the English language forums, I’m not representing
+everyone here, but I do wish to include them in my appreciation.</p>
+<h3>What else is there?</h3>
+<ul>
+<li><a href="/articles/evaluating-tryton-as-an-ecommerce-backend_about-tryton" title="Tryton as an e-commerce back-end: About Tryton">Part 1: About Tryton</a>. An overview of Tryton – architecture,
+business model, features, license.</li>
+<li>Part 2: Stalking the Tryton community. There are some
+impressive people working on this project. I’m pleased to get to
+know them.</li>
+<li><a href="/articles/evaluating-tryton-as-an-ecommerce-backend_web-framework" title="Tryton as an e-commerce back-end: Tryton needs a web framework.">Part 3: The crux of the matter</a>. Tryton needs a web framework so we don't have to do things twice.</li>
+</ul>
+<p><em>If I’ve inspired a response from you (probably the type of response that deserves an apology), mention <a href="http://twitter.com/version2beta" title="Me, twitterfied">@version2beta</a> on <a href="http://twitter.com/" title="All of twitter, including me.">Twitter</a> and I’ll see it there. Or, if you can’t comment in less than 126 characters (my handle takes 14 characters with a space), blog about it and tweet that.</em></p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1"  class="footnote-item"><p><a href="http://www.tryton.org/services.html" title="Tryton's page on who's currently providing professional services.">http://www.tryton.org/services.html</a> Page on who's currently providing professional services for Tryton. <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2"  class="footnote-item"><p>Google Groups is a useful email list service, and Tryton has several of them. This is the <a href="http://groups.tryton.org/" title="Tryton's Google Groups general email discussion list">general Tryton email list</a>, in English ... <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn3"  class="footnote-item"><p>... and this is the <a href="http://groups-dev.tryton.org/" title="Tryton's Google Groups developer's email discussion list">Tryton developers list</a>, also in English. <a href="#fnref3" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn4"  class="footnote-item"><p>Tryton has a relatively <a href="irc://irc.freenode.net/tryton" title="Tryton's English language IRC channel on Freenode">active IRC channel</a> as well. At least, I generally find helpful people willing to engage in discussion when I visit, and sometimes I camp out there a while. Please note the link is an IRC link, so it will attempt to launch your IRC client. <a href="#fnref4" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn5"  class="footnote-item"><p>There should be a <a href="http://www.imdb.com/title/tt1298650/" title="IMDB page for Pirates of the Caribbean: On Stranger Tides">Captain</a> in their somewhere. <a href="#fnref5" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn6"  class="footnote-item"><p><a href="http://www.tryton.org/index.html" title="Tryton home page">http://www.tryton.org/</a> <a href="#fnref6" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn7"  class="footnote-item"><p><a href="http://www.b2ck.com/" title="B2CK SPRL in Belgium">B2CK SPRL</a> in Belgium - Tryton, OpenBSD, OpenVPN. These are a few of my favorite things. <a href="#fnref7" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn8"  class="footnote-item"><p>I've had the pleasure of working one-on-one with <a href="http://twitter.com/#!/sharoonthomas" title="Sharoon is an ubergeek and Openlabs' CEO">Sharoon</a>, over 40 hours during a three day period very nearly without rest. He is a workhorse and programming powerhouse. <a href="#fnref8" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn9"  class="footnote-item"><p><a href="http://www.openlabs.co.in/" title="Openlabs Technology &amp; Consulting LTD.">Openlabs Technology &amp; Consulting LTD</a>. They have offices on two or three continents and their work is exceptional. <a href="#fnref9" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn10"  class="footnote-item"><p><a href="http://code.google.com/p/tryton/wiki/TrytonDjango" title="Tryton's Google Code Wiki page on integrating Tryton with Django.">Tryton as a Django module</a>. Cool. <a href="#fnref10" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn11"  class="footnote-item"><p>We ended up buying Openlabs' UPS module for OpenERP. We were fortunate enough to pay the last of the shared development funding for the module, so with our payment, the module was released as open source. You can fork <a href="https://github.com/openlabs/PyUPS" title="Fork Openlabs' UPS module on GitHub.">Openlabs' UPS module on GitHub</a>. <a href="#fnref11" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn12"  class="footnote-item"><p>With <a href="http://www.openlabs.co.in/blog/post/callisto-openerp" title="Callisto web framework on OpenERP">Callisto</a>, OpenLabs makes OpenERP into a web framework. <a href="#fnref12" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn13"  class="footnote-item"><p><a href="http://code.google.com/p/tryton-nereid/" title="Nereid web framework on Tryton.">Nereid</a> adds a web framework to Tryton. I find the possibilities exciting, and fully expect to blog on this (the idea, at least) in the future. <a href="#fnref13" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn14"  class="footnote-item"><p><a href="http://groups.google.com/group/tryton-dev/msg/403620501bffdb55?" title="Discussion about a Tryton Magento connector">Sharoon's full quote from the mailing list</a> is this: &quot;In short I feel that both the connector to magento and integrated e-commerce solution addresses totally different requirements. An integration with magento does not add 'The best e-commerce possibility for Tryton' but does make 'A great ERP backend for magento'. Feel free to ask any of the questions you may have. I am also available on the IRC if you want to talk about this.&quot; <a href="#fnref14" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+<h3>Talk back to me</h3><p>You can comment below. Or <a href="http://www.twitter.com/#!/version2beta" title="version2beta on twitter">tweet at me</a>. I'm always open to a good conversation.</p><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'version2beta';
+var disqus_identifier = '/articles/evaluating-tryton-as-an-ecommerce-backend_stalking-the-tryton-community';
+var disqus_url = 'http://version2beta.com/articles/evaluating-tryton-as-an-ecommerce-backend_stalking-the-tryton-community';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></article></div></div></body><footer><div id="footer"><p class="contact"><a href="https://plus.google.com/115037548656448421726?rel=author">Rob Martin</a>: <a href="mailto:rob@version2beta.com">rob@version2beta.com</a></p><p class="creative-commons">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p><p id="social"><a href="/rss.xml" title="A news feed for my blog"><img src="/static/site/rss-icon.png" alt="RSS feed icon"></a><a href="http://twitter.com/version2beta" title="Find me on Twitter"><img src="/static/site/twitter-icon.png" alt="Twitter icon"></a></p></div></footer><script type="text/javascript">var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-12023701-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script><script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script><script src="/static/js/css3-mediaqueries.js"></script></html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Don't comment your code &#124; version2beta</title><meta name="description" content="Feel inclined to write a comment? Do this instead."><meta name="keywords" content=""><meta name="viewport" content="width=device-width, initial-scale=1"><link href="/archive/atom.xml" rel="alternate" title="version2beta" type="application/atom+xml"><link rel="stylesheet" href="/style/layout.css" type="text/css" media="screen"><link rel="stylesheet" href="/style/text-styling.css" type="text/css" media="screen"><link rel="stylesheet" href="/style/responsive.css" type="text/css" media="screen"><link rel="shortcut icon" href="/static/site/favicon.png"></head><body><div id="site"><div id="menu"><div id="sitename"><a href="/">version2beta</a></div><nav id="top-nav"><div id="menu-toggle"><a href="#top-nav" class="open-menu"><img src="/static/site/menu-toggle.png" alt="+"></a><a href="#" class="close-menu"><img src="/static/site/menu-toggle-close.png" alt="—"></a></div><ul id="sitenav"><li><a href="/about">about</a></li><li><a href="/speaking">speak</a></li><li><a href="/hire">hire</a></li><li><a href="/">blog</a></li></ul></nav></div><div class="content"><article id="main-content"><div id="content-header"><h1>Don't comment your code</h1><p><span class="author">by <a href="https://plus.google.com/115037548656448421726?rel=author">Rob Martin</a>  on </span><span class="post-date"><time pubdate>2013-05-15 at 08:30</time></span><span class="post-tag"><span class="post-tag">&nbsp;// <a href="/topics/personal">personal</a></span></span></p><p class="readable"><a href="/readable/articles/dont-comment-your-code">Highly readable version</a></p></div><div id="post-content"><p><strong>Comments lie.</strong></p>
+<p>My favorite example of this was described in the Ruby Rogues podcast, episode 79.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> I believe it went something like this:</p>
+<pre><code>five = 7; # 12
+</code></pre>
+<p>This comment is funny, but most comment-based lies are much more sinister. They hide, waiting patiently to spring out and bite the next programmer in the ass. Sure the comments were written in good faith, and they probably documented the system accurately when the comment was written. But code changes, often before we even get out of our chairs, and there are few systems guaranteeing that we keep inline documentation consistent with the code base as it changes.</p>
+<p>We can make a commitment to avoiding comments that lie. One of the guiding principles of Python is that computers don't care how the code is written (and whenever I read that, I think of obfuscated Perl). Future programmers working on the code base do care how the program is written, because they have to read it. We have an obligation to that future programmer to make our code obvious.</p>
+<p>As it says in the Zen of Python,<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup> &quot;Readability counts.&quot;</p>
+<p>It also says, &quot;If the implementation is hard to explain, it's a bad idea. If the implementation is easy to explain, it may be a good idea.&quot;</p>
+<p>It also says, &quot;Simple is better than complex.&quot;</p>
+<p>Let's take those aphorisms and apply them to our commitment about avoiding comments that lie. So now I want to change what I said above. Instead of &quot;Avoid comments that lie&quot;, let's try &quot;<strong>Avoid comments.</strong>&quot;</p>
+<p>This is a guiding principal, not a carved-in-stone law. Try to write code that doesn't contain inline comments.</p>
+<p>Here are two ways to do that.</p>
+<h2>Write a test instead</h2>
+<p>When you find yourself wanting to write a comment, write a test instead. Not just a test, but a spec. Tests don't lie - they either pass or they fail. If you write it as a spec, any future developer on your project (including you in six months - or maybe just after lunch) can view the test and see exactly what the code is supposed to do. Even better, you can see whether or not the code and the spec are still in sync with each other.</p>
+<p>Here's a function written in Python. I'm not going to tell you what it does, and it doesn't have any comments.</p>
+<pre><code>def matcher(i):
+    group = {}
+    for element in i:
+        sorted_el = ''.join(sorted(list(element)))
+        if group.get(sorted_el):
+            group[sorted_el].append(element)
+        else:
+            group[sorted_el] = [element]
+            group[sorted_el].sort()
+    return sorted([v for k,v in group.iteritems()])
+</code></pre>
+<p>Since this is a public function written in Python, it should actually have a docstring.<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup> I'd give it one like this:</p>
+<pre><code>def matcher(i):
+    &quot;&quot;&quot;Group items that have the same letters.&quot;&quot;&quot;
+    ...
+</code></pre>
+<p>Docstrings can lie just as easily as any other comment, and we want to document this code in a way that proves both the code and the comment are correct (or at least both wrong in the same way.)<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup></p>
+<p>I learned Test Driven Development and Behavior Driven Development using Ruby and RSpec,<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup> so in Python I tend toward tests written using Nose<sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup> and Expecter<sup class="footnote-ref"><a href="#fn7" id="fnref7">[7]</a></sup>. Here's my test for this function:</p>
+<pre><code>class TestMatcher(unittest.TestCase):
+    def test_that_strings_are_grouped_by_component_letters(self):
+        expect(
+            matcher(['abc', 'def', 'aca', 'acb', 'fed', 'edf', 'c'])) == \
+              [['abc', 'acb'], ['aca'], ['c'], ['def', 'edf', 'fed']]
+</code></pre>
+<p>So now my code has an example, and the beauty of it is that this is a specification can be proven, over and over again. This test tells me what kind of result to expect, and lets me demonstrate that the code actually achieves that result any time I wish.</p>
+<p>One disadvantage of the &quot;write a test instead&quot; option is that the documentation (specification, really) is not in the same place as the code. It may not be in the same file or even the same directory. This can make it difficult to find. So here's an alternative to writing a comment that puts the appropriate documentation in the code at exactly the place you wanted to put the comment. Bonus, it complements the &quot;write a test instead&quot; directive.</p>
+<h2>Write a function instead</h2>
+<p>Write a function instead, and name your function for whatever you were going to put in your comment.</p>
+<p>Here's an example, this time in Ruby. (Caveat: I'm still learning Ruby, so try not to laugh if I'm Doing It Wrong. Actually, laugh if you want, but please leave me a comment with advice.)</p>
+<pre><code>class Matcher
+
+  def initialize
+    @my_hash = Hash.new
+  end
+
+  def make_hash(list)
+    list.each do |e|
+      # Add the list element to my hash keyed to
+      # the element's component letters, sorted
+      key = e.split(//).sort().join()
+      if @my_hash.has_key?(key)
+        @my_hash[key] &lt;&lt; e
+      else
+        @my_hash[key] = [e]
+      end
+    end
+    return @my_hash
+  end
+
+end
+</code></pre>
+<p>See that comment in the middle? It explains what the next six lines of code do, the six lines of code that are making my method long and ugly. Let's refactor that comment into a method.</p>
+<pre><code>class Matcher
+
+  def initialize
+    @my_hash = Hash.new
+  end
+
+  def add_to_hash(a_hash, key, e)
+    if a_hash.has_key?(key)
+      a_hash[key] &lt;&lt; e
+    else
+      a_hash[key] = [e]
+    end
+  end
+
+  def make_hash(list)
+    list.select{ |e| add_to_hash(@my_hash, e.split(//).sort().join(), e) }
+    return @my_hash
+  end
+
+end
+</code></pre>
+<p>So now instead of the comment that described what the code was doing when I wrote the class, we defined a new method. Plus, the new method can be tested separately.</p>
+<p>We still have a bit of code in the middle of the list.select block that looks obscure and a little confusing. Maybe I feel inclined to comment that, too. Let's make another method instead.</p>
+<pre><code>class Matcher
+
+  def initialize
+    @my_hash = Hash.new
+  end
+
+  def add_to_hash(a_hash, key, e)
+    if a_hash.has_key?(key)
+      a_hash[key] &lt;&lt; e
+    else
+      a_hash[key] = [e]
+    end
+  end
+
+  def sort_letters(a_string)
+    return a_string.split(//).sort().join()
+  end
+
+  def make_hash(list)
+    list.select{ |e| add_to_hash(@my_hash, sort_letters(e), e) }
+    return @my_hash
+  end
+
+end
+</code></pre>
+<p>As I described above, this works in conjunction with tests, so as I'm refactoring my code-in-need-of-comments, I'm also running my tests to make sure that the code meets the spec all along. Here is a test for this code that meets the requirements above, specifying what the code is expected to do and giving an example.</p>
+<pre><code>test_data = ['abc', 'def', 'aca', 'acb', 'fed', 'edf', 'c']
+
+hash_data = {
+  'abc' =&gt; [ 'abc', 'acb' ],
+  'def' =&gt; [ 'def', 'fed', 'edf' ],
+  'aac' =&gt; [ 'aca' ] ,
+  'c' =&gt; [ 'c' ]
+}
+
+describe Matcher do
+  it &quot;creates a hash that groups strings by component letters&quot; do
+    matcher = Matcher.new
+    expect(matcher.make_hash test_data).to eq hash_data
+  end
+end
+</code></pre>
+<h2>Stop commenting your code</h2>
+<p>I've written tens of thousands of inline comments in the last 30 years. I can absolutely promise you that most of them are useless. They are all written from good intentions. Many of them inject humor, or at least personality. Quite a few of them were written to demonstrate how clever I am. Some of them might even help the poor sod who is now stuck maintaining that code understand what I was trying to do. The majority of them are probably no longer consistent with the operation of the program.</p>
+<p>My motivations demonstrate why comments are often bad. My personality and attempts at being funny have little to do with shipping code. My clever programming was rarely an asset, and usually just made my code less understandable. And comments that no longer document the code as it stands now do nothing to enlighten the current maintainer. They confuse the issue.</p>
+<p>I've been on the other side too, stuck with a code base that may have hundreds of lines of inline comments that made sense to someone at some point, but are useless to me now. Often I want to start from scratch rather than wallow through someone else's wall of text figuring out what's true and what's not.</p>
+<p>Using these directives, my code is cleaner. It's not perfect, and I'm still learning, but at least the person who has to read it has a fighting chance.</p>
+<p>Give it a try. Stop commenting your code, and see if it doesn't make you a better programmer.</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1"  class="footnote-item"><p><a href="http://rubyrogues.com/" title="Ruby Rogues podcast">Ruby Rogues</a> is a podcast about Ruby, as you may have guessed, but I started listening to it more than a year before I considered myself a Ruby programmer. The Rogues have consistently been one of my best sources for learning to be a better programmer, regardless of language. It's fair to say I've been writing this blog post in my head ever since I listened to episode 79, <a href="http://rubyrogues.com/079-rr-documenting-code/" title="Ruby Rogues episode 79, Documenting Code">Documenting Code</a>. <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2"  class="footnote-item"><p><a href="http://www.python.org/dev/peps/pep-0020/" title="The Zen of Python">The Zen of Python</a> are 20 aphorisms about coding in Python, and coding in general. They are Python's guiding principles. Also called PEP 20. <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn3"  class="footnote-item"><p><a href="http://www.python.org/dev/peps/pep-0257/" title="PEP 257 Docstring Conventions">PEP 257 Docstring Conventions</a> documents the semantics of docstrings. According to <a href="http://www.python.org/dev/peps/pep-0008/" title="PEP 8 Style Guide for Python">PEP 8, the style guide for Python</a>, all public modules, functions, classes, and methods should have a docstring that define the purpose of the code block. <a href="#fnref3" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn4"  class="footnote-item"><p>I don't cover doctests here, but the Python standard library does include a way to write docstrings that prove the code works. They're called <a href="http://docs.python.org/2/library/doctest.html" title="The Python Doctest library">Doctests</a>. <a href="#fnref4" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn5"  class="footnote-item"><p><a href="http://rspec.info/" title="RSpec documentation">RSpec</a> is a Ruby testing tool for Behavior Driven Development. <a href="#fnref5" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn6"  class="footnote-item"><p><a href="https://nose.readthedocs.org/en/latest/" title="Nose documentation at ReadTheDocs.org">Nose is a testing framework</a> that extend's Python's unittest to make testing in Python nicer. <a href="#fnref6" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn7"  class="footnote-item"><p><a href="https://github.com/garybernhardt/expecter" title="Gary Bernhardt's Expecter assertion library">Expecter is an assertion library</a> written by Gary Bernhardt that helps you write assertions that describe expected behavior. I came across this library quite directly. When I started using test driven development in Python, all I knew was RSpec and I wanted to write expect-style assertions in Python. <a href="https://twitter.com/garybernhardt" title="Gary Bernhardt on Twitter">Gary Bernhardt</a> was the best person I knew at the intersection of Ruby, Python, and testing, so I tweeted at him and asked for his advice. He directed me to this library. <a href="#fnref7" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+<h3>Talk back to me</h3><p>You can comment below. Or <a href="http://www.twitter.com/#!/version2beta" title="version2beta on twitter">tweet at me</a>. I'm always open to a good conversation.</p><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'version2beta';
+var disqus_identifier = '/articles/dont-comment-your-code';
+var disqus_url = 'http://version2beta.com/articles/dont-comment-your-code';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></article></div></div></body><footer><div id="footer"><p class="contact"><a href="https://plus.google.com/115037548656448421726?rel=author">Rob Martin</a>: <a href="mailto:rob@version2beta.com">rob@version2beta.com</a></p><p class="creative-commons">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p><p id="social"><a href="/rss.xml" title="A news feed for my blog"><img src="/static/site/rss-icon.png" alt="RSS feed icon"></a><a href="http://twitter.com/version2beta" title="Find me on Twitter"><img src="/static/site/twitter-icon.png" alt="Twitter icon"></a></p></div></footer><script type="text/javascript">var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-12023701-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script><script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script><script src="/static/js/css3-mediaqueries.js"></script></html>

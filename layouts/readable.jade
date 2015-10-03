@@ -1,0 +1,50 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    block title
+      title #{pagetitle} - readable &#124; version2beta
+    link(rel='canonical', href='http://version2beta.com/'+path)
+    block meta_tags
+      meta(name='description', content='version2beta: A technical blog.')
+    meta(name='keywords', content='')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='robots', content='noindex')
+    block feeds
+      link(href='/archive/atom.xml', rel='alternate', title='version2beta', type='application/atom+xml')
+    block css
+      link(rel='stylesheet', href='/style/layout.css', type='text/css', media='screen')
+      link(rel='stylesheet', href='/style/text-styling.css', type='text/css', media='screen')
+      link(rel='stylesheet', href='/style/responsive.css', type='text/css', media='screen')
+      link(rel='shortcut icon', href='/static/site/favicon.png')
+  body
+    #site-readable
+      #readable-content
+        #content-header
+          h1 #{pagetitle}
+          p
+            span.author.
+              by #[a(href='https://plus.google.com/115037548656448421726?rel=author') #{author}] #{content=published?' on ':''}
+            span.post-date
+              time(pubdate) #{moment(published).format("YYYY-MM-DD [at] HH:mm")}
+            span.category.
+              #{content=category?' // ':''}#[a(href='/#{category}') #{category}]
+          p.readable
+            a(href='/articles/'+path) Regular version
+        #post-content !{contents}
+        hr
+        p.readable
+          a(href='/articles/'+path) Regular version
+        block js
+          script(type="text/javascript").
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-12023701-1']);
+            _gaq.push(['_trackPageview']);
+            (function() {
+              var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+              ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+          script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js')
+          script(src='/static/js/css3-mediaqueries.js')
+          block extra_js
