@@ -1,24 +1,21 @@
 {
   "name": "version2beta_blog",
   "description": "Version2beta blog.",
-  "version": "0.0.1",
+  "version": "3.0.0",
   "author": "Rob Martin <rob@version2beta.com>",
   "repository": {
     "type": "git",
-    "url": "http://github.com/mikeal/tako.git"
+    "url": "http://github.com/version2beta/version2beta.git"
   },
   "bugs": {
-    "url": "http://github.com/mikeal/tako/issues"
+    "url": "http://github.com/version2beta/version2beta/issues"
   },
   "license": "CC-BY-3.0",
   "main": "./index.html",
   "dependencies": {
-    "redcouch": ">= 0.0.2",
-    "tako": ">= 0.3.0"
-  },
-  "devDependencies": {
     "jade": "^1.11.0",
     "linkify-it": "^1.2.0",
+    "markdown-it-footnote": "^2.0.0",
     "metalsmith": "^2.0.1",
     "metalsmith-branch": "0.0.4",
     "metalsmith-collections": "^0.7.0",
