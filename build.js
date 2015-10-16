@@ -24,7 +24,7 @@ Metalsmith(__dirname)
       author: 'Rob Martin'
     }
   })
-  .source('./src/articles')
+  .source('./src')
   .use(md)
   .use(assets({
     source: './assets',
