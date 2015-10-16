@@ -24,6 +24,7 @@ Metalsmith(__dirname)
       author: 'Rob Martin'
     }
   })
+  .source('./src/articles')
   .use(md)
   .use(assets({
     source: './assets',
@@ -63,7 +64,8 @@ Metalsmith(__dirname)
     engine: 'jade',
     directory: 'layouts',
     moment: moment,
-    default: 'article.jade'
+    default: 'article.jade',
+    pattern: '*.md'
     }))
   .use(feed({
     collection: 'articles'
@@ -103,4 +105,3 @@ Metalsmith(__dirname)
       console.log('Readable files completed!');
     }
   });
-Metalsmith(__dirname)
