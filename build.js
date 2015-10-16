@@ -1,6 +1,6 @@
 var Metalsmith = require('metalsmith'),
   branch = require('metalsmith-branch'),
-  markdown = require('metalsmith-markdownit'),
+  markdown = require('metalsmith-markdown-remarkable'),
   moment = require('moment'),
   tags = require('metalsmith-tags'),
   collections = require('metalsmith-collections'),
@@ -8,10 +8,11 @@ var Metalsmith = require('metalsmith'),
   filenames = require('metalsmith-filenames')
   permalinks = require('metalsmith-permalinks'),
   snippet = require('metalsmith-snippet'),
-  md = markdown('default', { html: true }),
   layout = require('metalsmith-layouts');
 
-md.parser.use(require('markdown-it-footnote'));
+md = markdown('full', {
+  html: true
+}),
 
 //primary site build
 Metalsmith(__dirname)
