@@ -13,6 +13,7 @@
   "license": "CC-BY-3.0",
   "main": "./index.html",
   "dependencies": {
+    "metalsmith-assets": "*",
     "jade": "^1.11.0",
     "linkify-it": "^1.2.0",
     "metalsmith": "^2.0.1",

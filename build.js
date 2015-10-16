@@ -1,4 +1,5 @@
 var Metalsmith = require('metalsmith'),
+  assets = require('metalsmith-assets'),
   branch = require('metalsmith-branch'),
   markdown = require('metalsmith-markdown-remarkable'),
   moment = require('moment'),
@@ -24,6 +25,10 @@ Metalsmith(__dirname)
     }
   })
   .use(md)
+  .use(assets({
+    source: './assets',
+    destination: '.'
+  }))
   .use(filenames())
   .use(snippet())
   .use(collections({
