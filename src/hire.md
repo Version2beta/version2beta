@@ -5,11 +5,9 @@ longtitle: Currently employed and happy about it, but I'm available for moonligh
 published: 2011-05-09
 ---
 
-# Current status: not in the market
+# Current status: not looking
 
-My current position is at [iTV in Provo, UT][itv], where I'm part of a team making platforms that support cultural discourse about broadcast media as it happens. Wild horses couldn't pull me away.
-
-I also support projects and services at [Quintessential Mischief LLC][qmllc], my wife's company. Talk to her about web strategy, search optimization, usability, accessability, and social media. I'm biased, but I can tell you that **she fights for the user**.
+My current position is at [OC Tanner Company][oct], a Fortune 100 Best Places To Work winner. I manage several teams of software engineers on our second largest web property.
 
 I am occasionally available for consultating and small coding or systems administration projects. [My résumé is available online][resume] and you can [email me](mailto:rob@version2beta.com).
 
@@ -17,10 +15,8 @@ I am occasionally available for consultating and small coding or systems adminis
 tweet at [@version2beta](http://twitter.com/version2beta) - or -<br />
 just call me, 414-678-1822.
 
-[itv]: http://i.tv/ "iTV"
+[oct]: http://octanner.com/ "OC Tanner Company does workplace appreciation and recognition"
 
 [tfemail]: mailto:rob@version2beta.com
-
-[qmllc]: http://www.qmuxs.com "Quintessential Mischief LLC fights for the users"
 
 [resume]: /resume "Résumé of M. Robert Martin, a/k/a version2beta"
