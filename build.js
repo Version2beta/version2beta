@@ -6,7 +6,6 @@ var Metalsmith = require('metalsmith'),
   tags = require('metalsmith-tags'),
   collections = require('metalsmith-collections'),
   feed = require('metalsmith-feed'),
-  filenames = require('metalsmith-filenames')
   permalinks = require('metalsmith-permalinks'),
   snippet = require('metalsmith-snippet'),
   layout = require('metalsmith-layouts');
@@ -24,13 +23,7 @@ Metalsmith(__dirname)
       author: 'Rob Martin'
     }
   })
-  .source('./src')
   .use(md)
-  .use(assets({
-    source: './assets',
-    destination: '.'
-  }))
-  .use(filenames())
   .use(snippet())
   .use(collections({
     articles: {
@@ -62,13 +55,15 @@ Metalsmith(__dirname)
   }))
   .use(layout({
     engine: 'jade',
-    directory: 'layouts',
     moment: moment,
-    default: 'article.jade',
-    pattern: '*.md'
-    }))
+    default: 'article.jade'
+  }))
   .use(feed({
     collection: 'articles'
+  }))
+  .use(assets({
+    source: './assets',
+    destination: '.'
   }))
   .destination('./build-content')
   .build(function (err) {
