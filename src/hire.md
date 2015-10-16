@@ -9,14 +9,10 @@ published: 2011-05-09
 
 My current position is at [OC Tanner Company][oct], a Fortune 100 Best Places To Work winner. I manage several teams of software engineers on our second largest web property.
 
-I am occasionally available for consultating and small coding or systems administration projects. [My résumé is available online][resume] and you can [email me](mailto:rob@version2beta.com).
+I am occasionally available for consultating and small coding or systems administration projects. [Email me](mailto:rob@version2beta.com).
 
 [rob@version2beta.com](mailto:rob@version2beta.com) - or -<br />
 tweet at [@version2beta](http://twitter.com/version2beta) - or -<br />
 just call me, 414-678-1822.
 
 [oct]: http://octanner.com/ "OC Tanner Company does workplace appreciation and recognition"
-
-[tfemail]: mailto:rob@version2beta.com
-
-[resume]: /resume "Résumé of M. Robert Martin, a/k/a version2beta"
