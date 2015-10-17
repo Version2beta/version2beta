@@ -1,20 +1,21 @@
 extends base.jade
 
 block content
-  #home-content
-    if collections.articles && tags
-      h1.
-        posts filed under #{tag}
-      each post in pagination.files
-        .blog-entry
-          div(class='article-'+tag)
-            h2
-              a(href='/'+post.path)!= post.pagetitle
-            div
-              span.post-date
-                time(pubdate)!= post.published
-              span!= post.snippet
-              span.read-more
-                a(href='/'+post.path) // read full article
-    else
-      h2 No articles to show
+  #topics
+    #home-content
+      if collections.articles && tags
+        h1.
+          posts filed under #{tag}
+        each post in pagination.files
+          .blog-entry
+            div(class='article-'+tag)
+              h2
+                a(href='/'+post.path)!= post.pagetitle
+              div
+                span.post-date
+                  time(pubdate)!= post.published
+                span!= post.snippet
+                span.read-more
+                  a(href='/'+post.path) // read full article
+      else
+        h2 No articles to show
