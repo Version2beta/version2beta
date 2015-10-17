@@ -1,10 +1,10 @@
 ---
-pagetitle: Change the world (and hire me)
+pagetitle: Where to go from here? Change the world.
 longtitle: My presentation on "where to go from here", a closing talk at Rails Girls Salt Lake City 2015.
 tags: community
 author: Rob Martin
 published: 2015-10-17 16:00
-snippet: Changing the people who create tech changes the people who create culture. If we can make tech more diverse, we can make culture more inclusive.
+snippet: Changing the people who create tech changes the people who create culture. If we can make tech more diverse, we can make culture more inclusive. This is my closing talk from Rails Girls Salt Lake City 2015.
 ---
 
 This is a short talk I was asked to give at a RailsGirls event in Salt Lake City on October 17, 2015. The requested subject was "Where to go from here?" It's possible the organizers wanted practical advice for participants on how they might keep going into a career in development, but when I said I wanted to talk about how women who code will literally and necessarily change the world, they accepted my talk.
