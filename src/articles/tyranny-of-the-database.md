@@ -1,6 +1,7 @@
 ---
 pagetitle: The tyranny of the database
 longtitle: My PyCon2013 lightning talk about data management.
+tags: dev
 author: Rob Martin
 published: 2013-03-16 15:00
 snippet: Databases model our world, and to do that they necessarily distort it. This lightning talk prepared for PyCon2013 explores the impact on us as individuals and society as a whole.

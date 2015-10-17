@@ -1,6 +1,7 @@
 ---
 pagetitle: MODX can beat up your content management system
 longtitle: Me, representing for MODX.
+tags: dev
 author: Rob Martin
 published: 2011-12-13 10:48
 snippet: Tonight's Milwaukee Web Design Meetup featured a CMS MegaPanel - eight pros in eight content management systems, head to head on development, features, ecosystems, costs. I represented for MODX.

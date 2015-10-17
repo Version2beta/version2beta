@@ -1,6 +1,7 @@
 ---
 pagetitle: Managing risk and selling value
 longtitle: My presentation on quoting projects, originally delivered to Web414 on February 21, 2013.
+tags: cto
 author: Rob Martin
 published: 2013-02-21 19:00
 snippet: You're a skilled practitioner of web crafts. You can get Google agog. You can send customers clicking to conversions. You can refactor a repulsive code repository. But you don't know how much to charge. This presentation explores how the three prime factors for pricing your work - complexity, risk, and value - interact with each other and help make the right jobs lucrative for you and your client. This presentation is intended for freelance web craftspeople, bespoke design agencies, and boutique development firms.

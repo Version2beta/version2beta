@@ -1,6 +1,7 @@
 ---
 pagetitle: Tryton as an e-commerce back-end - Stalking the Tryton community
 longtitle: I spend some time learning about the people behind Tryton.
+tags: cto
 author: Rob Martin
 published: 2011-06-17 12:58
 snippet: This is part two in a series exploring how Tryton might fair as the heavy-lifting portion of an e-commerce package. This part discusses some of my experiences with members of the Tryton community.

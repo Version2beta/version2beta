@@ -1,6 +1,7 @@
 ---
 pagetitle: Tryton as an e-commerce back-end - About Tryton
 longtitle: Learning about Tryton, since I might want to use it as an e-commerce back end.
+tags: cto
 author: Rob Martin
 published: 2011-06-05 15:24
 snippet: This is part one in a series exploring how Tryton might fair as the heavy-lifting portion of an e-commerce package. This first part describes Tryton - architecture, features, community, license.

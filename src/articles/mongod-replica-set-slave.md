@@ -1,6 +1,7 @@
 ---
 pagetitle: A quick note on MongoDB replica sets
 longtitle: Once again, I didn't find an answer online, so I'm putting it out here.
+tags: devops
 author: Rob Martin
 published: 2011-11-29 11:49
 snippet: MongoDB is replying to a replica-set add command with "Need most members up to reconfigure, not ok". The problem is with my configuration.

@@ -1,6 +1,7 @@
 ---
 pagetitle: Development environments with Vagrant, Chef, and Git
 longtitle: About my presentation on Vagrant, Chef, and Git for development environments for the Milwaukee PHP Users Group on February 12, 2013.
+tags: devops
 author: Rob Martin
 published: 2013-02-12 19:15
 snippet: The Milwaukee PHP User's Group invited me to present about Vagrant, Chef, and Git for quickly standing up development environments. Here's my transcript and slides.

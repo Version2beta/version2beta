@@ -1,6 +1,7 @@
 ---
 pagetitle: Drupal, on GlusterFS, on Rackspace Cloud
 longtitle: I ran Drupal on GlusterFS for a few days. I didn't like it. Here's why.
+tags: devops
 author: Rob Martin
 published: 2011-11-28 16:12
 snippet: I ran Drupal on GlusterFS for a few days. I didn't like it. Here's why.

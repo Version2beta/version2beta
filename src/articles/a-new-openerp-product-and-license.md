@@ -1,6 +1,7 @@
 ---
 pagetitle: A new OpenERP product and license
 longtitle: OpenERP announces a new enterprise licence, and their community reacts.
+tags: community
 author: Rob Martin
 published: 2011-06-27 20:03
 snippet: Last Friday (June 24, 2011) under an unassuming headline 'Improved OpenERP Website', OpenERP announced the new Enterprise edition of the OpenERP software. The response among community members was swift. Two topics attracted most of the conversation - the new OpenERP AGPL + Private Use license available only to Enterprise edition customers, and apparent policy changes regarding security alerts.

@@ -1,6 +1,7 @@
 ---
 pagetitle: Blog reset
 longtitle: How and why I started over with my blog, just three months after launching it.
+tags: dev
 author: Rob Martin
 published: 2011-08-25 08:27
 snippet: My blog had been hosted on a legacy shared server account that I don't manage, running Wordpress. I was frankly embarrased to tweet links to it - often it wouldn't come up at all. Now that's all changed. Now my blog is on Django. (But only kinda.)

@@ -1,6 +1,7 @@
 ---
 pagetitle: Ramada Plaza Milwaukee kicks my 70 year old mother out at midnight
 longtitle: The Ramada Plaza Milwaukee kicks my elderly mother out at midnight because I complained about accessibility
+tags: personal
 author: Rob Martin
 published: 2012-05-20 02:21
 snippet: >

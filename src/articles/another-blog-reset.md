@@ -1,6 +1,7 @@
 ---
 pagetitle: Another blog reset
 longtitle: I rebuilt my blog again.
+tags: personal
 author: Rob Martin
 published: 2013-01-27 17:45
 snippet: Redesign isn't the right word. It seems when I want to freshen my blog, I get down to the nuts and bolts.

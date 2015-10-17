@@ -1,6 +1,7 @@
 ---
 pagetitle: DjangoCon, part two
 longtitle: Notes from the first day of talks at DjangoCon 2011.
+tags: community
 author: Rob Martin
 published: 2011-09-07 12:04
 snippet: Oh my, I'm not good at this. There are people around live-blogging (and live-noting) the conference, and I'm scraping the sleepiness off my face enough to see the screen, only to realize I don't actually remember yesterday very well. I may be exagerating a little, but I did not take adequate notes (sorry, PyDanny - I heard you on this, really I did.)

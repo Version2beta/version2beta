@@ -1,6 +1,7 @@
 ---
 pagetitle: DjangoCon, part four
 longtitle: Notes from the final day of talks at DjangoCon 2011.
+tags: community
 author: Rob Martin
 published: 2011-09-11 16:55
 snippet: Here's the recap of day three, the last day of the talks. Apparently I took good notes on day three, since this is by far the longest post, and the one it took me longest to produce. It was, indubitably, an excellent day.
