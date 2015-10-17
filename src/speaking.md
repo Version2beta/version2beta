@@ -9,7 +9,15 @@ published: 2013-01-24
 
 # Upcoming presentations
 
-Right now, I have no scheduled presentations, and I've only submitted one presentation for consideration at a conference. Do you need a speaker? My most popular talks are [Navigating the Bazaar][bzrtranscript], [Managing Risk and Selling Value][crvtranscript], and [Dev Environments with Vagrant][vagranttranscript].
+On October 17, 2015 I'm speaking at a [Railsgirls workshop][railsgirls]. I'll post the talk here soon after.
+
+November 2 - 4, I'll be at [CodeMesh][codemesh], giving a workshop and a talk.
+
+November 6 - 7, I'll be doing an [Elixir Workshop][wwcldn] for the London Chapter of Women Who Code.
+
+[railsgirls]: http://railsgirls.com/saltLakeCity2015 "Rails Girls Salt Lake City"
+[codemesh]: http://codemesh.io "Code Mesh 2015 in London"
+[wwcldn]: http://www.meetup.com/Women-Who-Code-London/events/226057033/ "Eleven Ounces of Elixir, WWC London"
 
 # Presentations I've given
 
