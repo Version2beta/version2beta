@@ -1,7 +1,7 @@
 ---
 pagetitle: Migrating from MySQL to PostgreSQL using SQLAlchemy
 longtitle: Our codebase used SQLAlchemy on MySQL, and we moved to PostgreSQL. There were some gotchas. This post compiles our notes along with SQLAlchemy author Mike Bayer's comments and clarifications.
-tags: devops dev
+tags: devops, dev
 author: Rob Martin
 published: 2013-05-13 08:00
 snippet: This is basically a guest blog post. The content was created almost entirely by Paul Morel (owner of Tartan Solutions) and Mike Bayer (author of SQLAlchemy and other fine Python libraries.) I was invited to compile and edit the conversation.
