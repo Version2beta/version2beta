@@ -55,6 +55,19 @@ I gave this talk at OC Tanner during a functional programming boot camp for our 
 [openwest]: http://www.openwest.org/
 [hiretranscript]: /articles/how_to_hire_a_software_engineer/
 
+## [Idiomatic Erlang in 42 minutes or less][iderl]
+
+[OpenWest 2015][openwest], May 8, 2015 in Orem, Utah
+
+> I can't teach you Erlang in 42 minutes, but I will show the three most Erlangy characteristics of Erlang: functional programming goodness through pattern matching, concurrency oriented architecture, and error handling through Erlang's "Let It Crash" offensive programming paradigm. With these three concepts, it's possible to see when and why Erlang is the right tool for your job.
+
+[My transcript with slides][iderltranscript] is available in my blog.
+
+[iderl]: http://www.openwest.org/schedule/#146
+[openwest]: http://www.openwest.org/
+[iderltranscript]: /articles/idiomatic_erlang/
+
+#
 ## [Navigating the bazaar of open source libraries][bazaar]
 
 [That Conference][thatc], August 12 - 14, 2013 at Kalahari Resort, Wisconsin Dells, Wisconsin
