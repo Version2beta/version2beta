@@ -9,6 +9,8 @@ snippet: I gave this talk at OC Tanner during a functional programming boot camp
 
 This talk was part of our internal training at OC Tanner Company, a functional programming boot camp that included sessions on Scala, Play, lambda calculus, and this talk - Why be functional?
 
+This isn't really a transcript, more like a framework of ideas to discuss while each slide is showing. Sometimes the discussion ideas even have something to do with what's on the slide.
+
 ![Slide: Why be functional?](/static/slides/why_be_functional/why_be_functional.001.jpeg)
 
 The goal of my talk is to convince you to do more functional programming. We'll start by looking at complexity, and in turn simplicity. Then we'll examine how our languages influence our design and even our thought process. Finally, we'll look at functional programming and how it meets the goal of managing complexity.
