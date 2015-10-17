@@ -9,19 +9,51 @@ published: 2013-01-24
 
 # Upcoming presentations
 
-On October 17, 2015 I'm speaking at a [Railsgirls workshop][railsgirls]. I'll post the talk here soon after.
-
 November 2 - 4, I'll be at [CodeMesh][codemesh], giving a workshop and a talk.
 
 November 6 - 7, I'll be doing an [Elixir Workshop][wwcldn] for the London Chapter of Women Who Code.
 
-[railsgirls]: http://railsgirls.com/saltLakeCity2015 "Rails Girls Salt Lake City"
 [codemesh]: http://codemesh.io "Code Mesh 2015 in London"
 [wwcldn]: http://www.meetup.com/Women-Who-Code-London/events/226057033/ "Eleven Ounces of Elixir, WWC London"
 
 # Presentations I've given
 
 I often have the opportunity to present at conferences, local tech meetups, and occasionally present for corporate training events. Here are some of the presentations I've given. Many of these presentations are available to schedule.
+
+## Change the world (and hire me)
+
+[Rails Girls Salt Lake City 2015][railsgirls], October 17, 2015 in Salt Lake City, Utah
+
+This is a short talk I was asked to give at a RailsGirls event in Salt Lake City on October 17, 2015. The requested subject was "Where to go from here?" It's possible the organizers wanted practical advice for participants on how they might keep going into a career in development, but when I said I wanted to talk about how women who code will literally and necessarily change the world, they accepted my talk.
+
+[My transcript with slides][railsgirlstranscript] is available in my blog.
+
+[railsgirls]: http://railsgirls.com/saltLakeCity2015
+[railsgirlstranscript]: /articles/railsgirls_change_the_world/
+
+## Why be functional?
+
+OC Tanner Company Functional Programming Bootcamp (internal training event), August 27, 2015, Salt Lake City, Utah
+
+I gave this talk at OC Tanner during a functional programming boot camp for our developers. It looks at complexity, the influence of language design on program design, and how pure functional programming may provide strong benefits.
+
+[My transcript with slides][whyfuntranscript] is available in my blog.
+
+[whyfuntranscript]: /articles/why_be_functional/
+
+## [How to hire a software engineer][hire]
+
+[OpenWest 2015][openwest], May 8, 2015 in Orem, Utah
+
+> In 1996, I interviewed an excellent electrical engineer straight out of college and offered her a job. She politely declined in favor of the offer she received from NASA. Ever since, I've been finding ways to find, recruit, and hire candidates who are also going to attract excellent offers from highly desirable employers. Spoiler alert: part of my strategy is to mentor engineers, especially women, in becoming high value candidates.
+
+> This talk is derived from the training presentation I gave to the software engineering department at OC Tanner, where we are using the hiring process very much as described.
+
+[My transcript with slides][hiretranscript] is available in my blog.
+
+[hire]: http://www.openwest.org/schedule/#86
+[openwest]: http://www.openwest.org/
+[hiretranscript]: /articles/how_to_hire_a_software_engineer/
 
 ## [Navigating the bazaar of open source libraries][bazaar]
 
