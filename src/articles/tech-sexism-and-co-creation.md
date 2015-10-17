@@ -2,6 +2,7 @@
 pagetitle: Tech sexism and co-creation of the community
 longtitle: A rambling statement on my role in building a diverse tech community.
 author: Rob Martin
+tags: community
 published: 2013-03-20 16:30
 snippet: PyCon2013 has ended and I'm seriously depressed. It's not just the energy shift at the end of a good conference. It's also the way tech sexism has once again exploded.
 ---

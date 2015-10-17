@@ -2,7 +2,7 @@
 pagetitle: Managing risk and selling value
 longtitle: My presentation on quoting projects, refactored for Wordcamp Milwaukee, June 8, 2013
 author: Rob Martin
-tags: devops
+tags: cto
 published: 2013-06-08 16:30
 snippet: This is the transcript from my Wordcamp Milwaukee 2013 presentation on the complexity-risk-value formula. I edited and trimmed, got it down to 40 minutes or less, and made it a bit smoother. If you're interested in the C-R-V formula, this is the place to start.
 ---

@@ -1,7 +1,7 @@
 ---
 pagetitle: Navigating the Bazaar
 longtitle: My presentation on Navigating the Bazaar of open source libraries, originally presented August 14, 2013 at That Conference in the Wisconsin Dells.
-tags: cto, devops
+tags: dev
 author: Rob Martin
 published: 2013-08-14 10:30
 snippet: This is my presentation on Navigating the Bazaar of Open Source libraries, presented at That Conference in the Wisconsin Dells on August 14, 2013.

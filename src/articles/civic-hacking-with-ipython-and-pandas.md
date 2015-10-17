@@ -2,7 +2,7 @@
 pagetitle: Civic Hacking with IPython and Pandas
 longtitle: My presentation on using IPython Notebook and Pandas for civic hacking, originally presented June 6, 2013
 author: Rob Martin
-tags: community
+tags: dev
 published: 2013-06-06 19:00
 snippet: IPython Notebook is a browser-based Python shell that supports rich media like graphs. Pandas is an open source data analysis library. This presentation introduces how these tools used together can be used to explore a civic data set such as parking citations or water use to ask and answer interesting questions interactively.
 ---
