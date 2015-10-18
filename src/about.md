@@ -21,4 +21,4 @@ I speak internationally and write here and occasionally on other sites as well.
 
 ### About version2beta.com ###
 
-The current site design is by up-and-coming web designer and developer [Becky Hile of Radiant Punch](mailto://becky@radiantpunch.com). The site is statically built by [Metalsmith](http://www.metalsmith.io/).
+The current site design is by up-and-coming web designer and developer [Becky Hile of Radiant Punch](mailto:becky@radiantpunch.com). The site is statically built using [Metalsmith](http://www.metalsmith.io/).
