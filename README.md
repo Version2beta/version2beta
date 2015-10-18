@@ -5,8 +5,10 @@ This project is just my [blog][], created with [Metalsmith].
 [blog]: http://www.version2beta.com "version2beta blog"
 [Metalsmith]: http://www.metalsmith.io "Metalsmith static site generator"
 
-## Deployment
+## Build cycle
 
-QA: `s3cmd --recursive sync build-content/* s3://new.version2beta.com`
+`make` will build the site locally.
 
-Prod: `s3cmd --recursive sync build-content/* s3://version2beta.com`
+`make dev` will build and deploy the built site to [new.version2beta.com](http://new.version2beta.com).
+
+`make prod` will build and deploy the built site to [version2beta.com](http://version2beta.com).
