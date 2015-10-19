@@ -5,9 +5,9 @@ longtitle: Currently employed and happy about it, but I'm available for moonligh
 published: 2011-05-09
 ---
 
-I'm available for discussion about VP-level positions leading teams of engineers, or CTO for a well-funded startup. Connect with me on [LinkedIn][linkedin].
+My current position is at [OC Tanner Company][oct], a Fortune 100 Best Places To Work winner. I manage several teams of software engineers on our second largest web property. OC Tanner does employee engagement systems based on how we show appreciation towards other people. I have around 15 people on my team and they are incredible to work with. Plus I get to work with Niel Nickolaisen.
 
-My current position is at [OC Tanner Company][oct], a Fortune 100 Best Places To Work winner. I manage several teams of software engineers on our second largest web property.
+I am available for discussion about VP-level positions leading teams of engineers, or CTO for a well-funded startup. Connect with me on [LinkedIn][linkedin].
 
 I am occasionally available for consultating and interesting coding or systems administration projects. [Email me](mailto:rob@version2beta.com).
 

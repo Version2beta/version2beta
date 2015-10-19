@@ -20,11 +20,11 @@ November 6 - 7, I'll be doing an [Elixir Workshop][wwcldn] for the London Chapte
 
 I often have the opportunity to present at conferences, local tech meetups, and occasionally present for corporate training events. Here are some of the presentations I've given. Many of these presentations are available to schedule.
 
-## Change the world (and hire me)
+## Where to go from here? Change the world.
 
 [Rails Girls Salt Lake City 2015][railsgirls], October 17, 2015 in Salt Lake City, Utah
 
-This is a short talk I was asked to give at a RailsGirls event in Salt Lake City on October 17, 2015. The requested subject was "Where to go from here?" It's possible the organizers wanted practical advice for participants on how they might keep going into a career in development, but when I said I wanted to talk about how women who code will literally and necessarily change the world, they accepted my talk.
+This is a short talk I was asked to give at a RailsGirls event in Salt Lake City on October 17, 2015. The requested subject was "Where to go from here?" It's possible the organizers wanted practical advice for participants on how they might keep going into a career in development, but when I said I wanted to talk about gender diversity and changing culture, they accepted my talk.
 
 [My transcript with slides][railsgirlstranscript] is available in my blog.
 
