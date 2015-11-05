@@ -9,8 +9,6 @@ published: 2013-01-24
 
 # Upcoming presentations
 
-November 2 - 4, I'll be at [CodeMesh][codemesh], giving a workshop and a talk.
-
 November 6 - 7, I'll be doing an [Elixir Workshop][wwcldn] for the London Chapter of Women Who Code.
 
 [codemesh]: http://codemesh.io "Code Mesh 2015 in London"
@@ -19,6 +17,16 @@ November 6 - 7, I'll be doing an [Elixir Workshop][wwcldn] for the London Chapte
 # Presentations I've given
 
 I often have the opportunity to present at conferences, local tech meetups, and occasionally present for corporate training events. Here are some of the presentations I've given. Many of these presentations are available to schedule.
+
+## Irrational configuration system to functional data store
+
+This is my CodeMesh.io 2015 conference talk on using a functional data store to replace an organically-grown configuration system in one of our software platforms. I think it was pretty well received. The most pleasing comment I heard was in [a tweet from @rabbitonweb][rabbitonweb]: "@version2beta's talk currently the best of all I've seen at #codemesh. Just the right ratio of theory and practice in a case study." [@codemiller tweeted a quote from my talk ][codemiller] that's been retweeted almost a hundred times: "It's almost as if we don't trust someone with functional programming until they've proven they can go a decade with object oriented programming and still not murder anyone."
+
+[My transcript with slides][irrational] is available in my blog.
+
+[rabbitonweb]: https://twitter.com/rabbitonweb/status/661540248695021570
+[codemiller]: https://twitter.com/codemiller/status/661543777534898176
+[irrational]: /articles/irrational_to_functional/
 
 ## Where to go from here? Change the world.
 
