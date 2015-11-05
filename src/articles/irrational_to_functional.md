@@ -7,6 +7,8 @@ published: 2015-11-3 13:00
 snippet: This is my CodeMesh.io 2015 conference talk on using a functional data store to replace an organically-grown configuration system in one of our software platforms.
 ---
 
+Update: [CodeMesh video of my talk is up](https://www.youtube.com/watch?v=TetuYdZzBLg&list=PLWbHc_FXPo2jB6IZ887vLXsPoympL3KEy&index=4).
+
 This is my talk for Code Mesh 2015 in London, basically as a transcript but more like what I intended to present rather than the slightly more ad-libbed version I actually gave. The abstract I submit reads as such:
 
 > We started with 42 Oracle tables, 5200+ configuration values, no default values or templates, logical inconsistencies and circular dependencies, on-boarding times running as long as 10 months, a 1.5 million lines of legacy code, and advice that anyone who tries to redesign our configuration system will be gone within six months. Our solution is a custom-built functional data store with inheritance, flexible projections, backward compatibility with the legacy code, and a Lego™-like framework for building tools. Plus, I still work there. Come learn how we did it.
