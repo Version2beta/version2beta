@@ -73,6 +73,7 @@ Items 1 through 5 above share a theme of simplicity. Items 6 through 10 share a 
 
 8 out of 10 of the characteristics of a 10x developer (items 2, 4, 5, 6, 7, 8, 9, and 10) directly address the ongoing cost of the software. Maintenance of our code base, from fixing defects and plugging security holes to adding features, is the long tail when it comes to paying for our code. 10x developers shouldn't get their reputation based on writing a lot of code fast, but **by delivering long term value efficiently.**
 
-Most developers are lucky if they *ever* ship a feature than changes a user's life. The ones who do often do because of the law of averages. They ship more code, so they're more likely to ship something meaningful. I'm talking about 10x developers. I've heard they don't exist, but I think they do.
-
 Finally, all 10 characteristics above **can be the result of leadership and training.** In fact we can foster all of these characteristics by having our 10x developers work directly with the rest of our team. If we put a 10x developer in a mob, the 10x developer will go slower, but the mob will produce better much value than average, and the individuals will go on to continue producing better value.
+
+Most developers are lucky if they *ever* ship a feature than changes a user's life. Most managers are lucky to work on a product that changes users' lives. Maybe the best we can do is embrace a coding ethic that makes our work meaningful, and maybe **bringing that ethic to our work is what raises our work to a standard capable of changing lives.**
+
