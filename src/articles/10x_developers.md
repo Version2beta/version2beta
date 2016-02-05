@@ -1,7 +1,7 @@
 ---
 pagetitle: The 10x developer
 longtitle: 
-tags: cto
+tags: cto dev
 author: Rob Martin
 published: 2016-02-5 15:00
 snippet: This is an offshoot from my work building teams of functional programmers, and the trend toward anarchy in software engineering teams. In this short post, I discuss why 10x developers exist, how they do so much more than average, and some ideas for driving value up across the whole team.
@@ -49,7 +49,7 @@ Here are ten decisions, choices, and habits of exceptional developers that compo
 
 10x developers make programs that are stateless, functional, referentially transparent, and independent. Their code don't just scale, it approaches linearity.
 
-6. 10x developers write code that is free from defects amd does only what's specified.
+6. 10x developers write code that is free from defects and does only what's specified.
 
 10x developers admire efficiency and elegance. Their code uses fewer abstractions more completely, does exactly what it's specified to do, and doesn't confound its purpose with undocumented behavior.
 
