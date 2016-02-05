@@ -9,10 +9,14 @@ published: 2013-01-24
 
 # Upcoming presentations
 
-November 6 - 7, I'll be doing an [Elixir Workshop][wwcldn] for the London Chapter of Women Who Code.
+February 18 - 19, I'm presenting a talk titled "Teaching functional programming to n00bs in mobs" at [Lambda Days][lambdadays] in Kraków, Poland.
 
-[codemesh]: http://codemesh.io "Code Mesh 2015 in London"
-[wwcldn]: http://www.meetup.com/Women-Who-Code-London/events/226057033/ "Eleven Ounces of Elixir, WWC London"
+February 20 - 21, I'll be doing an [functional programming workshop][ounce] in Kraków, Poland.
+
+April 29 - 30, we're tentatively planning another functional programming workshop in London. Stay tuned.
+
+[lambdadays]: http://www.lambdadays.org/lambdadays2016/rob-martin "Lambda Days, February 18-19, Kraków, Poland"
+[ounce]: http://www.meetup.com/Elixir-Krakow/events/228110632/ "11 Ounces of Elixir, Kraków, Poland"
 
 # Presentations I've given
 
@@ -27,6 +31,7 @@ This is my CodeMesh.io 2015 conference talk on using a functional data store to 
 [rabbitonweb]: https://twitter.com/rabbitonweb/status/661540248695021570
 [codemiller]: https://twitter.com/codemiller/status/661543777534898176
 [irrational]: /articles/irrational_to_functional/
+[codemesh]: http://codemesh.io "Code Mesh 2015 in London"
 
 ## Where to go from here? Change the world.
 
