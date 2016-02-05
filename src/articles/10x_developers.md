@@ -3,7 +3,7 @@ pagetitle: The 10x developer
 longtitle: 
 tags: cto
 author: Rob Martin
-published: 2016-02-4 17:00
+published: 2016-02-5 15:00
 snippet: This is an offshoot from my work building teams of functional programmers, and the trend toward anarchy in software engineering teams. In this short post, I discuss why 10x developers exist, how they do so much more than average, and some ideas for driving value up across the whole team.
 ---
 
@@ -17,11 +17,11 @@ I agree with all of that. Also, I think that 10x developers not only exist, they
 
 Here are some examples:
 
-* Imagine that an average developer makes ten average decisions each of which return an average value. This is our baseline. The average developer delivers 100% of average value.
+> Imagine that an average developer makes ten average decisions each of which return an average value. This is our baseline. The average developer delivers 100% of average value.
 
-* A 10x developer makes ten above-average decisions, each of which delivers 25% more value than the average decision. This is compounded - 1.25<sup>10</sup> - and the 10x developer ships 931% of average value.
+> A 10x developer makes ten above-average decisions, each of which delivers 25% more value than the average decision. This is compounded - 1.25<sup>10</sup> - and the 10x developer ships 931% of average value.
 
-* On the opposite, imagine a below average developer who makes ten below average decisions, each of which drive value down 25%. This is also compounded, so this developer ships a whopping 5.6% of average value. While not the title character of this blog post, we could call this developer an <sup>x</sup>/<sub>10</sub> developer.
+> On the other end, imagine a below average developer who makes ten below average decisions, each of which drive value down 25%. This is also compounded, so this developer ships a whopping 5.6% of average value. While not the title character of this blog post, we could call this developer an <sup>x</sup>/<sub>10</sub> developer.
 
 As you can see, a 10x developer working on a project where there are 10 major decisions to make can affect the overall value of the project by an order of magnitude, when compared to an average developer. Likewise, an <sup>x</sup>/<sub>10</sub> developer delivers value an order of magnitude lower than the average developer. (If you're keeping score at home, that's two orders of magnitude.)
 
