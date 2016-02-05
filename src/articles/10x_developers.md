@@ -1,5 +1,5 @@
 ---
-pagetitle: Anarchy and Genius
+pagetitle: The 10x developer
 longtitle: 
 tags: cto
 author: Rob Martin
@@ -7,93 +7,72 @@ published: 2016-02-4 17:00
 snippet: This is an offshoot from my work building teams of functional programmers, and the trend toward anarchy in software engineering teams. In this short post, I discuss why 10x developers exist, how they do so much more than average, and some ideas for driving value up across the whole team.
 ---
 
-> Anarchy may not be the best form of government, but it's better than no government at all. - Unknown
+I've been seeing a trend claiming that 10x developers don't actually exist, and I can understand the motivation to make such claims. Surely, even the people making the claims aren't saying they can't find two developers who have an order of magnitude worth of skill levels between them. Instead I think they're saying our industry is changing, that value doesn't come from isolation and raw processing power of the programmer. We work together now. We pair, we mob, we pull in our domain experts and develop a ubiquitous language before we even consider code.
 
-Before you fall into a knee-jerk reaction to the term **anarchy**, let me throw a few ideas at you and see if any of them sound familiar at work. Yes, at work.
+I agree with all of that, and I think that 10x developers not only exist, they aren't actually all that rare. Also, they aren't stereotyped loners. Also, we want them in our pairs and on our mobs and working with our domain experts.
 
-* Self-governed
-* Non-coercive
-* Stateless
-* Non-hierarchical
-* Anti-authoritarian
-* Mutualism
-* Participatory
+**10x developers don't deliver 10 times as much code, they deliver 10 times as much value.** They do this by making consistently better than average choices throughout the project, and these choices stack on top of each other for a compounding increase in value.
 
-These terms are all associated with various forms of classical anarchy (as opposed to the rocks-through-Starbucks kind of anarchy, as well as others.) Maybe you can see how these come into play on our software engineering teams, but maybe you don't, so let's look at another list. This one is more like recruiting propoganda.
+Here are some examples:
 
-* Engineering-driven organizations: You own your work!
-* Flat organizational charts: Everyone is their own boss!
-* Choice of assignments and teams: Do what you love!
-* No dress code: Be yourself!
-* Flexible, well apportioned workspace: Leave your $1000 treadmill desk and work outside!
-* Life balance at work: Games, drinks, entertainment, naps!
-* Flex-time: We care about you, and the code you ship!
-* Unlimited personal time off: We care about you, and the code you ship!
-* Unlimited maternity / paternity leave (Really! I just saw this at [Degreed.com](https://degreed.com).) We really, really care about you, and the code you ship!
+* Imagine that an average dev makes ten average decisions each of which return an average value. This is our baseline. The average developer delivers 100% of average value.
 
-The anarchy lens breaks down when we look at the money they pay us, though. That's when it starts to look more like royalty.
+* A 10x developer makes ten above-average decisions, each of which delivers 25% more value in comparison to the average decision. This is compounded - 1.25<sup>10</sup> - and the 10x developer ships 931% of average value.
 
-Why do we do this? We build our developers communal play spaces that would make a Russian philosopher cry, and we pack them dozens to a city block.
+* On the opposite end of the spectrum, imagine a below average developer who makes ten below average decisions, each of which drive value down 25%. This is also compounded, so this developer ships a whopping 5.6% of average value. While not the title character of this blog post, we could call this developer an <sup>x</sup>/<sub>10</sub> developer.
 
-We do this to attract, and foster, genius.
+As you can see, a 10x developer working on a project where there are, say, 10 major decisions to make can affect the overall value of the project by an order of magnitude, when compared to an average developer. Likewise, an <sup>x</sup>/<sub>10</sub> developer delivers value an order of magnitude lower than the average developer.
 
-Outside of a brand spanking new startup, most developers are lucky if they make ship one feature a year that changes a user's life. Scratch that. Most developers are lucky if they **every** ship a feature than changes a user's life. The ones who do often do because of the law of averages. They ship more code, so they're more likely to ship something meaningful.
+Here are ten ways the decision, choices, and habits of exceptional developers can have a compound impact on the value they ship.
 
-I'm talking about 10x developers. I've heard they don't exist, but I think they do. In fact, I think there are lots of 10x developers, because we have so many bad developers out there, 10x is not a very high bar.
+## 10 practices of 10x developers
 
-A 10x developer only needs to make slightly better than average choices, because our choices stack on one another and the result - value - is compounding.
+1. 10x developers write less code, so they do less work.
 
-Imagine that an average dev makes ten average decisions each of which return an average value. This is our baseline. The average developer delivers 100% of average value.
+10x developers do it better the first time. They don't flail around. They make good choices. They know their tools. They know their patterns.
 
-A 10x developer makes ten above-average decisions, each of which drives value up by 25%. This is compounded - 125% ^ 10 - and the 10x developer ships 931% of average value.
+2. 10x developers can reason about their code. We can reason about their code too.
 
-On the opposite end of the spectrum, imagine a below average developer who makes ten below average decisions, each of which drive value down 25%. This is also compounded, so this developer ships a whopping 5.6% of average value.
+10x developers don't write clever code; they write readable code. They know that troubleshooting code is harder than writing it, so they don't pack their ego into their code.
 
-As you can see, a 10x developer working on a project where there are, say, 10 major decisions to make can affect the overall value of the project by an order of magnitude. Here are ten ways we can do that.
+3. 10x developers use the right abstractions (both programming language *and* design patterns).
 
-## 10 practices for 10x developers
+10x developers use the right programming languages for the problem at hand. They know design and architectural patterns, so they know the established best ways to solve many problems.
 
-1. We write less code, so we do less work.
+4. 10x developers write code that is unencumbered by unneeded dependencies.
 
-We do it better the first time. We don't flail around. We make good choices. We know our tools. We know our patterns.
+10x developers don't start with a large code base of platforms and libraries because of rapid application development. They write core business logic in the core language, and use libraries for interfacing with the user and the persistence layer.
 
-2. We can reason about our code. You can reason about our code too.
+5. 10x developers write code scales seamlessly in production.
 
-We don't write clever code; we write readable code. We know that troubleshooting code is harder than writing it, so we don't pack our ego into our code.
+10x developers make programs that are stateless, functional, referentially transparent, and independent. Their code don't just scale, it approaches linearity.
 
-3. We used the right abstractions (both programming language *and* design patterns).
+6. 10x developers write code that does only what's specified, and is free from defects.
 
-We use the right programming languages, and by right I mean we use functional programming languages and principles. We know our design and architectural patterns, so we know the established best ways to solve many problems.
+10x developers admire efficiency and elegance. Their code uses fewer abstractions more completely, does exactly what it's specified to do, and doesn't confound its purpose with undocumented behavior.
 
-4. Our code is unencumbered by unneeded dependencies.
+7. 10x developers don't ship technical debt.
 
-We don't start with a large code base of platforms and libraries because of rapid application development. We write core business logic in our core language, and use libraries for interfacing with the user and the persistence layer.
+10x developers like to ship value early and often, but not before it's correct. They don't ship prototypes, and they don't want to support prototypes.
 
-5. Our code scales seamlessly in production.
+8. 10x developers can extend their code without starting from scratch.
 
-We make programs that are stateless, functional, referentially transparent, and independent. We don't just scale, we approach linear.
+10x developers see architecture and design, strategy and tactics. This is when they rewrite: (1) Before the code hits production, if they didn't get it right the first time. (2) When the business pivots.
 
-6. Our code is free from defects. We don't ship technical debt.
+9. 10x developers can demonstrate correctness, and sometimes even **prove** their code is correct.
 
-We like to ship value early and often, but not until it's actually correct. We don't ship prototypes, and we don't want to support prototypes in the hands of our users.
+10x developers write tests that mean something. They would prefer to write code that can be mathematically proven to always produce a correct result. They take joy in functional programming, because math.
 
-7. Our code does only what's specified.
+10. 10x developers write code that is secure.
 
-Our programs are efficient and elegant. Bugs and security flaws come from code that does more than what's specified.
+Because their programs don't rely on bloated libraries, aren't tightly coupled, don't carry technical debt, are stateless, and do only what they're specified to do, 10x developers write code that is more secure than other developers write.
 
-8. We can extend our code without starting from scratch.
+## Some observations
 
-We see architecture and design, strategy and tactics. You know when we rewrite? (1) Before the code ships, if we didn't get it right the first time. (2) And when the business pivots.
+Items 1 through 5 above share a theme of simplicity. Items 6 through 10 share a theme of correctness. **10x developers, and the rest of us, deliver our best value by shipping code that is simple and correct.**
 
-9. We can demonstrate correctness, and sometimes even prove our code.
+8 out of 10 of the characteristics of a 10x developer (items 2, 4, 5, 6, 7, 8, 9, and 10) directly address the ongoing cost of the software. Maintenance of our code base, from fixing defects and plugging security holes to adding features, is the long tail when it comes to paying for our code. 10x developers shouldn't get their reputation based on writing a lot of code fast, but **by delivering long term value efficiently.**
 
-We write good tests that mean something. Often we even write code that can be mathematically proven to always produce a correct result. This is one joy of functional programming. Because math.
+Most developers are lucky if they *ever* ship a feature than changes a user's life. The ones who do often do because of the law of averages. They ship more code, so they're more likely to ship something meaningful. I'm talking about 10x developers. I've heard they don't exist, but I think they do.
 
-10. Our code is secure.
-
-Because our programs don't rely on bloated libraries, aren't tightly coupled, don't carry technical debt, are stateless, and do only what they're specified to do, they are more secure than the vast majority of code in the world.
-
-## Simple and correct
-
-I want to point out a theme. Items 1 through 5 above are about simplicity. Items 6 through 10 are about correctness. A 10x developer will write code that is simple and correct, and I believe this is key.
-
+Finally, all 10 characteristics above **can be the result of leadership and training.** In fact we can foster all of these characteristics by having our 10x developers work directly with the rest of our team. If we put a 10x developer in a mob, the 10x developer will go slower, but the mob will produce better much value than average, and the individuals will go on to continue producing better value.
