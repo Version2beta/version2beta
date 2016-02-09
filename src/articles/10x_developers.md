@@ -1,9 +1,9 @@
 ---
 pagetitle: The 10x developer
-longtitle: 
+longtitle: 10x developers deliver more value.
 tags: cto dev
 author: Rob Martin
-published: 2016-02-5 15:00
+published: 2016-02-05 15:00
 snippet: This is an offshoot from my work building teams of functional programmers, and the trend toward anarchy in software engineering teams. In this short post, I discuss why 10x developers exist, how they do so much more than average, and some ideas for driving value up across the whole team.
 ---
 
