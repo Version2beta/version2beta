@@ -65,6 +65,8 @@ The first three guidelines are very much about how we see each other, and I'll j
 
 Is it surprising that we might draw on anarchy to inform how we work? I've been fascinated by the way anarchy was informing software engineering management for years. We have flat organizational charts, everyone reporting to the CTO or CEO. We have engineering-driven organizations, where engineers choose what they'll work on. We have different rules (i.e. none) for engineers' dress code and work spaces. We have game spaces, nap spaces, and a do-whatever-you-want attitude. We have flex-time, unlimited PTO, even unlimited maternity and paternity leave at some places. If we put the team on a farm in Tennessee, we'd have no problem seeing this as anarchy.
 
+Interestingly, this anarchy also build empathy. When we work together this closely, we have to see each other, like really see where we're at and how we're doing. We can't show kindness and respect without caring. Our teams that mob know each other better, listen better, and communicate better than they did before we started mobbing.
+
 > “Yes and” goes further than “no” and “but”.
 
 This guideline comes straight from improv comedy training. Yes, my teams do improv training.
@@ -77,13 +79,67 @@ Almost every mob I've worked with has had juniors, in large part because I think
 
 It's possible that this guideline, "Learning is contributing", is the most important in the list.
 
-* Stopping for an explanation forces someone who thinks they know what they're doing to explain it. Often just explaining it will expose any problems.
+* Stopping for an explanation forces someone who thinks they know what they're doing to explain it. Often just explaining it will expose many problems.
 * If one person doesn't know what's going on, chances are good other people don't know what's going on. **I often don't know what's going on.**
-* Mobs are great for training. Juniors aren't just learning the language, they're learning to deliver value. Mobs teach good judgement.
+* Mobs are great for training. Juniors aren't just learning the language, they're learning to deliver value. Mobs are an excellent place for seniors to teach juniors how to deliver better value.
+* Mobs train seniors too. Seniors learn to communicate and collaborate better in a mob.
+
+### How we communicate with each other
+
+The next three guidelines help us communicate well. 
+
+> We speak at the highest level of abstraction the mob is able to digest in the moment.
+
+When the interns mob, they often talk about things like which keys to press in Vim, how to structure a Git command, and how to call any particular function.
+
+When our seniors mob, they often talk about things like control flow, patterns, testing strategies, and architecture. Except when there are interns or juniors working too; then, they **also** talk about Vim commands, git commands, and syntax. This is because everyone in the mob needs to have the choice to understand what's going on, to ask questions and get answers they are capable of understanding based on their level of experience.
+
+This led to an interesting change in how we mob, that I didn't expect. When we first started, I anticipated everyone using the same computer, but the intern mob quickly did away with that. They wanted to use their own computers and editors, so they got good at Git to make it possible for them to change drivers as often as every five minutes, each of them using their own computer with the current code.
+
+> Declarative language and experience sharing goes further than imperative language.
+
+I've had the opportunity to learn about child development, and how we adults and parents interact with children. One interesting fact is that 80% of our verbal communication with children is imperative: "Do this", "don't do that". Yet when we communicate with other adults, 80% of our verbal communication is declarative, experience sharing. "I wonder about this", "that happened in the world".
+
+Can you imagine what our lives would be like if we went around talking to other adults like we do to children? You probably can. I know people like that.
+
+Sometimes at work, when we're pairing or mobbing, it's easy to fall into imperative communication. "Don't do it that way. Here, try this. No, type it like I say." We try very hard to not communicate imperatively. Instead, we try to make declarations about our shared experience. "That function looks funny." "I wonder if that test catches all our edge cases." "I don't know how this library works."
+
+> Thinking out loud helps everyone in the mob follow what you’re doing.
+
+Thinking out loud takes our declarative experience sharing and levels it up.
+
+We get the best understanding and support across the mob when everyone understands what we're doing and why. We get the best empathy when everyone understands that we don't always know what we're doing. We get the best involvement when everyone sees where we're struggling. 
+We get the best learning when we can listen to the choices and thoughtful consideration other people share.
+
+A quiet mob is a red flag. Thinking out loud has amazing benefits, and its entirely reasonable to encourage constant conversation. This is different from our typical software engineering experience, and it takes practice, but the results are invaluable.
+
+### Kinetic learning too
+
+> Drivers type code that the mob proposes.
+
+Many mobbers have a hard time thinking and talking at the same time. Asking them to think, talk, and type and we fall into a well-established work habit. We go heads down and code, by ourselves - definitely not what we want to do in a mob, and also a constant danger.
+
+In our mobs, we discourage the driver - the person on the keyboard - from writing any code. The driver's job is merely to be the hands and fingers of the mob. This keeps the driver from going solo and leaving the rest of the mob behind while he or she is controlling the keyboard. It keeps the driver engaged with the mob, interacting. It makes the mob into one body, connected and working together.
+
+Perhaps the most important reason the driver just drives is that many of us learn with our fingers as much as our heads.
+
+> We learn differently when we’re the driver, so it’s important that everyone drives.
+
+I can remember most of the phone numbers that were important to me as a child. My home phone number during elementary school. My home phone number during junior high. My grandparent's phone number. Etc. But, in order to recite the number, I usually have dial it on an imaginary phone.
+
+Many of us learn kinetically. We store data in our fingertips. We store syntax in our muscle memory. Our mobs help honor these other ways we learn things, and by switching drivers frequently, we reinforce what we're learning in the mob because we're learning it in different ways in quick procession, a proven method for improving retention.
+
+> Rotations can happen as often as every five minutes.
+
+We did mobs where we had one driver for hours on end. We did mobs where we barely bothered to sit down, we changed drivers so often. Interestingly, stability of roles in the mob was not necessarily a good thing.
+
+Changing drivers frequently seems to keep everyone engaged - perhaps by keeping them invested in what comes next, since we will be driving the keyboard shortly.
+
+### Retrospectives
+
+> Turn up the good.
 
 
-
-Talk about git checkins
 
 ## Everything we ever did wrong
 
