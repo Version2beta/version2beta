@@ -3,13 +3,13 @@ pagetitle: A year of mob programming
 longtitle: The first year of my experiment with mob programming
 tags: cto
 author: Rob Martin
-published: 2016-02-10 15:30
+published: 2016-02-15 08:30
 snippet: It's been twelve months since I started learning how to program in a mob. This post describes my experiences.
 ---
 
-A friend of mine works in a computer research lab, and a year ago he told me how his team of post-docs get together every Friday for about six hours of coding and pizza. They use a projector, one person on the keyboard for the whole session, and something like ten people contributing to what's getting typed. At first, it was a way for everyone to learn Scala, and also to make sure that the project they were writing wasn't locked up inside one person's head.
+A friend of mine works in a computer research lab, and a year ago he told me how his team of post-docs get together every Friday for about six hours of coding and pizza. They use a projector, something like ten people contributing to the programming, and one person (always the same person) running the single keyboard. It was a way for everyone to learn Scala, and also to make sure that the project they were writing wasn't locked up inside one person's head.
 
-A month or so later, I was hanging out with Pat Maddox[^patmaddox], telling him about my plans for pair programming in a women's internship program I was creating at work. Pat suggested I look at mob programming instead, and I remembered I had looked at mob programming and I loved the idea.
+A month or so later, I was hanging out with Pat Maddox[^patmaddox], telling him about my plans for pair programming with a women's internship program I was creating at work. Pat suggested I look at mob programming instead, and I remembered I had already looked at mob programming and I loved the idea.
 
 ## What is mob programming?
 
@@ -290,7 +290,7 @@ I love these two comments. They expose both the difficulty and the solution succ
 
 > "I cheated a lot at declarative vs imperative communication. Instead of 'Do this.' I said 'I think you should do this.''"
 
-In the workshop, we discuss declarative and imperative languages, both in programming languages and in our spoken language. This is a neat intersection for our students. Most have a little experience with imperative and object oriented programming, but almost no experience with declarative and functional programming. But since every workshop so far has been hosted by either Girl Develop It or Women Who Code, the groups tend to have a lot of experience with parentingm and they relate well to imperative and declarative concepts as they relate to communicating with each other. We get it.
+In the workshop, we discuss declarative and imperative languages, both in programming languages and in our spoken language. This is a neat intersection for our students. Most have a little experience with imperative and object oriented programming, but almost no experience with declarative and functional programming. But since every workshop so far has been hosted by either Girl Develop It or Women Who Code, the groups tend to have a lot of experience with parenting and they relate well to imperative and declarative concepts as they relate to communicating with each other. We get it.
 
 ---
 
