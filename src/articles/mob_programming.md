@@ -33,7 +33,7 @@ Mobbing has caught on in our department. My team is one of three with their own 
 
 Our CTO and VP-engineering strongly support the local tech community. With their support we created a full-time, paid, internship program specifically for women who are retraining and/or returning to the workforce. One of our goals is to take a boot camp graduate to a solid junior level developer in 16 weeks. We have four interns at a time, working with at least two more experienced developers, generally on a greenfield project, in a mob, five hours a day, five days a week. The interns' mob often includes domain experts and developers from other teams sharing their experience.
 
-My primary direction for professional development right now is learning to build teams of functional programmers that productively includes junior developers. Part of my study has been to create a workshop series called "An Ounce of Elixir", teaching functional programming (using Elixir) mostly to new developers. Every workshop is interactive and hands-on, and includes about 6 hours of mob programming. In each workshop, the students solve the same exercise: creating an event-sourced, CQRS shopping cart in a purely functional way. In each case so far, the workshop participants, programming in a mob, have succeeded in creating a purely functional shopping cart.
+My primary direction for professional development right now is learning to build teams of functional programmers that productively include junior developers. Part of my study has been to create a workshop series called "An Ounce of Elixir", teaching functional programming (using Elixir) mostly to new developers. Every workshop is interactive and hands-on, and includes about 6 hours of mob programming. In each workshop, the students solve the same exercise: creating an event-sourced, CQRS shopping cart in a purely functional way. In each case so far, the workshop participants, programming in a mob, have succeeded in creating a purely functional shopping cart.
 
 I've done ad-hoc mobs, short-term mobs, and long-term mobs, but I haven't done anything with the level of commitment and longevity that Woody Zuill's team has. They have done mob programming day in and out for years, and in spite of my hubris, there's so much to learn from them. At the same time, I'm confident our experience is useful, so don't stop reading yet.
 
@@ -66,13 +66,13 @@ The first two guidelines are very much about how we see each other, and **I'll j
 
 > Kindness, consideration, and respect are better than having anyone in charge.
 
-I've been fascinated by the way anarchy has been informing software engineering management for years. We have flat organizational charts, everyone reporting to the CTO or CEO. We have engineering-driven organizations, where engineers choose what they'll work on. We have different rules (i.e. none) for engineers' dress code and work spaces. We have game spaces, nap spaces, and a do-whatever-you-want attitude. We have flex-time, unlimited PTO, even unlimited maternity and paternity leave at some places. If we put the team on a farm in Tennessee, we'd have no problem seeing this as anarchy.
+I've been fascinated by the way anarchy has been informing software engineering management for years. We have flat organizational charts with everyone reporting to the CTO or CEO. We have engineering-driven organizations, where engineers choose what they'll work on. We have different rules (i.e. none) for engineers' dress code and work spaces. We have game spaces, nap spaces, and a do-whatever-you-want attitude. We have flex-time, unlimited PTO, even unlimited maternity and paternity leave at some places. If we put the team on a farm in Tennessee, we'd have no problem seeing this as anarchy.
 
 Interestingly, our mobbing anarchy also build empathy. When we work together this closely, we have to see each other, like really see where we're at and how we're doing. We can't show kindness and respect without caring. Our teams that mob know each other better, listen better, and communicate better than they did before we started mobbing.
 
 > “Yes and” goes further than “no but”.
 
-This guideline comes straight from improv comedy training, which is something my teams do - improv comedy training.
+This guideline comes straight from improv comedy training. My teams do improv comedy training.
 
 Improv is hard work. Improv teams build on each other, take a wacky concept from one or two people and build it into a story that delights their audience and themselves. It's very much the same with mob programming. When someone says "No", especially if they are an authority figure outside of the mob, progress stops. We have to overcome inertia and find a different way to make progress. "Yes, and ..." preserves momentum - it takes the position we're in and contributes not only a new milestone but also how to get there.
 
@@ -102,7 +102,7 @@ Sharing leads to understanding - we can't understand what we know nothing about.
 
 Yes, I got all touchy-feely, but this is what happens in a mob. We talk a lot. We think out loud. People understand what we're doing and why. We get involved. We share and listen. We trust each other. We care.
 
-A quiet mob is a red flag. Thinking out loud has amazing benefits, and its entirely reasonable to encourage constant conversation. This is different from our typical software engineering experience, and it takes practice, but the results are invaluable and at least a little bit beautiful.
+A quiet mob is a red flag. Thinking out loud has amazing benefits, and it as entirely reasonable to encourage constant conversation. This is different from our typical software engineering experience, and it takes practice, but the results are invaluable and at least a little bit beautiful.
 
 ### Roles
 
@@ -118,7 +118,7 @@ In our mobs, we discourage the driver from writing any code. The driver's job is
 
 Perhaps the most important reason the driver just drives is that many of us learn with our fingers as much as our heads.
 
-I can remember most of the phone numbers that were important to me as a child. My home phone number during elementary school. My home phone number during junior high. My grandparent's phone number. But, in order to recite the number, I usually have dial it on an imaginary phone.
+I can remember most of the phone numbers that were important to me as a child. My home phone number during elementary school. My home phone number during junior high. My grandparents' phone number. But, in order to recite the number, I usually have dial it on an imaginary phone.
 
 Many of us learn kinetically. We store data in our fingertips. We store syntax in our muscle memory. Our mobs help honor these other ways we learn things, and by switching drivers frequently, we reinforce what we're learning in the mob, learning faster, and improving our retention, because we're learning it in different ways in quick procession.[^twiceasfast]
 
@@ -272,7 +272,7 @@ We've seen this at each of the workshops. Some people pick up Elixir quickly and
 
 We spend about three hours total with the language before breaking into mobs. We spend 90 minutes in an interactive Elixir shell (the Elixir REPL), and another 90 minutes on test driven development in Elixir. This is not enough time for even experienced developers to learn a new language, and these workshops are designed for people who aren't experienced developers. We cannot expect any of them to enter a mob knowing what they're doing.
 
-While most participants are new developers, I do accept a handful of more experienced developers at the workshop. Every time we've scheduled one, we hear from people with more experience who really, really want to learn Elixir. I usually say yes but insist they understand that the workshop is for new developers, and that the discussion will be tailored to the experience level of the group. Developers with more experience may be welcome, but in supporting roles only.
+While most participants are new developers, I do accept a handful of more experienced developers at the workshop. Every time we've scheduled one, we hear from people with more experience who really, really want to learn Elixir. I usually say yes, but insist they understand that the workshop is for new developers, and that the discussion will be tailored to the experience level of the group. Developers with more experience may be welcome, but in supporting roles only.
 
 This is kind of neat, actually. We get experienced coaches for the new developers who are also sharing the experience of learning a new language. Once we break into mobs, the mobs are on their own. It's not an instructional environment, it's a production environment. They have a project to produce - a real one, something they could take to market with more work - in less than six hours.
 
@@ -324,7 +324,7 @@ Most of the comments tend toward ways they'd like to try it more, but a small pe
 
 ### Intern retrospectives
 
-The retrospectives I run tend to be very informational. Also, I like quoting people, or at least paraphrasing them and making sure they approve of my wording. The intern team (four interns, a junior and an intermediate developer) ran their own retrospectives without interference from me. I love how practical they are.
+The retrospectives I run tend to be very informational. Also, I like quoting people, or at least paraphrasing them and making sure they approve of my wording. The intern team (four interns, a junior, and an intermediate developer) ran their own retrospectives without interference from me. I love how practical they are.
 
 > *What didn't go well?*
 > 
@@ -402,7 +402,7 @@ When we've mobbed as a team at work, we are a group of mostly senior developers,
 
 * **Team development.** I want to see the team improve, and I want to see the individual developers on my team improve. I put this goal first in the list because it's actually my primary goal. I'm a purist and a perfectionist, and I want every member of my team to stand out among the best developers in the state. And we do.
 * **Value.** Developers that write simple, correct code can change the world, but only by shipping it. We don't just ship code, though. We want to ship value for the user, for the customer, for the company, and for our team.
-* **Code quality.** I believe a good developer writes code that is simple and correct. That's all. Easy to reason about, and demonstrably correct in what it does. My goal as a manager is to make developers that write simple, correct code, and our goal for mobbing is to make more developers better, more efficiently, while shipping value for our stakeholders and customers.
+* **Code quality.** I believe a good developer writes code that is simple and correct. That's all. Easy to reason about, and demonstrably correct in what it does. My goal as a manager is to make developers that write simple, correct code. Our goal for mobbing is to do this even more efficiently, while still shipping value for our stakeholders and customers.
 
 #### Team development
 
@@ -446,7 +446,7 @@ A lot of that cohesion has continued, but one thing I try to do is move my peopl
 
 > "I think mob programming means we end up with less technical debt."<br />"I would agree."<br />"I agree, and I think it goes along with what was said about the complexity because I kept getting pulled back a bunch of times from what I would have done, and I think what we ended up doing was a lot simpler."<br />"I agree I think we end up with simpler code, so it's possible. It'd be nice to follow some projects over a longer time to be sure."
 
-Too often, when we talk about value, we are talking about short term value: productivity of the developer and the team, in terms of story points delivered. I can see the merit there, but I think that story points are a short-sighted way to measure value.
+Too often, when we talk about value, we are talking about short term value: productivity of the developer and the team in terms of story points delivered. I can see the merit there, but I think that story points are a short-sighted way to measure value.
 
 To me, the average developer is one who can deliver the story quickly. The exceptional developer makes better decisions along the way, decisions that deliver more value in the long term. The exceptional developer delivers the story, but with less code. She writes code that is more secure. She uses fewer dependencies, and has less complexity in her code as a result. We can read and reason about her code, and so can the developers who will maintain it in the future. She uses clear abstractions and they fit the whole problem, not just the story she worked on, so her code can be extended without being rewritten. She doesn't deliver technical debt. She demonstrates that her code is correct. Her code scales in production.
 
