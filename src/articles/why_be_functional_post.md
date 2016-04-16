@@ -353,7 +353,7 @@ Moving all of the IO to the edges has a nice advantage too. Anything that does I
 
 Functional-first programming isn't object-oriented, and that's going to be hard for a lot of teams. Even if you make utility classes and singletons, it's still going to feel weird, and it's going to look weird, and it's going to be weird to an OO programmer.
 
-It is possible to do functional-first programming in more of an object-oriented environment; that's very much the subject of Gary Bernhardt's "functional core, imperative shell" approach. He uses the same concepts in functional-first programming, but uses them inside the class, not at the program level.
+It is possible to do functional-first programming in more of an object-oriented environment. That's very much the subject of Gary Bernhardt's "functional core, imperative shell" approach. He uses the same concepts in functional-first programming, but uses them inside the class, not at the program level.
 
 * Requires training and discipline
 
