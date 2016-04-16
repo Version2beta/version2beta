@@ -3,7 +3,7 @@ pagetitle: Why be functional?
 longtitle: My version of "why functional programming matters".
 tags: cto dev
 author: Rob Martin
-published: 2016-04-09 17:00
+published: 2016-04-16 16:00
 snippet: In 1984, John Hughes wrote a seminal essay called "Why Functional Programming Matters" discussing functional programming in what it brings to our field, rather than what it leaves behind. In my efforts to understand functional programming, I ended up writing my own, less academic version of a "why functional programming matters" type of essay. In my case, it's more of a persuasive essay.
 ---
 
@@ -77,21 +77,21 @@ I use the same standards described under complexity to test whether code is simp
 
 The better our code meets these standards, the more simple I believe it is.
 
-This test works for more than evaluating code we've written. I use it to think about how patterns, languages, or even programming paradigms affect my work. Shortly, we'll use the simplicity test here to functional programming, but for now let's try it out with Object Oriented Programming.
+This test works for more than evaluating code we've written. I use it to think about how patterns, languages, or even programming paradigms affect my work. Shortly, we'll use the simplicity test here to functional programming, but for now let's try it out with Object-Oriented Programming.
 
-### Applying the simplicity test to Object Oriented Programming
+### Applying the simplicity test to Object-Oriented Programming
 
 > "OO makes code understandable by encapsulating moving parts. FP makes code understandable by minimizing moving parts." - Michael Feathers
 
-We can use the simplicity test as a lens to view object oriented programming.
+We can use the simplicity test as a lens to view object-oriented programming.
 
 * Can we reason about the code? Yes, we can reason about well-written OO code.
 
-At least, we *might* be able to reason about well-written object oriented code, but in practice there's a lot of OO code out in the wild that's extremely difficult to reason about. There are some good reasons for this.
+At least, we *might* be able to reason about well-written object-oriented code, but in practice there's a lot of OO code out in the wild that's extremely difficult to reason about. There are some good reasons for this.
 
-A core principle of object oriented programming is encapsulation. We hide complexity, even reasonable complexity, inside of objects to make sure that most programmers don't ever have to experience it. Unfortunately this means that we can hide complexity, even unreasonable complexity, inside our objects because no one but us are ever going to see it. Later, when we're maintaining code, we are often inclined to increase complexity of someone else's code because it's hidden.
+A core principle of object-oriented programming is encapsulation. We hide complexity, even reasonable complexity, inside of objects to make sure that most programmers don't ever have to experience it. Unfortunately this means that we can hide complexity, even unreasonable complexity, inside our objects because no one but us are ever going to see it. Later, when we're maintaining code, we are often inclined to increase complexity of someone else's code because it's hidden.
 
-Object oriented programming not only encapsulates complexity, but offers a lot of it. Our objects have mutable state, and behaviors to mutate that state. It's often hard to explain why we're in the state we are, because state can be mutated anywhere inside the object by any code that accesses the object. We don't typically keep track of how our state changed in the past, so we can't track how we got where we are.
+Object-oriented programming not only encapsulates complexity, but offers a lot of it. Our objects have mutable state, and behaviors to mutate that state. It's often hard to explain why we're in the state we are, because state can be mutated anywhere inside the object by any code that accesses the object. We don't typically keep track of how our state changed in the past, so we can't track how we got where we are.
 
 * Can we test the code? Yes, we can test our code. We do it all the time.
 
@@ -103,7 +103,7 @@ Of course, most code doesn't have tests, and composing tests for legacy code is 
 
 In practice, very little OO code is written for formal proof and very few OO programmers would even know where to start. 
 
-Using the simplicity test, we can see it's possible to write simple code in an object oriented language. Of course we knew that, because we've all written simple code in object oriented languages. We've also seen our OO code go from simple to complex, often feeling like we fell off the complexity cliff and didn't even see it coming.
+Using the simplicity test, we can see it's possible to write simple code in an object-oriented language. Of course we knew that, because we've all written simple code in object-oriented languages. We've also seen our OO code go from simple to complex, often feeling like we fell off the complexity cliff and didn't even see it coming.
 
 ## What is functional programming?
 
@@ -157,7 +157,7 @@ Recursive functions are hardly limited to functional programming languages, but 
 
 ### Immutability
 
-Functional programming languages don't do assignment the way that imperative and object oriented languages do. In imperative languages it makes sense to say something like "Set X to True" or "Assign 1 to Y". In declarative languages, including functional languages, we aren't doing assignment, we're describing the world. If we tell a functional language that Y is equal to the value 1, and then we try to say that Y is equal to a different value, the program may just say "No it isn't. You already told me it was 1." (Actually, it'll probably say something like 'right hand and left hand values do not match', because that's what the language is doing, matching names and values.)
+Functional programming languages don't do assignment the way that imperative and object-oriented languages do. In imperative languages it makes sense to say something like "Set X to True" or "Assign 1 to Y". In declarative languages, including functional languages, we aren't doing assignment, we're describing the world. If we tell a functional language that Y is equal to the value 1, and then we try to say that Y is equal to a different value, the program may just say "No it isn't. You already told me it was 1." (Actually, it'll probably say something like 'right hand and left hand values do not match', because that's what the language is doing, matching names and values.)
 
 Immutability comes to us from two directions.
 
@@ -192,7 +192,7 @@ Another way to isolate the complexity from side effects is to wrap it up in a mo
 
 Some functional programming languages just give us an imperative way to do side effects, and trust us to not use that power foolishly.
 
-Ultimately, getting data in and out of our functional program are imperative, not declarative, operations. We have react to events or respond to commands or write to a file. These operations aren't referentially transparent - they can return a different value each time they're called. They aren't immutable, and in fact we may have many different actors changing the data concurrently.
+Ultimately, getting data in and out of our functional program are imperative, not declarative, operations. We react to events or respond to commands or write to a file. These operations aren't referentially transparent - they can return a different value each time they're called. They aren't immutable, and in fact we may have many different actors changing the data concurrently.
 
 ### The simplicity test, applied to functional programming
 
@@ -226,11 +226,11 @@ Not all programs are deterministic and not all can be proven correct, but with f
 
 > "A language that doesn't affect the way you think about programming is not worth knowing." - Alan Perlis 
 
-While functional programming meets our simplicity test better than object oriented programming, that's only part of the advantage. Functional programming also changes the way we approach our work, and think about the problems we're solving. I think the way it changes our thinking is as important as how it changes our coding.
+While functional programming meets our simplicity test better than object-oriented programming, that's only part of the advantage. Functional programming also changes the way we approach our work, and think about the problems we're solving. I think the way it changes our thinking is as important as how it changes our coding.
 
 ### Imperative and declarative language
 
-Functional programming is a subset of declarative programming, and object oriented programming is a subset of imperative programming. One way of thinking about the difference is whether a variable is set equal to a value, or if we are informing our program that a variable has the same value as something else. In imperative programs, we instruct the computer to do things: set X to 0, calculate a result, print a message. In declarative programs, we describe relationships between things and then ask the program to give us conclusions: There is a function like this, and X has the same value as 3, so what do we get if we solve the function with X?
+Functional programming is a subset of declarative programming, and object-oriented programming is a subset of imperative programming. One way of thinking about the difference is whether a variable is set equal to a value, or if we are informing our program that a variable has the same value as something else. In imperative programs, we instruct the computer to do things: set X to 0, calculate a result, print a message. In declarative programs, we describe relationships between things and then ask the program to give us conclusions: There is a function like this, and X has the same value as 3, so what do we get if we solve the function with X?
 
 We speak in declarative language most of the time, especially with other adults. We share experiences ("That meeting sure was a bore!"), and talk about our feelings ("If manager Rob does that one more time, I'm gonna blow my fuse.") We tend to dislike adults who speak imperatively to us ("Make me a sandwich. Sudo make me a sandwich."[^sandwich]) and think of them as jerks.
 
@@ -250,7 +250,7 @@ Functional programming changes how we model the world in our code, and as a resu
 
 We know that objects make for a decent abstraction in our programming. That's true. It's a reasonably effective way to model the real-world. The problem is that objects have no way to account for the passage of time, and in the real world, "identity" needs to account for the passage of time.
 
-* In object oriented programming, **identity is the present state of an object**.
+* In object-oriented programming, **identity is the present state of an object**.
 * In functional programming, **identity is a collection of immutable states over time**.
 
 It's fair to say "I'm not the person I used to be." But who I used to be is an integral part of who I am today. The object-oriented way of viewing objects doesn't account for this. Instead the state of an object is frozen in the current moment.
@@ -304,7 +304,7 @@ Prolog/Erlang family languages:
 
 I contrast these languages with Scala (Odersky, 2004), a general purpose programming language inspired by Java's deficiencies and supporting functional programming. I've also heard it called "a slippery slope to functional programming" for Java developers.
 
-[^wadler]: ["Propositions as Types")[http://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf], Philip Wadler, 2015
+[^wadler]: ["Propositions as Types"](http://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf), Philip Wadler, 2015
 
 ## Functional-first programming
 
@@ -325,7 +325,7 @@ These two steps are not as simple as they look, but if we follow them we get a b
 
 If our functions have no side effects, then the only effect they have on the meaning of our program comes from the value they return. They are referentially transparent, and simple to reason about.
 
-Our functions should be pure, at least within the limits of the language. For example, any language that passes arguments by reference risks mutating those arguments. Python, for example, passes object references by value, which means the function will be looking at the same object in memory that was passed to it. If the standard ways of interacting with that object also mutate it, as Python Arrays do, it will mutate it in place and have side effects unless the developer knows to avoid this.
+Our functions should be pure, but within the limits of the language. For example, any language that passes arguments by reference risks mutating those arguments. Python, for example, passes object references by value, which means the function will be looking at the same object in memory that was passed to it. If the standard ways of interacting with that object also mutate it, as Python arrays do, it will mutate it in place and have side effects unless the developer knows to avoid this.
 
 * Our program is a composition.
 
@@ -349,13 +349,15 @@ Moving all of the IO to the edges has a nice advantage too. Anything that does I
 
 ### Disadvantages
 
-* We're not really doing object oriented programming any more.
+* We're not really doing object-oriented programming any more.
 
-Functional-first programming isn't object oriented, and that's going to be hard for a lot of teams. Even if you make utility classes and singletons, it's still going to feel weird, and it's going to look weird, and it's going to be weird to an OO programmer.
+Functional-first programming isn't object-oriented, and that's going to be hard for a lot of teams. Even if you make utility classes and singletons, it's still going to feel weird, and it's going to look weird, and it's going to be weird to an OO programmer.
+
+It is possible to do functional-first programming in more of an object-oriented environment; that's very much the subject of Gary Bernhardt's "functional core, imperative shell" approach. He uses the same concepts in functional-first programming, but uses them inside the class, not at the program level.
 
 * Requires training and discipline
 
-I like languages that make it hard to do things wrong, according to the abstractions that language provides. Doing functional-first programming in an object oriented language is doing it wrong, because it doesn't fit the abstractions that an OO language provides.
+I like languages that make it hard to do things wrong, according to the abstractions that language provides. Doing functional-first programming in an object-oriented language is doing it wrong, because it doesn't fit the abstractions that an OO language provides.
 
 As it happens, a lot of languages don't actually care if you do OO or straight up procedural / imperative code. So it might not feel terribly wrong. It does take training to re-learn how to program in our favorite OO languages, and discipline to keep everything separate. We rely on the developer to do things well, because the language isn't going to help.
 
