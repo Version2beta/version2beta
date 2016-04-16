@@ -35,6 +35,20 @@ In Erlang, a reduce is implemented as a `foldl` and expects to be given an initi
 10
 ```
 
+F# offers a reduce function that uses the first element of the list as an initial value for an accumulator. Also, lists are delimited with semicolons.
+
+```
+> List.reduce (fun sum acc -> sum + acc) [1;2;3];;
+val it : int = 6
+```
+
+F# offers a "point-free" style too, so there's a valid form that uses no variables.
+
+```
+> List.reduce (+) [1;2;3];;
+val it : int = 6
+```
+
 * `filter` is also give a list and a function, and uses the function to determine which elements from the list should be returned in a resulting list. If the function provided to `filter` returns true (or a truthy value in a lot of languages) for any given element, than that element is included in the result list.
 
 In Clojure, filters might be used like this to collect all of the single letter items in a list.
@@ -46,12 +60,20 @@ In Clojure, filters might be used like this to collect all of the single letter 
 ("a" "b" "c" "d")
 ```
 
+Elixir works very much the same:
+
+```
+> Enum.filter(['a', 'b', 'ab', 'c', 'd', 'cd'], fn(x) -> length(x) == 1 end)
+['a', 'b', 'c', 'd']
+```
 
 *Level one coding exercise*
 
 I'm pretty good at Wordsmith, a Words With Friends predecessor and Scrabble-like mobile game. I'm good enough at it that my kids didn't like to play against me. To make it more interesting, I told them it was fine if they cheat. They can use a computer program to find words they can play - but only if they write the computer program.
 
 That's the coding exercise. Create a program that, given a set of tiles, finds words in a dictionary that can be spelled using those tiles.
+
+When you evaluate the developer's code or process, look at their program flow control. A functional programmer asked to program in a functional way won't use any loops. Instead, you should see functions like map or filter, functions provided by libraries that implement maps and filters, and maybe some recursion if the developer doesn't know all the options from the libraries (or wishes to be explicit.)
 
 Here is a solution in Elixir:
 
@@ -78,7 +100,7 @@ defmodule CheatTest do
 end
 ```
 
-And here is a solution in Haskell:
+And here is a solution in Haskell that (bonus!) uses Quickcheck for property based testing:
 
 ```
 import Test.QuickCheck
@@ -97,16 +119,31 @@ main = quickCheck prop_tile_difference
 
 ## Level two: Operational theory
 
+Thinking of functional programming as Map, Reduce, and Filter is a good starting point, but a functional programmer needs to be able to use these tools in a larger context. Operational theory covers that context, and the next section ("underlying theory") provides context for the operational theory.
 
-Side effects
-  Mutability
-  State
-  IO
+I divide the context for functional programming into two categories: simple, and correct. Under the "simple" category, we can discuss functions and side effects, and under the "correct" category, we can discuss testing and types.
 
-Functions
-  Referential integrity
-  Transformation
-  Composition
+### Functions
+
+Functions are, understandably, the core of functional programming. There are five characteristics of functions a candidate should be able to discuss. I've provided a brief description and some high points for each, but these may not be enough for you. If you need more information on any subject from here on out, I recommend you ask your candidate. Ideally, an impressive candidate can help you as a hiring manager learn why these concepts are important.
+
+**Referential transparency**: In functional programming, functions return values based only on the arguments provided. No other state is considered when calculating the result. Another way of looking at referential transparency is that a function can always be replaced by its result without changing the operation of the program.
+
+In a practical sense, referential transparency makes code easier to understand and easier to test. Pure functions are easy to test, both with unit tests and with property-based testing. They are also easier to reason about, because state is never hidden, it's passed as an argument. On the one hand, this keeps state visible. On the other, people 
+
+**Composition**: Composition chains functions together, so that the output from one function can servce as input to another function. Very often, function composition reads from the inside out. `f(g(x))` is the function `f` applied to the output from the function `g` applied to `x`. We can read it as "*f* of *g* of *x*". Many functional languages give us pipeline operators, however, which allow us to compose functions from left to right. Both F# and Elixir use `|>` for this, so that the previous example might look like `g(x) |> f`.
+
+**Recursion**: Recursion is when a function calls itself. This happens very frequently in functional programming because of immutable state - the typical imperative techniques use a mutable loop counter, where recursion typically keeps operating until a condition is met, like "there isn't any data left". A candidate should be able to discuss both recursion and tail recursion, a special case of recursion where the compiler can implement the code using a goto statement rather than putting a frame on the call stack. In practice, tail recursion means that the recursive call is the last thing that happens in the function.
+
+### Side effects
+
+
+
+**Mutability and state**:
+
+**Transformation**: 
+
+**IO**:
 
 Correctness
   Informal reasoning
@@ -136,6 +173,26 @@ filter _pred []    = []
 filter pred (x:xs)
   | pred x         = x : filter pred xs
   | otherwise      = filter pred xs
+```
+
+Here are implementations of map and filter in F#. I didn't implement reduce or fold because I don't know enough F#. Also, note that the filterList implementation is not tail recursive. I'll improve on this code as soon as I'm able.
+
+```
+let rec mapList f list =
+  match list with
+    | [] ->
+      []
+    | head::tail ->
+      (f head) :: (mapList f tail)
+
+let rec filterList f list =
+  match list with
+  | head::tail when f head ->
+    head :: filterList f tail
+  | _::tail ->
+    filterList f tail
+  | [] ->
+    []
 ```
 
 ## Level three: Underlying theory
