@@ -1,0 +1,3 @@
+[submodule "LoveIt"]
+	path = LoveIt
+	url = git@github.com:dillonzq/LoveIt.git
