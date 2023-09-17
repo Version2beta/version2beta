@@ -1,0 +1,5 @@
+baseURL = 'http://version2beta.com/'
+languageCode = 'en-us'
+title = 'version2beta'
+theme = 'clarity'
+googleAnalytics = 'G-1TQSPJ6CG7'

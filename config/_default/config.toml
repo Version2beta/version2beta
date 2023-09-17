@@ -1,0 +1,24 @@
+# set `baseurl` to your root domain
+# if you set it to "/" share icons won't work properly on production
+baseurl = "https://example.com/"  # Include trailing slash
+title = "version2beta"
+copyright = "Copyright © 2011–2023, Rob Martin; all rights reserved."
+# canonifyurls = true
+paginate = 10
+theme = "clarity"
+disqusShortname = ""
+
+DefaultContentLanguage = "en"
+# [languages]
+# config/_default/languages.toml
+
+# [menus]
+# config/_default/menus/menu.xx.toml
+
+[taxonomies]
+category = "categories"
+tag = "tags"
+series = "series"
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
