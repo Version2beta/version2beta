@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Civic Hacking with IPython and Pandas</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Slides for my presentation on Civic Hacking with IPython and Pandas." />
+    <meta name="author" content="M Robert Martin / @version2beta" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/static/css/normalize.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/static/examples/vagrant-chef-git/reveal.css">
+    <link href='http://fonts.googleapis.com/css?family=Archivo+Black' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+      <!--
+      body {
+        background-color: #f8f6b5;
+        color: #d52e00;
+        font: 32px 'Capriola', sans-serif;
+        line-height: 54px;
+      }
+      .reveal h1 { font: 48px/54px 'Archivo Black', sans-serif; padding: 20px 0; }
+      .reveal h2 { font: 42px/54px 'Archivo Black', sans-serif; padding: 20px 0; }
+      .reveal p { padding: 12px; }
+      .reveal a, .reveal a:visited { color: #015; }
+      .reveal img { max-height: 480px; }
+      .reveal pre {
+        font: 22px/28px Inconsolata, monospace;
+        white-space: pre-wrap;
+        color: #000000;
+        background-color: #ffffff;
+        max-height: 560px;
+        overflow: auto;
+      }
+      .lnr { color: #ffff00; }
+      .Constant { color: #ff6060; }
+      .Special { color: #ff40ff; }
+      .Identifier { color: #00ffff; }
+      .Statement { color: #ffff00; }
+      .Type { color: #00ff00; }
+      .Comment { color: #8080ff; }
+      section.slide {
+        min-height: 600px;
+        background-color: #ffd;
+        border: 2px solid white;
+        border-radius: 12px;
+        box-shadow: 3px 3px 12px #000;
+        padding: 36px;
+      }
+      div.scale {
+        clear: both;
+        width: 340px;
+        padding: 0;
+      }
+      div.scale p {
+        font-size: 18px;
+        line-height: 20px;
+        padding: 12px 0;
+        margin: 0;
+      }
+      -->
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="slide">
+          <h1>Civic Hacking<br />with IPython and Pandas</h1>
+          <p>Rob Martin / @version2beta</p>
+          <img class="slide_image" src="/static/examples/avatar.jpg" style="border-radius: 12px; border: 4px solid white" />
+          <p><a href="http://twitter.com/version2beta" title="version2beta on Twitter">http://twitter.com/version2beta</a></p>
+          <p><a href="http://version2beta.com" title="version2beta's blog">http://version2beta.com</a></p>
+          <p><a href="https://github.com/version2beta" title="version2beta's Github">https://github.com/Version2beta</a></p>
+        </section>
+        <section class="slide" style="background: #ffd url(managing-risk-and-selling-value/dragon.png) no-repeat center;">
+          <h2 style="margin: 160px 0;">Warning:<br />I am not a mathematician.<br />(But you probably are.)</h1>
+        </section>
+        <section class="slide">
+          <h2 style="margin: 160px 0;">Let's start with a story.<br />A story about somebody else.</h2>
+        </section>
+        <section class="slide">
+          <p style="text-align: center">
+            <img src="/static/examples/civic-hacking-with-ipython-and-pandas/Dave_shoes.jpg" alt="David Beazley" />
+          </p>
+          <p>David Beazley</p>
+          <ul>
+            <li>PhD. in Computer Science</li>
+            <li>Author of the Python Essential Reference</li>
+            <li>Keynote speaker</li>
+            <li>Teaches his kids to play with high speed cutting tools.</li>
+          </ul>
+        </section>
+        <section class="slide">
+          <p style="text-align: center">
+            <img src="/static/examples/civic-hacking-with-ipython-and-pandas/toliphant.png" alt="Travis Oliphant" />
+          </p>
+          <p>Travis Oliphant</p>
+          <ul>
+            <li>PhD. from Mayo Clinic</li>
+            <li>Author of NumPy, founding contributor of SciPy</li>
+            <li>CEO of Continuum Analytics</li>
+            <li>Has six kids and "a very patient wife"</li>
+          </ul>
+        </section>
+        <section class="slide">
+<pre>
+<span class="lnr"> 1 </span><span class="PreProc">import</span> requests
+<span class="lnr"> 2 </span><span class="PreProc">import</span> webbrowser
+<span class="lnr"> 3 </span><span class="PreProc">from</span> bs4 <span class="PreProc">import</span> BeautifulSoup
+<span class="lnr"> 4 </span><span class="PreProc">from</span> time <span class="PreProc">import</span> sleep
+<span class="lnr"> 5 </span>
+<span class="lnr"> 6 </span>daves_lat = <span class="Constant">41.980262</span>
+<span class="lnr"> 7 </span>daves_lon = -<span class="Constant">87.668452</span>
+<span class="lnr"> 8 </span>required_distance = <span class="Constant">0.5</span>/<span class="Constant">69</span>
+<span class="lnr"> 9 </span>
+<span class="lnr">10 </span><span class="Statement">while</span> <span class="Identifier">True</span>:
+<span class="lnr">11 </span>  r = requests.get(<span class="Constant">'<a href="http://ctabustracker.com/bustime/map/getBusesForRoute.jsp?route=22">http://ctabustracker.   com/bustime/map/getBusesForRoute.jsp?route=22</a>'</span>)
+<span class="lnr">12 </span>  <span class="Statement">if</span> r.status_code &gt; <span class="Constant">200</span>:
+<span class="lnr">13 </span>     <span class="Statement">raise</span> <span class="Type">AssertionError</span>
+<span class="lnr">14 </span>  doc = BeautifulSoup(r.text, <span class="Constant">&quot;html5lib&quot;</span>)
+<span class="lnr">15 </span>  buses = doc.findAll(<span class="Constant">'bus'</span>)
+<span class="lnr">16 </span>  params = []
+<span class="lnr">17 </span>  markers = []
+<span class="lnr">18 </span>  done_looking = <span class="Identifier">False</span>
+<span class="lnr">19 </span>  <span class="Statement">for</span> bus <span class="Statement">in</span> buses:
+<span class="lnr">20 </span>    <span class="Statement">if</span> bus.find(<span class="Constant">'d'</span>).string.startswith(<span class="Constant">'North'</span>):
+<span class="lnr">21 </span>      bus_id = bus.find(<span class="Constant">'id'</span>).string
+<span class="lnr">22 </span>      lat = <span class="Identifier">float</span>(bus.find(<span class="Constant">'lat'</span>).string)
+<span class="lnr">23 </span>      lon = <span class="Identifier">float</span>(bus.find(<span class="Constant">'lon'</span>).string)
+<span class="lnr">24 </span>      distance = <span class="Identifier">abs</span>(lat - daves_lat) * <span class="Constant">69</span>
+<span class="lnr">25 </span>      <span class="Identifier">print</span> <span class="Constant">&quot;[bus %s] lat: %f, lon: %f, distance: %f miles&quot;</span> % (bus_id,  lat, lon, distance)
+<span class="lnr">26 </span>      <span class="Statement">if</span> distance &lt;= <span class="Constant">0.75</span>:
+<span class="lnr">27 </span>        params.append(<span class="Constant">&quot;markers=color:red|%s,%s&quot;</span> % (lat, lon))
+<span class="lnr">28 </span>        done_looking = <span class="Identifier">True</span>
+<span class="lnr">29 </span>  <span class="Statement">if</span> done_looking:
+<span class="lnr">30 </span>    params.append(<span class="Constant">&quot;markers=color:blue|%s,%s&quot;</span> % (daves_lat, daves_lon))
+<span class="lnr">31 </span>    params.append(<span class="Constant">&quot;size=800x600&quot;</span>)
+<span class="lnr">32 </span>    params.append(<span class="Constant">&quot;sensor=false&quot;</span>)
+<span class="lnr">33 </span>    params.append(<span class="Constant">&quot;center=%f,%f&quot;</span> % (daves_lat, daves_lon))
+<span class="lnr">34 </span>    params.append(<span class="Constant">&quot;zoom=14&quot;</span>)
+<span class="lnr">35 </span>    params.append(<span class="Constant">&quot;key=AIzaSyBvWkP7S_qVZzh6E7OCTekHmT1NM-_0voc&quot;</span>)
+<span class="lnr">36 </span>    url = <span class="Constant">'<. href="http://maps.googleapis.com/maps/api/staticmap?%s">http://maps.googleapis.com/maps/api/staticmap?%s</ a>'</span> % <span class="Constant">&quot;&amp;&quot;</span>.join(params)
+<span class="lnr">37 </span>    webbrowser.<span class="Identifier">open</span>(url, autoraise=<span class="Identifier">True</span>)
+<span class="lnr">38 </span>    <span class="Statement">break</span>
+<span class="lnr">39 </span>  <span class="Statement">else</span>:
+<span class="lnr">40 </span>    sleep(<span class="Constant">10</span>)
+<span class="lnr">41 </span>
+</pre>
+        </section>
+        <section class="slide">
+          <h2>Installing IPython and Pandas</h2>
+          <p>Easy way: install Anaconda from Continuum Analytics</p>
+          <p><a href="http://continuum.io/downloads" title="Anaconda download">Anaconda download: http://continuum.io/downloads</a></p>
+          <p><a href="http://continuum.io/anaconda/" title="Anaconda details">Anaconda details: http://continuum.io/anaconda/</a></p>
+        </section>
+        <section class="slide">
+          <h2>Navigating IPython</h2>
+          <p style="text-align: center">
+            <img src="/static/examples/civic-hacking-with-ipython-and-pandas/IPython_hello.png" />
+          </p>
+        </section>
+        <section class="slide">
+          <h2>Using Pandas<h2>
+          <p style="text-align: center">
+            <img src="/static/examples/civic-hacking-with-ipython-and-pandas/import_pandas.png" />
+          </p>
+        </section>
+        <section class="slide">
+          <h2>Pandas Series</h2>
+          <pre>
+
+  ds1 = pandas.Series(range(10))
+  ds2 = pandas.Series(list('MilwaukeeData'))
+  ds3 = pandas.Series(np.random.random_integers(0,100,10))
+  ds4 = pandas.Series(np.random.choice(list('AEIOU'), 10))
+          </pre>
+        </section>
+        <section class="slide">
+          <h2>Pandas Data Frames</h2>
+          <pre>
+
+  df1 = pandas.DataFrame(
+      np.random.rand(10,4),
+      index=range(10),
+      columns=list('ABCD'))
+  df2 = pandas.DataFrame(
+      np.random.randn(10,4),
+      index=list('abcdefghij'),
+      columns=list('ABCD')) # randn is standard normal distribution
+  df3 = pandas.DataFrame({
+      'A': list('ABCDEFGHIJ'),
+      'B': np.random.choice(list('ABCDEFGHIJ'),10),
+      'C': range(10)})
+          </pre>
+        </section>
+        <section class="slide">
+          <h2>Viewing Pandas Data</h2>
+          <pre>
+
+  df1.head()
+  df2.tail(3)
+  df2.index
+  df3.columns
+  df2.values
+  df2.sort_index(axis=0, ascending=False)
+  df2.sort_index(axis=1, ascending=False)
+  df1.sort(columns='A')
+  df1.describe()
+          </pre>
+        </section>
+        <section class="slide">
+          <h2>Selecting Pandas Data</h2>
+          <pre>
+
+  df1['A'] # column A
+  df3.loc[0] # row 0, where index is 0 - 9
+  df3.loc[0:3] # the first four rows, where index is 0 - 9
+  df2.loc['a'] # row 'a', where index is 'a' - 'j'
+  df2.loc['a':'d'] # the first four rows, where index is 'a' - 'j'
+  df2.iloc[3] # the third row
+  df2.loc['a':'c', ['A', 'C']] # columns A and C for the first three rows
+  df2.iloc[0:2, 0:2] # the first two rows and columns
+  df2.at['a','A'] # the single value at row 'a' column 'A'
+  df2.iat[0,0] # the single value in the first row and first column
+  df1.ix[1:3,0:2] # The second and third row, first and second column
+  df2.ix[1:3,0:2] # The second and third row, first and second column
+          </pre>
+        </section>
+        <section class="slide">
+          <h2>Selecting Data Conditionally</h2>
+          <pre>
+
+  df1[df1['A'] > 0.5]
+  df2[df2 > 0]
+  df3[df3['B'] < 'h']
+          </pre>
+        </section>
+        <section class="slide">
+          <h2>Assigning Values</h2>
+          <pre>
+
+  df3.at[9,'C'] = 10
+  df3['d'] = pandas.Series([9,8,7,6,5,4,3,2,1], index=range(10))
+  df2.iat[0,0] = 0
+  df2 = -df2
+  df4 = df2.copy()
+  df4[df4 > 0] = -df4
+          </pre>
+        </section>
+        <section class="slide">
+          <h2>Some statistics</h2>
+          <pre>
+
+  df1.min()
+  df1.min(1) # other axis
+  df1.max()
+  df1.max(1) # other axis
+  df1.mean()
+  df1.mean(1) # other axis
+  df1.median()
+  df3['b'].value_counts()
+  df3['b'].rank()
+  df1.std()
+  df1.quantile()
+          </pre>
+        </section>
+        <section class="slide">
+          <h2>Interesting data sets?</h2>
+          <ul>
+            <li>Milwaukee County Transit stops and times
+            <li>The address of every parking spot in Milwaukee
+            <li>The location of every pothole in Chicago
+            <li>The location of every drinking fountain in NYC
+            <li>A list of every federal goverment agency
+          </ul>
+        </section>
+        <section class="slide">
+          <h2>Challenge #1</h2>
+          <p>Water data set from <a href="https://github.com/milwaukeedata/MilwaukeeWater2011">https://github.com/milwaukeedata/MilwaukeeWater2011</a></p>
+          <pre>
+
+  dfw = pandas.read_csv(
+      'MilwaukeeWater2011/Milwaukee-2011-07-14.csv',
+      index_col=False, parse_dates=[4,5])
+  dfw.iloc[0]
+          </pre>
+          <p>Some challenges:</p>
+          <ul>
+            <li>Easy: Total Milwaukee water use</li>
+            <li>Easy: Average water use</li>
+            <li>Medium: Address with most water use</li>
+            <li>Hard: Average water use per day</li>
+          </ul>
+        </section>
+        <section class="slide">
+          <h2>Challenge #2</h2>
+          <p>Parking tickets from <a href="https://github.com/milwaukeedata/MKE_2012_Parking_Violations">https://github.com/<br />milwaukeedata/MKE_2012_Parking_Violations</a></p>
+          <pre>
+
+  dft = pandas.read_csv(
+      'MKE_2012_Parking_Violations/2012_MKE_tickets_issued.csv',
+      parse_dates=[1], index_col=1)
+  dft.iloc[0]
+          </pre>
+          <p>Some challenges:</p>
+          <ul>
+            <li>Easy: Most ticketed offenses</li>
+            <li>Easy: Most ticketed addresses</li>
+            <li>Hard: Worst time of day</li>
+          </ul>
+        </section>
+
+        <section class="slide" style="">
+          <img class="slide_image" src="/static/examples/avatar.jpg" style="border-radius: 12px; border: 4px solid white" />
+          <p>@version2beta</p>
+          <p style="font-size: smaller">
+            <a href="http://twitter.com/version2beta" title="version2beta on Twitter">http://twitter.com/version2beta</a> |
+            <a href="http://version2beta.com" title="version2beta's blog">http://version2beta.com</a>
+          </p>
+          <p>Tech support is always free!*</p>
+          <p style="font-size: smaller">* Free as in beer.<br />Means you buy me a beer and I give you tech support.</p>
+        </section>
+      </div>
+    </div>
+    <script src="/static/examples/vagrant-chef-git/reveal.min.js" type="text/javascript"></script>
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: false,
+        rollingLinks: false,
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+			});
+
+		</script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12023701-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

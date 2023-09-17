@@ -1,0 +1,249 @@
+/* ------ SITE-WIDE ------ */
+@font-face {
+    font-family: 'dekarregular';
+    src: url('dekar/dekar-webfont.eot');
+    src: url('dekar/dekar-webfont.eot?#iefix') format('embedded-opentype'),
+         url('dekar/dekar-webfont.woff2') format('woff2'),
+         url('dekar/dekar-webfont.woff') format('woff'),
+         url('dekar/dekar-webfont.ttf') format('truetype'),
+         url('dekar/dekar-webfont.svg#dekarregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+ font-family: Futura,Trebuchet MS,Arial,sans-serif;
+ font-size: 18px;
+ color: #474C59;
+ line-height: 40px;
+ font-weight: 400;
+}
+#sitename a {
+  color: #FFF5F9;
+  font-size: 35px;
+}
+#sitenav a {
+  text-decoration: none;
+  color: #FFFFFF;
+  font-size: 31px;
+}
+#sitenav a:visited {
+  color: #FFFFFF;
+}
+#sitenav a::before {
+  content: '\2215\2215\00a0';
+  color: #FF3E3E;
+  letter-spacing: 5px;
+}
+ul#sitenav {
+  list-style-type: none;
+}
+h1, h2 {
+  line-height: 55px;
+}
+h1, h2, h3 {
+  text-transform: uppercase;
+}
+h1 {
+  font-size: 35px;
+  color: #D1C7D3;
+}
+h2 {
+  font-size: 31px;
+}
+h3 {
+  font-size: 28px;
+  color: #858993;
+}
+h4 {
+  font-size: 28px;
+  color: #B6AEB7;
+}
+h5, h6 {
+  font-weight: 700;
+  font-size: 20px;
+}
+h6 {
+  color: #070707;
+}
+a,
+a:visited {
+  color: #22CCDD;
+  text-decoration: none;
+}
+b, strong, dt {
+  font-stretch: condensed;
+  font-weight: bold;
+}
+strong, em, dt {
+  color: #070707;
+}
+hr {
+  border-top: 1px solid #5059AA;
+}
+ol, ul, dl, blockquote {
+  line-height: 33px;
+}
+ul li {
+	list-style: none;
+  text-indent: -29px;
+  padding-left: 15px;
+}
+.content ul li:before {
+  color:#77EDBF;
+  content:"\2022";
+  padding-right: 15px;
+}
+ol li {
+  padding-left: 15px;
+}
+img, object, embed {
+  max-width: 100%;
+  margin: 5px;
+}
+img {
+	height: auto;
+}
+figcaption {
+  color: #99919B;
+  font-size: 16px;
+}
+pre {
+  background: #F3EDF4;
+  padding: 15px 25px;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+code, samp, kbd {
+  font-family: monaco, Consolas, Lucida Console, monospace;
+  font-size: 16px;
+}
+ins {
+  text-decoration: none;
+  border-bottom: 1px solid #FFD400;
+}
+blockquote {
+  border-left: 25px solid #78EFFF;
+  margin-left: 0px;
+  padding-left: 40px;
+}
+sub, sup, small {
+  font-size: 13px;
+}
+u {
+  text-decoration: none;
+  border-bottom: 1px solid #FF833E;
+}
+mark {
+  background: #FFD400;
+}
+footer {
+  padding: 20px 5px 10px 5px;
+  color: #FFF5F9;
+  text-align: center;
+}
+footer p {
+  margin: 0px;
+}
+footer a, footer a:visited {
+  color: #FFD400;
+  border-bottom: 1px solid #FFF5F9;
+}
+#social a {
+  border: none;
+}
+.creative-commons {
+  font-size: 15px;
+}
+
+/* ------ SPECIFIC ------ */
+
+#content-header h1, #home-content h2 a, #sitename a, .post-date time, ul#sitenav {
+ font-family: 'dekarregular', Futura,Trebuchet MS,Arial,sans-serif;
+ font-weight: normal;
+}
+#content-header h1, #home-content h2 {
+  text-transform: none;
+  text-align: center;
+}
+#content-header h1 {
+  font-size: 50px;
+  color: #FF833E;
+}
+#home-content h2 a {
+  font-size: 40px;
+  color: #FF833E;
+}
+.post-date time {
+  font-size: 20px;
+  text-align: center;
+}
+#home-content .post-date time {
+  margin-right: 5px;
+}
+#content-header p {
+  text-align: center;
+  line-height: 18px;
+}
+#content-header span {
+  line-height: 25px;
+}
+#content-header {
+  margin-bottom: 35px;
+}
+.post-tag, .read-more, .read-more a {
+  text-align: right;
+  color: #D1C7D3;
+}
+.read-more {
+  padding-left: 10px;
+  display: inline-block;
+}
+#readable-content h1 {
+  font-size: 65px;
+}
+#readable-content h2 {
+  font-size: 51px;
+}
+#readable-content h3, h4 {
+  font-size: 45px;
+}
+#readable-content h5, h6 {
+  font-size: 40px;
+}
+#readable-content, #readable-content p, #readable-content pre, #readable-content blockquote, #readable-content ul, #readable-content li, #readable-content ol, #readable-content time, #readable-content dl {
+  font-size: 32px;
+  line-height: 60px;
+}
+#readable-content p {
+  margin: 5px 0px;
+}
+#readable-content ul li {
+  text-indent: -38px;
+}
+#readable-content ul li:before {
+  color:#77EDBF;
+  content:"\2022";
+  padding-right: 15px;
+}
+#readable-content figcaption {
+  font-size: 25px;
+}
+#readable-content code, #readable-content samp, #readable-content kbd {
+  font-family: monaco, Consolas, Lucida Console, monospace;
+  font-size: 25px;
+}
+#readable-content sub, #readable-content sup, #readable-content small {
+  font-size: 20px;
+}
+#readable-content p.readable {
+  text-align: center;
+}
+#home-content h1 {
+  text-align: center;
+}
+#readable-content img, #readable-content object, #readable-content embed {
+  margin: 30px;
+}
