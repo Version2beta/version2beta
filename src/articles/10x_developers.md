@@ -77,5 +77,5 @@ Items 1 through 5 above share a theme of simplicity. Items 6 through 10 share a 
 
 Finally, all 10 characteristics above can be **the result of leadership and training.** In fact we can foster all of these characteristics by having our 10x developers work directly with the rest of our team. If we put a 10x developer in a mob, the 10x developer may go slower, but the mob will produce much better value than average, and the individuals will go on to continue producing better value.
 
-Most developers are lucky if they *ever* ship a feature than changes a user's life. Most managers are lucky to work on a product that changes users' lives. Maybe the best we can do is embrace a coding ethic that makes our work meaningful, and **maybe bringing that ethic raises our work to a standard capable of changing lives.**
+Most developers are lucky if they *ever* ship a feature that changes a user's life. Most managers are lucky to work on a product that changes users' lives. Maybe the best we can do is embrace a coding ethic that makes our work meaningful, and **maybe bringing that ethic raises our work to a standard capable of changing lives.**
 
